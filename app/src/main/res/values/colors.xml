@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#093d87</color>
+    <color name="colorPrimaryDark">#093d87</color>
+    <color name="colorAccent">#3d8bff</color>
+    <color name="login_button">#3d8bff</color>
+    <color name="blue">#3d8bff</color>
+
+    <color name="switch_open">#aad6a6</color>
+    <color name="switch_close">#ffffff</color>
+    <color name="white">#ffffff</color>
+    <color name="state_notchecked">#b0bed4</color>
+    <color name="missing_information">#ff7a7a</color>
+    <color name="appointmentleft">#66aaff</color>
+    <color name="cancelbuttoninside">#ff7a7a</color>
+    <color name="cancelbuttonout">#fa3d3d</color>
+
+
+
+</resources>

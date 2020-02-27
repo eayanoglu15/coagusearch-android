@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Coagusearch</string>
+    <string name="hint">Password</string>
+    <string name="height">Height (cm)</string>
+    <string name="weight">Weight (kg)</string>
+    <string name="name">Name</string>
+    <string name="surname">Surname</string>
+    <string name="age">Age</string>
+    <string name="hinttc">TC</string>
+    <string name="title_activity_main2">Main2Activity</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_accountinformations">accountinformations</string>
+</resources>
