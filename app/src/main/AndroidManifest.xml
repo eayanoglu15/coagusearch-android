@@ -9,10 +9,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".AddMedicine"></activity>
+        <activity android:name=".Class.addMedicine" />
         <activity
             android:name=".accountinformations"
             android:label="@string/title_activity_accountinformations"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".accountPage" />
         <activity android:name=".main" />
         <activity android:name=".anasayfa" />
@@ -24,7 +26,6 @@
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

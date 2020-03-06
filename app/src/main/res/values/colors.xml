@@ -5,6 +5,7 @@
     <color name="colorAccent">#3d8bff</color>
     <color name="login_button">#3d8bff</color>
     <color name="blue">#3d8bff</color>
+    <color name="grey">#aad</color>
 
     <color name="switch_open">#aad6a6</color>
     <color name="switch_close">#ffffff</color>

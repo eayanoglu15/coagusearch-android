@@ -12,7 +12,8 @@ class AccountInfo {
     var bloodType: BloodType?=null
     var BloodRh: BloodRh?=null
 
-    constructor(userName:String, userSurname:String, userAge:Int, userWeight:Int, userHeight: Int, bloodType: BloodType, BloodRh: BloodRh){
+
+    constructor(userName:String?, userSurname:String, userAge:Int, userWeight:Int, userHeight: Int, bloodType: BloodType, BloodRh: BloodRh){
         this.userName=userName
         this.userSurname=userSurname
         this.userAge=userAge
@@ -32,4 +33,9 @@ class AccountInfo {
         if(BloodRh== com.example.coagusearch.Class.BloodRh.Missing)return true
         return false
     }
+
+    fun ufu (){
+        this.userName
+    }
+
 }

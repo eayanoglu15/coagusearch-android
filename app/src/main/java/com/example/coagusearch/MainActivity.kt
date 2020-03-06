@@ -11,6 +11,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.loginscreen)
+
         LoginButton.setOnClickListener { if (!isPasswordValid(PasswordInput.text!!)) {
             PasswordInput.error="Password is not valid"
         } else {
@@ -28,8 +29,6 @@ class MainActivity : AppCompatActivity() {
             false
         })
     }
-
-
 
     private fun isPasswordValid(text: Editable?): Boolean {
         //return text != null && text.length >= 8

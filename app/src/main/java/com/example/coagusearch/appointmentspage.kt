@@ -8,11 +8,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
-import android.widget.Button
 import android.widget.ListView
 import android.widget.Toast
-import androidx.core.view.isGone
-import androidx.core.view.isVisible
+import com.example.coagusearch.Class.Medicine
 import kotlinx.android.synthetic.main.fragment_appointmentspage.*
 import kotlinx.android.synthetic.main.mainmenuticket.view.*
 
@@ -37,7 +35,7 @@ class appointmentspage : Fragment() {
         listOfTicket.add(MenuTicket("appointment",R.drawable.analysis))
         var myticketlist: ListView
         adapter= appointmentspage.MenuTicketAdapter(context!!, listOfTicket)
-        myticketlist=view.findViewById<ListView>(R.id.appointmentslist)
+        myticketlist=view.findViewById(R.id.appointmentslist)
         myticketlist.adapter=adapter
 
         return view
@@ -54,7 +52,7 @@ class appointmentspage : Fragment() {
     class MenuTicketAdapter: BaseAdapter {
         var listOfTicket=ArrayList<MenuTicket>()
         var context: Context?=null
-        constructor(context: Context, listOfTicket:ArrayList<MenuTicket>):super(){
+        constructor(context: Context, listOfTicket: ArrayList<MenuTicket>):super(){
             this.listOfTicket=listOfTicket
             this.context=context
         }
