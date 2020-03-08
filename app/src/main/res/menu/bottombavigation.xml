@@ -6,7 +6,7 @@
     <item android:title="Calendar"
         android:id="@+id/calendar"
         android:icon="@drawable/ic_event_note_black_24dp"/>
-    <item android:title="person"
+    <item android:title="Profie"
         android:id="@+id/person"
         android:icon="@drawable/ic_person_black_24dp"/>
 </menu>

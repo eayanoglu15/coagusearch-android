@@ -43,9 +43,16 @@ class personpage : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         editbutton.setOnClickListener {
+            val intent =  Intent(getActivity(),accountPage::class.java)
+            startActivity(intent)
+            getActivity()?.overridePendingTransition(R.anim.slide_in_right,R.anim.slide_out_left);
+        }
+        profileNewMed.setOnClickListener {
             val intent =  Intent(getActivity(),AddMedicine::class.java)
             startActivity(intent)
+            getActivity()?.overridePendingTransition(R.anim.slide_in_right,R.anim.slide_out_left);
         }
+
     }
 
 

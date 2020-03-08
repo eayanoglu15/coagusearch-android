@@ -1,112 +1,256 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     android:background="@drawable/background_login"
-    android:orientation="vertical"
-    tools:context=".accountPage">
+    android:layout_height="fill_parent"
+    android:fillViewport="true"
+    android:layout_width="fill_parent"
+    >
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical"
+        tools:context=".accountPage">
 
-        <ImageView
-            android:id="@+id/imageView5"
-            android:layout_width="30dp"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            app:srcCompat="@drawable/path" />
+            android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/textView13"
-            android:layout_width="match_parent"
+            <ImageView
+                android:id="@+id/imageView5"
+                android:layout_width="30dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                app:srcCompat="@drawable/path" />
+
+            <TextView
+                android:id="@+id/textView13"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_horizontal|center_vertical"
+                android:paddingRight="32dp"
+                android:text="Account Information"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center_horizontal|center_vertical"
-            android:paddingRight="32dp"
-            android:text="Account Information"
-            android:textAlignment="center"
-            android:textColor="@color/white"
-            android:textSize="18sp" />
+            android:layout_margin="15dp"
+            android:background="@color/white"
+            android:elevation="10sp"
+            android:orientation="vertical">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayout4"
+                android:layout_width="match_parent"
+                android:layout_height="54dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="10dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/accountname"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/name" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayout5"
+                android:layout_width="match_parent"
+                android:layout_height="54dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/accountsurname"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/surname" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayout6"
+                android:layout_width="match_parent"
+
+                android:layout_height="54dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/accountsurage"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/age"
+                    android:inputType="numberDecimal" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayout7"
+                android:layout_width="match_parent"
+                android:layout_height="54dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/accountsurheight"
+                    style="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/height"
+                    android:inputType="numberDecimal" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayout8"
+                android:layout_width="match_parent"
+                android:layout_height="54dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/accountsurweight"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/weight"
+                    android:inputType="numberDecimal" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textView11"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal|center_vertical"
+                    android:layout_weight="1"
+                    android:padding="2dp"
+                    android:text="Birth Date"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/textView12"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/datepickback"
+                    android:padding="2dp"
+                    android:text="dd/mm/yyyy"
+                    android:textSize="18sp" />
+
+            </LinearLayout>
+
+
+            <RadioGroup
+                android:id="@+id/blood_radiogroup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textView14"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="2"
+                    android:text=" Blood Type"
+                    android:textSize="18sp" />
+
+                <RadioButton
+                    android:id="@+id/radioButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:text="A" />
+
+                <RadioButton
+                    android:id="@+id/radioButton2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:text="B" />
+
+                <RadioButton
+                    android:id="@+id/radioButton3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:text="AB" />
+
+                <RadioButton
+                    android:id="@+id/radioButton4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:text="0" />
+            </RadioGroup>
+
+            <RadioGroup
+                android:id="@+id/blood_radiogroup2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textView15"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="0"
+                    android:text=" Rh               "
+                    android:textSize="18sp" />
+
+                <RadioButton
+                    android:id="@+id/radioButton6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_weight="0.5"
+                    android:text="Positive" />
+
+                <RadioButton
+                    android:id="@+id/radioButton5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_weight="0.5"
+                    android:text="Negative" />
+
+            </RadioGroup>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="bottom" />
+
+        </LinearLayout>
+
     </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="15dp"
-        android:background="@color/white"
-        android:orientation="vertical">
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInputLayout4"
-            android:layout_width="match_parent"
-            android:layout_height="54dp">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/accountname"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/name" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInputLayout5"
-            android:layout_width="match_parent"
-            android:layout_height="54dp">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/accountsurname"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/surname"
-                 />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInputLayout6"
-            android:layout_width="match_parent"
-
-            android:layout_height="54dp">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/accountsurage"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/age"
-                android:inputType="numberDecimal"
-               />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInputLayout7"
-            android:layout_width="match_parent"
-            android:layout_height="54dp">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/accountsurheight"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/height"
-                android:inputType="numberDecimal" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInputLayout8"
-            android:layout_width="match_parent"
-            android:layout_height="54dp">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/accountsurweight"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/weight"
-                android:inputType="numberDecimal"
-                 />
-        </com.google.android.material.textfield.TextInputLayout>
-
-    </LinearLayout>
-</LinearLayout>
+</ScrollView>

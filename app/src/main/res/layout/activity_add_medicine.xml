@@ -21,12 +21,13 @@
             android:id="@+id/multiAutoCompleteTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="4dp"
+            android:layout_margin="8dp"
             android:background="@color/white"
             android:completionThreshold="1"
             android:hint="Search Medicine"
             android:inputType="text"
             android:maxLines="1"
+            android:padding="8dp"
             android:scrollbarSize="8dp"
             android:textSize="24sp" />
 
@@ -37,14 +38,14 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:id="@+id/imageView7"
+                android:id="@+id/addMedicinePageGoBack"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 app:srcCompat="@drawable/path" />
 
             <TextView
-                android:id="@+id/textView11"
+                android:id="@+id/PageHeader"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="6"
@@ -109,7 +110,7 @@
                         app:layout_constraintVertical_bias="1.0">
 
                         <TextView
-                            android:id="@+id/textView123"
+                            android:id="@+id/medicineCarHeader"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="fill"
@@ -126,7 +127,7 @@
                             android:layout_marginLeft="5dp"
                             android:layout_marginTop="0dp"
                             android:layout_marginBottom="0dp"
-                            android:text="TextView"
+                            android:text="     "
                             android:textColor="@color/login_button"
                             android:textSize="14sp" />
                     </LinearLayout>
@@ -166,13 +167,15 @@
 
 
                     <ImageView
-                        android:id="@+id/imageView112"
-                        android:layout_width="34dp"
-                        android:layout_height="35dp"
+                        android:id="@+id/ocFrequencyPicker"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:layout_marginEnd="8dp"
                         android:layout_marginBottom="8dp"
                         android:layout_weight="1"
+                        android:scaleX="0.5"
+                        android:scaleY="0.5"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
@@ -191,7 +194,7 @@
                         app:layout_constraintVertical_bias="1.0">
 
                         <TextView
-                            android:id="@+id/textView122"
+                            android:id="@+id/FrequencyCarHeader"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="fill"
@@ -200,7 +203,7 @@
                             android:textSize="18sp" />
 
                         <TextView
-                            android:id="@+id/freqMedMed"
+                            android:id="@+id/frequencyPicked"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="fill"
@@ -214,10 +217,11 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <NumberPicker
-                    android:id="@+id/freqpick"
+                    android:id="@+id/frequencyPicker"
+                    style="@android:style/Widget.Material.Light.NumberPicker"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:descendantFocusability="blocksDescendants"></NumberPicker>
+                    android:layout_height="150dp"
+                    android:descendantFocusability="blocksDescendants" />
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>
@@ -253,13 +257,15 @@
 
 
                     <ImageView
-                        android:id="@+id/opendos"
-                        android:layout_width="34dp"
-                        android:layout_height="35dp"
+                        android:id="@+id/ocDosagePicker"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:layout_marginEnd="8dp"
                         android:layout_marginBottom="8dp"
                         android:layout_weight="1"
+                        android:scaleX="0.5"
+                        android:scaleY="0.5"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
@@ -275,7 +281,7 @@
                         app:layout_constraintTop_toTopOf="parent">
 
                         <TextView
-                            android:id="@+id/textView12"
+                            android:id="@+id/dosageCardHeader"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="fill"
@@ -284,7 +290,7 @@
                             android:textSize="18sp" />
 
                         <TextView
-                            android:id="@+id/kkkkk"
+                            android:id="@+id/dosagePicked"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="fill"
@@ -298,10 +304,11 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <NumberPicker
-                    android:id="@+id/dospick"
+                    android:id="@+id/dosagePicker"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:animateLayoutChanges="true"></NumberPicker>
+                    android:layout_height="150dp"
+                    android:animateLayoutChanges="true"
+                    android:scrollbarSize="8dp"></NumberPicker>
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>
@@ -312,7 +319,7 @@
             android:layout_gravity="bottom">
 
             <Button
-                android:id="@+id/button"
+                android:id="@+id/MedicinePageAddButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
