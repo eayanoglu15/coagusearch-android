@@ -2,6 +2,7 @@ package com.example.coagusearch.network.shared
 
 import android.content.Context
 import android.content.SharedPreferences
+import com.example.coagusearch.network.Appointment.model.AppointmentApi
 import com.example.coagusearch.network.Auth.model.AuthApi
 import okhttp3.OkHttpClient
 import okhttp3.Protocol
@@ -15,6 +16,7 @@ class RetrofitClient(
     //private val context: Context
 ) {
     fun authApi(): AuthApi = getRetrofit().create(AuthApi::class.java)
+    fun appointmentApi(): AppointmentApi = getRetrofit().create(AppointmentApi::class.java)
    /* fun surveyApi(): SurveyApi = getRetrofit().create(SurveyApi::class.java)
     fun userApi(): UserApi = getRetrofit().create(UserApi::class.java)
     fun uploadApi(): UploadApi = getRetrofit().create(UploadApi::class.java)

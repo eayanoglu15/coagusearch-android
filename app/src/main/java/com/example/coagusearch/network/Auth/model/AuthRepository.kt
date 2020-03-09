@@ -6,8 +6,11 @@ import com.example.coagusearch.MainActivity
 import com.example.coagusearch.R
 import com.example.coagusearch.network.ApiResult
 import com.example.coagusearch.network.Auth.request.LoginRequest
+import com.example.coagusearch.network.Auth.request.RefreshRequest
 import com.example.coagusearch.network.Auth.request.SignUpRequest
 import com.example.coagusearch.network.Auth.response.LoginResponse
+import com.example.coagusearch.network.Auth.response.RefreshResponse
+import com.example.coagusearch.network.Auth.response.SignUpResponse
 import com.example.coagusearch.network.shared.RetrofitClient
 import com.example.coagusearch.network.shared.response.ApiResponse
 import com.example.coagusearch.typing.Ok
@@ -44,5 +47,47 @@ class AuthRepository(private val context: Context) {
 
     }
 
+    fun signUp(signUpRequest: SignUpRequest): SignUpResponse? {
+        var signUpResponse: SignUpResponse? = null
+        retrofitClient.authApi().signUp(signUpRequest)
+            .enqueue(object : Callback<SignUpResponse> {
+                override fun onFailure(call: Call<SignUpResponse>, t: Throwable) {
+                   // (context as MainActivity).LoginButton.text ="Fail"
 
+                }
+
+                override fun onResponse(
+                    call: Call<SignUpResponse>,
+                    response: Response<SignUpResponse>
+                ){
+
+                    signUpResponse = response.body()
+                }
+
+            })
+        return signUpResponse
+
+    }
+
+    fun refresh(refreshToken: String): RefreshResponse? {
+        var refreshResponse: RefreshResponse? = null
+        retrofitClient.authApi().refresh(RefreshRequest(refreshToken))
+            .enqueue(object : Callback<RefreshResponse> {
+                override fun onFailure(call: Call<RefreshResponse>, t: Throwable) {
+                    // (context as MainActivity).LoginButton.text ="Fail"
+
+                }
+
+                override fun onResponse(
+                    call: Call<RefreshResponse>,
+                    response: Response<RefreshResponse>
+                ){
+
+                    refreshResponse = response.body()
+                }
+
+            })
+        return refreshResponse
+
+    }
 }
