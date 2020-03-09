@@ -3,17 +3,12 @@ package com.example.coagusearch
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import com.example.coagusearch.api.AuthApi
-import com.example.coagusearch.entity.Auth
-import com.example.coagusearch.entity.LoginRequest
-import kotlinx.android.synthetic.main.fragment_appointmentspage.*
+import com.example.coagusearch.network.Auth.model.AuthRepository
 import kotlinx.android.synthetic.main.main.*
-import retrofit2.Call
-import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 
-class main : AppCompatActivity() {
+class main(
+    private val authRepository: AuthRepository
+) : BaseAppCompactActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,6 +17,7 @@ class main : AppCompatActivity() {
         bottom_navigation.setOnNavigationItemSelectedListener {
             when(it.itemId){
                 R.id.menu-> {
+                    authRepository.signIn("14051222123","123456")
                     loadFragment(mainmenu(),0)
                     return@setOnNavigationItemSelectedListener true
                 }
@@ -37,7 +33,7 @@ class main : AppCompatActivity() {
             }
             false
         }
-
+        //
             /*
         call.enqueue(object:retrofit2.Callback<Auth>{
             override fun onFailure(call: Call<Auth>, t: Throwable) {
