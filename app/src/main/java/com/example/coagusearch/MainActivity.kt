@@ -7,6 +7,8 @@ import android.os.StrictMode
 import android.text.Editable
 import androidx.appcompat.app.AppCompatActivity
 import com.example.coagusearch.network.Auth.model.AuthRepository
+import com.example.coagusearch.network.Users.model.UsersRepository
+import com.example.coagusearch.network.Users.response.UserResponse
 import com.example.coagusearch.network.shared.RetrofitClient
 import kotlinx.android.synthetic.main.loginscreen.*
 import okhttp3.OkHttpClient
@@ -14,15 +16,18 @@ import okhttp3.Protocol
 
 
 class MainActivity: AppCompatActivity(){
-    private val authRepository: AuthRepository = AuthRepository(this)
+    private var authRepository: AuthRepository? = null
+    private var userRepository = UsersRepository(this)
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.loginscreen)
         val okHttpClientBuilder = OkHttpClient.Builder()
         print("\n\n\n\nugur ulas\n\n\n\n")
+        authRepository =  AuthRepository(this)
+        val response = authRepository!!.signIn("14051222123","123456")
 
-        val response = authRepository.signIn("14051222123","123456")
         println(response.toString())
         textView2.text = response?.tokenType
 
@@ -31,10 +36,10 @@ class MainActivity: AppCompatActivity(){
             PasswordInput.error="Password is not valid"
         } else {
             // Clear the error.
-
-            val intent = Intent(this,main::class.java)
-            startActivity(intent)
-            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+            userRepository.getUserInfo()
+            //val intent = Intent(this,main::class.java)
+            //startActivity(intent)
+            //overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
 
         } }
         PasswordInput.setOnKeyListener({ _, _, _ ->

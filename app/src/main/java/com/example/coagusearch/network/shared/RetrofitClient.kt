@@ -4,6 +4,10 @@ import android.content.Context
 import android.content.SharedPreferences
 import com.example.coagusearch.network.Appointment.model.AppointmentApi
 import com.example.coagusearch.network.Auth.model.AuthApi
+import com.example.coagusearch.network.Auth.model.AuthRepository
+import com.example.coagusearch.network.Interceptors.AuthInterceptor
+import com.example.coagusearch.network.RegularMedication.model.RegularMedicationApi
+import com.example.coagusearch.network.Users.model.UsersApi
 import okhttp3.OkHttpClient
 import okhttp3.Protocol
 import okhttp3.logging.HttpLoggingInterceptor
@@ -13,10 +17,12 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.scalars.ScalarsConverterFactory
 
 class RetrofitClient(
-    //private val context: Context
+    private val context: Context
 ) {
     fun authApi(): AuthApi = getRetrofit().create(AuthApi::class.java)
     fun appointmentApi(): AppointmentApi = getRetrofit().create(AppointmentApi::class.java)
+    fun regularMedicationApi(): RegularMedicationApi = getRetrofit().create(RegularMedicationApi::class.java)
+    fun usersApi(): UsersApi = getRetrofit().create(UsersApi::class.java)
    /* fun surveyApi(): SurveyApi = getRetrofit().create(SurveyApi::class.java)
     fun userApi(): UserApi = getRetrofit().create(UserApi::class.java)
     fun uploadApi(): UploadApi = getRetrofit().create(UploadApi::class.java)
@@ -33,7 +39,7 @@ class RetrofitClient(
     fun migraineApi(): MigraineApi = getRetrofit().create(MigraineApi::class.java)
 
     */
-
+    private val authInterceptor: AuthInterceptor = AuthInterceptor(context)
     private lateinit var pref: SharedPreferences
 
     private fun getRetrofit(): Retrofit {
@@ -56,6 +62,7 @@ class RetrofitClient(
 
 
         val httpClient = okHttpClientBuilder
+            .addInterceptor(authInterceptor)
             .protocols(listOf(Protocol.HTTP_2, Protocol.HTTP_1_1))
             .build()
         return Retrofit.Builder()

@@ -11,6 +11,7 @@ import android.widget.BaseAdapter
 import android.widget.ListView
 import android.widget.Toast
 import com.example.coagusearch.Class.Medicine
+import com.example.coagusearch.network.Users.model.UsersRepository
 import kotlinx.android.synthetic.main.fragment_appointmentspage.*
 import kotlinx.android.synthetic.main.mainmenuticket.view.*
 
@@ -20,6 +21,7 @@ import kotlinx.android.synthetic.main.mainmenuticket.view.*
 class appointmentspage : Fragment() {
     var listOfTicket=ArrayList<MenuTicket>()
     var adapter: appointmentspage.MenuTicketAdapter?=null
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -44,7 +46,9 @@ class appointmentspage : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         appointmentmenurequest.setOnClickListener {
-            Toast.makeText(context!!,"pressed",Toast.LENGTH_SHORT).show()
+            var usersRepository = UsersRepository(activity as Context)
+            usersRepository.getUserInfo()
+            Toast.makeText(activity,"pressed",Toast.LENGTH_SHORT).show()
             appointmentmenurequest.visibility=View.GONE
         }
 
