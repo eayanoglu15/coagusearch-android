@@ -2,6 +2,7 @@ package com.example.coagusearch
 
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -44,8 +45,9 @@ class appointmentspage : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         appointmentmenurequest.setOnClickListener {
-            Toast.makeText(context!!,"pressed",Toast.LENGTH_SHORT).show()
-            appointmentmenurequest.visibility=View.GONE
+            val intent =  Intent(getActivity(),NewAppointment::class.java)
+            startActivity(intent)
+            getActivity()?.overridePendingTransition(R.anim.slide_in_right,R.anim.slide_out_left);
         }
 
     }

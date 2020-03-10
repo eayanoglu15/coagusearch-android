@@ -6,9 +6,7 @@ import androidx.fragment.app.Fragment
 import com.example.coagusearch.network.Auth.model.AuthRepository
 import kotlinx.android.synthetic.main.main.*
 
-class main(
-    private val authRepository: AuthRepository
-) : BaseAppCompactActivity() {
+class main: AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -17,7 +15,6 @@ class main(
         bottom_navigation.setOnNavigationItemSelectedListener {
             when(it.itemId){
                 R.id.menu-> {
-                    authRepository.signIn("14051222123","123456")
                     loadFragment(mainmenu(),0)
                     return@setOnNavigationItemSelectedListener true
                 }
