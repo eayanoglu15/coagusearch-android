@@ -10,8 +10,11 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class RegularMedicationRepository(private val context: Context) {
-    private val retrofitClient: RetrofitClient = RetrofitClient(context)
+class RegularMedicationRepository(
+    private val context: Context,
+    private val retrofitClient: RetrofitClient
+) {
+
     //TODO: Handle the Server error part which shows error on the screen
     fun getAllDrugs(): AllDrugInfoResponse? {
         var allDrugInfoResponse: AllDrugInfoResponse? = null
@@ -25,7 +28,7 @@ class RegularMedicationRepository(private val context: Context) {
                 override fun onResponse(
                     call: Call<AllDrugInfoResponse>,
                     response: Response<AllDrugInfoResponse>
-                ){
+                ) {
 
                 }
 
@@ -46,7 +49,7 @@ class RegularMedicationRepository(private val context: Context) {
                 override fun onResponse(
                     call: Call<UserMedicineResponse>,
                     response: Response<UserMedicineResponse>
-                ){
+                ) {
 
                     userMedicineResponse = response.body()
                 }
@@ -68,7 +71,7 @@ class RegularMedicationRepository(private val context: Context) {
                 override fun onResponse(
                     call: Call<UserMedicineResponse>,
                     response: Response<UserMedicineResponse>
-                ){
+                ) {
 
                     userMedicineResponse = response.body()
                 }

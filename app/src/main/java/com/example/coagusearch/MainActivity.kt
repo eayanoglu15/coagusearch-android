@@ -15,12 +15,14 @@ import com.example.coagusearch.network.shared.appModule
 import kotlinx.android.synthetic.main.loginscreen.*
 import okhttp3.OkHttpClient
 import okhttp3.Protocol
+import org.koin.android.ext.android.get
 import org.koin.android.ext.android.inject
 import org.koin.android.ext.android.startKoin
 
 
 class MainActivity: AppCompatActivity(){
     private val authInterceptor: AuthInterceptor by inject()
+    private val retrofitClient: RetrofitClient by inject()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,21 +32,23 @@ class MainActivity: AppCompatActivity(){
         startKoin(this, listOf(appModule))
 
         // Force init AuthRepository
-        val authRepository = AuthRepository(applicationContext, authInterceptor)
+        AuthRepository(applicationContext, authInterceptor,retrofitClient)
 
-        val response = authRepository.signIn("14051222123","123456")
-        println(response?.accessToken)
-        val userRepository= UsersRepository(this)
+        var authRepository:AuthRepository = get()
+
+
         setContentView(R.layout.loginscreen)
 
         LoginButton.setOnClickListener { if (!isPasswordValid(PasswordInput.text!!)) {
             PasswordInput.error="Password is not valid"
         } else {
             // Clear the error.
-            userRepository.getUserInfo()
-            //val intent = Intent(this,main::class.java)
-            //startActivity(intent)
-            //overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+            val response = authRepository.signIn("14051222123","123456")
+            println(response?.accessToken)
+
+            val intent = Intent(this,main::class.java)
+            startActivity(intent)
+            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
 
         } }
         PasswordInput.setOnKeyListener { _, _, _ ->

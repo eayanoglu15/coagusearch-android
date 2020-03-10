@@ -17,8 +17,10 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class AppointmentRepository(private val context: Context) {
-    private val retrofitClient: RetrofitClient = RetrofitClient(context)
+class AppointmentRepository(
+    private val context: Context,
+    private val retrofitClient: RetrofitClient
+) {
     fun availableTimeSlotsForAppointment(): WeeklyAvailabilityResponse? {
         var appointmentResponse: WeeklyAvailabilityResponse? = null
         retrofitClient.appointmentApi().availableTimeSlotsForAppointment()

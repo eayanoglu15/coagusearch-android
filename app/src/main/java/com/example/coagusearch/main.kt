@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import com.example.coagusearch.network.Auth.model.AuthRepository
+import com.example.coagusearch.network.Users.model.UsersRepository
 import kotlinx.android.synthetic.main.main.*
 
 class main : AppCompatActivity() {
@@ -12,6 +13,7 @@ class main : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main)
         loadFragment(mainmenu(),0)
+
         bottom_navigation.setOnNavigationItemSelectedListener {
             when(it.itemId){
                 R.id.menu-> {

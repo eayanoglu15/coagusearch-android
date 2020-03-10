@@ -14,6 +14,7 @@ import com.example.coagusearch.Class.Medicine
 import com.example.coagusearch.network.Users.model.UsersRepository
 import kotlinx.android.synthetic.main.fragment_appointmentspage.*
 import kotlinx.android.synthetic.main.mainmenuticket.view.*
+import org.koin.android.ext.android.get
 
 /**
  * A simple [Fragment] subclass.
@@ -26,6 +27,8 @@ class appointmentspage : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        val userRepository: UsersRepository = get()
+        userRepository.getUserInfo()
 
         val view: View = inflater.inflate(R.layout.fragment_appointmentspage,container,false)
         listOfTicket.add(MenuTicket("new",R.drawable.datasended))
@@ -46,8 +49,6 @@ class appointmentspage : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         appointmentmenurequest.setOnClickListener {
-            var usersRepository = UsersRepository(activity as Context)
-            usersRepository.getUserInfo()
             Toast.makeText(activity,"pressed",Toast.LENGTH_SHORT).show()
             appointmentmenurequest.visibility=View.GONE
         }

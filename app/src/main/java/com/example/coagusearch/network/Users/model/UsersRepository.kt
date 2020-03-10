@@ -1,10 +1,6 @@
 package com.example.coagusearch.network.Users.model
 
 import android.content.Context
-import com.example.coagusearch.appointmentspage
-import com.example.coagusearch.network.RegularMedication.request.SaveMedicineInfoRequest
-import com.example.coagusearch.network.RegularMedication.response.AllDrugInfoResponse
-import com.example.coagusearch.network.RegularMedication.response.UserMedicineResponse
 import com.example.coagusearch.network.Users.request.UserBodyInfoSaveRequest
 import com.example.coagusearch.network.Users.response.UserResponse
 import com.example.coagusearch.network.shared.RetrofitClient
@@ -14,8 +10,11 @@ import retrofit2.Callback
 import retrofit2.Response
 
 
-class UsersRepository(private val context: Context) {
-    private val retrofitClient: RetrofitClient = RetrofitClient(context)
+
+class UsersRepository(
+    private val context: Context,
+    private val retrofitClient: RetrofitClient
+) {
     //TODO: Handle the Server error part which shows error on the screen
     fun getUserInfo(): UserResponse? {
         var userResponse: UserResponse? = null

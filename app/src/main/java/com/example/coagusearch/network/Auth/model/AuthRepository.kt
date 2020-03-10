@@ -28,10 +28,9 @@ import retrofit2.Callback
 
 class AuthRepository(
     private val context: Context,
-    private val authInterceptor: AuthInterceptor)
-{
-
-    private val retrofitClient: RetrofitClient = RetrofitClient(context)
+    private val authInterceptor: AuthInterceptor,
+    private val retrofitClient: RetrofitClient
+) {
     init {
         authInterceptor.initAuthRepository(this)
     }
