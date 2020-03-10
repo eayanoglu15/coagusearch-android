@@ -6,7 +6,7 @@ import androidx.fragment.app.Fragment
 import com.example.coagusearch.network.Auth.model.AuthRepository
 import kotlinx.android.synthetic.main.main.*
 
-class main: AppCompatActivity() {
+class main : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,8 +45,7 @@ class main: AppCompatActivity() {
              */
     }
 
-    override fun onBackPressed() {
-    }
+
     private fun loadFragment(fragment: Fragment,int: Int) {
         // load fragment
         val transaction = supportFragmentManager.beginTransaction()
