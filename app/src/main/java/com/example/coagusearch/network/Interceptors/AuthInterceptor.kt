@@ -30,8 +30,6 @@ class AuthInterceptor(
     override fun intercept(chain: Interceptor.Chain): Response {
         try {
             val request = chain.request()
-
-            authRepository = AuthRepository(context)
             if (request.header("RequireAuth").isNullOrBlank().not()) {
                 val sharedPref = PreferenceHelper.defaultPrefs(context)
 

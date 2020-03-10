@@ -17,7 +17,8 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.scalars.ScalarsConverterFactory
 
 class RetrofitClient(
-    private val context: Context
+    private val context: Context,
+    private val authInterceptor: AuthInterceptor = AuthInterceptor(context)
 ) {
     fun authApi(): AuthApi = getRetrofit().create(AuthApi::class.java)
     fun appointmentApi(): AppointmentApi = getRetrofit().create(AppointmentApi::class.java)
@@ -39,7 +40,7 @@ class RetrofitClient(
     fun migraineApi(): MigraineApi = getRetrofit().create(MigraineApi::class.java)
 
     */
-    private val authInterceptor: AuthInterceptor = AuthInterceptor(context)
+
     private lateinit var pref: SharedPreferences
 
     private fun getRetrofit(): Retrofit {
@@ -47,7 +48,7 @@ class RetrofitClient(
         loggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
         val okHttpClientBuilder = OkHttpClient.Builder()
 
-        var apiUrl ="http://172.16.140.190:8080"     //context.getString(R.string.api_url)
+        var apiUrl ="http://192.168.43.144:8080"     //context.getString(R.string.api_url)
         /*
         if (BuildConfig.DEBUG) {
             okHttpClientBuilder.addInterceptor(loggingInterceptor)

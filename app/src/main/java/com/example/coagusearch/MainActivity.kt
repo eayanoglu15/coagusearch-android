@@ -7,30 +7,35 @@ import android.os.StrictMode
 import android.text.Editable
 import androidx.appcompat.app.AppCompatActivity
 import com.example.coagusearch.network.Auth.model.AuthRepository
+import com.example.coagusearch.network.Interceptors.AuthInterceptor
 import com.example.coagusearch.network.Users.model.UsersRepository
 import com.example.coagusearch.network.Users.response.UserResponse
 import com.example.coagusearch.network.shared.RetrofitClient
+import com.example.coagusearch.network.shared.appModule
 import kotlinx.android.synthetic.main.loginscreen.*
 import okhttp3.OkHttpClient
 import okhttp3.Protocol
+import org.koin.android.ext.android.inject
+import org.koin.android.ext.android.startKoin
 
 
 class MainActivity: AppCompatActivity(){
-    private var authRepository: AuthRepository? = null
-    private var userRepository = UsersRepository(this)
+    private val authInterceptor: AuthInterceptor by inject()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        // Initialize Koin Dependency Injection with modules from [appModule]
+        startKoin(this, listOf(appModule))
+
+        // Force init AuthRepository
+        val authRepository = AuthRepository(applicationContext, authInterceptor)
+
+        val response = authRepository.signIn("14051222123","123456")
+        println(response?.accessToken)
+        val userRepository= UsersRepository(this)
         setContentView(R.layout.loginscreen)
-        val okHttpClientBuilder = OkHttpClient.Builder()
-        print("\n\n\n\nugur ulas\n\n\n\n")
-        authRepository =  AuthRepository(this)
-        val response = authRepository!!.signIn("14051222123","123456")
-
-        println(response.toString())
-        textView2.text = response?.tokenType
-
 
         LoginButton.setOnClickListener { if (!isPasswordValid(PasswordInput.text!!)) {
             PasswordInput.error="Password is not valid"
@@ -42,12 +47,12 @@ class MainActivity: AppCompatActivity(){
             //overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
 
         } }
-        PasswordInput.setOnKeyListener({ _, _, _ ->
+        PasswordInput.setOnKeyListener { _, _, _ ->
             if (isPasswordValid(PasswordInput.text!!)) {
                 PasswordInput.error = null
             }
             false
-        })
+        }
     }
 
 

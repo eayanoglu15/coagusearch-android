@@ -26,11 +26,12 @@ import retrofit2.Call
 import retrofit2.Response
 import retrofit2.Callback
 
-class AuthRepository(private val context: Context) {
+class AuthRepository(
+    private val context: Context,
+    private val authInterceptor: AuthInterceptor)
+{
 
     private val retrofitClient: RetrofitClient = RetrofitClient(context)
-    val authInterceptor = AuthInterceptor(context)
-
     init {
         authInterceptor.initAuthRepository(this)
     }
@@ -41,7 +42,7 @@ class AuthRepository(private val context: Context) {
         retrofitClient.authApi().signIn(LoginRequest(identity_number, password))
             .enqueue(object : Callback<LoginResponse> {
                 override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
-                    (context as MainActivity).LoginButton.text = "Fail"
+                    //(context as MainActivity).LoginButton.text = "Fail"
 
                 }
 
@@ -58,8 +59,8 @@ class AuthRepository(private val context: Context) {
                         ?: "")
                     sharedPref.securelyPutString(context, Constants.SHARED_PREF_TOKEN_TYPE, auth.tokenType
                         ?: "")
-                    (context as MainActivity).LoginButton.text =
-                        response.body()?.tokenType.toString()
+                    //(context as MainActivity).LoginButton.text =
+                     //   response.body()?.tokenType.toString()
                     loginResponse = response.body()
                     println(sharedPref.securelyGetString(context, Constants.SHARED_PREF_ACCESS_TOKEN))
                     println(sharedPref.securelyGetString(context, Constants.SHARED_PREF_REFRESH_TOKEN))
