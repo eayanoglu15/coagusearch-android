@@ -16,44 +16,47 @@ import kotlinx.android.synthetic.main.loginscreen.*
 import okhttp3.OkHttpClient
 import okhttp3.Protocol
 import org.koin.android.ext.android.inject
-import org.koin.android.ext.android.startKoin
+
+import org.koin.core.context.startKoin
 
 
 class MainActivity: AppCompatActivity(){
     private val authInterceptor: AuthInterceptor by inject()
-
+    private val authRepository: AuthRepository by inject()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         // Initialize Koin Dependency Injection with modules from [appModule]
-        startKoin(this, listOf(appModule))
-
-        // Force init AuthRepository
-        val authRepository = AuthRepository(applicationContext, authInterceptor)
-
-        val response = authRepository.signIn("14051222123","123456")
-        println(response?.accessToken)
-        val userRepository= UsersRepository(this)
-        setContentView(R.layout.loginscreen)
-
-        LoginButton.setOnClickListener { if (!isPasswordValid(PasswordInput.text!!)) {
-            PasswordInput.error="Password is not valid"
-        } else {
-            // Clear the error.
-            userRepository.getUserInfo()
-            //val intent = Intent(this,main::class.java)
-            //startActivity(intent)
-            //overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-
-        } }
-        PasswordInput.setOnKeyListener { _, _, _ ->
-            if (isPasswordValid(PasswordInput.text!!)) {
-                PasswordInput.error = null
-            }
-            false
+        startKoin{
+             listOf(appModule)
         }
-    }
+            // Force init AuthRepository
+            //val authRepository = AuthRepository(applicationContext, authInterceptor)
+
+            val response = authRepository.signIn("14051222123","123456")
+            println(response?.accessToken)
+            val userRepository= UsersRepository(this)
+            setContentView(R.layout.loginscreen)
+
+            LoginButton.setOnClickListener { if (!isPasswordValid(PasswordInput.text!!)) {
+                PasswordInput.error="Password is not valid"
+            } else {
+                // Clear the error.
+                userRepository.getUserInfo()
+                //val intent = Intent(this,main::class.java)
+                //startActivity(intent)
+                //overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+
+            } }
+            PasswordInput.setOnKeyListener { _, _, _ ->
+                if (isPasswordValid(PasswordInput.text!!)) {
+                    PasswordInput.error = null
+                }
+                false
+            }
+        }
+
 
 
     private fun isPasswordValid(text: Editable?): Boolean {

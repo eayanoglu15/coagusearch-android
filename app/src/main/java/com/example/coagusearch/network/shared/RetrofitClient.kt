@@ -48,7 +48,7 @@ class RetrofitClient(
         loggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
         val okHttpClientBuilder = OkHttpClient.Builder()
 
-        var apiUrl ="http://192.168.43.144:8080"     //context.getString(R.string.api_url)
+        var apiUrl ="http://172.20.39.218:8080"     //context.getString(R.string.api_url)
         /*
         if (BuildConfig.DEBUG) {
             okHttpClientBuilder.addInterceptor(loggingInterceptor)
