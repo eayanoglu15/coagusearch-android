@@ -1,18 +1,23 @@
 package com.example.coagusearch
 
+import android.app.Dialog
+import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
+import android.util.Log.d
 import androidx.appcompat.app.AppCompatActivity
 import com.example.coagusearch.network.Auth.model.AuthRepository
 import com.example.coagusearch.network.Interceptors.AuthInterceptor
 import com.example.coagusearch.network.shared.RetrofitClient
 import com.example.coagusearch.network.shared.appModule
+import com.example.coagusearch.ui.dialog.LoadingDialog
+import com.example.coagusearch.ui.dialog.LoadingProgressDialog
+import com.example.coagusearch.ui.dialog.LoadingProgressSingleton
 import kotlinx.android.synthetic.main.loading_lottie_dialog.*
 import kotlinx.android.synthetic.main.loginscreen.*
 import org.koin.android.ext.android.get
 import org.koin.android.ext.android.inject
 import org.koin.android.ext.android.startKoin
-import java.util.concurrent.TimeUnit
 
 
 class MainActivity : AppCompatActivity() {
@@ -38,17 +43,8 @@ class MainActivity : AppCompatActivity() {
             if (!isPasswordValid(PasswordInput.text!!)) {
                 PasswordInput.error = "Password is not valid"
             } else {
-                // Clear the error.MainActivity.this
-                setContentView(R.layout.loading_lottie_dialog)
-                lottieAnimationView.playAnimation()
-
-                var response = authRepository.signIn("14051222123", "123456")
-
-
-                //val intent = Intent(this,main::class.java)
-                //startActivity(intent)
-                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-
+                showProgressLoading(true)
+                authRepository.signIn("14051222123", "123456", this)
             }
         }
         PasswordInput.setOnKeyListener { _, _, _ ->
@@ -59,6 +55,35 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    fun showProgressLoading(loading: Boolean) {
+        if (loading) {
+            if (LoadingProgressSingleton.dialog == null) {
+                createLoadingDialog(true)
+            }
+            LoadingProgressSingleton.dialog?.show()
+        } else {
+            LoadingProgressSingleton.dialog?.dismiss()
+            LoadingProgressSingleton.dialog = null
+        }
+    }
+    private fun createLoadingDialog(isProgressDialog: Boolean = false) {
+
+        fun getDialog(): Dialog {
+            return if (isProgressDialog) {
+                LoadingProgressDialog(this).create()
+            } else {
+                LoadingDialog(this).create()
+            }
+        }
+
+        LoadingProgressSingleton.dialog = getDialog()
+    }
+
+    fun directedToMainScreen() {
+        val intent = Intent(this, main::class.java)
+        startActivity(intent)
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+    }
 
     private fun isPasswordValid(text: Editable?): Boolean {
         //return text != null && text.length >= 8

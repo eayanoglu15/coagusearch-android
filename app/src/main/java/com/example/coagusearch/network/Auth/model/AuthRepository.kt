@@ -6,6 +6,7 @@ import android.graphics.Color
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import com.example.coagusearch.Constants
+import com.example.coagusearch.MainActivity
 import com.example.coagusearch.R
 import com.example.coagusearch.network.Auth.request.LoginRequest
 import com.example.coagusearch.network.Auth.request.RefreshRequest
@@ -35,7 +36,7 @@ class AuthRepository(
     }
 
     //TODO: Handle the Server error part which shows error on the screen
-    fun signIn(identity_number: String, password: String): LoginResponse? {
+    fun signIn(identity_number: String, password: String,context: Context): LoginResponse? {
         var loginResponse: LoginResponse? = null
         retrofitClient.authApi().signIn(LoginRequest(identity_number, password))
             .enqueue(object : Callback<LoginResponse> {
@@ -79,6 +80,8 @@ class AuthRepository(
                                 Constants.SHARED_PREF_REFRESH_TOKEN
                             )
                         )
+                        (context as MainActivity).showProgressLoading(false)
+                        (context as MainActivity).directedToMainScreen()
                     }else{
                         val errorResponse =
                             Gson().fromJson<ApiResponse>(response.errorBody()?.string(), ApiResponse::class.java)?.message
