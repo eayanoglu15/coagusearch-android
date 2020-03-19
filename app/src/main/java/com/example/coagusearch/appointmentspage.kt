@@ -52,8 +52,8 @@ class appointmentspage : Fragment() {
             Toast.makeText(activity,"pressed",Toast.LENGTH_SHORT).show()
             appointmentmenurequest.visibility=View.GONE
         }
-
     }
+
     class MenuTicketAdapter: BaseAdapter {
         var listOfTicket=ArrayList<MenuTicket>()
         var context: Context?=null

@@ -27,16 +27,11 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         // Initialize Koin Dependency Injection with modules from [appModule]
         startKoin(this, listOf(appModule))
-
         // Force init AuthRepository
         AuthRepository(applicationContext, authInterceptor, retrofitClient)
-
         var authRepository: AuthRepository = get()
-
-
         setContentView(R.layout.loginscreen)
 
         LoginButton.setOnClickListener {
@@ -54,7 +49,6 @@ class MainActivity : AppCompatActivity() {
             false
         }
     }
-
     fun showProgressLoading(loading: Boolean) {
         if (loading) {
             if (LoadingProgressSingleton.dialog == null) {
