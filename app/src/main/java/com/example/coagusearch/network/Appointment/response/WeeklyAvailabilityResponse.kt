@@ -1,7 +1,5 @@
 package com.example.coagusearch.network.Appointment.response
-
 data class WeeklyAvailabilityResponse(
-
     val week:List<DailyAvailablityResponse>
 )
 

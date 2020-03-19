@@ -30,6 +30,7 @@ class UsersRepository(
                     response: Response<UserResponse>
                 ){
                     println( "Entered get User Info")
+                    println(response.body().toString())
                 }
 
             })

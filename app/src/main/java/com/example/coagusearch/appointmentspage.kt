@@ -2,6 +2,7 @@ package com.example.coagusearch
 
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -29,7 +30,6 @@ class appointmentspage : Fragment() {
     ): View? {
         val userRepository: UsersRepository = get()
         userRepository.getUserInfo()
-
         val view: View = inflater.inflate(R.layout.fragment_appointmentspage,container,false)
         listOfTicket.add(MenuTicket("new",R.drawable.datasended))
         listOfTicket.add(MenuTicket("appointment",R.drawable.datasended))
@@ -42,15 +42,15 @@ class appointmentspage : Fragment() {
         adapter= appointmentspage.MenuTicketAdapter(context!!, listOfTicket)
         myticketlist=view.findViewById(R.id.appointmentslist)
         myticketlist.adapter=adapter
-
         return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         appointmentmenurequest.setOnClickListener {
-            Toast.makeText(activity,"pressed",Toast.LENGTH_SHORT).show()
-            appointmentmenurequest.visibility=View.GONE
+            val intent =  Intent(getActivity(),NewAppointment::class.java)
+            startActivity(intent)
+            getActivity()?.overridePendingTransition(R.anim.slide_in_right,R.anim.slide_out_left);
         }
     }
 

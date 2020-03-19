@@ -11,10 +11,8 @@ import retrofit2.http.POST
 interface RegularMedicationApi {
     @GET("/drug/all")
     fun getAllDrugs(): Call<AllDrugInfoResponse>
-
     @GET("/drug/getByUser")
     fun getUsersDrug(): Call<UserMedicineResponse>
-
     @POST("/drug/saveRegularMedicine")
     fun saveMedicine(@Body saveMedicineInfoRequest: SaveMedicineInfoRequest): Call<UserMedicineResponse>
 }

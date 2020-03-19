@@ -2,6 +2,7 @@ package com.example.coagusearch.network.Appointment.model
 
 import android.content.Context
 import com.example.coagusearch.MainActivity
+import com.example.coagusearch.NewAppointment
 import com.example.coagusearch.network.Appointment.request.SaveAppointmentRequest
 import com.example.coagusearch.network.Appointment.response.WeeklyAvailabilityResponse
 import com.example.coagusearch.network.Auth.request.LoginRequest
@@ -27,17 +28,15 @@ class AppointmentRepository(
             .enqueue(object : Callback<WeeklyAvailabilityResponse> {
                 override fun onFailure(call: Call<WeeklyAvailabilityResponse>, t: Throwable) {
                    // (context as MainActivity).LoginButton.text ="Fail"
-
                 }
-
                 override fun onResponse(
                     call: Call<WeeklyAvailabilityResponse>,
                     response: Response<WeeklyAvailabilityResponse>
                 ){
-
                     appointmentResponse = response.body()
+                    println(appointmentResponse.toString())
+                    (context as  MainActivity).showProgressLoading(false)
                 }
-
             })
         return appointmentResponse
 

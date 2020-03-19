@@ -7,6 +7,7 @@ data class UserMedicineResponse(
     val allDrugs: AllDrugInfoResponse,
     val userDrugs: List<MedicineInfoResponse>
 )
+
 data class MedicineInfoResponse(
     val id: Long,
     val mode: MedicineInfoType,

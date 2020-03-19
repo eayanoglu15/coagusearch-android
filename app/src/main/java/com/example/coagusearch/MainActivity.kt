@@ -39,7 +39,7 @@ class MainActivity : AppCompatActivity() {
                 PasswordInput.error = "Password is not valid"
             } else {
                 showProgressLoading(true)
-                authRepository.signIn("14051222123", "123456", this)
+                authRepository.signIn("345678754", "123456", this)
             }
         }
         PasswordInput.setOnKeyListener { _, _, _ ->

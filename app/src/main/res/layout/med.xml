@@ -10,7 +10,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="27dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="2dp"
         android:layout_marginBottom="2dp"
         android:layout_weight="0.01">
@@ -21,8 +21,8 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
             android:layout_marginTop="4dp"
-            android:layout_weight="0.01"
             android:text="Parol"
+            android:textColor="@color/white"
             android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -32,13 +32,11 @@
         <ImageView
             android:id="@+id/imageView11"
             android:layout_width="22dp"
-            android:layout_height="24dp"
+            android:layout_height="31dp"
             android:layout_marginEnd="16dp"
-            android:layout_weight="5"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="1.0"
             app:srcCompat="@drawable/edit" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -51,8 +49,8 @@
 
         <ImageView
             android:id="@+id/imageView8"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
             android:layout_marginStart="32dp"
             android:layout_weight="1"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -69,7 +67,9 @@
             android:layout_weight="1"
             android:gravity="center_horizontal|center_vertical"
             android:text="Twice a day"
+            android:textColor="@color/white"
             android:textSize="14sp"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/imageView8"
             app:layout_constraintTop_toTopOf="parent" />
@@ -84,8 +84,8 @@
 
         <ImageView
             android:id="@+id/imageView9"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
             android:layout_marginStart="32dp"
             android:layout_weight="1"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -102,7 +102,9 @@
             android:layout_weight="1"
             android:gravity="center_horizontal|center_vertical"
             android:text="2 Dosages"
+            android:textColor="@color/white"
             android:textSize="14sp"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/imageView9"
             app:layout_constraintTop_toTopOf="parent" />
