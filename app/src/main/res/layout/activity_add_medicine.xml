@@ -13,10 +13,8 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:animateLayoutChanges="true"
-
         android:orientation="vertical"
         tools:context=".AddMedicine">
-
         <AutoCompleteTextView
             android:id="@+id/multiAutoCompleteTextView"
             android:layout_width="match_parent"
@@ -24,7 +22,7 @@
             android:layout_margin="8dp"
             android:background="@color/white"
             android:completionThreshold="1"
-            android:hint="Search Medicine"
+            android:hint="@string/searchMedicine"
             android:inputType="text"
             android:maxLines="1"
             android:padding="8dp"
@@ -51,7 +49,7 @@
                 android:layout_weight="6"
                 android:gravity="center"
                 android:paddingRight="30dp"
-                android:text="Add Medicine"
+                android:text="@string/addMedicine"
                 android:textColor="@color/white"
                 android:textSize="18sp" />
         </LinearLayout>
@@ -116,7 +114,7 @@
                             android:layout_gravity="fill"
                             android:layout_marginLeft="5dp"
                             android:layout_marginTop="5dp"
-                            android:text="Medicine"
+                            android:text="@string/medicine"
                             android:textSize="18sp" />
 
                         <TextView
@@ -199,7 +197,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="fill"
                             android:layout_margin="5dp"
-                            android:text="Frequency"
+                            android:text="@string/frequency"
                             android:textSize="18sp" />
 
                         <TextView
@@ -286,7 +284,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="fill"
                             android:layout_margin="5dp"
-                            android:text="Dosage"
+                            android:text="@string/dosage"
                             android:textSize="18sp" />
 
                         <TextView
@@ -318,19 +316,36 @@
             android:layout_height="match_parent"
             android:layout_gravity="bottom">
 
-            <Button
-                android:id="@+id/MedicinePageAddButton"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
-                android:layout_marginBottom="16dp"
-                android:background="@color/login_button"
-                android:text="Add Medicine"
-                android:theme="@android:style/ThemeOverlay.Material.Dark"
+                android:gravity="bottom"
+                android:orientation="horizontal"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toStartOf="parent">
+
+                <Button
+                    android:id="@+id/MedicinePageRemoveButton"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:background="@color/cancelbuttoninside"
+                    android:text="Remove"
+                    android:theme="@android:style/ThemeOverlay.Material.Dark" />
+
+                <Button
+                    android:id="@+id/MedicinePageAddButton"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:background="@color/login_button"
+                    android:text="@string/addMedicine"
+                    android:theme="@android:style/ThemeOverlay.Material.Dark" />
+            </LinearLayout>
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </LinearLayout>

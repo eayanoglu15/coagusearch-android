@@ -18,7 +18,7 @@
             android:layout_centerHorizontal="true"
             android:gravity="center_horizontal"
             android:paddingTop="12dp"
-            android:text="Profile"
+            android:text="@string/profile"
             android:textColor="@color/white"
             android:textSize="30sp" />
 
@@ -34,7 +34,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="711dp"
+            android:layout_height="wrap_content"
             android:layout_above="@+id/profileNewMed"
             android:layout_below="@+id/textView9"
             android:layout_alignParentStart="true"
@@ -43,7 +43,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/textView3"
+                android:id="@+id/profileFragment_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="4dp"
@@ -52,7 +52,7 @@
                 android:textSize="18sp" />
 
             <TextView
-                android:id="@+id/textView4"
+                android:id="@+id/profileFragment_Age"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="4dp"
@@ -60,7 +60,7 @@
                 android:textColor="@color/white" />
 
             <TextView
-                android:id="@+id/textView5"
+                android:id="@+id/profileFragment_height"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="4dp"
@@ -77,7 +77,7 @@
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:id="@+id/textView10"
+                        android:id="@+id/profileFragment_weight"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="4dp"
@@ -88,10 +88,13 @@
 
                     <Button
                         android:id="@+id/editbutton"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="edit"
+                        android:text="@string/edit"
+                        android:textColor="@color/white"
+                        android:textSize="14sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -107,8 +110,11 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="0dp"
                 android:divider="@android:color/transparent"
-                android:dividerHeight="10.0sp"
-                android:padding="5pt">
+                android:dividerHeight="5.0sp"
+                android:paddingLeft="5pt"
+                android:paddingTop="5pt"
+                android:paddingRight="5pt"
+                android:paddingBottom="5pt">
 
             </ListView>
 
@@ -116,15 +122,15 @@
 
         <Button
             android:id="@+id/profileNewMed"
-            style="@android:style/Widget.DeviceDefault.Button.Toggle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginBottom="10dp"
-            android:background="@color/login_button"
-            android:text="Add new Medicine"
+            android:background="@drawable/loginbutton_back"
+            android:padding="5dp"
+            android:text="@string/addNewMedicine"
             android:textAllCaps="true" />
 
     </RelativeLayout>

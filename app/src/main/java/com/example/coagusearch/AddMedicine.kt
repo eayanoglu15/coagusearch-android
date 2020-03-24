@@ -1,6 +1,6 @@
 package com.example.coagusearch
 
-import android.app.Activity
+import android.app.Dialog
 import android.content.Context
 import android.os.Bundle
 import android.view.KeyEvent
@@ -10,140 +10,217 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.NumberPicker
 import androidx.appcompat.app.AppCompatActivity
+import com.example.coagusearch.network.RegularMedication.model.RegularMedicationRepository
+import com.example.coagusearch.network.RegularMedication.request.DeleteMedicineInfoRequest
+import com.example.coagusearch.network.RegularMedication.request.KeyType
+import com.example.coagusearch.network.RegularMedication.request.MedicineInfoType
+import com.example.coagusearch.network.RegularMedication.request.SaveMedicineInfoRequest
+import com.example.coagusearch.ui.dialog.LoadingDialog
+import com.example.coagusearch.ui.dialog.LoadingProgressDialog
+import com.example.coagusearch.ui.dialog.LoadingProgressSingleton
 import kotlinx.android.synthetic.main.activity_add_medicine.*
+import org.koin.android.ext.android.get
 
 
 class AddMedicine : AppCompatActivity() {
-    val medList=arrayOf("Parol","Apranax","Etol Fort","Aferin","Buscopan","Arveles","Ahmet","ali","Mehmet")
-    val doslist= arrayOf("1 dos","2 dos","3 dos","4 dos")
-    val frelist= arrayOf("Once A Day","Twice A Day","After Breakfast","Before Breakfast","Before Lunch","After Lunch")
-    var freqPickerIsOn:Boolean=false
-    var dosagePickerIsOn:Boolean=false
+    var medList = arrayOf(
+        "Parol",
+        "Apranax",
+        "Etol Fort",
+        "Aferin",
+        "Buscopan",
+        "Arveles",
+        "Ahmet",
+        "ali",
+        "Mehmet"
+    )
+    var doslist = arrayOf("0.5", "1.0", "1.5", "2.0", "2.5", "3")
+    var frelist = arrayOf(
+        "Once A Day",
+        "Twice A Day",
+        "After Breakfast",
+        "Before Breakfast",
+        "Before Lunch",
+        "After Lunch"
+    )
+    var freqPickerIsOn: Boolean = false
+    var dosagePickerIsOn: Boolean = false
+    var medMap: HashMap<String, String>? = null
+    var freqMap: HashMap<String, String>? = null
+    var mode: MedicineInfoType = MedicineInfoType.CUSTOM
+    var key: String? = "string"
+    var uuid: String? = "string"
+    var customText: String? = "string"
+    var frequency: String? = null
+    var dosage: Double? = null
+    var id: KeyType? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_medicine)
+        medMap = UserInfoSingleton.instance.getMedineHashMap()
+        freqMap = UserInfoSingleton.instance.getFrequencyHashMap()
+        frelist = UserInfoSingleton.instance.getFrequencyNames() as Array<String>
+        medList = UserInfoSingleton.instance.getMedicineNames() as Array<String>
+        dosage = doslist[0].toDouble()
+        frequency = freqMap!!.get(frelist[0])
         dosagePicked.text = doslist[0]
-        frequencyPicked.text=frelist[0]
+        frequencyPicked.text = frelist[0]
         frequencyPicker.visibility = View.GONE
         dosagePicker.visibility = View.GONE
-        editMedicineName.setOnClickListener{
-            name_arrow.visibility=View.GONE
-            multiAutoCompleteTextView.visibility=View.VISIBLE
+
+        editMedicineName.setOnClickListener {
+            name_arrow.visibility = View.GONE
+            multiAutoCompleteTextView.visibility = View.VISIBLE
             showSoftKeyboard(multiAutoCompleteTextView)
         }
+
         //AutoCompleteTextView
-        multiAutoCompleteTextView.visibility=View.GONE
-        val arrayAdapter=ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,medList)
+        multiAutoCompleteTextView.visibility = View.GONE
+        val arrayAdapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, medList)
         multiAutoCompleteTextView.setAdapter(arrayAdapter)
-        multiAutoCompleteTextView.visibility=View.GONE
+        multiAutoCompleteTextView.visibility = View.GONE
 
         multiAutoCompleteTextView.setOnItemClickListener { adapterView: AdapterView<*>, view1: View, i: Int, l: Long ->
             closeSoftKeyboard(multiAutoCompleteTextView)
-            multiAutoCompleteTextView.visibility=View.GONE
-            name_arrow.visibility=View.VISIBLE
-            medName.text=multiAutoCompleteTextView.text
-
+            multiAutoCompleteTextView.visibility = View.GONE
+            name_arrow.visibility = View.VISIBLE
+            medName.text = multiAutoCompleteTextView.text
+            key = medMap!!.get(multiAutoCompleteTextView.text.toString())
+            mode = MedicineInfoType.KEY
+            println(key)
         }
+
         multiAutoCompleteTextView.setOnKeyListener(View.OnKeyListener { v, keyCode, event ->
             if (keyCode == KeyEvent.KEYCODE_ENTER) {
                 //Perform Code
                 closeSoftKeyboard(multiAutoCompleteTextView)
-                multiAutoCompleteTextView.visibility=View.GONE
-                name_arrow.visibility=View.VISIBLE
-                medName.text=multiAutoCompleteTextView.text
-
+                multiAutoCompleteTextView.visibility = View.GONE
+                name_arrow.visibility = View.VISIBLE
+                medName.text = multiAutoCompleteTextView.text
+                mode = MedicineInfoType.CUSTOM
+                customText = multiAutoCompleteTextView.text.toString()
+                println(customText)
                 return@OnKeyListener true
             }
             false
         })
+
         //DosagePicker
-        dosagePicker.maxValue=doslist.size-1
-        dosagePicker.minValue=0
-        dosagePicker.displayedValues=doslist
-        dosagePicker.wrapSelectorWheel=false
+        dosagePicker.maxValue = doslist.size - 1
+        dosagePicker.minValue = 0
+        dosagePicker.displayedValues = doslist
+        dosagePicker.wrapSelectorWheel = false
         dosagePicker.descendantFocusability = NumberPicker.FOCUS_BLOCK_DESCENDANTS;
         dosagePicker.setOnValueChangedListener { picker, oldVal, newVal ->
             dosagePicked.text = doslist[dosagePicker.value]
+            dosage = (dosagePicked.text as String).toDouble()
         }
         dosagePicker.setOnClickListener {
-            if(dosagePickerIsOn) {
+            if (dosagePickerIsOn) {
                 dosagePicker.visibility = View.GONE
-                dosagePickerIsOn=false
+                dosagePickerIsOn = false
                 ocDosagePicker.setImageResource(R.drawable.downarrow)
             }
-
         }
-        ocDosagePicker.setOnClickListener{
-            if(dosagePickerIsOn) {
+        ocDosagePicker.setOnClickListener {
+            if (dosagePickerIsOn) {
                 dosagePicker.visibility = View.GONE
-                dosagePickerIsOn=false
+                dosagePickerIsOn = false
                 ocDosagePicker.setImageResource(R.drawable.downarrow)
-            }
-            else{
+            } else {
                 dosagePicker.visibility = View.VISIBLE
-                dosagePickerIsOn=true
+                dosagePickerIsOn = true
                 ocDosagePicker.setImageResource(R.drawable.uparrow)
             }
         }
         //FrequencyPicker
-        frequencyPicker.maxValue=frelist.size-1
-        frequencyPicker.minValue=0
-        frequencyPicker.displayedValues=frelist
-        frequencyPicker.wrapSelectorWheel=false
+        frequencyPicker.maxValue = frelist.size - 1
+        frequencyPicker.minValue = 0
+        frequencyPicker.displayedValues = frelist
+        frequencyPicker.wrapSelectorWheel = false
         frequencyPicker.descendantFocusability = NumberPicker.FOCUS_BLOCK_DESCENDANTS;
         frequencyPicker.setOnValueChangedListener { picker, oldVal, newVal ->
             //Display the newly selected number to text view
             frequencyPicked.text = frelist[frequencyPicker.value]
+            frequency = freqMap!!.get(frelist[frequencyPicker.value])
         }
         frequencyPicker.setOnClickListener {
-            if(freqPickerIsOn) {
+            if (freqPickerIsOn) {
                 frequencyPicker.visibility = View.GONE
-                freqPickerIsOn=false
+                freqPickerIsOn = false
                 ocFrequencyPicker.setImageResource(R.drawable.downarrow)
             }
 
         }
-        ocFrequencyPicker.setOnClickListener{
-            if(freqPickerIsOn) {
+        ocFrequencyPicker.setOnClickListener {
+            if (freqPickerIsOn) {
                 frequencyPicker.visibility = View.GONE
-                freqPickerIsOn=false
+                freqPickerIsOn = false
                 ocFrequencyPicker.setImageResource(R.drawable.downarrow)
-            }
-            else{
+            } else {
                 frequencyPicker.visibility = View.VISIBLE
-                freqPickerIsOn=true
+                freqPickerIsOn = true
                 ocFrequencyPicker.setImageResource(R.drawable.uparrow)
             }
         }
-        MedicinePageAddButton.setOnClickListener{
+        MedicinePageAddButton.setOnClickListener {
+            saveMedicine()
             finish()
-            overridePendingTransition(R.anim.slide_in_left,R.anim.slide_out_right)
+            overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
         }
-        addMedicinePageGoBack.setOnClickListener{
+        addMedicinePageGoBack.setOnClickListener {
             finish()
-            overridePendingTransition(R.anim.slide_in_left,R.anim.slide_out_right)
+            overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
+        }
+        val bundle: Bundle? = intent.extras
+        var editOrNew = bundle!!.getString("type")
+        if (editOrNew.equals("edit")) {
+            id = bundle.get("id") as KeyType
+            frequencyPicked.text = bundle.getString("freq")
+            dosagePicked.text = bundle.getString("dos")
+            medName.text = bundle.getString("Name")
+            MedicinePageRemoveButton.setOnClickListener {
+                val medRepository: RegularMedicationRepository = get()
+                medRepository.deleteMedicine(DeleteMedicineInfoRequest(id!!), this)
+            }
+        } else {
+            MedicinePageRemoveButton.visibility = View.GONE
         }
     }
+
     override fun onBackPressed() {
         finish()
-        overridePendingTransition(R.anim.slide_in_left,R.anim.slide_out_right)
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
     }
 
     private fun showSoftKeyboard(view: View) {
         if (view.requestFocus()) {
-            val imm = view.context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager?
-            // here is one more tricky issue
-            // imm.showSoftInputMethod doesn't work well
-            // and imm.toggleSoftInput(InputMethodManager.SHOW_IMPLICIT, 0) doesn't work well for all cases too
+            val imm =
+                view.context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager?
             imm?.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0)
         }
     }
 
     private fun closeSoftKeyboard(view: View) {
         if (view.requestFocus()) {
-            val imm = view.context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager?
+            val imm =
+                view.context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager?
             imm?.hideSoftInputFromWindow(view.getWindowToken(), 0)
         }
+    }
+
+    fun saveMedicine() {
+        val medRepository: RegularMedicationRepository = get()
+        medRepository.saveMedicine(
+            SaveMedicineInfoRequest(
+                id,
+                mode,
+                key,
+                customText,
+                frequency,
+                dosage
+            ), this
+        )
     }
 
 }

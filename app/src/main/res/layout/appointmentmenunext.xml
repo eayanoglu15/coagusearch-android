@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_margin="10dp"
     android:background="@drawable/menuappointmentbackground"
     android:paddingTop="1pt"
     android:paddingRight="3pt"
@@ -34,28 +35,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="fill"
-                    android:text="Next Appointment"
+                    android:text="@string/nextAppointment"
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <TextView
-                        android:layout_width="68dp"
-                        android:layout_height="wrap_content"
-                        android:background="#e0f5eb"
-                        android:gravity="center"
-                        android:text="Confirmed"
-                        android:textColor="#56cb8f"
-                        android:textSize="12sp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.785"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
+                    android:layout_height="match_parent" />
 
             </LinearLayout>
 
@@ -141,7 +127,7 @@
                             android:layout_marginBottom="4dp"
                             android:background="@drawable/appointmentcancelbuttonbackground"
                             android:fontFamily="sans-serif"
-                            android:text="Cancel"
+                            android:text="@string/cancel"
                             android:textSize="10sp"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent" />

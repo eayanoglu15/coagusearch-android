@@ -36,7 +36,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="6"
                 android:gravity="center"
-                android:text="Request Appointment"
+                android:text="@string/requestAppointment"
                 android:textColor="@color/white"
                 android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -103,7 +103,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="fill"
-                            android:text="Your Doctor"
+                            android:text="@string/yourDoctor"
                             android:textSize="18sp" />
 
                         <TextView
@@ -187,7 +187,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="fill"
                             android:layout_margin="5dp"
-                            android:text="Appointment Date"
+                            android:text="@string/appointmentDate"
                             android:textSize="18sp" />
 
                         <TextView
@@ -275,7 +275,7 @@
                             android:layout_gravity="fill"
                             android:layout_marginLeft="5dp"
                             android:layout_marginTop="5dp"
-                            android:text="Appointment Time Slot"
+                            android:text="@string/appointmentTimeSlot"
                             android:textSize="18sp" />
 
                         <TextView
@@ -297,7 +297,6 @@
                     android:orientation="horizontal">
 
                     <NumberPicker
-
                         android:id="@+id/timeSlotHour"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -306,15 +305,6 @@
                         android:animateLayoutChanges="true"
                         android:scrollbarSize="8dp"></NumberPicker>
 
-                    <NumberPicker
-
-                        android:id="@+id/timeSlotMin"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:layout_weight="1"
-                        android:animateLayoutChanges="true"
-                        android:scrollbarSize="8dp"></NumberPicker>
                 </LinearLayout>
             </LinearLayout>
 
@@ -333,7 +323,7 @@
                 android:layout_marginRight="8dp"
                 android:layout_marginBottom="16dp"
                 android:background="@color/login_button"
-                android:text="Request Appointment"
+                android:text="@string/requestAppointment"
                 android:theme="@android:style/ThemeOverlay.Material.Dark"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

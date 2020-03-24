@@ -1,16 +1,18 @@
 package com.example.coagusearch
 
 
-import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.BaseAdapter
 import android.widget.ListView
+import com.example.coagusearch.network.Users.model.UsersRepository
+import com.example.coagusearch.network.Users.response.PatientMainScreenResponse
 import kotlinx.android.synthetic.main.fragment_mainmenu.*
-import kotlinx.android.synthetic.main.mainmenuticket.view.*
+import kotlinx.android.synthetic.main.menunextappointment.view.*
+import org.koin.android.ext.android.get
 
 
 /**
@@ -18,61 +20,48 @@ import kotlinx.android.synthetic.main.mainmenuticket.view.*
  */
 class mainmenu : Fragment() {
 
-    var listOfTicket=ArrayList<MenuTicket>()
-    var adapter:MenuTicketAdapter?=null
+    var myticketlist:ListView?=null
+    var patientMainScreenResponse:PatientMainScreenResponse?=null
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view: View = inflater.inflate(R.layout.fragment_mainmenu,container,false)
-        listOfTicket.add(MenuTicket("new",R.drawable.datasended))
-        listOfTicket.add(MenuTicket("appointment",R.drawable.datasended))
-        listOfTicket.add(MenuTicket("Your data sended",R.drawable.datasended))
-        listOfTicket.add(MenuTicket("The analysis completed",R.drawable.analysis))
-        listOfTicket.add(MenuTicket("Your doctor has informed",R.drawable.doctorinformed))
-        listOfTicket.add(MenuTicket("Suggestion of the doctor",R.drawable.doctorsuggestion))
-        var myticketlist:ListView
-        adapter= MenuTicketAdapter(context!!,listOfTicket)
-        myticketlist=view.findViewById<ListView>(R.id.myticketlist)
-        myticketlist.adapter=adapter
+        val userRepository: UsersRepository = get()
+        userRepository.getPatientMainScreen(this.context!!,this)
         return view
     }
 
-    class MenuTicketAdapter:BaseAdapter{
-        var listOfTicket=ArrayList<MenuTicket>()
-        var context:Context?=null
-        constructor(context:Context,listOfTicket:ArrayList<MenuTicket>):super(){
-            this.listOfTicket=listOfTicket
-            this.context=context
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        nextAppointment.visibility=View.GONE
+        missingInfo.visibility=View.GONE
+    }
+
+    fun setView(response: PatientMainScreenResponse){
+        patientMainScreenResponse=response
+        println(response.toString())
+        if(!patientMainScreenResponse!!.patientMissingInfo){
+            missingInfo.visibility=View.GONE
         }
-        override fun getView(p0: Int, p1: View?, p2: ViewGroup?): View {
-            val ticket=listOfTicket[p0]
-            var inflater=context!!.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-            if (ticket.text.equals("appointment")){
-                var myView = inflater.inflate(R.layout.menunextappointment, null)
-                return myView
-            }
-             else if(ticket.text.equals("new")){
-                var myView = inflater.inflate(R.layout.menunewappointmnet, null)
-                return myView
-            }
-             else {
-                var myView = inflater.inflate(R.layout.mainmenuticket, null)
-                myView.tickettext.text = ticket.text
-                myView.ticketimage.setImageResource(ticket.image!!)
-                return myView
+        else{
+            missingInfo.visibility=View.VISIBLE
+            missingInfo.setOnClickListener{
+                val intent =  Intent(getActivity(),accountPage::class.java)
+                startActivity(intent)
+                getActivity()?.overridePendingTransition(R.anim.slide_in_right,R.anim.slide_out_left);
             }
         }
-
-        override fun getItem(p0: Int): Any {
-           return listOfTicket[p0]
+        if(patientMainScreenResponse!!.patientNextAppointment!=null){
+            nextAppointment.visibility=View.VISIBLE
+            nextAppointment.doctorName.setText(patientMainScreenResponse!!.patientNextAppointment?.DoctorName())
+            nextAppointment.dateOfNext.setText(patientMainScreenResponse!!.patientNextAppointment?.appointmentDate())
+            nextAppointment.timeSlotNext.setText(patientMainScreenResponse!!.patientNextAppointment?.timeSlot())
         }
-
-        override fun getItemId(p0: Int): Long {
-            return p0.toLong()
+        else{
+            nextAppointment.visibility=View.GONE
         }
+    }
 
-        override fun getCount(): Int {
-            return listOfTicket.size
-        }
-
-
+    fun setViewError(){
+        missingInfo.visibility=View.GONE
+        nextAppointment.visibility=View.GONE
     }
 }

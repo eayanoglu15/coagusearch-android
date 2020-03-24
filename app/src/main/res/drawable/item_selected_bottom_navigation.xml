@@ -4,5 +4,4 @@
             android:color="@color/login_button"/>
         <item android:state_checked="false"
             android:color="@color/state_notchecked"/>
-
 </selector>

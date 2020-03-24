@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Coagusearch-TR</string>
+    <string name="title_activity_main2" translatable="false">Main2Activity</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_accountinformations">accountinformations</string>
+    <string name="errorOccurred">Error Occured</string>
+    <!--LoginScreen-->
+    <string name="rememberMe">Beni Hatırla</string>
+    <string name="hintTc">TC</string>
+    <string name="passwordHint">Şifre</string>
+    <string name="forgotPassword">Şifrenizi mi unuttunuz?</string>
+    <string name="login">Giriş yap</string>
+    <!-- Bottom Navigation-->
+    <string name="menu">Menu</string>
+    <string name="appointments">Randevular</string>
+    <string name="account">Hesap</string>
+    <!--MainMenu-->
+    <string name="welcome">Hoşgeldiniz</string>
+    <!--AppointmentsPage-->
+    <string name="myAppointments">Randevularım</string>
+    <string name="requestAppointment">Randevu talebinde bulun</string>
+    <!--PersonPage-->
+    <string name="profile">Profil</string>
+    <string name="name">İsim</string>
+    <string name="age">Yaş</string>
+    <string name="surname">Soyisim</string>
+    <string name="height">Boy (cm)</string>
+    <string name="weight">Ağırlık (kg)</string>
+    <string name="edit">Düzenle</string>
+    <string name="addNewMedicine">Yeni ilaç ekle</string>
+    <!--Account Page-->
+    <string name="accountInfo">Hesap Bilgileri</string>
+    <string name="birthdate">Doğum Tarihi</string>
+    <string name="bloodType"> Kan Grubu</string>
+    <string name="positive">Pozitif</string>
+    <string name="negative">Negatif</string>
+    <string name="gender">Cinsiyet</string>
+    <string name="male">Erkek</string>
+    <string name="female">Kadın</string>
+    <string name="save">Kaydet</string>
+    <!--Others-->
+    <string name="nextAppointment">Gelecek Randevu</string>
+    <string name="missingInfo">"Tahmin sistemimizin doktorunuza yardımcı olabilmesi için
+        lütfen eksik bilgilerinizi tamamlayınız"</string>
+    <string name="analysisCompleted">Analiz Tamamlandı</string>
+    <string name="yourDoctor">Doktorunuz</string>
+    <string name="appointmentDate">Randevu tarihi</string>
+    <string name="appointmentTimeSlot">Randevu saati</string>
+    <string name="searchMedicine">İlaç ara</string>
+    <string name="addMedicine">İlaç ekle</string>
+    <string name="cancel">İptal</string>
+    <string name="done">Tamamlandı</string>
+    <string name="medicine">İlaç</string>
+    <string name="frequency">Sıklık</string>
+    <string name="dosage">Dozaj</string>
+
+</resources>

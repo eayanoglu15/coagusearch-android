@@ -6,6 +6,7 @@ import com.example.coagusearch.network.Appointment.model.AppointmentApi
 import com.example.coagusearch.network.Auth.model.AuthApi
 import com.example.coagusearch.network.Auth.model.AuthRepository
 import com.example.coagusearch.network.Interceptors.AuthInterceptor
+import com.example.coagusearch.network.Interceptors.LocaleInterceptor
 import com.example.coagusearch.network.RegularMedication.model.RegularMedicationApi
 import com.example.coagusearch.network.Users.model.UsersApi
 import okhttp3.OkHttpClient
@@ -17,7 +18,8 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.scalars.ScalarsConverterFactory
 
 class RetrofitClient(
-    private val authInterceptor: AuthInterceptor
+    private val authInterceptor: AuthInterceptor,
+    private val localeInterceptor: LocaleInterceptor
 ) {
     fun authApi(): AuthApi = getRetrofit().create(AuthApi::class.java)
     fun appointmentApi(): AppointmentApi = getRetrofit().create(AppointmentApi::class.java)
@@ -33,6 +35,7 @@ class RetrofitClient(
         var apiUrl ="http://192.168.2.141:8080"
         val httpClient = okHttpClientBuilder
             .addInterceptor(authInterceptor)
+            .addInterceptor(localeInterceptor)
             .protocols(listOf(Protocol.HTTP_2, Protocol.HTTP_1_1))
             .build()
         return Retrofit.Builder()

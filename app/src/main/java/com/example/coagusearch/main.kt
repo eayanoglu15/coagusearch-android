@@ -3,17 +3,22 @@ package com.example.coagusearch
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import com.example.coagusearch.network.Auth.model.AuthRepository
+import com.example.coagusearch.network.RegularMedication.model.RegularMedicationRepository
 import com.example.coagusearch.network.Users.model.UsersRepository
+import com.example.coagusearch.ui.dialog.showProgressLoading
 import kotlinx.android.synthetic.main.main.*
+import org.koin.android.ext.android.get
 
 class main : AppCompatActivity() {
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main)
         loadFragment(mainmenu(),0)
-
+        val userRepository: UsersRepository = get()
+        showProgressLoading(true,this)
+        val medRepository: RegularMedicationRepository = get()
+        medRepository.getUsersDrug(this)
+        userRepository.getUserInfo(this,1)
         bottom_navigation.setOnNavigationItemSelectedListener {
             when(it.itemId){
                 R.id.menu-> {
@@ -32,21 +37,7 @@ class main : AppCompatActivity() {
             }
             false
         }
-        //
-            /*
-        call.enqueue(object:retrofit2.Callback<Auth>{
-            override fun onFailure(call: Call<Auth>, t: Throwable) {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-                // Toast.makeText(applicationContext,"Not ",Toast.LENGTH_LONG).show()
-            }
-            override fun onResponse(call: Call<Auth>, response: Response<Auth>) {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-                //Toast.makeText(applicationContext,"DOne",Toast.LENGTH_LONG).show()
-            }
-        })
-             */
     }
-
 
     private fun loadFragment(fragment: Fragment,int: Int) {
         // load fragment

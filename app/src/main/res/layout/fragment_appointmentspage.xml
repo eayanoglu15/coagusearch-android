@@ -26,24 +26,23 @@
                 android:layout_gravity="center"
                 android:paddingTop="5dp"
                 android:paddingBottom="10dp"
-                android:text="My Appointments"
+                android:text="@string/myAppointments"
                 android:textColor="@color/switch_close"
                 android:textSize="24sp" />
+            <include
+                android:id="@+id/appointmentNextAppointment"
+                layout="@layout/appointmentmenunext"/>
 
             <ListView
                 android:id="@+id/appointmentslist"
                 style="@android:style/Widget.ListView.Menu"
-
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:divider="@android:color/transparent"
                 android:dividerHeight="10.0sp"
                 android:padding="5pt"
                 android:visibility="visible">
-
-
             </ListView>
-
         </LinearLayout>
 
         <Button
@@ -55,8 +54,7 @@
             android:layout_marginRight="10dp"
             android:layout_marginBottom="10dp"
             android:background="@drawable/loginbutton_back"
-            android:text="Request Appointment"
+            android:text="@string/requestAppointment"
             android:visibility="visible" />
-
     </RelativeLayout>
 </FrameLayout>
