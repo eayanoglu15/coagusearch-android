@@ -10,13 +10,11 @@
     <color name="switch_close">#ffffff</color>
     <color name="white">#ffffff</color>
     <color name="state_notchecked">#909e94</color>
+    <color name="dark">#909e94</color>
     <color name="missing_information">#ff7a7a</color>
     <color name="appointmentleft">#66aaff</color>
     <color name="cancelbuttoninside">#ff7a7a</color>
     <color name="cancelbuttonout">#fa3d3d</color>
     <color name="bottom_sheet_account">#e1e0e0</color>
-
-
-
-
+    <color name="orange">#f7a57f</color>
 </resources>

@@ -30,4 +30,25 @@
         <item name="android:textColor">@color/colorPrimaryDark</item>
         <item name="android:textColorPrimary">@color/colorPrimary</item>
     </style>
+
+    <style name="TextInputLayout" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:textColorHint">#093d87</item>
+        <item name="android:textColor">#000000</item>
+        <item name="colorAccent">#093d87</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorControlNormal">#093d87</item>
+        <item name="colorControlActivated">#093d87</item>
+        <item name="colorControlHighlight">#000000</item>
+    </style>
+    <style name="TextInputLayout2" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:textColorHint">#3d8bff</item>
+        <item name="android:textColor">#000000</item>
+        <item name="colorAccent">#3d8bff</item>
+        <item name="colorPrimary">#3d8bff</item>
+        <item name="colorPrimaryDark">#3d8bff</item>
+        <item name="colorControlNormal">#3d8bff</item>
+        <item name="colorControlActivated">#3d8bff</item>
+        <item name="colorControlHighlight">#000000</item>
+    </style>
 </resources>

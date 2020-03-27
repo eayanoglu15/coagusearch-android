@@ -14,7 +14,8 @@ import com.example.coagusearch.network.RegularMedication.request.MedicineInfoTyp
 import com.example.coagusearch.network.RegularMedication.response.MedicineInfoResponse
 import com.example.coagusearch.network.Users.response.UserResponse
 import kotlinx.android.synthetic.main.fragment_personpage.*
-import kotlinx.android.synthetic.main.med.view.*
+import kotlinx.android.synthetic.main.medicinecard.view.*
+
 /**
  * A simple [Fragment] subclass.
  */
@@ -49,6 +50,7 @@ class personpage : Fragment() {
             intent.putExtra("type","new")
             startActivity(intent)
             getActivity()?.overridePendingTransition(R.anim.slide_in_right,R.anim.slide_out_left);
+
         }
         profileFragment_name.text=userResponse!!.name+" "+userResponse!!.surname
         val birthdate=getString(R.string.birthdate)
@@ -69,19 +71,19 @@ class personpage : Fragment() {
         override fun getView(p0: Int, p1: View?, p2: ViewGroup?): View {
             val ticket=listOfTicket[p0]
             var inflater=context!!.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-                var myView = inflater.inflate(R.layout.med, null)
+                var myView = inflater.inflate(R.layout.medicinecard, null)
             val intent =  Intent(context,AddMedicine::class.java)
             intent.putExtra("type","edit")
             if(ticket.mode==MedicineInfoType.KEY) {
-                myView.medName.text = ticket.key!!.toUpperCase()
+                myView.medName.text = ticket.key!!.capitalize()
                 intent.putExtra("Name",ticket.key)
             }
             else{
                 myView.medName.text = ticket.custom
                 intent.putExtra("Name",ticket.custom)
             }
-                myView.medFreq.text=ticket.frequency!!.title
-                myView.medDos.text=ticket.dosage.toString()
+                myView.medFreq.text=ticket.frequency!!.title.capitalize()
+                myView.medDos.text=ticket.dosage.toString().capitalize()
                 myView.editButtonMed.setOnClickListener{
                     intent.putExtra("id",ticket.id)
                     intent.putExtra("freq",ticket.frequency.title)

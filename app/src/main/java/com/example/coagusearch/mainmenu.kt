@@ -11,7 +11,7 @@ import android.widget.ListView
 import com.example.coagusearch.network.Users.model.UsersRepository
 import com.example.coagusearch.network.Users.response.PatientMainScreenResponse
 import kotlinx.android.synthetic.main.fragment_mainmenu.*
-import kotlinx.android.synthetic.main.menunextappointment.view.*
+import kotlinx.android.synthetic.main.nextappointmentnew.view.*
 import org.koin.android.ext.android.get
 
 

@@ -5,6 +5,5 @@
                 <solid android:color="@color/login_button"/>
                 <corners android:radius="10pt"/>
             </shape>
-
         </item>
 </selector>

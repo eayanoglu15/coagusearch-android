@@ -2,7 +2,6 @@
 <resources>
     <string name="app_name">Coagusearch-TR</string>
     <string name="title_activity_main2" translatable="false">Main2Activity</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_accountinformations">accountinformations</string>
     <string name="errorOccurred">Error Occured</string>

@@ -21,7 +21,6 @@ class AuthInterceptor(
     private val UPDATE_REQUIRE_CODE = 418
     private val DASHBOARD_UPDATE = "x-dashboard-update"
     private val TRUE = "true"
-
     fun initAuthRepository(authRepository: AuthRepository) {
         println("initiliazed Auth Repository")
         this.authRepository = authRepository

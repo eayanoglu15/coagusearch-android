@@ -15,9 +15,9 @@ import com.example.coagusearch.network.Appointment.model.AppointmentRepository
 import com.example.coagusearch.network.Appointment.request.DeleteAppointmentsForUserRequest
 import com.example.coagusearch.network.Appointment.response.UserAppointmentResponse
 import com.example.coagusearch.network.Users.response.SingleAppointmentResponse
-import kotlinx.android.synthetic.main.appointmentmenunext.view.*
 import kotlinx.android.synthetic.main.fragment_appointmentspage.*
-import kotlinx.android.synthetic.main.myappointmentsall.view.*
+import kotlinx.android.synthetic.main.nextappointmentnewcancel.view.*
+import kotlinx.android.synthetic.main.oldappointmentcard.view.*
 import org.koin.android.ext.android.get
 
 /**
@@ -57,6 +57,7 @@ class appointmentspage : Fragment() {
                     val appointmentRepository: AppointmentRepository = get()
                     appointmentRepository.deleteAppointmentForUser(
                         DeleteAppointmentsForUserRequest(myAppointments!!.nextAppointment!!.id),this.context!!)
+
                 }
                 builder.setNegativeButton("Hayır"){
                         dialog, which ->
@@ -98,7 +99,7 @@ class appointmentspage : Fragment() {
         override fun getView(p0: Int, p1: View?, p2: ViewGroup?): View {
             val ticket=listOfTicket[p0]
             var inflater=context!!.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-                var myView = inflater.inflate(R.layout.myappointmentsall, null)
+                var myView = inflater.inflate(R.layout.oldappointmentcard, null)
                 myView.appointentdoctor.text=ticket.DoctorName()
                 myView.appointmentdate.text=ticket.appointmentDate()
                 myView.appointmenttime.text=ticket.timeSlot()

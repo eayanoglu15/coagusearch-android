@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:title="@string/menu"
+        android:id="@+id/menu"
+        android:icon="@drawable/ic_menu_black_24dp"/>
+    <item android:title="Notifications"
+        android:id="@+id/notification"
+        android:icon="@drawable/ic_event_note_black_24dp"/>
+    <item android:title="Patients"
+        android:id="@+id/patiens"
+        android:icon="@drawable/ic_people_black_24dp"/>
+    <item android:title="BloodBank"
+        android:id="@+id/bloodbank"
+        android:icon="@drawable/ic_add_location_black_24dp"/>
+</menu>

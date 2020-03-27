@@ -13,12 +13,29 @@ class main : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main)
-        loadFragment(mainmenu(),0)
+        //loadFragment(mainmenu(),0)
         val userRepository: UsersRepository = get()
         showProgressLoading(true,this)
         val medRepository: RegularMedicationRepository = get()
         medRepository.getUsersDrug(this)
         userRepository.getUserInfo(this,1)
+        bottom_navigation.setOnNavigationItemReselectedListener {  }
+        when(bottom_navigation.selectedItemId){
+            R.id.menu-> {
+                loadFragment(mainmenu(),0)
+                //return@setOnNavigationItemSelectedListener true
+            }
+            R.id.calendar-> {
+                loadFragment(appointmentspage(),0)
+                //return@setOnNavigationItemSelectedListener true
+            }
+
+            R.id.person-> {
+                loadFragment(personpage(),0)
+                //return@setOnNavigationItemSelectedListener true
+            }
+        }
+
         bottom_navigation.setOnNavigationItemSelectedListener {
             when(it.itemId){
                 R.id.menu-> {
@@ -39,6 +56,7 @@ class main : AppCompatActivity() {
         }
     }
 
+    override fun onBackPressed() {}
     private fun loadFragment(fragment: Fragment,int: Int) {
         // load fragment
         val transaction = supportFragmentManager.beginTransaction()

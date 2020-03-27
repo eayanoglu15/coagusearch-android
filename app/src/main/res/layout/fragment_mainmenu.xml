@@ -7,7 +7,6 @@
     tools:context=".mainmenu"
     android:background="@drawable/background_login">
 
-    <!-- TODO: Update blank fragment layout -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -22,14 +21,18 @@
             android:text="@string/welcome"
             android:textColor="@color/switch_close"
             android:textSize="24sp" />
+
         <include
-            android:layout_height="wrap_content"
             android:id="@+id/missingInfo"
-            layout="@layout/menunewappointmnet"
-            android:layout_width="wrap_content" />
+            layout="@layout/menumissinginformation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:foreground="?android:attr/selectableItemBackground" />
         <include
             android:id="@+id/nextAppointment"
-            layout="@layout/menunextappointment"/>
+            android:foreground="?android:attr/selectableItemBackground"
+            layout="@layout/nextappointmentnew"/>
 
     </LinearLayout>
 </FrameLayout>
