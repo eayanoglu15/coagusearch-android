@@ -1,4 +1,4 @@
-package com.example.coagusearch
+package com.example.coagusearch.patient
 
 
 import android.content.Intent
@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ListView
+import com.example.coagusearch.R
 import com.example.coagusearch.network.Users.model.UsersRepository
 import com.example.coagusearch.network.Users.response.PatientMainScreenResponse
 import kotlinx.android.synthetic.main.fragment_mainmenu.*
@@ -44,9 +45,13 @@ class mainmenu : Fragment() {
         else{
             missingInfo.visibility=View.VISIBLE
             missingInfo.setOnClickListener{
-                val intent =  Intent(getActivity(),accountPage::class.java)
+                val intent =  Intent(getActivity(),
+                    accountPage::class.java)
                 startActivity(intent)
-                getActivity()?.overridePendingTransition(R.anim.slide_in_right,R.anim.slide_out_left);
+                getActivity()?.overridePendingTransition(
+                    R.anim.slide_in_right,
+                    R.anim.slide_out_left
+                );
             }
         }
         if(patientMainScreenResponse!!.patientNextAppointment!=null){

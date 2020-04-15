@@ -13,23 +13,29 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".doctor.PatientBloodOrder"></activity>
+        <activity android:name=".doctor.PastMicroTemData"></activity>
+        <activity android:name=".doctor.PatientPastDataActivity" />
+        <activity android:name=".doctor.microTemData" />
+        <activity android:name=".doctor.PatientAppointments" />
+        <activity android:name=".doctor.PatientBloodOrder" />
         <activity android:name=".doctor.doctorMyPatient" />
-        <activity android:name=".doctor.doctorMain" />
         <activity
-            android:name=".AddMedicine"
+            android:name=".doctor.doctorMain"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".patient.AddMedicine"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />
         <activity
-            android:name=".NewAppointment"
+            android:name=".patient.NewAppointment"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />
         <activity
-            android:name=".accountPage"
+            android:name=".patient.accountPage"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />
         <activity
-            android:name=".main"
+            android:name=".patient.main"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />
         <activity

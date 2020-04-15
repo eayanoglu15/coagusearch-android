@@ -12,7 +12,7 @@
         android:layout_height="fill_parent"
         android:animateLayoutChanges="true"
         android:orientation="vertical"
-        tools:context=".AddMedicine">
+        tools:context=".patient.AddMedicine">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/newAppointmentHeader"

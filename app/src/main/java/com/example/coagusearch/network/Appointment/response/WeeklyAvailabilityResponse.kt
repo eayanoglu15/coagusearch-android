@@ -1,7 +1,5 @@
 package com.example.coagusearch.network.Appointment.response
 
-import com.example.coagusearch.MenuTicket
-
 data class WeeklyAvailabilityResponse(
     var doctorName: String? = null,
     var doctorSurname: String? = null,

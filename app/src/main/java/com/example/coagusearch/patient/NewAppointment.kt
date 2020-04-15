@@ -1,10 +1,11 @@
-    package com.example.coagusearch
+    package com.example.coagusearch.patient
 
     import androidx.appcompat.app.AppCompatActivity
     import android.os.Bundle
     import android.view.View
     import android.widget.NumberPicker
     import android.widget.Toast
+    import com.example.coagusearch.R
     import com.example.coagusearch.network.Appointment.model.AppointmentRepository
     import com.example.coagusearch.network.Appointment.request.SaveAppointmentRequest
     import com.example.coagusearch.network.Appointment.response.WeeklyAvailabilityResponse
@@ -31,7 +32,10 @@
 
         override fun onBackPressed() {
             finish()
-            overridePendingTransition(R.anim.slide_in_left,R.anim.slide_out_right)
+            overridePendingTransition(
+                R.anim.slide_in_left,
+                R.anim.slide_out_right
+            )
         }
 
         fun gotTheDate(appointmentResponse: WeeklyAvailabilityResponse){
@@ -132,7 +136,10 @@
             }
             newAppointmentGoBack.setOnClickListener{
                 finish()
-                overridePendingTransition(R.anim.slide_in_left,R.anim.slide_out_right)
+                overridePendingTransition(
+                    R.anim.slide_in_left,
+                    R.anim.slide_out_right
+                )
             }
             request_Appointment.setOnClickListener{
                 if(dateCardYourDate.text==""){

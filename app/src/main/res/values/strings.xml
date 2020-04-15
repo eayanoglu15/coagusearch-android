@@ -40,6 +40,12 @@
     <string name="male">Male</string>
     <string name="female">Female</string>
     <string name="save">Save</string>
+    <!--Missing Info-->
+    <string name="missingName">Please fill your name</string>
+    <string name="missingSurName">Please fill your surname</string>
+    <string name="missingBirthdate">Please fill your bithdate</string>
+    <string name="missingWeight">Please fill your weight</string>
+    <string name="missingHeight">Please fill your height</string>
     <!--Others-->
     <string name="nextAppointment">Next Appointment</string>
     <string name="missingInfo">"Please enter your missing information to enable decision system to help your doctor"</string>
@@ -54,8 +60,41 @@
     <string name="frequency">Frequency</string>
     <string name="done">Done</string>
     <string name="dosage">Dosage</string>
-    <string name="title_activity_example">example</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <!--DoctorMaşn-->
+    <string name="doctormenu">Menu</string>
+    <string name="notification">Notifications</string>
+    <string name="patients">Patients</string>
+    <string name="bloodbank">Blood Bank</string>
+
+    <string name="callpatientfornext">Call patient for next appointment</string>
+    <string name="lastutemdataanalysis">Last utem data analysis</string>
+
+
+
+    <string name="today">Today</string>
+    <string name="emergencypatients">Emergency Patients</string>
+    <string name="totalpatients">Total Patients:</string>
+
+
+    <string name="makeorder">Make Order</string>
+    <string name="mypatients">My Patients</string>
+    <string name="searchpatient">Search Patient</string>
+
+
+
+    <string name="chechlastdata">Check Past µTem data analysis</string>
+    <string name="producttype">Product Type</string>
+    <string name="frozen">Fresh frozen plasma</string>
+    <string name="plateret">Platelet concentrate</string>
+
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="deletesure">Are you sure?</string>
+    <string name="heightvcm">(cm)</string>
+    <string name="weightkg">(kg)</string>
+
+
+
+
+
 </resources>

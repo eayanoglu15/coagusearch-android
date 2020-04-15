@@ -1,4 +1,4 @@
-package com.example.coagusearch
+package com.example.coagusearch.patient
 
 import com.example.coagusearch.network.RegularMedication.response.UserMedicineResponse
 import com.example.coagusearch.network.Users.response.UserResponse
@@ -9,7 +9,7 @@ class UserInfoSingleton {
     private constructor(){
     }
     companion object{
-        val instance:UserInfoSingleton by lazy { UserInfoSingleton() }
+        val instance: UserInfoSingleton by lazy { UserInfoSingleton() }
     }
 
     fun getMedicineNames(): Array<String?> {

@@ -1,16 +1,14 @@
-package com.example.coagusearch
+package com.example.coagusearch.patient
 
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.coagusearch.R
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import com.google.android.material.datepicker.MaterialDatePicker.Builder.datePicker
 import kotlinx.android.synthetic.main.bottomsheet.*
 import kotlinx.android.synthetic.main.bottomsheet.view.*
-import java.time.LocalDate
-import java.time.LocalDateTime
 import java.util.*
 
 
@@ -27,6 +25,7 @@ import java.util.*
  */
 class DateListDialogFragment : BottomSheetDialogFragment() {
     private var mListener: BottomSheetListener? = null
+    var date=Date()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -34,18 +33,17 @@ class DateListDialogFragment : BottomSheetDialogFragment() {
         val v= inflater.inflate(R.layout.bottomsheet, container, false)
         return v
     }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        birthday.maxDate=date.time
         view.doneButton.setOnClickListener {
-            mListener!!.onButtonClicked(birthday.dayOfMonth.toString()+"/"+birthday.month.toString()+"/"+birthday.year.toString())
+            mListener!!.onButtonClicked(birthday.dayOfMonth,birthday.month,+birthday.year)
             dismiss()
         }
     }
 
-
     interface BottomSheetListener {
-        fun onButtonClicked(text: String?)
+        fun onButtonClicked(birthDay:Int,birthMonth:Int,birthYear:Int)
     }
     override fun onAttach(context: Context) {
         super.onAttach(context)

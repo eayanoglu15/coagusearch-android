@@ -39,6 +39,12 @@
     <string name="male">Erkek</string>
     <string name="female">Kadın</string>
     <string name="save">Kaydet</string>
+    <!--Missing Info-->
+    <string name="missingName">Lütfen ismizi giriniz</string>
+    <string name="missingSurName">Please fill your surname</string>
+    <string name="missingBirthdate">Lütfen doğum tarihinizi giriniz</string>
+    <string name="missingWeight">Lütfen kilonuzu giriniz</string>
+    <string name="missingHeight">Lütfen boyunuzu giriniz</string>
     <!--Others-->
     <string name="nextAppointment">Gelecek Randevu</string>
     <string name="missingInfo">"Tahmin sistemimizin doktorunuza yardımcı olabilmesi için
@@ -54,5 +60,28 @@
     <string name="medicine">İlaç</string>
     <string name="frequency">Sıklık</string>
     <string name="dosage">Dozaj</string>
+    <!--DoctorMaşn-->
+    <string name="doctormenu">Menu</string>
+    <string name="notification">Bildirimler</string>
+    <string name="patients">Hastalar</string>
+    <string name="bloodbank">Kan Bankası</string>
+    <string name="callpatientfornext">Hastayı randevuya çağır</string>
+    <string name="lastutemdataanalysis">Last utem data analysis</string>
+    <string name="today">Bugün</string>
+    <string name="emergencypatients">Acil Durum Hastaları</string>
+    <string name="totalpatients">Toplam Hasta:</string>
+    <string name="makeorder">Talepte bulun</string>
+    <string name="mypatients">Hastalarım</string>
+    <string name="searchpatient">Hasta Ara</string>
+    <string name="chechlastdata">Check Past µTem data analysis</string>
+    <string name="producttype">Ürün çeşidi</string>
+    <string name="frozen">Fresh frozen plasma</string>
+    <string name="plateret">Platelet concentrate</string>
+    <string name="yes">Evet</string>
+    <string name="no">Hayır</string>
+    <string name="deletesure">Emin Misiniz</string>
+    <string name="heightvcm">(cm)</string>
+    <string name="weightkg">(kg)</string>
+
 
 </resources>

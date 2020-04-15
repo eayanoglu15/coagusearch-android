@@ -1,12 +1,24 @@
 package com.example.coagusearch.doctor
 
+import android.animation.Animator
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
+import android.widget.Toast
+import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.*
 import com.example.coagusearch.R
+import com.example.coagusearch.doctor.doctorAdapters.HomeFragmentAppointmentAdapter
+import com.example.coagusearch.doctor.doctorAdapters.HomeFragmentEmergencyPatientAdapter
+import com.example.coagusearch.network.Appointment.model.AppointmentRepository
+import com.example.coagusearch.network.Users.model.UsersRepository
+import com.example.coagusearch.network.Users.response.DoctorMainScreenResponse
+import com.example.coagusearch.network.Users.response.EmergencyPatientDetail
+import com.example.coagusearch.network.Users.response.TodayPatientDetail
+import kotlinx.android.synthetic.main.fragment_doctor_home.*
+import org.koin.android.ext.android.get
+
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -19,11 +31,37 @@ private const val ARG_PARAM2 = "param2"
  * create an instance of this fragment.
  */
 class doctorHomeFragment : Fragment() {
+    var emergencyPatientList=mutableListOf<EmergencyPatientDetail>()
+    var appointmentList= mutableListOf<TodayPatientDetail>()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_doctor_home, container, false)
+        val view=inflater.inflate(R.layout.fragment_doctor_home, container, false)
+        val userRepository: UsersRepository = get()
+        userRepository.getDoctorMainScreen(this.context!!,this)
+        return view
     }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        emergencyPatientRecyclerView.layoutManager = LinearLayoutManager(this.context!!,LinearLayoutManager.HORIZONTAL,false)
+        emergencyPatientRecyclerView.adapter = HomeFragmentEmergencyPatientAdapter(emergencyPatientList)
+        //emergencyPatientRecyclerView.itemAnimator=animator
+        appointmentsRecyclerView.layoutManager=LinearLayoutManager(this.context!!,LinearLayoutManager.VERTICAL,false)
+        appointmentsRecyclerView.adapter=HomeFragmentAppointmentAdapter(appointmentList)
+        val snapHelper: SnapHelper = PagerSnapHelper()
+        snapHelper.attachToRecyclerView(emergencyPatientRecyclerView)
+    }
+    fun attachToViews(mainScreenResponse:DoctorMainScreenResponse){
+        emergencyPatientList=mainScreenResponse.emergencyPatients.toMutableList()
+        appointmentList=mainScreenResponse.todayAppointments.toMutableList()
+        (emergencyPatientRecyclerView.adapter as  HomeFragmentEmergencyPatientAdapter).emergencyPatientList=emergencyPatientList
+        (emergencyPatientRecyclerView.adapter as HomeFragmentEmergencyPatientAdapter).notifyDataSetChanged()
+        (appointmentsRecyclerView.adapter as HomeFragmentAppointmentAdapter).todaysAppointmentsList=appointmentList
+        (appointmentsRecyclerView.adapter as HomeFragmentAppointmentAdapter).notifyDataSetChanged()
+        emergencyPatientNumber.text="Total Patients:"+emergencyPatientList.size.toString()
+    }
+
 }

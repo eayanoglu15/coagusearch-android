@@ -2,9 +2,9 @@ package com.example.coagusearch.network.Appointment.model
 
 import android.content.Context
 import androidx.appcompat.app.AlertDialog
-import com.example.coagusearch.NewAppointment
+import com.example.coagusearch.patient.NewAppointment
 import com.example.coagusearch.R
-import com.example.coagusearch.appointmentspage
+import com.example.coagusearch.patient.appointmentspage
 import com.example.coagusearch.network.Appointment.request.DeleteAppointmentsForUserRequest
 import com.example.coagusearch.network.Appointment.request.SaveAppointmentRequest
 import com.example.coagusearch.network.Appointment.response.UserAppointmentResponse
@@ -30,6 +30,7 @@ class AppointmentRepository(
                     // (context as MainActivity).LoginButton.text ="Fail"
                     onFailureDialog(context, t.toString())
                 }
+
                 override fun onResponse(
                     call: Call<WeeklyAvailabilityResponse>,
                     response: Response<WeeklyAvailabilityResponse>

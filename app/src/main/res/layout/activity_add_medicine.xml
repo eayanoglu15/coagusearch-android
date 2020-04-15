@@ -11,7 +11,7 @@
         android:layout_height="fill_parent"
         android:animateLayoutChanges="true"
         android:orientation="vertical"
-        tools:context=".AddMedicine">
+        tools:context=".patient.AddMedicine">
         <AutoCompleteTextView
             android:id="@+id/multiAutoCompleteTextView"
             android:layout_width="match_parent"
@@ -36,6 +36,9 @@
                 android:id="@+id/addMedicinePageGoBack"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?android:attr/selectableItemBackground"
                 android:layout_weight="1"
                 app:srcCompat="@drawable/path" />
 
@@ -88,6 +91,9 @@
                         android:layout_marginEnd="8dp"
                         android:layout_marginBottom="8dp"
                         android:layout_weight="1"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:foreground="?android:attr/selectableItemBackground"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
@@ -152,8 +158,8 @@
                         android:layout_width="46dp"
                         android:layout_height="52dp"
                         android:layout_marginStart="8dp"
-                        android:layout_marginTop="4dp"
-                        android:layout_marginBottom="4dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp"
                         android:layout_weight="1"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -171,13 +177,16 @@
                         android:layout_weight="1"
                         android:scaleX="0.5"
                         android:scaleY="0.5"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:foreground="?android:attr/selectableItemBackground"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         app:srcCompat="@drawable/downarrow" />
 
                     <LinearLayout
-                        android:layout_width="141dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="0dp"
                         android:layout_marginStart="8dp"
                         android:layout_weight="1"
@@ -192,7 +201,6 @@
                             android:id="@+id/FrequencyCarHeader"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="fill"
                             android:layout_margin="5dp"
                             android:text="@string/frequency"
                             android:textSize="18sp" />
@@ -200,11 +208,8 @@
                         <TextView
                             android:id="@+id/frequencyPicked"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="fill"
+                            android:layout_height="match_parent"
                             android:layout_marginLeft="5dp"
-                            android:layout_marginTop="0dp"
-                            android:layout_marginBottom="5dp"
                             android:text="TextView"
                             android:textColor="@color/login_button"
                             android:textSize="14sp" />
@@ -215,7 +220,11 @@
                     android:id="@+id/frequencyPicker"
                     style="@android:style/Widget.Material.Light.NumberPicker"
                     android:layout_width="match_parent"
+                    android:animateLayoutChanges="true"
                     android:layout_height="150dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?android:attr/selectableItemBackground"
                     android:descendantFocusability="blocksDescendants" />
             </LinearLayout>
 
@@ -242,8 +251,8 @@
                         android:layout_width="46dp"
                         android:layout_height="52dp"
                         android:layout_marginStart="8dp"
-                        android:layout_marginTop="4dp"
-                        android:layout_marginBottom="4dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp"
                         android:layout_weight="1"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -261,6 +270,9 @@
                         android:layout_weight="1"
                         android:scaleX="0.5"
                         android:scaleY="0.5"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:foreground="?android:attr/selectableItemBackground"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
@@ -287,11 +299,9 @@
                         <TextView
                             android:id="@+id/dosagePicked"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="match_parent"
                             android:layout_gravity="fill"
                             android:layout_marginLeft="5dp"
-                            android:layout_marginTop="0dp"
-                            android:layout_marginBottom="5dp"
                             android:text="TextView"
                             android:textColor="@color/login_button"
                             android:textSize="14sp" />
@@ -303,6 +313,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="150dp"
                     android:animateLayoutChanges="true"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?android:attr/selectableItemBackground"
                     android:scrollbarSize="8dp"></NumberPicker>
             </LinearLayout>
 
@@ -330,6 +343,9 @@
                     android:layout_weight="1"
                     android:background="@color/cancelbuttoninside"
                     android:text="Remove"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?android:attr/selectableItemBackground"
                     android:theme="@android:style/ThemeOverlay.Material.Dark" />
 
                 <Button
@@ -338,6 +354,9 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
                     android:layout_weight="1"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?android:attr/selectableItemBackground"
                     android:background="@color/login_button"
                     android:text="@string/addMedicine"
                     android:theme="@android:style/ThemeOverlay.Material.Dark" />

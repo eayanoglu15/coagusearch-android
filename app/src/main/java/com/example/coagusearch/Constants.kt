@@ -11,6 +11,7 @@ object Constants {
     /**
      * Project wide Log.* Tag
      */
+
     const val TAG = "HospitalOnMobile"
 
     const val POPUP_QUESTION_DATA = "popup_questions"
