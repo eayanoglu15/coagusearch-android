@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.text.Editable
 import androidx.appcompat.app.AppCompatActivity
 import com.example.coagusearch.doctor.doctorMain
+import com.example.coagusearch.medicalTeam.MedicalTeamMain
 import com.example.coagusearch.network.Auth.model.AuthRepository
 import com.example.coagusearch.network.Interceptors.AuthInterceptor
 import com.example.coagusearch.network.shared.RetrofitClient
@@ -89,7 +90,7 @@ class MainActivity : AppCompatActivity() {
             editor!!.commit();
         }
         */
-        val intent = Intent(this, main::class.java)
+        val intent = Intent(this, MedicalTeamMain::class.java)
         startActivity(intent)
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
     }

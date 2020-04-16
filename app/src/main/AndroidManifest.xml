@@ -13,7 +13,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".doctor.PastMicroTemData"></activity>
+        <activity android:name=".medicalTeam.MedTeamEditPatient"></activity>
+        <activity android:name=".medicalTeam.MedTeamAddPatient" />
+        <activity android:name=".medicalTeam.MedTeamAllPatients" />
+        <activity android:name=".medicalTeam.MedicalTeamMain" />
+        <activity android:name=".doctor.PastMicroTemData" />
         <activity android:name=".doctor.PatientPastDataActivity" />
         <activity android:name=".doctor.microTemData" />
         <activity android:name=".doctor.PatientAppointments" />

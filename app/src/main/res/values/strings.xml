@@ -70,7 +70,6 @@
     <string name="lastutemdataanalysis">Last utem data analysis</string>
 
 
-
     <string name="today">Today</string>
     <string name="emergencypatients">Emergency Patients</string>
     <string name="totalpatients">Total Patients:</string>
@@ -79,7 +78,6 @@
     <string name="makeorder">Make Order</string>
     <string name="mypatients">My Patients</string>
     <string name="searchpatient">Search Patient</string>
-
 
 
     <string name="chechlastdata">Check Past µTem data analysis</string>
@@ -94,7 +92,18 @@
     <string name="weightkg">(kg)</string>
 
 
+    <!-- MedTeam-->
+    <string name="managePatients">Manage Patients</string>
+    <string name="enterpatientname">Enter Patient Name</string>
+    <string name="notifydoctor">Notify Doctor</string>
+    <string name="notificationfromdoctor"> Notification From Doctor</string>
 
+    <string name="reportambulancePatient">Report Ambulance Patient</string>
+    <!-- MedTeam
+    <string name="no">No</string>
+    <string name="deletesure">Are you sure?</string>
+    <string name="heightvcm">(cm)</string>
+    <string name="weightkg">(kg)</string>-->
 
 
 </resources>

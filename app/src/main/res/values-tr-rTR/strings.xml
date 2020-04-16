@@ -54,6 +54,7 @@
     <string name="appointmentDate">Randevu tarihi</string>
     <string name="appointmentTimeSlot">Randevu saati</string>
     <string name="searchMedicine">İlaç ara</string>
+
     <string name="addMedicine">İlaç ekle</string>
     <string name="cancel">İptal</string>
     <string name="done">Tamamlandı</string>
@@ -83,5 +84,14 @@
     <string name="heightvcm">(cm)</string>
     <string name="weightkg">(kg)</string>
 
+
+
+
+
+    <string name="notificationfromdoctor">Doktordan Yeni Bildirim</string>
+    <string name="managePatients">Hastaları Düzenle</string>
+    <string name="notifydoctor">Doktora bildir</string>
+    <string name="reportambulancePatient">Ambulanstaki Hastayı bildir</string>
+    <string name="enterpatientname">Hasta İsmini Giriniz</string>
 
 </resources>
