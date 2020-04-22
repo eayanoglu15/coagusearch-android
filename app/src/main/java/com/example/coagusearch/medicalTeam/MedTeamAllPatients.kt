@@ -16,7 +16,7 @@ import kotlinx.android.synthetic.main.activity_medical_team_main.*
 import kotlinx.android.synthetic.main.fragment_doctor_patients.*
 
 class MedTeamAllPatients : AppCompatActivity() {
-    val list= mutableListOf("Ökkeş Uğur Ulaş","Ege Melis Ayanoğlu","Muharrem Salel","Kazım Okan Akgül")
+    val list= mutableListOf("Ökkeş Uğur Ulaş","Ege Melis Ayanoğlu","Muharrem Salel","Kazım Okan Akgül","Ali Candan")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_med_team_all_patients)
