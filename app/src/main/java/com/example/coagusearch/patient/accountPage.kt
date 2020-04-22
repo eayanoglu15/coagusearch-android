@@ -1,7 +1,11 @@
 package com.example.coagusearch.patient
 
 
+import android.content.Context
 import android.os.Bundle
+import android.view.View
+import android.view.View.OnTouchListener
+import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
 import com.example.coagusearch.R
 import com.example.coagusearch.network.Users.model.UsersRepository
@@ -47,7 +51,27 @@ class accountPage : AppCompatActivity(),
         backArrow.setOnClickListener{
             this.onBackPressed()
         }
+
+
+        mainview.setOnTouchListener(OnTouchListener { arg0, arg1 ->
+            // action to do
+            //accountname.isEnabled=false
+            //accountsurname.isEnabled=false
+            //accountsurheight.isEnabled=false
+            //accountsurweight.isEnabled=false
+            accountname.clearFocus()
+            accountsurname.clearFocus()
+            accountsurweight.clearFocus()
+            accountsurheight.clearFocus()
+            true //always return true to consume event
+        })
+
+
+
+
+
     }
+
 
     private fun putCurrentValues(){
         if(name!=null) accountname.setText(name.toString().capitalize())
@@ -113,11 +137,17 @@ class accountPage : AppCompatActivity(),
             R.anim.slide_out_right
         )
     }
-
     override fun onButtonClicked(birthDay:Int,birthMonth:Int,birthYear:Int) {
         this.birthDay=birthDay
         this.birthMonth=birthMonth
         this.birthYear=birthYear
         textView12.text=birthDay.toString()+"/"+birthMonth.toString()+"/"+birthYear.toString()
+    }
+    private fun closeSoftKeyboard(view: View) {
+        if (view.requestFocus()) {
+            val imm =
+                view.context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager?
+            imm?.hideSoftInputFromWindow(view.getWindowToken(), 0)
+        }
     }
 }

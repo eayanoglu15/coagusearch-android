@@ -17,11 +17,11 @@ class main : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main)
         //loadFragment(mainmenu(),0)
-        val userRepository: UsersRepository = get()
+
         showProgressLoading(true,this)
         val medRepository: RegularMedicationRepository = get()
         medRepository.getUsersDrug(this)
-        userRepository.getUserInfo(this,1)
+
         bottom_navigation.setOnNavigationItemReselectedListener {  }
         when(bottom_navigation.selectedItemId){
             R.id.menu -> {

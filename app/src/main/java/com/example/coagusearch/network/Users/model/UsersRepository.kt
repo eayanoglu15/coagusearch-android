@@ -45,11 +45,18 @@ class UsersRepository(
                 ) {
                     userResponse = response.body()
                     UserInfoSingleton.instance.userInfo = userResponse
+                    if(which==2) {
+                        (context as MainActivity).goToActivity()
+                    }
                     showProgressLoading(false, context)
                 }
             })
         return userResponse
     }
+
+
+
+
 
     fun getMyPatient(): List<UserResponse>? {
         var myPatients: List<UserResponse>? = null

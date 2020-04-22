@@ -11,6 +11,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.coagusearch.R
 import com.example.coagusearch.doctor.doctorMyPatient
+import com.example.coagusearch.medicalTeam.MedTeamEditPatient
 import com.example.coagusearch.network.Users.response.UserResponse
 import java.util.*
 
@@ -36,8 +37,9 @@ class  MedTeamPatientsAdapter(val patientsList : MutableList<String>, var contex
         val patient = FilteredList[position]
         holder.itemDetail.text = FilteredList[position].capitalize()
         holder.itemView.setOnClickListener {
-            val intent = Intent(context, doctorMyPatient::class.java)
+            val intent = Intent(context, MedTeamEditPatient::class.java)
             context.startActivity(intent)
+
         }
     }
 

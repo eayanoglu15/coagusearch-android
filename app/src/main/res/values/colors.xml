@@ -2,7 +2,7 @@
 <resources>
     <color name="colorPrimary">#093d87</color>
     <color name="colorPrimaryDark">#093d87</color>
-    <color name="colorAccent">#ffffff</color>
+    <color name="colorAccent">#3d8bff</color>
     <color name="login_button">#3d8bff</color>
     <color name="blue">#3d8bff</color>
     <color name="grey">#aad</color>
@@ -17,4 +17,8 @@
     <color name="cancelbuttonout">#fa3d3d</color>
     <color name="bottom_sheet_account">#e1e0e0</color>
     <color name="orange">#f7a57f</color>
+    <color name="segmentednonchecked">#adc7e4</color>
+
+
+
 </resources>

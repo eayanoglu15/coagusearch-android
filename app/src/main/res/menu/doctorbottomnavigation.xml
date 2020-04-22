@@ -12,4 +12,7 @@
     <item android:title="@string/bloodbank"
         android:id="@+id/bloodbank"
         android:icon="@drawable/ic_add_location_black_24dp"/>
+    <item android:title="@string/profile"
+        android:id="@+id/profile"
+        android:icon="@drawable/ic_person_black_24dp"/>
 </menu>

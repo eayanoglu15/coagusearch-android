@@ -58,7 +58,6 @@ class personpage : Fragment() {
                 R.anim.slide_out_left
             )
         }
-        /*
         logouticon.setOnClickListener {
             var sharedPreferences: SharedPreferences? = null
             var editor: SharedPreferences.Editor? = null
@@ -68,16 +67,14 @@ class personpage : Fragment() {
             editor!!.putString("TC","");
             editor!!.putString("passowrd","");
             editor!!.commit();
-
             val intent = Intent(activity, MainActivity::class.java)
-            intent.putExtra("type", "logout")
             startActivity(intent)
             getActivity()?.overridePendingTransition(
                 R.anim.slide_in_right,
                 R.anim.slide_out_left
             )
         }
-         */
+
         profileFragment_name.text = userResponse!!.name + " " + userResponse!!.surname
         val birthdate = getString(R.string.birthdate)
         if(userResponse!!.birthDay!=null&&userResponse!!.birthMonth!=null&&userResponse!!.birthYear!=null)

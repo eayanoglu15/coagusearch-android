@@ -42,12 +42,12 @@
                 android:fadingEdgeLength="20dp"
                 android:focusableInTouchMode="true"
                 android:foregroundTint="#971010"
-                app:defaultQueryHint="@string/searchMedicine"
+                app:defaultQueryHint="@string/searchpatient"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:queryHint="@string/searchMedicine"></androidx.appcompat.widget.SearchView>
+                app:queryHint="@string/searchpatient"></androidx.appcompat.widget.SearchView>
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/patientRecyclerView"
                 android:layout_width="match_parent"

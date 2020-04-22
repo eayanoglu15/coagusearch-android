@@ -9,8 +9,10 @@ import com.example.coagusearch.doctor.doctorMain
 import com.example.coagusearch.medicalTeam.MedicalTeamMain
 import com.example.coagusearch.network.Auth.model.AuthRepository
 import com.example.coagusearch.network.Interceptors.AuthInterceptor
+import com.example.coagusearch.network.Users.model.UsersRepository
 import com.example.coagusearch.network.shared.RetrofitClient
 import com.example.coagusearch.network.shared.appModule
+import com.example.coagusearch.patient.UserInfoSingleton
 import com.example.coagusearch.patient.main
 import kotlinx.android.synthetic.main.loginscreen.*
 import org.koin.android.ext.android.get
@@ -26,26 +28,9 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        // Initialize Koin Dependency Injection with modules from [appModule]
-        /*
-
-        val bundle: Bundle? = intent.extras
-        if(bundle!=null) {
-            var editOrNew = bundle!!.getString("type")
-            if(editOrNew!!.equals("logout")){
-            }
-            else{
-                startKoin(this, listOf(appModule))
-            }
-        }
-        else{
-         */
-            startKoin(this, listOf(appModule))
-       // }
-        // Force init AuthRepository
-        AuthRepository(applicationContext, authInterceptor, retrofitClient)
-        var authRepository: AuthRepository = get()
         setContentView(R.layout.loginscreen)
+        var authRepository: AuthRepository = get()
+
         sharedPreferences=getSharedPreferences("LoginPrefs", MODE_PRIVATE);
         editor=sharedPreferences!!.edit();
         val checked = sharedPreferences!!.getString("ischecked", "Un Named")
@@ -55,31 +40,19 @@ class MainActivity : AppCompatActivity() {
             authRepository.signIn(TC!!,passwords!!,this)
         }
         LoginButton.setOnClickListener {
-            if (!isPasswordValid(PasswordInput.text!!)) {
-                PasswordInput.error = "Password is not valid"
-            } else {
-                authRepository.signIn("14051222123", "123456", this)
-                //directedToMainScreen()
-
+                authRepository.signIn("5678765678", "123456", this)
             }
         }
-        PasswordInput.setOnKeyListener { _, _, _ ->
-            if (isPasswordValid(PasswordInput.text!!)) {
-                PasswordInput.error = null
-            }
-            false
-        }
-    }
 
     override fun onBackPressed() {
 
-    }
+        }
 
     fun directedToMainScreen() {
-        /*
+
         if(rememberMeSwitch.isChecked) {
             editor!!.putString("ischecked","true");
-            editor!!.putString("TC","14051222123");
+            editor!!.putString("TC","5678765678");
             editor!!.putString("passowrd","123456");
             editor!!.commit();
         }
@@ -89,16 +62,29 @@ class MainActivity : AppCompatActivity() {
             editor!!.putString("passowrd","");
             editor!!.commit();
         }
-        */
-        val intent = Intent(this, MedicalTeamMain::class.java)
-        startActivity(intent)
-        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+        val userRepository: UsersRepository = get()
+        userRepository.getUserInfo(this,2)
+
+    }
+    fun goToActivity(){
+        if(UserInfoSingleton.instance.userInfo!!.type.equals("Doctor")) {
+            val intent = Intent(this, doctorMain::class.java)
+            startActivity(intent)
+            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+        }
+        else if(UserInfoSingleton.instance.userInfo!!.type.equals("Patient")){
+            val intent = Intent(this, main::class.java)
+            startActivity(intent)
+            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+        }
+        else if(UserInfoSingleton.instance.userInfo!!.type.equals("Medical")){
+            val intent = Intent(this, MedicalTeamMain::class.java)
+            startActivity(intent)
+            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+        }
+
     }
 
-    private fun isPasswordValid(text: Editable?): Boolean {
-        //return text != null && text.length >= 8
-        return true
-    }
 }
 
 

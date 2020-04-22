@@ -4,7 +4,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import com.example.coagusearch.R
+import com.example.coagusearch.network.Users.model.UsersRepository
 import kotlinx.android.synthetic.main.main.*
+import org.koin.android.ext.android.get
 
 class doctorMain : AppCompatActivity() {
 
@@ -31,9 +33,15 @@ class doctorMain : AppCompatActivity() {
                     loadFragment(doctorBloodBankFragment(),0)
                     return@setOnNavigationItemSelectedListener true
                 }
+                R.id.profile->{
+                    loadFragment(doctorProfile(),0)
+                    return@setOnNavigationItemSelectedListener true
+                }
             }
             false
         }
+        val userRepository: UsersRepository = get()
+        userRepository.getUserInfo(this,1)
     }
 
     override fun onBackPressed() {

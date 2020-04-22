@@ -1,5 +1,6 @@
 package com.example.coagusearch.medicalTeam
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.appcompat.widget.SearchView
@@ -19,11 +20,13 @@ class MedTeamAllPatients : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_med_team_all_patients)
-
-
         patientRecyclerView.layoutManager=
             LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false)
         patientRecyclerView.adapter= MedTeamPatientsAdapter(list,this)
+        addPatientButton.setOnClickListener {
+            val intent = Intent(this, MedTeamEditPatient::class.java)
+            startActivity(intent)
+        }
 
         searchView.setOnQueryTextListener(object: SearchView.OnQueryTextListener{
             override fun onQueryTextSubmit(query: String?): Boolean {

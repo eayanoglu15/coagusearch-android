@@ -30,8 +30,8 @@
 
         <ImageView
             android:id="@+id/imageView5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
             app:layout_constraintBottom_toBottomOf="@+id/textView21"
@@ -65,7 +65,7 @@
             android:paddingLeft="15dp"
             android:paddingRight="15dp"
             android:text="Add Patient"
-            android:textAllCaps="true"
+            android:textAllCaps="false"
             android:textColor="@color/white"
             android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="@+id/textView27"
