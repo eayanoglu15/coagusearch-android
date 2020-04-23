@@ -12,11 +12,18 @@ import android.widget.ListView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.coagusearch.MainActivity
 import com.example.coagusearch.R
+import com.example.coagusearch.doctor.doctorMain
 import com.example.coagusearch.network.RegularMedication.response.MedicineInfoResponse
 import com.example.coagusearch.network.Users.response.UserResponse
 import com.example.coagusearch.patient.PatientAdapters.MedicineAdapterProfileFragment
 import kotlinx.android.synthetic.main.activity_account_page.*
+import kotlinx.android.synthetic.main.fragment_doctor_profile.*
 import kotlinx.android.synthetic.main.fragment_personpage.*
+import kotlinx.android.synthetic.main.fragment_personpage.logouticon
+import kotlinx.android.synthetic.main.fragment_personpage.profileFragment_Age
+import kotlinx.android.synthetic.main.fragment_personpage.profileFragment_height
+import kotlinx.android.synthetic.main.fragment_personpage.profileFragment_name
+import kotlinx.android.synthetic.main.fragment_personpage.profileFragment_weight
 
 class personpage : Fragment() {
     var medicines = ArrayList<MedicineInfoResponse>()
@@ -74,7 +81,16 @@ class personpage : Fragment() {
                 R.anim.slide_out_left
             )
         }
+        if(userResponse!!.type.equals("Doctor")) {
+            button2.setOnClickListener {
+                val intent = Intent(getActivity(), doctorMain::class.java)
+                startActivity(intent)
+            }
+        }
+        else{
+            button2.visibility=View.GONE
 
+        }
         profileFragment_name.text = userResponse!!.name + " " + userResponse!!.surname
         val birthdate = getString(R.string.birthdate)
         if(userResponse!!.birthDay!=null&&userResponse!!.birthMonth!=null&&userResponse!!.birthYear!=null)

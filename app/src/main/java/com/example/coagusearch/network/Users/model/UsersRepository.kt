@@ -43,12 +43,24 @@ class UsersRepository(
                     call: Call<UserResponse>,
                     response: Response<UserResponse>
                 ) {
-                    userResponse = response.body()
-                    UserInfoSingleton.instance.userInfo = userResponse
-                    if(which==2) {
-                        (context as MainActivity).goToActivity()
+                    if (response.isSuccessful && response.body() is UserResponse) {
+                        userResponse = response.body()
+                        UserInfoSingleton.instance.userInfo = userResponse
+                        if (which == 2) {
+                            (context as MainActivity).goToActivity()
+                        }
+                        showProgressLoading(false, context)
                     }
-                    showProgressLoading(false, context)
+                    else{
+                        val errorResponse =
+                            Gson().fromJson<ApiResponse>(
+                                response.errorBody()?.string(),
+                                ApiResponse::class.java
+                            )?.message
+                                ?: context.resources.getString(R.string.errorOccurred)
+                        showProgressLoading(false, context)
+                        onFailureDialog(context, errorResponse)
+                    }
                 }
             })
         return userResponse
