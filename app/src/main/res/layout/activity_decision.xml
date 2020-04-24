@@ -5,14 +5,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background_login"
-    tools:context=".doctor.doctorMyPatient">
+    tools:context=".doctor.decisionActivity">
+
+
+
 
     <ImageButton
         android:id="@+id/backButton"
-        android:layout_width="44dp"
-        android:layout_height="29dp"
+        android:layout_width="40dp"
+        android:layout_height="30dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
         android:background="@android:color/transparent"
         app:layout_constraintEnd_toStartOf="@+id/patientName"
         app:layout_constraintHorizontal_bias="0.0"
@@ -26,7 +30,7 @@
         android:layout_height="0dp"
         android:fontFamily="sans-serif-medium"
         android:gravity="center"
-        android:text="Patient Appointments"
+        android:text="Patient Blood Order"
         android:textColor="@color/white"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/backButton"
@@ -34,27 +38,41 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/backButton" />
 
-    <include
-        android:id="@+id/nextAppointment"
-        layout="@layout/mypatientnextappointment"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginRight="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/backButton" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/oldAppointmentRecyclerView"
-        android:layout_width="match_parent"
+    <LinearLayout
+        android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nextAppointment" />
+        app:layout_constraintTop_toBottomOf="@+id/patientName">
 
+        <include
+            android:id="@+id/callForAppointmentard"
+            layout="@layout/call_patient_appointment_card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="7dp" />
+        <include
+            android:id="@+id/notifmedcard"
+            layout="@layout/notifmed"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="7dp" />
+        <include
+            android:id="@+id/decidetreatmentcard"
+            layout="@layout/decidetreatmentcard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="7dp" />
 
+        <include
+            android:id="@+id/treatmentstatuscard"
+            layout="@layout/treatmentstatuscard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="7dp" />
+
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

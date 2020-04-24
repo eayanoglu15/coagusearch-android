@@ -13,6 +13,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <activity android:name=".doctor.treatmentStatus"></activity>
+        <activity android:name=".doctor.decideTreatment" />
+        <activity android:name=".doctor.decisionActivity" />
+        <activity android:name=".doctor.patientDecision" />
         <activity android:name=".MainActivity2">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -52,9 +56,7 @@
         <activity
             android:name=".MainActivity"
             android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity">
-
-        </activity>
+            tools:ignore="LockedOrientationActivity" />
     </application>
 
 </manifest>

@@ -4,22 +4,34 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.PagerSnapHelper
+import androidx.recyclerview.widget.SnapHelper
 import com.example.coagusearch.R
+import com.example.coagusearch.doctor.doctorAdapters.HomeFragmentEmergencyPatientAdapter
+import com.example.coagusearch.doctor.doctorAdapters.myPatientMedAdapter
 import com.example.coagusearch.network.Users.model.UsersRepository
 import com.example.coagusearch.network.Users.request.PatientDetailRequest
 import com.example.coagusearch.network.Users.response.PatientDetailResponse
 import kotlinx.android.synthetic.main.activity_doctor_my_patient.*
+import kotlinx.android.synthetic.main.fragment_doctor_home.*
 import kotlinx.android.synthetic.main.patientinfocard.view.*
 import org.koin.android.ext.android.get
 
 class doctorMyPatient : AppCompatActivity() {
     var patientInfo:PatientDetailResponse?=null
+    var list= mutableListOf("a","b","c")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_doctor_my_patient)
         val bundle: Bundle? = intent.extras
         var patientid = bundle!!.getLong("id")
-
+        mypatientmedicinesRecyclerview.layoutManager=LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false)
+        mypatientmedicinesRecyclerview.setHasFixedSize(true)
+        mypatientmedicinesRecyclerview.scrollBarSize=2
+        mypatientmedicinesRecyclerview.adapter=myPatientMedAdapter(list)
+        val snapHelper: SnapHelper = PagerSnapHelper()
+        snapHelper.attachToRecyclerView(mypatientmedicinesRecyclerview)
         val userRepository: UsersRepository = get()
         userRepository.getPatientDetail(this, PatientDetailRequest(patientid))?.let { setData(it) }
     }

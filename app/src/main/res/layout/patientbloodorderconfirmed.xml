@@ -17,11 +17,11 @@
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="4dp"
         android:padding="2dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/shapehosp" />
+        app:srcCompat="@drawable/transfusioncopy" />
 
 
     <ImageView
@@ -34,7 +34,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView3"
-        app:srcCompat="@drawable/bloodcopy" />
+        app:srcCompat="@drawable/shapehosp" />
 
     <TextView
         android:id="@+id/dateOfNext"
@@ -45,7 +45,7 @@
         android:paddingLeft="5dp"
         android:text="2 March 2020"
         android:textColor="@color/login_button"
-        android:textSize="18sp"
+        android:textSize="14sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/imageView3"
         app:layout_constraintStart_toEndOf="@+id/imageView3"
@@ -59,7 +59,7 @@
         android:gravity="center_vertical"
         android:paddingLeft="5dp"
         android:text="1:30 PM-2:20 PM"
-        android:textSize="18sp"
+        android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView4"
         app:layout_constraintStart_toEndOf="@+id/imageView4"
         app:layout_constraintTop_toBottomOf="@+id/imageView3" />

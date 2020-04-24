@@ -37,6 +37,11 @@ class microTemData : AppCompatActivity() {
             startActivity(intent)
             overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
         }
+        takaActionButton.setOnClickListener {
+            val intent = Intent(this, decisionActivity::class.java)
+            startActivity(intent)
+            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+        }
         fibtembutton.setOnClickListener{
             (dataResultRecyclerView.adapter as utemResultAdapter).companies=list
             (dataResultRecyclerView.adapter as utemResultAdapter).notifyDataSetChanged()
