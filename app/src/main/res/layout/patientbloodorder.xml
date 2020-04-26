@@ -24,28 +24,31 @@
         <TextView
             android:id="@+id/textView19"
             android:layout_height="wrap_content"
+            android:layout_width="0dp"
             android:layout_gravity="center_vertical"
             android:layout_weight="2"
-            android:text="Product Type"
+            android:text="@string/producttype"
             android:textColor="@color/colorPrimary"
-            android:textSize="14sp" />
+            android:textSize="@dimen/smalltext" />
 
         <RadioButton
             android:id="@+id/radioButton9"
             android:layout_height="wrap_content"
             android:layout_weight="2"
+            android:layout_width="0dp"
             android:buttonTint="@color/colorPrimary"
             android:gravity="center"
-            android:text="Frozen"
+            android:text="@string/frozen"
             android:textColor="@color/colorPrimary" />
 
         <RadioButton
             android:id="@+id/radioButton8"
             android:layout_height="wrap_content"
             android:layout_weight="2"
+            android:layout_width="0dp"
             android:buttonTint="@color/colorPrimary"
             android:gravity="center"
-            android:text="Platered"
+            android:text="@string/plateret"
             android:textColor="@color/colorPrimary" />
     </RadioGroup>
 
@@ -55,14 +58,14 @@
         android:layout_width="75dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
-        android:autoSizeMaxTextSize="14sp"
+        android:autoSizeMaxTextSize="@dimen/smalltext"
         android:autoSizeMinTextSize="8sp"
         android:autoSizeTextType="uniform"
         android:ems="10"
         android:gravity="center"
         android:hint="Enter Unit"
         android:inputType="numberDecimal"
-        android:textSize="14sp"
+        android:textSize="@dimen/smalltext"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/blood_radiogroup5"
         app:layout_constraintTop_toBottomOf="@+id/blood_radiogroup5" />
@@ -77,9 +80,9 @@
         android:gravity="center"
         android:paddingLeft="6dp"
         android:paddingRight="6dp"
-        android:text="Add Note"
+        android:text="@string/addnote"
         android:textColor="@color/white"
-        android:textSize="12sp"
+        android:textSize="@dimen/xsmalltext"
         app:layout_constraintBottom_toBottomOf="@+id/editText"
         app:layout_constraintEnd_toEndOf="@+id/blood_radiogroup5"
         app:layout_constraintTop_toTopOf="@+id/editText" />

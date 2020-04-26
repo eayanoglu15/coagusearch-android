@@ -26,9 +26,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="Today"
+                android:text="@string/today"
                 android:textColor="@color/white"
-                android:textSize="24sp"
+                android:textSize="@dimen/xlargetext"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -38,9 +38,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:text="Emergency Patients"
+                android:text="@string/emergencypatients"
                 android:textColor="@color/white"
-                android:textSize="18sp"
+                android:textSize="@dimen/largetext"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/headerToday" />
 
@@ -51,7 +51,7 @@
                 android:layout_marginTop="4dp"
                 android:text="Total Patients:2"
                 android:textColor="@color/white"
-                android:textSize="16sp"
+                android:textSize="@dimen/mediumtext"
                 app:layout_constraintStart_toStartOf="@+id/textView16"
                 app:layout_constraintTop_toBottomOf="@+id/textView16" />
 
@@ -94,8 +94,8 @@
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="8dp"
                     android:gravity="center"
-                    android:text="Appointments"
-                    android:textSize="24sp" />
+                    android:text="@string/appointments"
+                    android:textSize="@dimen/largetext" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/appointmentsRecyclerView"

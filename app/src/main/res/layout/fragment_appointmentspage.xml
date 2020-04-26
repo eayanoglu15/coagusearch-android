@@ -27,7 +27,7 @@
                 android:paddingBottom="10dp"
                 android:text="@string/myAppointments"
                 android:textColor="@color/switch_close"
-                android:textSize="24sp" />
+                android:textSize="@dimen/largetext" />
 
             <include
                 android:id="@+id/appointmentNextAppointment"

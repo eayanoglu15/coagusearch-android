@@ -21,7 +21,7 @@
             android:paddingTop="12dp"
             android:text="@string/profile"
             android:textColor="@color/white"
-            android:textSize="30sp" />
+            android:textSize="@dimen/xlargetext" />
 
         <ImageView
             android:id="@+id/logouticon"
@@ -53,7 +53,7 @@
                 android:layout_margin="4dp"
                 android:text="Ege Melis Ayanoglu"
                 android:textColor="@color/white"
-                android:textSize="18sp" />
+                android:textSize="@dimen/largetext" />
 
             <TextView
                 android:id="@+id/profileFragment_Age"
@@ -93,7 +93,7 @@
             android:layout_marginBottom="10dp"
             android:background="@drawable/loginbutton_back"
             android:padding="5dp"
-            android:text="Edit Profile"
+            android:text="@string/editprofile"
             android:textAllCaps="true"
             android:textColor="@color/white" />
 
@@ -107,7 +107,7 @@
             android:layout_marginBottom="20dp"
             android:background="@drawable/loginbutton_back"
             android:padding="5dp"
-            android:text="Switch to Patient View"
+            android:text="@string/switchtopatientview"
             android:textAllCaps="true"
             android:textColor="@color/white" />
 

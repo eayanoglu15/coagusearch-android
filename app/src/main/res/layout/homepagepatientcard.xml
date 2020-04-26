@@ -25,7 +25,7 @@
         android:layout_marginTop="16dp"
         android:text="Memati Baş"
         android:textColor="@color/white"
-        android:textSize="18sp"
+        android:textSize="@dimen/largetext"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

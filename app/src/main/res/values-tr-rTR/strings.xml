@@ -67,14 +67,14 @@
     <string name="patients">Hastalar</string>
     <string name="bloodbank">Kan Bankası</string>
     <string name="callpatientfornext">Hastayı randevuya çağır</string>
-    <string name="lastutemdataanalysis">Last utem data analysis</string>
+    <string name="lastutemdataanalysis">Son µtem Data Analizleri</string>
     <string name="today">Bugün</string>
     <string name="emergencypatients">Acil Durum Hastaları</string>
     <string name="totalpatients">Toplam Hasta:</string>
     <string name="makeorder">Talepte bulun</string>
     <string name="mypatients">Hastalarım</string>
     <string name="searchpatient">Hasta Ara</string>
-    <string name="chechlastdata">Check Past µTem data analysis</string>
+    <string name="chechlastdata">Eski µTem Data Analizlerini Kontrol Et</string>
     <string name="producttype">Ürün çeşidi</string>
     <string name="frozen">Fresh frozen plasma</string>
     <string name="plateret">Platelet concentrate</string>
@@ -90,5 +90,36 @@
     <string name="notifydoctor">Doktora bildir</string>
     <string name="reportambulancePatient">Ambulanstaki Hastayı bildir</string>
     <string name="enterpatientname">Hasta İsmini Giriniz</string>
+
+
+
+    <string name="decidetreatment">Tedaviye Karar Verme</string>
+    <string name="suggestions">Öneriler</string>
+    <string name="patientbloodorder">Hastanın Kan Siparişi</string>
+    <string name="regularmedicine">Düzenli İlaç</string>
+    <string name="addpatient">Hasta Ekle</string>
+    <string name="date">gg/aa/yyyy</string>
+    <string name="patientinfo">Hasta Bilgisi</string>
+    <string name="removepatient">Hastayı Sil</string>
+    <string name="uTemdataanalysis">µTem Data Analizi</string>
+    <string name="takeaction">İşlem Yap</string>
+    <string name="patientappointments">Hasta Randevuları</string>
+    <string name="pastuTemdataanalysis">Eski µTem Data Analizleri</string>
+    <string name="treatmentstatus">Tedavi Durumu</string>
+    <string name="addnote">Not Ekle</string>
+    <string name="confirmed">Onaylandı</string>
+    <string name="pending">Bekleniyor</string>
+    <string name="denied">Reddedildi</string>
+    <string name="enterdosage">Dozaj Giriniz</string>
+    <string name="editprofile">Profili Düzenle</string>
+    <string name="switchtopatientview">Hasta Görünümüne Geç</string>
+    <string name="pastappointments">Eski Randevular</string>
+    <string name="orderbloodforpatient">Hasta için Kan Siparişi Ver</string>
+    <string name="dateunspecified">Tarih Belirtilmedi</string>
+    <string name="notifymedicalteam">Sağlık Ekibine Bildir</string>
+    <string name="notificationfrommedicalteam">Sağlık Ekibinden Bildirim</string>
+    <string name="setready">Hazırla</string>
+    <string name="diagnosisname">Teşhis Adı</string>
+    <string name="checktreatmentstatus">Tedavi Durumunu Kontrol Et</string>
 
 </resources>

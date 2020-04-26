@@ -92,6 +92,41 @@
     <string name="weightkg">(kg)</string>
 
 
+
+    <string name="decidetreatment">Decide Treatment</string>
+    <string name="suggestions">Suggestions</string>
+    <string name="patientbloodorder">Patient Blood Order</string>
+    <string name="regularmedicine">Regular Medicine</string>
+    <string name="addpatient">Add Patient</string>
+    <string name="date">dd/mm/yyyy</string>
+    <string name="patientinfo">Patient Information</string>
+    <string name="removepatient">Remove Patient</string>
+    <string name="uTemdataanalysis">µTem Data Analysis</string>
+    <string name="takeaction">Take Action</string>
+    <string name="patientappointments">Patient Appointments</string>
+    <string name="pastuTemdataanalysis">Past µTem Data Analysis</string>
+    <string name="treatmentstatus">Treatment Status</string>
+    <string name="addnote">Add Note</string>
+    <string name="confirmed">Confirmed</string>
+    <string name="pending">Pending</string>
+    <string name="denied">Denied</string>
+    <string name="enterdosage">Enter Dosage</string>
+    <string name="editprofile">Edit Profile</string>
+    <string name="switchtopatientview">Switch to Patient View</string>
+    <string name="pastappointments">Past Appointments</string>
+    <string name="orderbloodforpatient">Order Blood For Patient</string>
+    <string name="dateunspecified">Date Unspecified</string>
+    <string name="notifymedicalteam">Notify Medical Team</string>
+    <string name="notificationfrommedicalteam">Notification From Medical Team</string>
+    <string name="setready">Set Ready</string>
+    <string name="diagnosisname">Diagnosis Name</string>
+    <string name="checktreatmentstatus">Check Treatment Status</string>
+
+
+
+
+
+
     <!-- MedTeam-->
     <string name="managePatients">Manage Patients</string>
     <string name="enterpatientname">Enter Patient Name</string>

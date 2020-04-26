@@ -22,7 +22,7 @@
         android:gravity="center"
         android:text="@string/notificationfromdoctor"
         android:textColor="@color/white"
-        android:textSize="14sp"
+        android:textSize="@dimen/smalltext"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -43,7 +43,7 @@
         android:paddingBottom="1dp"
         android:text="12:10"
         android:textColor="@color/white"
-        android:textSize="10sp"
+        android:textSize="@dimen/xxsmalltext"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

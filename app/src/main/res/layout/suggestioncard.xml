@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
-        android:text="Diagnosis Name"
+        android:text="@string/diagnosisname"
         android:textColor="@color/login_button"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"

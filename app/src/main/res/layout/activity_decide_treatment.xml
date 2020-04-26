@@ -43,7 +43,7 @@
                 android:gravity="center"
                 android:text="Decide Treatment"
                 android:textColor="@color/white"
-                android:textSize="18sp"
+                android:textSize="@dimen/largetext"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -69,10 +69,10 @@
             android:clickable="true"
             android:focusable="true"
             android:foreground="?android:attr/selectableItemBackground"
-            android:text="Make Order"
+            android:text="@string/makeorder"
             android:textAllCaps="false"
             android:textColor="@color/white"
-            android:textSize="18sp" />
+            android:textSize="@dimen/largetext" />
 
         <include
             android:id="@+id/addmedcard"
@@ -109,9 +109,9 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="16dp"
-            android:text="Suggestions"
+            android:text="@string/suggestions"
             android:textColor="@color/white"
-            android:textSize="18sp" />
+            android:textSize="@dimen/largetext" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/suggestionsRecyclerView"

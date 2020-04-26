@@ -55,7 +55,7 @@
         android:gravity="center_vertical"
         android:paddingLeft="5dp"
         android:text="Arthur Clayton"
-        android:textSize="14sp"
+        android:textSize="@dimen/smalltext"
         app:layout_constraintBottom_toBottomOf="@+id/imageView2"
         app:layout_constraintStart_toEndOf="@+id/imageView2"
         app:layout_constraintTop_toTopOf="@+id/imageView2" />
@@ -69,7 +69,7 @@
         android:paddingLeft="5dp"
         android:text="2 March 2020"
         android:textColor="@color/login_button"
-        android:textSize="14sp"
+        android:textSize="@dimen/smalltext"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/imageView3"
         app:layout_constraintStart_toEndOf="@+id/imageView3"
@@ -83,7 +83,7 @@
         android:gravity="center_vertical"
         android:paddingLeft="5dp"
         android:text="1:30 PM-2:20 PM"
-        android:textSize="14sp"
+        android:textSize="@dimen/smalltext"
         app:layout_constraintBottom_toBottomOf="@+id/imageView4"
         app:layout_constraintStart_toEndOf="@+id/imageView4"
         app:layout_constraintTop_toBottomOf="@+id/imageView3" />
@@ -96,7 +96,7 @@
         android:layout_marginEnd="8dp"
         android:background="#fbd3d3"
         android:padding="2dp"
-        android:text="Pending"
+        android:text="@string/denied"
         android:textColor="#c5e24747"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

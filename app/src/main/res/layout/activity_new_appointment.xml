@@ -38,7 +38,7 @@
                 android:gravity="center"
                 android:text="@string/requestAppointment"
                 android:textColor="@color/white"
-                android:textSize="18sp"
+                android:textSize="@dimen/largetext"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
@@ -104,7 +104,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="fill"
                             android:text="@string/yourDoctor"
-                            android:textSize="18sp" />
+                            android:textSize="@dimen/largetext" />
 
                         <TextView
                             android:id="@+id/doctorCardYourDoctor"
@@ -113,7 +113,7 @@
                             android:layout_gravity="fill"
                             android:layout_marginTop="0dp"
                             android:textColor="@color/login_button"
-                            android:textSize="14sp" />
+                            android:textSize="@dimen/smalltext" />
                     </LinearLayout>
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -188,7 +188,7 @@
                             android:layout_gravity="fill"
                             android:layout_margin="5dp"
                             android:text="@string/appointmentDate"
-                            android:textSize="18sp" />
+                            android:textSize="@dimen/largetext" />
 
                         <TextView
                             android:id="@+id/dateCardYourDate"
@@ -199,7 +199,7 @@
                             android:layout_marginTop="0dp"
                             android:layout_marginBottom="5dp"
                             android:textColor="@color/login_button"
-                            android:textSize="14sp" />
+                            android:textSize="@dimen/smalltext" />
                     </LinearLayout>
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -276,7 +276,7 @@
                             android:layout_marginLeft="5dp"
                             android:layout_marginTop="5dp"
                             android:text="@string/appointmentTimeSlot"
-                            android:textSize="18sp" />
+                            android:textSize="@dimen/largetext" />
 
                         <TextView
                             android:id="@+id/timeSlotCardYourSlot"
@@ -286,7 +286,7 @@
                             android:layout_marginLeft="5dp"
                             android:layout_marginTop="0dp"
                             android:textColor="@color/login_button"
-                            android:textSize="14sp" />
+                            android:textSize="@dimen/smalltext" />
                     </LinearLayout>
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
