@@ -1,5 +1,7 @@
 package com.example.coagusearch.network.Users.response
 
+import java.io.Serializable
+
 data class UserResponse(
     val identityNumber: String,
     val type: String,
@@ -14,7 +16,7 @@ data class UserResponse(
     var bloodType: String?,
     var rhType: String?,
     var gender: String?
-){
+):Serializable{
     fun getFullName():String{
         return name+" "+surname
     }

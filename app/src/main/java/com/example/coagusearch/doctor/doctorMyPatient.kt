@@ -17,6 +17,7 @@ import kotlinx.android.synthetic.main.activity_doctor_my_patient.*
 import kotlinx.android.synthetic.main.fragment_doctor_home.*
 import kotlinx.android.synthetic.main.patientinfocard.view.*
 import org.koin.android.ext.android.get
+import java.io.Serializable
 
 class doctorMyPatient : AppCompatActivity() {
     var patientInfo:PatientDetailResponse?=null
@@ -54,25 +55,28 @@ class doctorMyPatient : AppCompatActivity() {
         else{
             callForAppointmentard.visibility=View.GONE
         }
+        SetClickListeners(patientDetailResponse)
+    }
 
+
+    private fun SetClickListeners(patientDetailResponse: PatientDetailResponse){
         bloodOrderCard.setOnClickListener{
             val intent = Intent(this, PatientBloodOrder::class.java)
+            intent.putExtra("PatientDetailResponse",patientDetailResponse)
             startActivity(intent)
             overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
         }
         oldAppointment.setOnClickListener{
             val intent = Intent(this, PatientAppointments::class.java)
+            intent.putExtra("PatientDetailResponse",patientDetailResponse )
             startActivity(intent)
             overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
         }
         testResultscard.setOnClickListener{
             val intent = Intent(this, microTemData::class.java)
+            intent.putExtra("PatientDetailResponse",patientDetailResponse)
             startActivity(intent)
             overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
         }
-
-
-
-
     }
 }

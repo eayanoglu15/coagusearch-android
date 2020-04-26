@@ -25,12 +25,10 @@ class MainActivity : AppCompatActivity() {
     private val retrofitClient: RetrofitClient by inject()
     var sharedPreferences: SharedPreferences? = null
     var editor: SharedPreferences.Editor? = null
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.loginscreen)
         var authRepository: AuthRepository = get()
-
         sharedPreferences=getSharedPreferences("LoginPrefs", MODE_PRIVATE);
         editor=sharedPreferences!!.edit();
         val checked = sharedPreferences!!.getString("ischecked", "Un Named")

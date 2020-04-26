@@ -23,6 +23,13 @@ class myPatientMedAdapter(var medicineList : MutableList<String>) :
         val med = medicineList[position]
     }
     class medCardViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
-
+        var medName: TextView
+        var frequency:TextView
+        var dosage:TextView
+        init {
+            medName = itemView.findViewById(R.id.medName)
+            frequency=itemView.findViewById(R.id.medFreq)
+            dosage=itemView.findViewById(R.id.medDos)
+        }
     }
 }

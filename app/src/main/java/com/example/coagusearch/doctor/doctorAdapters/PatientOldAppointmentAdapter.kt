@@ -3,41 +3,38 @@ package com.example.coagusearch.doctor.doctorAdapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.coagusearch.R
+import com.example.coagusearch.network.Users.response.SingleAppointmentResponse
 
 
-class PatientOldAppointmentAdapter(val companies : MutableList<String>) :
-        RecyclerView.Adapter<PatientOldAppointmentAdapter.PatientOldAppointmentViewHolde>() {
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PatientOldAppointmentViewHolde {
+class PatientOldAppointmentAdapter(val oldAppointmentsList : MutableList<SingleAppointmentResponse>) :
+        RecyclerView.Adapter<PatientOldAppointmentAdapter.PatientOldAppointmentViewHolder>() {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PatientOldAppointmentViewHolder {
 
         var v = LayoutInflater.from(parent.context).inflate(R.layout.mypatientoldappointments,parent,false)
-        return PatientOldAppointmentViewHolde(v)
+        return PatientOldAppointmentViewHolder(v)
 
     }
     override fun getItemCount(): Int {
-        return companies.size
+        return oldAppointmentsList.size
     }
 
-    fun add(item:String, position:Int) {
-        companies.add(position, item)
-        notifyItemInserted(position)
+    override fun onBindViewHolder(holder: PatientOldAppointmentViewHolder, position: Int) {
+        val oldAppointment = oldAppointmentsList[position]
+        holder.date.text=oldAppointment.appointmentDate()
+        holder.time.text=oldAppointment.timeSlot()
     }
-    fun remove(item:String) {
-        val position = companies.indexOf(item)
-        companies.removeAt(position)
-        notifyItemRemoved(position)
-    }
-    override fun onBindViewHolder(holder: PatientOldAppointmentViewHolde, position: Int) {
-        val company = companies[position]
-        holder.itemView.setOnClickListener { Toast.makeText(holder.itemView.context,"${position} is clicked",
-            Toast.LENGTH_SHORT).show() }
-        holder.itemView.setOnLongClickListener {
-            remove(company)
-            return@setOnLongClickListener true
+    class PatientOldAppointmentViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
+
+        var date: TextView
+        var time:TextView
+        init {
+            date = itemView.findViewById(R.id.appointmentdate)
+            time=itemView.findViewById(R.id.appointmenttime)
         }
     }
-    class PatientOldAppointmentViewHolde(itemView: View): RecyclerView.ViewHolder(itemView)
 }
 

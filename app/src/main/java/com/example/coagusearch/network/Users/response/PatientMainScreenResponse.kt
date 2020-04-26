@@ -1,12 +1,13 @@
 package com.example.coagusearch.network.Users.response
 
 import com.example.coagusearch.network.RegularMedication.request.KeyType
+import java.io.Serializable
 
 
 data class PatientMainScreenResponse (
     var patientMissingInfo : Boolean=false,
     var patientNextAppointment : SingleAppointmentResponse?
-)
+):Serializable
 
 data class SingleAppointmentResponse(
     var id: KeyType,
@@ -17,7 +18,7 @@ data class SingleAppointmentResponse(
     var year: Int,
     var hour: Int,
     var minute: Int
-){
+):Serializable{
     fun DoctorName():String{
         var name=doctorName+" "+doctorSurname
         return name
