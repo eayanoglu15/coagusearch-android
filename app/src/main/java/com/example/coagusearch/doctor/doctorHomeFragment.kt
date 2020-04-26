@@ -31,37 +31,43 @@ private const val ARG_PARAM2 = "param2"
  * create an instance of this fragment.
  */
 class doctorHomeFragment : Fragment() {
-    var emergencyPatientList=mutableListOf<EmergencyPatientDetail>()
-    var appointmentList= mutableListOf<TodayPatientDetail>()
+    var emergencyPatientList = mutableListOf<EmergencyPatientDetail>()
+    var appointmentList = mutableListOf<TodayPatientDetail>()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val view=inflater.inflate(R.layout.fragment_doctor_home, container, false)
+        val view = inflater.inflate(R.layout.fragment_doctor_home, container, false)
         val userRepository: UsersRepository = get()
-        userRepository.getDoctorMainScreen(this.context!!,this)
+        userRepository.getDoctorMainScreen(this.context!!, this)
         return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        emergencyPatientRecyclerView.layoutManager = LinearLayoutManager(this.context!!,LinearLayoutManager.HORIZONTAL,false)
-        emergencyPatientRecyclerView.adapter = HomeFragmentEmergencyPatientAdapter(emergencyPatientList)
+        emergencyPatientRecyclerView.layoutManager =
+            LinearLayoutManager(this.context!!, LinearLayoutManager.HORIZONTAL, false)
+        emergencyPatientRecyclerView.adapter =
+            HomeFragmentEmergencyPatientAdapter(emergencyPatientList)
         //emergencyPatientRecyclerView.itemAnimator=animator
-        appointmentsRecyclerView.layoutManager=LinearLayoutManager(this.context!!,LinearLayoutManager.VERTICAL,false)
-        appointmentsRecyclerView.adapter=HomeFragmentAppointmentAdapter(appointmentList)
+        appointmentsRecyclerView.layoutManager =
+            LinearLayoutManager(this.context!!, LinearLayoutManager.VERTICAL, false)
+        appointmentsRecyclerView.adapter = HomeFragmentAppointmentAdapter(appointmentList)
         val snapHelper: SnapHelper = PagerSnapHelper()
         snapHelper.attachToRecyclerView(emergencyPatientRecyclerView)
     }
-    fun attachToViews(mainScreenResponse:DoctorMainScreenResponse){
-        emergencyPatientList=mainScreenResponse.emergencyPatients.toMutableList()
-        appointmentList=mainScreenResponse.todayAppointments.toMutableList()
-        (emergencyPatientRecyclerView.adapter as  HomeFragmentEmergencyPatientAdapter).emergencyPatientList=emergencyPatientList
+
+    fun attachToViews(mainScreenResponse: DoctorMainScreenResponse) {
+        emergencyPatientList = mainScreenResponse.emergencyPatients.toMutableList()
+        appointmentList = mainScreenResponse.todayAppointments.toMutableList()
+        (emergencyPatientRecyclerView.adapter as HomeFragmentEmergencyPatientAdapter).emergencyPatientList =
+            emergencyPatientList
         (emergencyPatientRecyclerView.adapter as HomeFragmentEmergencyPatientAdapter).notifyDataSetChanged()
-        (appointmentsRecyclerView.adapter as HomeFragmentAppointmentAdapter).todaysAppointmentsList=appointmentList
+        (appointmentsRecyclerView.adapter as HomeFragmentAppointmentAdapter).todaysAppointmentsList =
+            appointmentList
         (appointmentsRecyclerView.adapter as HomeFragmentAppointmentAdapter).notifyDataSetChanged()
-        emergencyPatientNumber.text="Total Patients:"+emergencyPatientList.size.toString()
+        emergencyPatientNumber.text = "Total Patients:" + emergencyPatientList.size.toString()
     }
 
 }

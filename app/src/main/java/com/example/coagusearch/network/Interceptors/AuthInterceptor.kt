@@ -13,7 +13,7 @@ import com.example.coagusearch.typing.expect
 
 //TODO: Force User to Logout
 class AuthInterceptor(
-        private val context: Context
+    private val context: Context
 ) : Interceptor {
     private lateinit var authRepository: AuthRepository
     private val UNAUTHORIZED_CODE = 401
@@ -32,8 +32,10 @@ class AuthInterceptor(
             if (request.header("RequireAuth").isNullOrBlank().not()) {
                 val sharedPref = PreferenceHelper.defaultPrefs(context)
 
-                var tokenType = sharedPref.securelyGetString(context, Constants.SHARED_PREF_TOKEN_TYPE)
-                var accessToken = sharedPref.securelyGetString(context, Constants.SHARED_PREF_ACCESS_TOKEN)
+                var tokenType =
+                    sharedPref.securelyGetString(context, Constants.SHARED_PREF_TOKEN_TYPE)
+                var accessToken =
+                    sharedPref.securelyGetString(context, Constants.SHARED_PREF_ACCESS_TOKEN)
 
                 if (tokenType.isNullOrBlank() || accessToken.isNullOrBlank()) {
                     return nonAuthRequest(chain)
@@ -44,7 +46,8 @@ class AuthInterceptor(
 
                 return if (response.code() == UNAUTHORIZED_CODE) {
                     println("Unauthroized came")
-                    val refreshToken = sharedPref.securelyGetString(context, Constants.SHARED_PREF_REFRESH_TOKEN)
+                    val refreshToken =
+                        sharedPref.securelyGetString(context, Constants.SHARED_PREF_REFRESH_TOKEN)
                     if (refreshToken.isNullOrBlank())
                         return response
 
@@ -60,8 +63,12 @@ class AuthInterceptor(
                         response
                     } else {
                         // Get the new tokens
-                        tokenType = sharedPref.securelyGetString(context, Constants.SHARED_PREF_TOKEN_TYPE)
-                        accessToken = sharedPref.securelyGetString(context, Constants.SHARED_PREF_ACCESS_TOKEN)
+                        tokenType =
+                            sharedPref.securelyGetString(context, Constants.SHARED_PREF_TOKEN_TYPE)
+                        accessToken = sharedPref.securelyGetString(
+                            context,
+                            Constants.SHARED_PREF_ACCESS_TOKEN
+                        )
 
                         if (tokenType.isNullOrBlank() || accessToken.isNullOrBlank()) {
                             return response
@@ -99,38 +106,42 @@ class AuthInterceptor(
     }
 
 
-    private fun authRequest(chain: Interceptor.Chain, tokenType: String, accessToken: String): Response {
+    private fun authRequest(
+        chain: Interceptor.Chain,
+        tokenType: String,
+        accessToken: String
+    ): Response {
         val newRequest = chain.request().newBuilder()
-                .removeHeader("RequireAuth")
-                .addHeader("Authorization", "$tokenType $accessToken")
-                .build()
+            .removeHeader("RequireAuth")
+            .addHeader("Authorization", "$tokenType $accessToken")
+            .build()
         return chain.proceed(newRequest)
     }
 
     private fun nonAuthRequest(chain: Interceptor.Chain): Response {
         val newRequest = chain.request().newBuilder()
-                .removeHeader("RequireAuth")
-                .build()
+            .removeHeader("RequireAuth")
+            .build()
         return chain.proceed(newRequest)
     }
 
     private fun mockTimeoutRequest(chain: Interceptor.Chain): Response {
         return Response.Builder()
-                .code(408)
-                .protocol(Protocol.HTTP_2)
-                .message("")
-                .body(ResponseBody.create(MediaType.parse("application/json"), ""))
-                .request(chain.request())
-                .build()
+            .code(408)
+            .protocol(Protocol.HTTP_2)
+            .message("")
+            .body(ResponseBody.create(MediaType.parse("application/json"), ""))
+            .request(chain.request())
+            .build()
     }
 
     private fun mockExceptionRequest(chain: Interceptor.Chain): Response {
         return Response.Builder()
-                .code(444)
-                .protocol(Protocol.HTTP_2)
-                .message("")
-                .body(ResponseBody.create(MediaType.parse("application/json"), ""))
-                .request(chain.request())
-                .build()
+            .code(444)
+            .protocol(Protocol.HTTP_2)
+            .message("")
+            .body(ResponseBody.create(MediaType.parse("application/json"), ""))
+            .request(chain.request())
+            .build()
     }
 }

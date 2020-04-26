@@ -28,9 +28,10 @@
                 android:text="@string/myAppointments"
                 android:textColor="@color/switch_close"
                 android:textSize="24sp" />
+
             <include
                 android:id="@+id/appointmentNextAppointment"
-                layout="@layout/nextappointmentnewcancel"/>
+                layout="@layout/nextappointmentnewcancel" />
 
             <ListView
                 android:id="@+id/appointmentslist"
@@ -40,8 +41,7 @@
                 android:divider="@android:color/transparent"
                 android:dividerHeight="10.0sp"
                 android:padding="5pt"
-                android:visibility="visible">
-            </ListView>
+                android:visibility="visible"></ListView>
         </LinearLayout>
 
         <Button

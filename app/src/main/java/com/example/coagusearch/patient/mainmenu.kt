@@ -21,32 +21,37 @@ import org.koin.android.ext.android.get
  */
 class mainmenu : Fragment() {
 
-    var myticketlist:ListView?=null
-    var patientMainScreenResponse:PatientMainScreenResponse?=null
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view: View = inflater.inflate(R.layout.fragment_mainmenu,container,false)
+    var myticketlist: ListView? = null
+    var patientMainScreenResponse: PatientMainScreenResponse? = null
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        val view: View = inflater.inflate(R.layout.fragment_mainmenu, container, false)
         val userRepository: UsersRepository = get()
-        userRepository.getPatientMainScreen(this.context!!,this)
+        userRepository.getPatientMainScreen(this.context!!, this)
         return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        nextAppointment.visibility=View.GONE
-        missingInfo.visibility=View.GONE
+        nextAppointment.visibility = View.GONE
+        missingInfo.visibility = View.GONE
     }
 
-    fun setView(response: PatientMainScreenResponse){
-        patientMainScreenResponse=response
+    fun setView(response: PatientMainScreenResponse) {
+        patientMainScreenResponse = response
         println(response.toString())
-        if(!patientMainScreenResponse!!.patientMissingInfo){
-            missingInfo.visibility=View.GONE
-        }
-        else{
-            missingInfo.visibility=View.VISIBLE
-            missingInfo.setOnClickListener{
-                val intent =  Intent(getActivity(),
-                    accountPage::class.java)
+        if (!patientMainScreenResponse!!.patientMissingInfo) {
+            missingInfo.visibility = View.GONE
+        } else {
+            missingInfo.visibility = View.VISIBLE
+            missingInfo.setOnClickListener {
+                val intent = Intent(
+                    getActivity(),
+                    accountPage::class.java
+                )
                 startActivity(intent)
                 getActivity()?.overridePendingTransition(
                     R.anim.slide_in_right,
@@ -54,19 +59,18 @@ class mainmenu : Fragment() {
                 );
             }
         }
-        if(patientMainScreenResponse!!.patientNextAppointment!=null){
-            nextAppointment.visibility=View.VISIBLE
+        if (patientMainScreenResponse!!.patientNextAppointment != null) {
+            nextAppointment.visibility = View.VISIBLE
             nextAppointment.doctorName.setText(patientMainScreenResponse!!.patientNextAppointment?.DoctorName())
             nextAppointment.dateOfNext.setText(patientMainScreenResponse!!.patientNextAppointment?.appointmentDate())
             nextAppointment.timeSlotNext.setText(patientMainScreenResponse!!.patientNextAppointment?.timeSlot())
-        }
-        else{
-            nextAppointment.visibility=View.GONE
+        } else {
+            nextAppointment.visibility = View.GONE
         }
     }
 
-    fun setViewError(){
-        missingInfo.visibility=View.GONE
-        nextAppointment.visibility=View.GONE
+    fun setViewError() {
+        missingInfo.visibility = View.GONE
+        nextAppointment.visibility = View.GONE
     }
 }

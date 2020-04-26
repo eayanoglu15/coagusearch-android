@@ -1,6 +1,6 @@
 package com.example.coagusearch.network.RegularMedication.request
 
-data class DeleteMedicineInfoRequest (
+data class DeleteMedicineInfoRequest(
     val medicineId: KeyType
 )
 

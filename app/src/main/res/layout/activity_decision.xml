@@ -8,8 +8,6 @@
     tools:context=".doctor.decisionActivity">
 
 
-
-
     <ImageButton
         android:id="@+id/backButton"
         android:layout_width="40dp"
@@ -54,12 +52,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="7dp" />
+
         <include
             android:id="@+id/notifmedcard"
             layout="@layout/notifmed"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="7dp" />
+
         <include
             android:id="@+id/decidetreatmentcard"
             layout="@layout/decidetreatmentcard"

@@ -68,11 +68,12 @@ class personpage : Fragment() {
         logouticon.setOnClickListener {
             var sharedPreferences: SharedPreferences? = null
             var editor: SharedPreferences.Editor? = null
-            sharedPreferences=activity!!.getSharedPreferences("LoginPrefs", AppCompatActivity.MODE_PRIVATE)
-            editor=sharedPreferences!!.edit();
-            editor!!.putString("ischecked","false");
-            editor!!.putString("TC","");
-            editor!!.putString("passowrd","");
+            sharedPreferences =
+                activity!!.getSharedPreferences("LoginPrefs", AppCompatActivity.MODE_PRIVATE)
+            editor = sharedPreferences!!.edit();
+            editor!!.putString("ischecked", "false");
+            editor!!.putString("TC", "");
+            editor!!.putString("passowrd", "");
             editor!!.commit();
             val intent = Intent(activity, MainActivity::class.java)
             startActivity(intent)
@@ -81,37 +82,35 @@ class personpage : Fragment() {
                 R.anim.slide_out_left
             )
         }
-        if(userResponse!!.type.equals("Doctor")) {
+        if (userResponse!!.type.equals("Doctor")) {
             button2.setOnClickListener {
                 val intent = Intent(getActivity(), doctorMain::class.java)
                 startActivity(intent)
             }
-        }
-        else{
-            button2.visibility=View.GONE
+        } else {
+            button2.visibility = View.GONE
 
         }
         profileFragment_name.text = userResponse!!.name + " " + userResponse!!.surname
         val birthdate = getString(R.string.birthdate)
-        if(userResponse!!.birthDay!=null&&userResponse!!.birthMonth!=null&&userResponse!!.birthYear!=null)
-         profileFragment_Age.text = userResponse!!.birthDay.toString() + "/" + userResponse!!.birthMonth.toString() + "/" + userResponse!!.birthYear.toString()
+        if (userResponse!!.birthDay != null && userResponse!!.birthMonth != null && userResponse!!.birthYear != null)
+            profileFragment_Age.text =
+                userResponse!!.birthDay.toString() + "/" + userResponse!!.birthMonth.toString() + "/" + userResponse!!.birthYear.toString()
         else
             profileFragment_Age.text = "-/-/-"
         val height = getString(R.string.height)
         val weight = getString(R.string.weight)
-        if(userResponse!!.height!=null) {
+        if (userResponse!!.height != null) {
             profileFragment_height.text = height + ":" + userResponse!!.height.toString()
-        }else{
+        } else {
             profileFragment_height.text = height + ":-"
         }
-        if(userResponse!!.weight!=null) {
+        if (userResponse!!.weight != null) {
             profileFragment_weight.text = weight + ":" + userResponse!!.weight.toString()
-        }
-        else{
+        } else {
             profileFragment_weight.text = weight + ":-"
         }
     }
-
 
 
 }

@@ -15,11 +15,12 @@ import com.example.coagusearch.ui.dialog.BaseDialog
 
 class LoadingDialog(val context: Context) : BaseDialog() {
     override val dialogView: View by lazy {
-       //LayoutInflater.from(context).inflate(R.layout.loading_dialog, null)
+        //LayoutInflater.from(context).inflate(R.layout.loading_dialog, null)
         LayoutInflater.from(context).inflate(R.layout.loading_lottie_dialog, null)
     }
 
-    override val builder: AlertDialog.Builder = AlertDialog.Builder(context, R.style.DialogStyle).setView(dialogView)
+    override val builder: AlertDialog.Builder =
+        AlertDialog.Builder(context, R.style.DialogStyle).setView(dialogView)
 /*
     val loadingIcon: ImageView by lazy {
         dialogView.findViewById<ImageView>(R.id.dialog_loadingIcon)

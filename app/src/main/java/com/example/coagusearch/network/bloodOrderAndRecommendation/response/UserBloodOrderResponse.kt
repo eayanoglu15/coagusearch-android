@@ -1,6 +1,6 @@
 package com.example.coagusearch.network.bloodOrderAndRecommendation.response
 
-data class UserBloodOrderResponse (
+data class UserBloodOrderResponse(
     val bloodType: String? = null,
     val rhType: String? = null,
     val productType: String? = null,

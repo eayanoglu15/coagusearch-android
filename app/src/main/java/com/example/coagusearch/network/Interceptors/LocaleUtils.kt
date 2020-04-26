@@ -31,13 +31,10 @@ fun Double.integerFormat(): String {
 }
 
 
-
-
 fun String.integerFormat(): String {
     val format = DecimalFormat("#")
     return format.format(this.toDouble())
 }
-
 
 
 fun isWhole(value: Double): Boolean {

@@ -50,8 +50,7 @@ class UsersRepository(
                             (context as MainActivity).goToActivity()
                         }
                         showProgressLoading(false, context)
-                    }
-                    else{
+                    } else {
                         val errorResponse =
                             Gson().fromJson<ApiResponse>(
                                 response.errorBody()?.string(),
@@ -65,9 +64,6 @@ class UsersRepository(
             })
         return userResponse
     }
-
-
-
 
 
     fun getMyPatient(): List<UserResponse>? {
@@ -161,7 +157,7 @@ class UsersRepository(
 
     fun getDoctorMainScreen(
         context: Context,
-        fragment:doctorHomeFragment
+        fragment: doctorHomeFragment
     ): DoctorMainScreenResponse? {
         var doctorMainScreenResponse: DoctorMainScreenResponse? = null
         showProgressLoading(true, context)
@@ -198,7 +194,7 @@ class UsersRepository(
 
     fun getMyPatients(
         context: Context,
-        fragment:doctorPatientsFragment
+        fragment: doctorPatientsFragment
     ): List<UserResponse>? {
         var myPatients: List<UserResponse>? = null
         showProgressLoading(true, context)
@@ -207,6 +203,7 @@ class UsersRepository(
                 override fun onFailure(call: Call<List<UserResponse>>, t: Throwable) {
                     onFailureDialog(context, t.toString())
                 }
+
                 override fun onResponse(
                     call: Call<List<UserResponse>>,
                     response: Response<List<UserResponse>>
@@ -234,13 +231,14 @@ class UsersRepository(
         context: Context,
         patientDetailRequest: PatientDetailRequest
     ): PatientDetailResponse? {
-        var patientDetailResponse:PatientDetailResponse? = null
+        var patientDetailResponse: PatientDetailResponse? = null
         showProgressLoading(true, context)
         retrofitClient.usersApi().getPatientDetail(patientDetailRequest)
             .enqueue(object : Callback<PatientDetailResponse> {
                 override fun onFailure(call: Call<PatientDetailResponse>, t: Throwable) {
                     onFailureDialog(context, t.toString())
                 }
+
                 override fun onResponse(
                     call: Call<PatientDetailResponse>,
                     response: Response<PatientDetailResponse>

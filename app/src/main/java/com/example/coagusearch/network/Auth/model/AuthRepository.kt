@@ -35,14 +35,16 @@ class AuthRepository(
     init {
         authInterceptor.initAuthRepository(this)
     }
-    fun signIn(identity_number: String, password: String,context: Context): LoginResponse? {
+
+    fun signIn(identity_number: String, password: String, context: Context): LoginResponse? {
         var loginResponse: LoginResponse? = null
-        showProgressLoading(true,context)
+        showProgressLoading(true, context)
         retrofitClient.authApi().signIn(LoginRequest(identity_number, password))
             .enqueue(object : Callback<LoginResponse> {
                 override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
-                   onFailureDialog(context,t.toString())
+                    onFailureDialog(context, t.toString())
                 }
+
                 override fun onResponse(
                     call: Call<LoginResponse>,
                     response: Response<LoginResponse>
@@ -63,14 +65,17 @@ class AuthRepository(
                                 ?: ""
                         )
                         loginResponse = response.body()
-                        showProgressLoading(false,context)
+                        showProgressLoading(false, context)
                         (context as MainActivity).directedToMainScreen()
-                    }else{
+                    } else {
                         val errorResponse =
-                            Gson().fromJson<ApiResponse>(response.errorBody()?.string(), ApiResponse::class.java)?.message
+                            Gson().fromJson<ApiResponse>(
+                                response.errorBody()?.string(),
+                                ApiResponse::class.java
+                            )?.message
                                 ?: context.resources.getString(R.string.errorOccurred)
-                        showProgressLoading(false,context)
-                        onFailureDialog(context,errorResponse)
+                        showProgressLoading(false, context)
+                        onFailureDialog(context, errorResponse)
                     }
                 }
             })
@@ -86,6 +91,7 @@ class AuthRepository(
                 override fun onFailure(call: Call<SignUpResponse>, t: Throwable) {
                     // (context as MainActivity).LoginButton.text ="Fail"
                 }
+
                 override fun onResponse(
                     call: Call<SignUpResponse>,
                     response: Response<SignUpResponse>
@@ -98,12 +104,13 @@ class AuthRepository(
 
     fun refresh(refreshToken: String): Int {
         var refreshResponse: Int = 200
-        println( "Refresh called")
+        println("Refresh called")
         retrofitClient.authApi().refresh(RefreshRequest(refreshToken))
             .enqueue(object : Callback<RefreshResponse> {
                 override fun onFailure(call: Call<RefreshResponse>, t: Throwable) {
                     // (context as MainActivity).LoginButton.text ="Fail"
                 }
+
                 override fun onResponse(
                     call: Call<RefreshResponse>,
                     response: Response<RefreshResponse>

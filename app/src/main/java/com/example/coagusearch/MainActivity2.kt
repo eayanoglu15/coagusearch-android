@@ -25,7 +25,6 @@ class MainActivity2 : AppCompatActivity() {
         AuthRepository(applicationContext, authInterceptor, retrofitClient)
 
 
-
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);

@@ -21,9 +21,9 @@ import org.koin.android.ext.android.get
 
 
 class AddMedicine : AppCompatActivity() {
-    var medList = arrayOf("","")
-    var doslist = arrayOf("0.5","1.0","1.5","2.0","2.5","3.0")
-    var frelist = arrayOf("","s")
+    var medList = arrayOf("", "")
+    var doslist = arrayOf("0.5", "1.0", "1.5", "2.0", "2.5", "3.0")
+    var frelist = arrayOf("", "s")
     var freqPickerIsOn: Boolean = false
     var dosagePickerIsOn: Boolean = false
     var medMap: HashMap<String, String>? = null
@@ -144,15 +144,13 @@ class AddMedicine : AppCompatActivity() {
             }
         }
         MedicinePageAddButton.setOnClickListener {
-            if(mode==MedicineInfoType.CUSTOM&&(customText.equals("")||customText==null)){
-                Toast.makeText(this,"Please select a medicine name", Toast.LENGTH_SHORT).show()
+            if (mode == MedicineInfoType.CUSTOM && (customText.equals("") || customText == null)) {
+                Toast.makeText(this, "Please select a medicine name", Toast.LENGTH_SHORT).show()
 
-            }
-            else if(mode==MedicineInfoType.KEY&&(key.equals("")||key==null)){
-                Toast.makeText(this,"Please select a medicine name", Toast.LENGTH_SHORT).show()
-            }
-            else {
-                println("name is "+key+"  "+customText)
+            } else if (mode == MedicineInfoType.KEY && (key.equals("") || key == null)) {
+                Toast.makeText(this, "Please select a medicine name", Toast.LENGTH_SHORT).show()
+            } else {
+                println("name is " + key + "  " + customText)
                 saveMedicine()
                 finish()
                 overridePendingTransition(
@@ -209,8 +207,17 @@ class AddMedicine : AppCompatActivity() {
     }
 
     fun saveMedicine() {
-            val medRepository: RegularMedicationRepository = get()
-            medRepository.saveMedicine(SaveMedicineInfoRequest(id, mode, key, customText, frequency, dosage), this)
+        val medRepository: RegularMedicationRepository = get()
+        medRepository.saveMedicine(
+            SaveMedicineInfoRequest(
+                id,
+                mode,
+                key,
+                customText,
+                frequency,
+                dosage
+            ), this
+        )
 
     }
 

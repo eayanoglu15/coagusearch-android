@@ -17,6 +17,7 @@ data class MedicineInfoResponse(
     val frequency: DrugFrequencyResponse?,
     val dosage: Double?
 )
+
 data class DrugFrequencyResponse(
     val key: String,
     val title: String

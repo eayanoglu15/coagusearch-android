@@ -12,8 +12,6 @@ import kotlinx.android.synthetic.main.bottomsheet.view.*
 import java.util.*
 
 
-
-
 /**
  *
  * A fragment that shows a list of items as a modal bottom sheet.
@@ -25,26 +23,28 @@ import java.util.*
  */
 class DateListDialogFragment : BottomSheetDialogFragment() {
     private var mListener: BottomSheetListener? = null
-    var date=Date()
+    var date = Date()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val v= inflater.inflate(R.layout.bottomsheet, container, false)
+        val v = inflater.inflate(R.layout.bottomsheet, container, false)
         return v
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        birthday.maxDate=date.time
+        birthday.maxDate = date.time
         view.doneButton.setOnClickListener {
-            mListener!!.onButtonClicked(birthday.dayOfMonth,birthday.month,+birthday.year)
+            mListener!!.onButtonClicked(birthday.dayOfMonth, birthday.month, +birthday.year)
             dismiss()
         }
     }
 
     interface BottomSheetListener {
-        fun onButtonClicked(birthDay:Int,birthMonth:Int,birthYear:Int)
+        fun onButtonClicked(birthDay: Int, birthMonth: Int, birthYear: Int)
     }
+
     override fun onAttach(context: Context) {
         super.onAttach(context)
         try {
@@ -55,7 +55,6 @@ class DateListDialogFragment : BottomSheetDialogFragment() {
             )
         }
     }
-
 
 
 }

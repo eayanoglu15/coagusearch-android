@@ -16,8 +16,10 @@ class LoadingProgressDialog(val context: Context) : BaseDialog() {
         LayoutInflater.from(context).inflate(R.layout.loading_lottie_dialog, null)
     }
 
-    override val builder: AlertDialog.Builder = AlertDialog.Builder(context,
-        R.style.DialogStyle).setView(dialogView)
+    override val builder: AlertDialog.Builder = AlertDialog.Builder(
+        context,
+        R.style.DialogStyle
+    ).setView(dialogView)
 
     override fun onDialogCreated() {
         super.onDialogCreated()

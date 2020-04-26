@@ -16,22 +16,30 @@ import kotlinx.android.synthetic.main.activity_medical_team_main.*
 import kotlinx.android.synthetic.main.fragment_doctor_patients.*
 
 class MedTeamAllPatients : AppCompatActivity() {
-    val list= mutableListOf("Ökkeş Uğur Ulaş","Ege Melis Ayanoğlu","Muharrem Salel","Kazım Okan Akgül","Ali Candan")
+    val list = mutableListOf(
+        "Ökkeş Uğur Ulaş",
+        "Ege Melis Ayanoğlu",
+        "Muharrem Salel",
+        "Kazım Okan Akgül",
+        "Ali Candan"
+    )
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_med_team_all_patients)
-        patientRecyclerView.layoutManager=
-            LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false)
-        patientRecyclerView.adapter= MedTeamPatientsAdapter(list,this)
+        patientRecyclerView.layoutManager =
+            LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+        patientRecyclerView.adapter = MedTeamPatientsAdapter(list, this)
         addPatientButton.setOnClickListener {
             val intent = Intent(this, MedTeamEditPatient::class.java)
             startActivity(intent)
         }
 
-        searchView.setOnQueryTextListener(object: SearchView.OnQueryTextListener{
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 return false
             }
+
             override fun onQueryTextChange(newText: String?): Boolean {
                 (patientRecyclerView.adapter as MedTeamPatientsAdapter).filter.filter(newText)
                 return false

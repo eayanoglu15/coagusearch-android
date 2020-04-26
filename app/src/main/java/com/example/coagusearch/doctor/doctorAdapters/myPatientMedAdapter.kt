@@ -9,12 +9,14 @@ import com.example.coagusearch.R
 import com.example.coagusearch.network.Users.response.TodayPatientDetail
 
 
-class myPatientMedAdapter(var medicineList : MutableList<String>) :
+class myPatientMedAdapter(var medicineList: MutableList<String>) :
     RecyclerView.Adapter<myPatientMedAdapter.medCardViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): medCardViewHolder {
-        var v = LayoutInflater.from(parent.context).inflate(R.layout.doctormedicinecard,parent,false)
+        var v =
+            LayoutInflater.from(parent.context).inflate(R.layout.doctormedicinecard, parent, false)
         return medCardViewHolder(v)
     }
+
     override fun getItemCount(): Int {
         return medicineList.size
     }
@@ -22,14 +24,16 @@ class myPatientMedAdapter(var medicineList : MutableList<String>) :
     override fun onBindViewHolder(holder: medCardViewHolder, position: Int) {
         val med = medicineList[position]
     }
-    class medCardViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
+
+    class medCardViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var medName: TextView
-        var frequency:TextView
-        var dosage:TextView
+        var frequency: TextView
+        var dosage: TextView
+
         init {
             medName = itemView.findViewById(R.id.medName)
-            frequency=itemView.findViewById(R.id.medFreq)
-            dosage=itemView.findViewById(R.id.medDos)
+            frequency = itemView.findViewById(R.id.medFreq)
+            dosage = itemView.findViewById(R.id.medDos)
         }
     }
 }

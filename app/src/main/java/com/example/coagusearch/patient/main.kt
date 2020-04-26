@@ -18,40 +18,40 @@ class main : AppCompatActivity() {
         setContentView(R.layout.main)
         //loadFragment(mainmenu(),0)
 
-        showProgressLoading(true,this)
+        showProgressLoading(true, this)
         val medRepository: RegularMedicationRepository = get()
         medRepository.getUsersDrug(this)
 
-        bottom_navigation.setOnNavigationItemReselectedListener {  }
-        when(bottom_navigation.selectedItemId){
+        bottom_navigation.setOnNavigationItemReselectedListener { }
+        when (bottom_navigation.selectedItemId) {
             R.id.menu -> {
-                loadFragment(mainmenu(),0)
+                loadFragment(mainmenu(), 0)
                 //return@setOnNavigationItemSelectedListener true
             }
             R.id.calendar -> {
-                loadFragment(appointmentspage(),0)
+                loadFragment(appointmentspage(), 0)
                 //return@setOnNavigationItemSelectedListener true
             }
 
             R.id.person -> {
-                loadFragment(personpage(),0)
+                loadFragment(personpage(), 0)
                 //return@setOnNavigationItemSelectedListener true
             }
         }
 
         bottom_navigation.setOnNavigationItemSelectedListener {
-            when(it.itemId){
+            when (it.itemId) {
                 R.id.menu -> {
-                    loadFragment(mainmenu(),0)
+                    loadFragment(mainmenu(), 0)
                     return@setOnNavigationItemSelectedListener true
                 }
                 R.id.calendar -> {
-                    loadFragment(appointmentspage(),0)
+                    loadFragment(appointmentspage(), 0)
                     return@setOnNavigationItemSelectedListener true
                 }
 
                 R.id.person -> {
-                    loadFragment(personpage(),0)
+                    loadFragment(personpage(), 0)
                     return@setOnNavigationItemSelectedListener true
                 }
             }
@@ -59,7 +59,7 @@ class main : AppCompatActivity() {
         }
     }
 
-   public override fun onRestart() {
+    public override fun onRestart() {
         super.onRestart()
         Timer().schedule(500) {
             when (bottom_navigation.selectedItemId) {
@@ -82,10 +82,10 @@ class main : AppCompatActivity() {
     }
 
     override fun onBackPressed() {}
-     fun loadFragment(fragment: Fragment,int: Int) {
+    fun loadFragment(fragment: Fragment, int: Int) {
         // load fragment
         val transaction = supportFragmentManager.beginTransaction()
-        if(int!=0) {
+        if (int != 0) {
             transaction.setCustomAnimations(
                 R.anim.slide_in_right,
                 R.anim.slide_out_left

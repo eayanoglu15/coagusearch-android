@@ -29,53 +29,51 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.loginscreen)
         var authRepository: AuthRepository = get()
-        sharedPreferences=getSharedPreferences("LoginPrefs", MODE_PRIVATE);
-        editor=sharedPreferences!!.edit();
+        sharedPreferences = getSharedPreferences("LoginPrefs", MODE_PRIVATE);
+        editor = sharedPreferences!!.edit();
         val checked = sharedPreferences!!.getString("ischecked", "Un Named")
-        if(checked.equals("true")){
+        if (checked.equals("true")) {
             val TC = sharedPreferences!!.getString("TC", "")
             val passwords = sharedPreferences!!.getString("passowrd", "")
-            authRepository.signIn(TC!!,passwords!!,this)
+            authRepository.signIn(TC!!, passwords!!, this)
         }
         LoginButton.setOnClickListener {
-                authRepository.signIn("14051222123", "123456", this)
-            }
+            authRepository.signIn("14051222123", "123456", this)
         }
+    }
 
     override fun onBackPressed() {
 
-        }
+    }
 
     fun directedToMainScreen() {
 
-        if(rememberMeSwitch.isChecked) {
-            editor!!.putString("ischecked","true");
-            editor!!.putString("TC","14051222123");
-            editor!!.putString("passowrd","123456");
+        if (rememberMeSwitch.isChecked) {
+            editor!!.putString("ischecked", "true");
+            editor!!.putString("TC", "14051222123");
+            editor!!.putString("passowrd", "123456");
             editor!!.commit();
-        }
-        else{
-            editor!!.putString("ischecked","false");
-            editor!!.putString("TC","");
-            editor!!.putString("passowrd","");
+        } else {
+            editor!!.putString("ischecked", "false");
+            editor!!.putString("TC", "");
+            editor!!.putString("passowrd", "");
             editor!!.commit();
         }
         val userRepository: UsersRepository = get()
-        userRepository.getUserInfo(this,2)
+        userRepository.getUserInfo(this, 2)
 
     }
-    fun goToActivity(){
-        if(UserInfoSingleton.instance.userInfo!!.type.equals("Doctor")) {
+
+    fun goToActivity() {
+        if (UserInfoSingleton.instance.userInfo!!.type.equals("Doctor")) {
             val intent = Intent(this, doctorMain::class.java)
             startActivity(intent)
             overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-        }
-        else if(UserInfoSingleton.instance.userInfo!!.type.equals("Patient")){
+        } else if (UserInfoSingleton.instance.userInfo!!.type.equals("Patient")) {
             val intent = Intent(this, main::class.java)
             startActivity(intent)
             overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-        }
-        else if(UserInfoSingleton.instance.userInfo!!.type.equals("Medical")){
+        } else if (UserInfoSingleton.instance.userInfo!!.type.equals("Medical")) {
             val intent = Intent(this, MedicalTeamMain::class.java)
             startActivity(intent)
             overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);

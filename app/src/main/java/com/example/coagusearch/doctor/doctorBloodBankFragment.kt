@@ -19,7 +19,7 @@ import kotlinx.android.synthetic.main.fragment_doctor_blood_bank.*
 
 
 class doctorBloodBankFragment : Fragment() {
-    val list= mutableListOf("a","b","c","a","c","b")
+    val list = mutableListOf("a", "b", "c", "a", "c", "b")
     private var m_Text = ""
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,10 +28,12 @@ class doctorBloodBankFragment : Fragment() {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_doctor_blood_bank, container, false)
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        ordersRecyclerView.layoutManager= LinearLayoutManager(this.context!!, LinearLayoutManager.VERTICAL,false)
-         ordersRecyclerView.adapter=BloodBankOrderAdapter(list)
+        ordersRecyclerView.layoutManager =
+            LinearLayoutManager(this.context!!, LinearLayoutManager.VERTICAL, false)
+        ordersRecyclerView.adapter = BloodBankOrderAdapter(list)
         addNoteText.setOnClickListener {
             val builder: AlertDialog.Builder = AlertDialog.Builder(this.context!!)
             builder.setTitle("Title")
@@ -40,7 +42,7 @@ class doctorBloodBankFragment : Fragment() {
             // Set up the input
 
             val input = EditText(this.context!!)
-            input.isSingleLine=false
+            input.isSingleLine = false
             input.setText(m_Text)
             // Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
             // Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
@@ -56,10 +58,10 @@ class doctorBloodBankFragment : Fragment() {
             builder.show()
         }
         makeorderbutton.setOnClickListener {
-            m_Text=""
-            editText.text=null
+            m_Text = ""
+            editText.text = null
             editText.clearFocus()
-            Toast.makeText(this.context!!,"Your order sended",Toast.LENGTH_LONG).show()
+            Toast.makeText(this.context!!, "Your order sended", Toast.LENGTH_LONG).show()
 
         }
     }

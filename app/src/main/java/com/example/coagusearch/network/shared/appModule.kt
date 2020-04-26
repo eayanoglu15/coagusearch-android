@@ -15,22 +15,22 @@ import org.koin.dsl.module.module
  * Application dependency module, initiated by Koin in [MyApplication]
  */
 val appModule = module {
-    val ctx by lazy{ androidApplication() }
+    val ctx by lazy { androidApplication() }
     // Singletons
     single { ContextModule(androidContext()) }
 
     // Retrofit
-    single { RetrofitClient(get(),get()) }
+    single { RetrofitClient(get(), get()) }
     factory { get<RetrofitClient>().authApi() }
     factory { get<RetrofitClient>().usersApi() }
     factory { get<RetrofitClient>().regularMedicationApi() }
-    factory { get<RetrofitClient>().appointmentApi()}
+    factory { get<RetrofitClient>().appointmentApi() }
     single { AuthInterceptor(get()) }
     factory { LocaleInterceptor(get()) }
     //Repository
-    factory { AuthRepository(androidContext(),get() ,get()) }
-    factory { UsersRepository(androidContext(),get()) }
-    factory { RegularMedicationRepository(androidContext(),get()) }
-    factory { AppointmentRepository(androidContext(),get()) }
+    factory { AuthRepository(androidContext(), get(), get()) }
+    factory { UsersRepository(androidContext(), get()) }
+    factory { RegularMedicationRepository(androidContext(), get()) }
+    factory { AppointmentRepository(androidContext(), get()) }
 
 }

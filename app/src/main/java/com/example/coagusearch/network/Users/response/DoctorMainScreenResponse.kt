@@ -21,11 +21,11 @@ data class TodayPatientDetail(
 data class PatientAppointmentTimeResponse(
     val hour: Int,
     val minute: Int
-){
-    fun getTimeAsString():String{
-        var s:String=hour.toString()+":"+minute.toString()
-        if(minute==0){
-            s+="0"
+) {
+    fun getTimeAsString(): String {
+        var s: String = hour.toString() + ":" + minute.toString()
+        if (minute == 0) {
+            s += "0"
         }
         return s
     }

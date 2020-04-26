@@ -23,7 +23,9 @@ class RetrofitClient(
 ) {
     fun authApi(): AuthApi = getRetrofit().create(AuthApi::class.java)
     fun appointmentApi(): AppointmentApi = getRetrofit().create(AppointmentApi::class.java)
-    fun regularMedicationApi(): RegularMedicationApi = getRetrofit().create(RegularMedicationApi::class.java)
+    fun regularMedicationApi(): RegularMedicationApi =
+        getRetrofit().create(RegularMedicationApi::class.java)
+
     fun usersApi(): UsersApi = getRetrofit().create(UsersApi::class.java)
 
     private lateinit var pref: SharedPreferences
@@ -32,7 +34,7 @@ class RetrofitClient(
         val loggingInterceptor = HttpLoggingInterceptor()
         loggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
         val okHttpClientBuilder = OkHttpClient.Builder()
-        var apiUrl ="http://192.168.2.141:8080"
+        var apiUrl = "http://192.168.2.141:8080"
         val httpClient = okHttpClientBuilder
             .addInterceptor(authInterceptor)
             .addInterceptor(localeInterceptor)

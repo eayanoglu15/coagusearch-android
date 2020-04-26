@@ -37,7 +37,7 @@ class doctorProfile : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        var view:View= inflater.inflate(R.layout.fragment_doctor_profile, container, false)
+        var view: View = inflater.inflate(R.layout.fragment_doctor_profile, container, false)
         userResponse = UserInfoSingleton.instance.userInfo
         return view
     }
@@ -46,29 +46,29 @@ class doctorProfile : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         profileFragment_name.text = userResponse!!.name + " " + userResponse!!.surname
         val birthdate = getString(R.string.birthdate)
-        if(userResponse!!.birthDay!=null&&userResponse!!.birthMonth!=null&&userResponse!!.birthYear!=null)
-            profileFragment_Age.text = userResponse!!.birthDay.toString() + "/" + userResponse!!.birthMonth.toString() + "/" + userResponse!!.birthYear.toString()
+        if (userResponse!!.birthDay != null && userResponse!!.birthMonth != null && userResponse!!.birthYear != null)
+            profileFragment_Age.text =
+                userResponse!!.birthDay.toString() + "/" + userResponse!!.birthMonth.toString() + "/" + userResponse!!.birthYear.toString()
         else
             profileFragment_Age.text = "-/-/-"
         val height = getString(R.string.height)
         val weight = getString(R.string.weight)
-        if(userResponse!!.height!=null) {
+        if (userResponse!!.height != null) {
             profileFragment_height.text = height + ":" + userResponse!!.height.toString()
-        }else{
+        } else {
             profileFragment_height.text = height + ":-"
         }
-        if(userResponse!!.weight!=null) {
+        if (userResponse!!.weight != null) {
             profileFragment_weight.text = weight + ":" + userResponse!!.weight.toString()
-        }
-        else{
+        } else {
             profileFragment_weight.text = weight + ":-"
         }
-        switchToPatient.setOnClickListener{
+        switchToPatient.setOnClickListener {
             val intent = Intent(getActivity(), main::class.java)
             startActivity(intent)
             getActivity()?.overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
         }
-        editProfile.setOnClickListener{
+        editProfile.setOnClickListener {
             val intent = Intent(getActivity(), accountPage::class.java)
             startActivity(intent)
             getActivity()?.overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
@@ -76,11 +76,12 @@ class doctorProfile : Fragment() {
         logouticon.setOnClickListener {
             var sharedPreferences: SharedPreferences? = null
             var editor: SharedPreferences.Editor? = null
-            sharedPreferences=activity!!.getSharedPreferences("LoginPrefs", AppCompatActivity.MODE_PRIVATE)
-            editor=sharedPreferences!!.edit();
-            editor!!.putString("ischecked","false");
-            editor!!.putString("TC","");
-            editor!!.putString("passowrd","");
+            sharedPreferences =
+                activity!!.getSharedPreferences("LoginPrefs", AppCompatActivity.MODE_PRIVATE)
+            editor = sharedPreferences!!.edit();
+            editor!!.putString("ischecked", "false");
+            editor!!.putString("TC", "");
+            editor!!.putString("passowrd", "");
             editor!!.commit();
             val intent = Intent(activity, MainActivity::class.java)
             startActivity(intent)

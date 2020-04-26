@@ -6,4 +6,4 @@ import java.io.Serializable
 data class UserAppointmentResponse(
     var nextAppointment: SingleAppointmentResponse? = null,
     var oldAppointment: List<SingleAppointmentResponse>
-):Serializable
+) : Serializable

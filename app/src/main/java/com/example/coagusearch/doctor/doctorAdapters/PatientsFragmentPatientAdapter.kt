@@ -17,16 +17,20 @@ import com.example.coagusearch.patient.AddMedicine
 import java.util.*
 
 
-class  PatientsFragmentPatientAdapter(val patientsList : MutableList<UserResponse>,var context: Context):
+class PatientsFragmentPatientAdapter(
+    val patientsList: MutableList<UserResponse>,
+    var context: Context
+) :
     RecyclerView.Adapter<PatientsFragmentPatientAdapter.PatientViewHolder>(),
     Filterable {
-    var FilteredList:MutableList<UserResponse> = mutableListOf()
+    var FilteredList: MutableList<UserResponse> = mutableListOf()
+
     init {
         FilteredList = patientsList
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PatientViewHolder {
-        val v = LayoutInflater.from(parent.context).inflate(R.layout.mypatientcard,parent,false)
+        val v = LayoutInflater.from(parent.context).inflate(R.layout.mypatientcard, parent, false)
         return PatientViewHolder(v)
     }
 
@@ -51,9 +55,14 @@ class  PatientsFragmentPatientAdapter(val patientsList : MutableList<UserRespons
                 if (charSearch.isEmpty()) {
                     FilteredList = patientsList
                 } else {
-                    val resultList:MutableList<UserResponse> = mutableListOf()
+                    val resultList: MutableList<UserResponse> = mutableListOf()
                     for (row in patientsList) {
-                        if (row.getFullName().toLowerCase(Locale.ROOT).contains(charSearch.toLowerCase(Locale.ROOT))) {
+                        if (row.getFullName().toLowerCase(Locale.ROOT).contains(
+                                charSearch.toLowerCase(
+                                    Locale.ROOT
+                                )
+                            )
+                        ) {
                             resultList.add(row)
                         }
                     }
@@ -63,6 +72,7 @@ class  PatientsFragmentPatientAdapter(val patientsList : MutableList<UserRespons
                 filterResults.values = FilteredList
                 return filterResults
             }
+
             @Suppress("UNCHECKED_CAST")
             override fun publishResults(constraint: CharSequence?, results: FilterResults?) {
                 FilteredList = results?.values as MutableList<UserResponse>
@@ -71,8 +81,10 @@ class  PatientsFragmentPatientAdapter(val patientsList : MutableList<UserRespons
 
         }
     }
-    class PatientViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
+
+    class PatientViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var itemDetail: TextView
+
         init {
             itemDetail = itemView.findViewById(R.id.patientnameMyPatient)
         }

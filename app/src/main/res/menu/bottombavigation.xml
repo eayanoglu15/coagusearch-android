@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-   <item android:title="@string/menu"
-       android:id="@+id/menu"
-       android:icon="@drawable/ic_menu_black_24dp"/>
-    <item android:title="@string/appointments"
+    <item
+        android:title="@string/menu"
+        android:id="@+id/menu"
+        android:icon="@drawable/ic_menu_black_24dp" />
+    <item
+        android:title="@string/appointments"
         android:id="@+id/calendar"
-        android:icon="@drawable/ic_event_note_black_24dp"/>
-    <item android:title="@string/account"
+        android:icon="@drawable/ic_event_note_black_24dp" />
+    <item
+        android:title="@string/account"
         android:id="@+id/person"
-        android:icon="@drawable/ic_person_black_24dp"/>
+        android:icon="@drawable/ic_person_black_24dp" />
 </menu>

@@ -12,8 +12,9 @@ import androidx.core.content.res.ResourcesCompat
 import com.example.coagusearch.R
 import com.example.coagusearch.ui.dialog.BaseDialog
 
-class ActionButtonDialog(context: Context, override val dialogView: View,
-                         override val builder: AlertDialog.Builder
+class ActionButtonDialog(
+    context: Context, override val dialogView: View,
+    override val builder: AlertDialog.Builder
 ) : BaseDialog() {
 /*
     override val dialogView: View by lazy {

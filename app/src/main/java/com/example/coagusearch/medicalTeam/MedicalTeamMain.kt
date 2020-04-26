@@ -12,7 +12,7 @@ import kotlinx.android.synthetic.main.activity_medical_team_main.*
 import kotlinx.android.synthetic.main.reportpatientcard.*
 
 class MedicalTeamMain : AppCompatActivity() {
-    val list= mutableListOf("a","b","c")
+    val list = mutableListOf("a", "b", "c")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_medical_team_main)
@@ -22,13 +22,13 @@ class MedicalTeamMain : AppCompatActivity() {
             overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
         }
         notifyDoctorText.setOnClickListener {
-           Toast.makeText(this,"Doktora Bildirildi",Toast.LENGTH_LONG).show()
-            patientNameText.text=null;
-           patientNameText.clearFocus()
+            Toast.makeText(this, "Doktora Bildirildi", Toast.LENGTH_LONG).show()
+            patientNameText.text = null;
+            patientNameText.clearFocus()
         }
-        patientmainRecyclerView.layoutManager=
-            LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false)
-        patientmainRecyclerView.adapter=MedTeamMainPageAdapter(list)
+        patientmainRecyclerView.layoutManager =
+            LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+        patientmainRecyclerView.adapter = MedTeamMainPageAdapter(list)
     }
 
     override fun onBackPressed() {

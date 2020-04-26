@@ -67,7 +67,8 @@ class appointmentspage : Fragment() {
             appointmentNextAppointment.appointmentnextappointmenttime.text =
                 myAppointments!!.nextAppointment!!.timeSlot()
             appointmentNextAppointment.appointmentcancel.setOnClickListener {
-                val builder = AlertDialog.Builder(context!!,
+                val builder = AlertDialog.Builder(
+                    context!!,
                     R.style.AlertDialogStyle
                 )
                 builder.setTitle(R.string.nextAppointment)

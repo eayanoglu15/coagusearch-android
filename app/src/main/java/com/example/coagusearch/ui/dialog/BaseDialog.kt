@@ -17,15 +17,15 @@ abstract class BaseDialog {
 
     open fun create(): Dialog {
         dialog = builder
-                .setCancelable(cancelable)
-                .create()
+            .setCancelable(cancelable)
+            .create()
 
         onDialogCreated()
         return dialog!!
     }
 
     open fun onCancelListener(func: () -> Unit): AlertDialog.Builder? =
-            builder.setOnCancelListener {
-                func()
-            }
+        builder.setOnCancelListener {
+            func()
+        }
 }

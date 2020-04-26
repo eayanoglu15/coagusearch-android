@@ -25,6 +25,7 @@ class RegularMedicationRepository(
             .enqueue(object : Callback<AllDrugInfoResponse> {
                 override fun onFailure(call: Call<AllDrugInfoResponse>, t: Throwable) {
                 }
+
                 override fun onResponse(
                     call: Call<AllDrugInfoResponse>,
                     response: Response<AllDrugInfoResponse>
@@ -41,28 +42,32 @@ class RegularMedicationRepository(
         retrofitClient.regularMedicationApi().getUsersDrug()
             .enqueue(object : Callback<UserMedicineResponse> {
                 override fun onFailure(call: Call<UserMedicineResponse>, t: Throwable) {
-                    onFailureDialog(context,t.toString())
+                    onFailureDialog(context, t.toString())
                 }
+
                 override fun onResponse(
                     call: Call<UserMedicineResponse>,
                     response: Response<UserMedicineResponse>
                 ) {
                     userMedicineResponse = response.body()
-                    UserInfoSingleton.instance.medInfo=userMedicineResponse
-                    println("burdaaa"+userMedicineResponse!!.allDrugs.frequencies.toString())
-                    showProgressLoading(false,context)
+                    UserInfoSingleton.instance.medInfo = userMedicineResponse
+                    println("burdaaa" + userMedicineResponse!!.allDrugs.frequencies.toString())
+                    showProgressLoading(false, context)
                 }
             })
         return userMedicineResponse
     }
 
-    fun saveMedicine(saveMedicineInfoRequest: SaveMedicineInfoRequest,context: Context): UserMedicineResponse? {
+    fun saveMedicine(
+        saveMedicineInfoRequest: SaveMedicineInfoRequest,
+        context: Context
+    ): UserMedicineResponse? {
         var userMedicineResponse: UserMedicineResponse? = null
         // showProgressLoading(true,context)
         retrofitClient.regularMedicationApi().saveMedicine(saveMedicineInfoRequest)
             .enqueue(object : Callback<UserMedicineResponse> {
                 override fun onFailure(call: Call<UserMedicineResponse>, t: Throwable) {
-                    onFailureDialog(context,t.toString())
+                    onFailureDialog(context, t.toString())
                 }
 
                 override fun onResponse(
@@ -70,7 +75,7 @@ class RegularMedicationRepository(
                     response: Response<UserMedicineResponse>
                 ) {
                     userMedicineResponse = response.body()
-                    UserInfoSingleton.instance.medInfo=userMedicineResponse
+                    UserInfoSingleton.instance.medInfo = userMedicineResponse
                     //showProgressLoading(false,context)
                     (context as AddMedicine).onBackPressed()
                 }
@@ -78,21 +83,26 @@ class RegularMedicationRepository(
         return userMedicineResponse
 
     }
-    fun deleteMedicine(deleteMedicineInfoRequest: DeleteMedicineInfoRequest,context: Context): UserMedicineResponse? {
+
+    fun deleteMedicine(
+        deleteMedicineInfoRequest: DeleteMedicineInfoRequest,
+        context: Context
+    ): UserMedicineResponse? {
         var userMedicineResponse: UserMedicineResponse? = null
-        showProgressLoading(true,context)
+        showProgressLoading(true, context)
         retrofitClient.regularMedicationApi().deleteMedicine(deleteMedicineInfoRequest)
             .enqueue(object : Callback<UserMedicineResponse> {
                 override fun onFailure(call: Call<UserMedicineResponse>, t: Throwable) {
-                    onFailureDialog(context,t.toString())
+                    onFailureDialog(context, t.toString())
                 }
+
                 override fun onResponse(
                     call: Call<UserMedicineResponse>,
                     response: Response<UserMedicineResponse>
                 ) {
                     userMedicineResponse = response.body()
-                    UserInfoSingleton.instance.medInfo=userMedicineResponse
-                    showProgressLoading(false,context)
+                    UserInfoSingleton.instance.medInfo = userMedicineResponse
+                    showProgressLoading(false, context)
                     (context as AddMedicine).onBackPressed()
                 }
             })

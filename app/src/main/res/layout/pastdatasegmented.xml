@@ -29,16 +29,17 @@
         android:textColor="@color/colorPrimary" />
 
     <Button
-    android:id="@+id/intembutton"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginVertical="2dp"
+        android:id="@+id/intembutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="2dp"
 
-    android:layout_weight="1"
-    android:background="@drawable/segmentedbuttonback"
-    android:text="Intem"
-    android:textAllCaps="false"
-    android:textColor="@color/colorPrimary" />
+        android:layout_weight="1"
+        android:background="@drawable/segmentedbuttonback"
+        android:text="Intem"
+        android:textAllCaps="false"
+        android:textColor="@color/colorPrimary" />
+
     <Button
         android:id="@+id/ordersbutton"
         android:layout_width="wrap_content"

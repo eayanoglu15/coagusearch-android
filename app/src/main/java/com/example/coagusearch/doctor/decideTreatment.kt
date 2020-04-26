@@ -11,13 +11,14 @@ import kotlinx.android.synthetic.main.activity_decide_treatment.*
 import kotlinx.android.synthetic.main.activity_patient_past_data.*
 
 class decideTreatment : AppCompatActivity() {
-    var list= mutableListOf("a","a","b","b")
-    var doslist= arrayOf("gr","ml","ml/kg","l","kg")
+    var list = mutableListOf("a", "a", "b", "b")
+    var doslist = arrayOf("gr", "ml", "ml/kg", "l", "kg")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_decide_treatment)
-        suggestionsRecyclerView.layoutManager= LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false)
-        suggestionsRecyclerView.adapter= suggestionAdapter(list)
+        suggestionsRecyclerView.layoutManager =
+            LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+        suggestionsRecyclerView.adapter = suggestionAdapter(list)
 
 
         dosagePicker.maxValue = 2

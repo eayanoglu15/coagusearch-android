@@ -22,17 +22,17 @@ import kotlinx.android.synthetic.main.segmentedcontrolbuttons.*
 class microTemData : AppCompatActivity() {
     //val list= mutableListOf("a","b","c","d","e","f","g","r","t")
 
-    val list= mutableListOf("a","b","c")
-    val list1= mutableListOf("c")
-    val list2= mutableListOf("b","a")
-    var state=1;
+    val list = mutableListOf("a", "b", "c")
+    val list1 = mutableListOf("c")
+    val list2 = mutableListOf("b", "a")
+    var state = 1;
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_micro_tem_data)
-        dataResultRecyclerView.layoutManager=
-            LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false)
-        dataResultRecyclerView.adapter= utemResultAdapter(list)
-        testResultscard.setOnClickListener{
+        dataResultRecyclerView.layoutManager =
+            LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+        dataResultRecyclerView.adapter = utemResultAdapter(list)
+        testResultscard.setOnClickListener {
             val intent = Intent(this, PatientPastDataActivity::class.java)
             startActivity(intent)
             overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
@@ -42,8 +42,8 @@ class microTemData : AppCompatActivity() {
             startActivity(intent)
             overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
         }
-        fibtembutton.setOnClickListener{
-            (dataResultRecyclerView.adapter as utemResultAdapter).companies=list
+        fibtembutton.setOnClickListener {
+            (dataResultRecyclerView.adapter as utemResultAdapter).companies = list
             (dataResultRecyclerView.adapter as utemResultAdapter).notifyDataSetChanged()
             fibtembutton.setBackgroundResource(R.drawable.segmentedbuttonchecked)
             fibtembutton.setTextColor(resources.getColor(R.color.white))
@@ -52,8 +52,8 @@ class microTemData : AppCompatActivity() {
             intembutton.setBackgroundResource(R.drawable.segmentedbuttonback)
             intembutton.setTextColor(resources.getColor(R.color.colorPrimary))
         }
-        extembutton.setOnClickListener{
-            (dataResultRecyclerView.adapter as utemResultAdapter).companies=list1
+        extembutton.setOnClickListener {
+            (dataResultRecyclerView.adapter as utemResultAdapter).companies = list1
             (dataResultRecyclerView.adapter as utemResultAdapter).notifyDataSetChanged()
             fibtembutton.setBackgroundResource(R.drawable.segmentedbuttonback)
             fibtembutton.setTextColor(resources.getColor(R.color.colorPrimary))
@@ -62,8 +62,8 @@ class microTemData : AppCompatActivity() {
             intembutton.setBackgroundResource(R.drawable.segmentedbuttonback)
             intembutton.setTextColor(resources.getColor(R.color.colorPrimary))
         }
-        intembutton.setOnClickListener{
-            (dataResultRecyclerView.adapter as utemResultAdapter).companies=list2
+        intembutton.setOnClickListener {
+            (dataResultRecyclerView.adapter as utemResultAdapter).companies = list2
             (dataResultRecyclerView.adapter as utemResultAdapter).notifyDataSetChanged()
             fibtembutton.setBackgroundResource(R.drawable.segmentedbuttonback)
             fibtembutton.setTextColor(resources.getColor(R.color.colorPrimary))

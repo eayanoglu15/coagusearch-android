@@ -13,44 +13,45 @@ class doctorMain : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_doctor_main)
-        loadFragment(doctorHomeFragment(),0)
+        loadFragment(doctorHomeFragment(), 0)
         bottom_navigation.setOnNavigationItemSelectedListener {
-            when(it.itemId){
-                R.id.menu-> {
-                    loadFragment(doctorHomeFragment(),0)
+            when (it.itemId) {
+                R.id.menu -> {
+                    loadFragment(doctorHomeFragment(), 0)
                     return@setOnNavigationItemSelectedListener true
                 }
-                R.id.notification-> {
-                    loadFragment(doctorNotificationFragment(),0)
+                R.id.notification -> {
+                    loadFragment(doctorNotificationFragment(), 0)
                     return@setOnNavigationItemSelectedListener true
                 }
 
-                R.id.patiens-> {
-                    loadFragment(doctorPatientsFragment(),0)
+                R.id.patiens -> {
+                    loadFragment(doctorPatientsFragment(), 0)
                     return@setOnNavigationItemSelectedListener true
                 }
-                R.id.bloodbank-> {
-                    loadFragment(doctorBloodBankFragment(),0)
+                R.id.bloodbank -> {
+                    loadFragment(doctorBloodBankFragment(), 0)
                     return@setOnNavigationItemSelectedListener true
                 }
-                R.id.profile->{
-                    loadFragment(doctorProfile(),0)
+                R.id.profile -> {
+                    loadFragment(doctorProfile(), 0)
                     return@setOnNavigationItemSelectedListener true
                 }
             }
             false
         }
         val userRepository: UsersRepository = get()
-        userRepository.getUserInfo(this,1)
+        userRepository.getUserInfo(this, 1)
     }
 
     override fun onBackPressed() {
 
     }
+
     private fun loadFragment(fragment: Fragment, int: Int) {
         // load fragment
         val transaction = supportFragmentManager.beginTransaction()
-        if(int!=0) {
+        if (int != 0) {
             transaction.setCustomAnimations(
                 R.anim.slide_in_right,
                 R.anim.slide_out_left

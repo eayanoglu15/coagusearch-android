@@ -15,12 +15,15 @@ interface AppointmentApi {
     @Headers("RequireAuth:1")
     @GET("/appointment/getAvailableTimes")
     fun availableTimeSlotsForAppointment(): Call<WeeklyAvailabilityResponse>
+
     @Headers("RequireAuth:1")
     @POST("/appointment/save")
     fun saveAppointmentForUser(@Body saveAppointmentRequest: SaveAppointmentRequest): Call<ApiResponse>
+
     @Headers("RequireAuth:1")
     @GET("/appointment/getByUser")
     fun getMyAppointments(): Call<UserAppointmentResponse>
+
     @Headers("RequireAuth:1")
     @POST("/appointment/delete")
     fun deleteAppointmentForUser(@Body deleteAppointmentsForUserRequest: DeleteAppointmentsForUserRequest): Call<ApiResponse>

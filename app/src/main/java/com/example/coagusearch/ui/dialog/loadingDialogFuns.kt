@@ -3,10 +3,10 @@ package com.example.coagusearch.ui.dialog
 import android.app.Dialog
 import android.content.Context
 
-fun showProgressLoading(loading: Boolean,context: Context) {
+fun showProgressLoading(loading: Boolean, context: Context) {
     if (loading) {
         if (LoadingProgressSingleton.dialog == null) {
-            createLoadingDialog(true,context)
+            createLoadingDialog(true, context)
         }
         LoadingProgressSingleton.dialog?.show()
     } else {
@@ -14,7 +14,8 @@ fun showProgressLoading(loading: Boolean,context: Context) {
         LoadingProgressSingleton.dialog = null
     }
 }
-private fun createLoadingDialog(isProgressDialog: Boolean = false,context: Context) {
+
+private fun createLoadingDialog(isProgressDialog: Boolean = false, context: Context) {
     fun getDialog(): Dialog {
         return if (isProgressDialog) {
             LoadingProgressDialog(context).create()

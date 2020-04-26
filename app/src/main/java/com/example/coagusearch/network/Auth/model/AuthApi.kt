@@ -15,8 +15,10 @@ import retrofit2.http.POST
 interface AuthApi {
     @POST("/auth/sign-in")
     fun signIn(@Body loginModel: LoginRequest): Call<LoginResponse>
+
     @POST("/auth/sign-up")
     fun signUp(@Body signUpModel: SignUpRequest): Call<SignUpResponse>
+
     @POST("/auth/refresh")
     fun refresh(@Body authRefreshRequest: RefreshRequest): Call<RefreshResponse>
 }

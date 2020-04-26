@@ -21,41 +21,46 @@ import org.koin.android.ext.android.get
  * A simple [Fragment] subclass.
  */
 class doctorPatientsFragment : Fragment() {
-    var myPatientsList= mutableListOf<UserResponse>()
+    var myPatientsList = mutableListOf<UserResponse>()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        var view:View=inflater.inflate(R.layout.fragment_doctor_patients, container, false)
+        var view: View = inflater.inflate(R.layout.fragment_doctor_patients, container, false)
         val userRepository: UsersRepository = get()
-        userRepository.getMyPatients(this.context!!,this)
+        userRepository.getMyPatients(this.context!!, this)
         return view
     }
+
     override fun onResume() {
         super.onResume()
-        getActivity()!!.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
+        getActivity()!!.getWindow()
+            .setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        patientRecyclerView.layoutManager=
-            LinearLayoutManager(this.context!!, LinearLayoutManager.VERTICAL,false)
-        patientRecyclerView.adapter=PatientsFragmentPatientAdapter(myPatientsList,this.context!!)
+        patientRecyclerView.layoutManager =
+            LinearLayoutManager(this.context!!, LinearLayoutManager.VERTICAL, false)
+        patientRecyclerView.adapter = PatientsFragmentPatientAdapter(myPatientsList, this.context!!)
 
     }
 
-    fun setPatientList(patientList:List<UserResponse>){
-        myPatientsList=patientList.toMutableList()
-        patientRecyclerView.layoutManager=
-            LinearLayoutManager(this.context!!, LinearLayoutManager.VERTICAL,false)
-        patientRecyclerView.adapter=PatientsFragmentPatientAdapter(myPatientsList,this.context!!)
-        searchView.setOnQueryTextListener(object: SearchView.OnQueryTextListener{
+    fun setPatientList(patientList: List<UserResponse>) {
+        myPatientsList = patientList.toMutableList()
+        patientRecyclerView.layoutManager =
+            LinearLayoutManager(this.context!!, LinearLayoutManager.VERTICAL, false)
+        patientRecyclerView.adapter = PatientsFragmentPatientAdapter(myPatientsList, this.context!!)
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 return false
             }
+
             override fun onQueryTextChange(newText: String?): Boolean {
-                (patientRecyclerView.adapter as PatientsFragmentPatientAdapter).filter.filter(newText)
+                (patientRecyclerView.adapter as PatientsFragmentPatientAdapter).filter.filter(
+                    newText
+                )
                 return false
             }
         })

@@ -28,7 +28,7 @@ private const val ARG_PARAM2 = "param2"
  * create an instance of this fragment.
  */
 class doctorNotificationFragment : Fragment() {
-    val list= mutableListOf("a","b","c")
+    val list = mutableListOf("a", "b", "c")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -36,11 +36,12 @@ class doctorNotificationFragment : Fragment() {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_doctor_notification, container, false)
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        notificationRecyclerView.layoutManager=
-            LinearLayoutManager(this.context!!, LinearLayoutManager.VERTICAL,false)
-        notificationRecyclerView.adapter=DoctorNotificationsAdapter(list)
+        notificationRecyclerView.layoutManager =
+            LinearLayoutManager(this.context!!, LinearLayoutManager.VERTICAL, false)
+        notificationRecyclerView.adapter = DoctorNotificationsAdapter(list)
     }
 
 

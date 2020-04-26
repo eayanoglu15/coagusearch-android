@@ -16,24 +16,24 @@ import kotlinx.android.synthetic.main.segmentedcontrolbuttons.fibtembutton
 import kotlinx.android.synthetic.main.segmentedcontrolbuttons.intembutton
 
 class PastMicroTemData : AppCompatActivity() {
-    val list= mutableListOf("a","b","c")
-    val list1= mutableListOf("c")
-    val list2= mutableListOf("b","a")
+    val list = mutableListOf("a", "b", "c")
+    val list1 = mutableListOf("c")
+    val list2 = mutableListOf("b", "a")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_past_micro_tem_data)
-        past_uTemDataRecyclerView.layoutManager=
-            LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false)
-        past_uTemDataRecyclerView.adapter= utemResultAdapter(list)
-        ordersRecyclerView.layoutManager=
-            LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false)
-        ordersRecyclerView.adapter= PatientBloodOrderAdapter(list)
-        ordersRecyclerView.visibility=View.GONE
-        fibtembutton.setOnClickListener{
-            (past_uTemDataRecyclerView.adapter as utemResultAdapter).companies=list
+        past_uTemDataRecyclerView.layoutManager =
+            LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+        past_uTemDataRecyclerView.adapter = utemResultAdapter(list)
+        ordersRecyclerView.layoutManager =
+            LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+        ordersRecyclerView.adapter = PatientBloodOrderAdapter(list)
+        ordersRecyclerView.visibility = View.GONE
+        fibtembutton.setOnClickListener {
+            (past_uTemDataRecyclerView.adapter as utemResultAdapter).companies = list
             (past_uTemDataRecyclerView.adapter as utemResultAdapter).notifyDataSetChanged()
-            ordersRecyclerView.visibility=View.GONE
-            past_uTemDataRecyclerView.visibility=View.VISIBLE
+            ordersRecyclerView.visibility = View.GONE
+            past_uTemDataRecyclerView.visibility = View.VISIBLE
             fibtembutton.setBackgroundResource(R.drawable.segmentedbuttonchecked)
             fibtembutton.setTextColor(resources.getColor(R.color.white))
             extembutton.setBackgroundResource(R.drawable.segmentedbuttonback)
@@ -43,11 +43,11 @@ class PastMicroTemData : AppCompatActivity() {
             ordersbutton.setBackgroundResource(R.drawable.segmentedbuttonback)
             ordersbutton.setTextColor(resources.getColor(R.color.colorPrimary))
         }
-        extembutton.setOnClickListener{
-            (past_uTemDataRecyclerView.adapter as utemResultAdapter).companies=list1
+        extembutton.setOnClickListener {
+            (past_uTemDataRecyclerView.adapter as utemResultAdapter).companies = list1
             (past_uTemDataRecyclerView.adapter as utemResultAdapter).notifyDataSetChanged()
-            ordersRecyclerView.visibility=View.GONE
-            past_uTemDataRecyclerView.visibility=View.VISIBLE
+            ordersRecyclerView.visibility = View.GONE
+            past_uTemDataRecyclerView.visibility = View.VISIBLE
             fibtembutton.setBackgroundResource(R.drawable.segmentedbuttonback)
             fibtembutton.setTextColor(resources.getColor(R.color.colorPrimary))
             extembutton.setBackgroundResource(R.drawable.segmentedbuttonchecked)
@@ -57,24 +57,24 @@ class PastMicroTemData : AppCompatActivity() {
             ordersbutton.setBackgroundResource(R.drawable.segmentedbuttonback)
             ordersbutton.setTextColor(resources.getColor(R.color.colorPrimary))
         }
-        intembutton.setOnClickListener{
-            (past_uTemDataRecyclerView.adapter as utemResultAdapter).companies=list2
+        intembutton.setOnClickListener {
+            (past_uTemDataRecyclerView.adapter as utemResultAdapter).companies = list2
             (past_uTemDataRecyclerView.adapter as utemResultAdapter).notifyDataSetChanged()
             fibtembutton.setBackgroundResource(R.drawable.segmentedbuttonback)
             fibtembutton.setTextColor(resources.getColor(R.color.colorPrimary))
             extembutton.setBackgroundResource(R.drawable.segmentedbuttonback)
             extembutton.setTextColor(resources.getColor(R.color.colorPrimary))
             intembutton.setBackgroundResource(R.drawable.segmentedbuttonchecked)
-            ordersRecyclerView.visibility=View.GONE
-            past_uTemDataRecyclerView.visibility=View.VISIBLE
+            ordersRecyclerView.visibility = View.GONE
+            past_uTemDataRecyclerView.visibility = View.VISIBLE
             intembutton.setTextColor(resources.getColor(R.color.white))
             ordersbutton.setBackgroundResource(R.drawable.segmentedbuttonback)
             ordersbutton.setTextColor(resources.getColor(R.color.colorPrimary))
         }
 
         ordersbutton.setOnClickListener {
-            past_uTemDataRecyclerView.visibility=View.GONE
-            ordersRecyclerView.visibility=View.VISIBLE
+            past_uTemDataRecyclerView.visibility = View.GONE
+            ordersRecyclerView.visibility = View.VISIBLE
             extembutton.setBackgroundResource(R.drawable.segmentedbuttonback)
             extembutton.setTextColor(resources.getColor(R.color.colorPrimary))
             intembutton.setBackgroundResource(R.drawable.segmentedbuttonback)

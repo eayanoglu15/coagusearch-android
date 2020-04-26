@@ -14,11 +14,12 @@ import kotlinx.android.synthetic.main.activity_patient_past_data.*
 import kotlinx.android.synthetic.main.fragment_doctor_blood_bank.*
 
 class PatientPastDataActivity : AppCompatActivity() {
-    val list= mutableListOf("a","b")
+    val list = mutableListOf("a", "b")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_patient_past_data)
-        pastDataAnalysisRecyclerView.layoutManager= LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false)
-        pastDataAnalysisRecyclerView.adapter=PatientPastDataAdapter(list,this)
+        pastDataAnalysisRecyclerView.layoutManager =
+            LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+        pastDataAnalysisRecyclerView.adapter = PatientPastDataAdapter(list, this)
     }
 }

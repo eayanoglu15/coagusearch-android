@@ -8,4 +8,4 @@ data class PatientDetailResponse(
     val patientResponse: UserResponse,
     val userAppointmentResponse: UserAppointmentResponse,
     val userDataResponse: PatientDataResponse
-):Serializable
+) : Serializable
