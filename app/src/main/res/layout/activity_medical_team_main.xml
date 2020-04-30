@@ -23,7 +23,7 @@
             android:gravity="center"
             android:text="@string/welcome"
             android:textColor="@color/white"
-            android:textSize="24sp" />
+            android:textSize="@dimen/largetext" />
 
         <include
             android:id="@+id/managePatients"

@@ -29,7 +29,7 @@
             android:layout_weight="2"
             android:text="@string/producttype"
             android:textColor="#404d66"
-            android:textSize="14sp" />
+            android:textSize="@dimen/smalltext" />
 
         <RadioButton
             android:id="@+id/radioButton9"
@@ -39,7 +39,7 @@
             android:buttonTint="@color/blue"
             android:text="@string/frozen"
             android:textColor="#404d66"
-            android:textSize="12sp" />
+            android:textSize="@dimen/xsmalltext" />
 
         <RadioButton
             android:id="@+id/radioButton8"
@@ -49,7 +49,7 @@
             android:buttonTint="@color/blue"
             android:text="@string/plateret"
             android:textColor="#404d66"
-            android:textSize="12sp" />
+            android:textSize="@dimen/xsmalltext" />
     </RadioGroup>
 
     <RadioGroup
@@ -71,7 +71,7 @@
             android:gravity="center_vertical"
             android:text="Rh"
             android:textColor="#404d66"
-            android:textSize="14sp" />
+            android:textSize="@dimen/smalltext" />
 
         <RadioButton
             android:id="@+id/radioButton6"
@@ -113,7 +113,7 @@
             android:gravity="center_vertical"
             android:text="@string/bloodType"
             android:textColor="#404d66"
-            android:textSize="14sp" />
+            android:textSize="@dimen/smalltext" />
 
         <RadioButton
             android:id="@+id/radioButton"
@@ -124,7 +124,7 @@
             android:buttonTint="@color/blue"
             android:text="A"
             android:textColor="#404d66"
-            android:textSize="14sp" />
+            android:textSize="@dimen/smalltext" />
 
         <RadioButton
             android:id="@+id/radioButton2"
@@ -145,7 +145,7 @@
             android:buttonTint="@color/blue"
             android:text="AB"
             android:textColor="#404d66"
-            android:textSize="12sp" />
+            android:textSize="@dimen/xsmalltext" />
 
         <RadioButton
             android:id="@+id/radioButton4"
@@ -168,9 +168,9 @@
         android:gravity="center"
         android:paddingLeft="6dp"
         android:paddingRight="6dp"
-        android:text="Add Note"
+        android:text="@string/addnote"
         android:textColor="@color/white"
-        android:textSize="14sp"
+        android:textSize="@dimen/smalltext"
         app:layout_constraintBottom_toBottomOf="@+id/editText"
         app:layout_constraintEnd_toEndOf="@+id/blood_radiogroup2"
         app:layout_constraintTop_toTopOf="@+id/editText" />
@@ -182,14 +182,14 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
-        android:autoSizeMaxTextSize="14sp"
+        android:autoSizeMaxTextSize="@dimen/smalltext"
         android:autoSizeMinTextSize="8sp"
         android:autoSizeTextType="uniform"
         android:ems="10"
         android:gravity="center"
         android:hint="Enter Unit"
         android:inputType="numberDecimal"
-        android:textSize="14sp"
+        android:textSize="@dimen/smalltext"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/blood_radiogroup2"
         app:layout_constraintTop_toBottomOf="@+id/blood_radiogroup2" />

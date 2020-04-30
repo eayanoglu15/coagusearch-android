@@ -18,9 +18,9 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="16dp"
-            android:text="Notifications"
+            android:text="@string/notification"
             android:textColor="@color/white"
-            android:textSize="24sp" />
+            android:textSize="@dimen/largetext" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/notificationRecyclerView"

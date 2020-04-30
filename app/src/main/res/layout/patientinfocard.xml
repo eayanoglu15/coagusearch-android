@@ -27,7 +27,7 @@
         android:gravity="center"
         android:text="1997"
         android:textColor="@color/white"
-        android:textSize="14sp"
+        android:textSize="@dimen/smalltext"
         app:layout_constraintBottom_toBottomOf="@+id/imageView14"
         app:layout_constraintStart_toEndOf="@+id/imageView14"
         app:layout_constraintTop_toTopOf="@+id/imageView14" />
@@ -51,7 +51,7 @@
         android:gravity="center"
         android:text="A Rh -"
         android:textColor="@color/white"
-        android:textSize="14sp"
+        android:textSize="@dimen/smalltext"
         app:layout_constraintBottom_toBottomOf="@+id/imageView15"
         app:layout_constraintStart_toEndOf="@+id/imageView15"
         app:layout_constraintTop_toTopOf="@+id/imageView15" />
@@ -75,7 +75,7 @@
         android:gravity="center"
         android:text="175 (cm)"
         android:textColor="@color/white"
-        android:textSize="14sp"
+        android:textSize="@dimen/smalltext"
         app:layout_constraintBottom_toBottomOf="@+id/imageView16"
         app:layout_constraintStart_toEndOf="@+id/imageView16"
         app:layout_constraintTop_toTopOf="@+id/imageView16" />
@@ -97,7 +97,7 @@
         android:gravity="center"
         android:text="75 (kg)"
         android:textColor="@color/white"
-        android:textSize="14sp"
+        android:textSize="@dimen/smalltext"
         app:layout_constraintBottom_toBottomOf="@+id/imageView17"
         app:layout_constraintStart_toEndOf="@+id/imageView17"
         app:layout_constraintTop_toTopOf="@+id/imageView17" />

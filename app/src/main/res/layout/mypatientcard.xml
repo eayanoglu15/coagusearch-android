@@ -34,7 +34,7 @@
         android:layout_weight="1"
         android:text="@string/analysisCompleted"
         android:textColor="@color/white"
-        android:textSize="18sp"
+        android:textSize="@dimen/largetext"
         app:layout_constraintBottom_toBottomOf="@+id/ticketimage"
         app:layout_constraintEnd_toStartOf="@+id/ticketimage"
         app:layout_constraintHorizontal_bias="0.0"

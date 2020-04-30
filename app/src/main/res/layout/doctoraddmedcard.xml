@@ -37,7 +37,7 @@
             android:layout_marginLeft="5dp"
             android:layout_weight="1"
             android:text="@string/medicine"
-            android:textSize="14sp" />
+            android:textSize="@dimen/smalltext" />
 
         <TextView
             android:id="@+id/medName"
@@ -50,7 +50,7 @@
             android:layout_weight="1"
             android:text="Parol"
             android:textColor="@color/login_button"
-            android:textSize="14sp" />
+            android:textSize="@dimen/smalltext" />
     </LinearLayout>
 
     <LinearLayout
@@ -76,7 +76,7 @@
             android:maxLines="3"
             android:padding="8dp"
             android:scrollbarSize="8dp"
-            android:textSize="14sp" />
+            android:textSize="@dimen/smalltext" />
     </LinearLayout>
 
 
