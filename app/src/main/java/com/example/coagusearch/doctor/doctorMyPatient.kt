@@ -41,7 +41,8 @@ class doctorMyPatient : AppCompatActivity() {
     fun setData(patientDetailResponse: PatientDetailResponse) {
         patientName.text = patientDetailResponse.patientResponse.getFullName().capitalize()
         //setPatientInfoCard
-        var birthYear: String = patientDetailResponse.patientResponse.birthYear.toString()
+        var birthYear: String = patientDetailResponse.patientResponse.birthYear.toString() +
+                patientDetailResponse.patientResponse.birthMonth + patientDetailResponse.patientResponse.birthDay.toString()
         patientinfocard.birthYear.text = if (birthYear.equals("null")) "-" else birthYear
         var height: String = patientDetailResponse.patientResponse.height.toString()
         patientinfocard.patientheight.text =

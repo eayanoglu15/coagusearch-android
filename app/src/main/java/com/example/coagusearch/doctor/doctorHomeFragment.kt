@@ -67,7 +67,7 @@ class doctorHomeFragment : Fragment() {
         (appointmentsRecyclerView.adapter as HomeFragmentAppointmentAdapter).todaysAppointmentsList =
             appointmentList
         (appointmentsRecyclerView.adapter as HomeFragmentAppointmentAdapter).notifyDataSetChanged()
-        emergencyPatientNumber.text = "Total Patients:" + emergencyPatientList.size.toString()
+        emergencyPatientNumber.text = "Total: " + emergencyPatientList.size.toString()
     }
 
 }

@@ -41,7 +41,7 @@
                 android:layout_marginTop="8dp"
                 android:fontFamily="sans-serif-medium"
                 android:gravity="center"
-                android:text="Decide Treatment"
+                android:text="@string/decidetreatment"
                 android:textColor="@color/white"
                 android:textSize="@dimen/largetext"
                 app:layout_constraintEnd_toEndOf="parent"

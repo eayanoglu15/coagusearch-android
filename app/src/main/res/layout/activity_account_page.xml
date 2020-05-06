@@ -9,16 +9,20 @@
     android:id="@+id/mainview"
     android:clickable="true"
     android:focusable="true"
+
     android:focusableInTouchMode="true"
     android:layout_width="fill_parent">
 
     <LinearLayout
+
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:orientation="vertical"
+
         tools:context=".patient.accountPage">
 
         <LinearLayout
+
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -53,7 +57,7 @@
             android:layout_marginBottom="15dp"
             android:background="@color/white">
 
-            <RadioGroup
+            <LinearLayout
                 android:id="@+id/blood_radiogroup3"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -62,13 +66,13 @@
                 android:orientation="horizontal"
                 app:layout_constraintBottom_toTopOf="@+id/saveInfoChanges"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/blood_radiogroup2"
-                app:layout_constraintTop_toBottomOf="@+id/blood_radiogroup2"
+                app:layout_constraintStart_toStartOf="@+id/textView11"
+                app:layout_constraintTop_toBottomOf="@+id/textView11"
                 app:layout_constraintVertical_bias="0.0">
 
                 <TextView
                     android:id="@+id/textView19"
-                    android:layout_width="120dp"
+                    android:layout_width="60dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_weight="2"
@@ -76,75 +80,89 @@
                     android:textColor="@color/colorPrimaryDark"
                     android:textSize="@dimen/largetext" />
 
-                <RadioButton
-                    android:id="@+id/radioButton7"
-                    android:layout_width="120dp"
-                    android:layout_height="wrap_content"
+                <Button
+                    android:id="@+id/maleButton"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
                     android:layout_weight="2"
+                    android:background="@drawable/selectbuttonbackground"
                     android:buttonTint="@color/colorPrimaryDark"
-                    android:text="@string/male" />
+                    android:text="@string/male"
+                    android:layout_marginRight="30dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    />
 
-                <RadioButton
-                    android:id="@+id/radioButton8"
-                    android:layout_width="120dp"
-                    android:layout_height="wrap_content"
+                <Button
+                    android:id="@+id/femaleButton"
+                    android:layout_width="30dp"
+                    android:layout_height="25dp"
                     android:layout_weight="2"
+                    android:background="@drawable/selectbuttonbackground"
                     android:buttonTint="@color/colorPrimaryDark"
-                    android:text="@string/female" />
-            </RadioGroup>
+                    android:text="@string/female"
+                    android:layout_marginRight="40dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    />
+            </LinearLayout>
 
-            <RadioGroup
+            <LinearLayout
                 android:id="@+id/blood_radiogroup2"
-                android:layout_width="0dp"
+                android:layout_width="360dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:orientation="horizontal"
                 app:layout_constraintBottom_toTopOf="@+id/saveInfoChanges"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/blood_radiogroup"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/blood_radiogroup"
                 app:layout_constraintVertical_bias="0.0">
 
                 <TextView
                     android:id="@+id/textView15"
-                    android:layout_width="120dp"
+                    android:layout_width="60dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_weight="2"
-                    android:text=" Rh               "
+                    android:text="Rh"
                     android:textColor="@color/colorPrimaryDark"
                     android:textSize="@dimen/largetext" />
 
-                <RadioButton
-                    android:id="@+id/radioButton6"
-                    android:layout_width="120dp"
-                    android:layout_height="wrap_content"
+                <Button
+                    android:id="@+id/positiveButton"
+                    android:layout_width="30dp"
+                    android:layout_height="25dp"
                     android:layout_weight="2"
+                    android:background="@drawable/selectbuttonbackground"
                     android:buttonTint="@color/colorPrimaryDark"
                     android:text="@string/positive"
-                    android:textColor="@color/colorPrimaryDark" />
+                    android:layout_marginRight="30dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    />
 
-                <RadioButton
-                    android:id="@+id/radioButton5"
-                    android:layout_width="120dp"
-                    android:layout_height="wrap_content"
+                <Button
+                    android:id="@+id/negativeButton"
+                    android:layout_width="30dp"
+                    android:layout_height="25dp"
                     android:layout_weight="2"
+                    android:background="@drawable/selectbuttonbackground"
                     android:buttonTint="@color/colorPrimaryDark"
                     android:text="@string/negative"
+                    android:layout_marginRight="30dp"
                     android:textColor="@color/colorPrimaryDark" />
-            </RadioGroup>
+
+
+            </LinearLayout>
 
             <RadioGroup
                 android:id="@+id/blood_radiogroup"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-
                 android:layout_marginTop="16dp"
                 android:orientation="horizontal"
                 android:weightSum="6"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/textView11"
-                app:layout_constraintTop_toBottomOf="@+id/textView11">
+                app:layout_constraintStart_toStartOf="@+id/textInputLayout8"
+                app:layout_constraintTop_toBottomOf="@+id/textInputLayout8">
 
                 <TextView
                     android:id="@+id/textView14"
@@ -156,37 +174,58 @@
                     android:textColor="@color/colorPrimaryDark"
                     android:textSize="@dimen/largetext" />
 
-                <RadioButton
-                    android:id="@+id/radioButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                <Button
+                    android:id="@+id/bloodAButton"
+                    android:layout_width="35dp"
+                    android:layout_height="25dp"
+                    android:layout_marginRight="10dp"
                     android:layout_weight="1"
+                    android:background="@drawable/selectbuttonbackground"
                     android:buttonTint="@color/colorPrimaryDark"
-                    android:text="A" />
+                    android:clickable="true"
+                    android:text="A"
+                    android:textColor="@color/colorPrimaryDark" />
 
-                <RadioButton
-                    android:id="@+id/radioButton2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                <Button
+                    android:id="@+id/bloodBButton"
+                    android:layout_width="35dp"
+                    android:layout_height="25dp"
                     android:layout_weight="1"
+                    android:background="@drawable/selectbuttonbackground"
                     android:buttonTint="@color/colorPrimaryDark"
-                    android:text="B" />
+                    android:text="B"
+                    android:clickable="true"
+                    android:layout_marginRight="10dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    />
 
-                <RadioButton
-                    android:id="@+id/radioButton3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                <Button
+                    android:id="@+id/bloodABButton"
+                    android:layout_width="35dp"
+                    android:layout_height="25dp"
                     android:layout_weight="1"
+                    android:background="@drawable/selectbuttonbackground"
                     android:buttonTint="@color/colorPrimaryDark"
-                    android:text="AB" />
+                    android:text="AB"
+                    android:clickable="true"
+                    android:layout_marginRight="10dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    />
 
-                <RadioButton
-                    android:id="@+id/radioButton4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                <Button
+                    android:id="@+id/blood0Button"
+                    android:layout_width="35dp"
+                    android:layout_height="25dp"
                     android:layout_weight="1"
+                    android:background="@drawable/selectbuttonbackground"
                     android:buttonTint="@color/colorPrimaryDark"
-                    android:text="0" />
+                    android:text="0"
+                    android:clickable="true"
+                    android:layout_marginRight="10dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    />
+
+
             </RadioGroup>
 
             <TextView
@@ -200,8 +239,8 @@
                 android:text="@string/birthdate"
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="@dimen/largetext"
-                app:layout_constraintStart_toStartOf="@+id/textInputLayout8"
-                app:layout_constraintTop_toBottomOf="@+id/textInputLayout8" />
+                app:layout_constraintStart_toStartOf="@+id/textInputLayout5"
+                app:layout_constraintTop_toBottomOf="@+id/textInputLayout5" />
 
             <TextView
                 android:id="@+id/textView12"
@@ -250,7 +289,7 @@
                 android:theme="@style/TextInputLayout"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textInputLayout5">
+                app:layout_constraintTop_toBottomOf="@+id/blood_radiogroup3">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/accountsurheight"
@@ -302,16 +341,16 @@
 
             <Button
                 android:id="@+id/saveInfoChanges"
-                android:layout_width="0dp"
+                android:layout_width="340dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
-                android:layout_marginBottom="8dp"
-                android:background="@color/login_button"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/loginbutton_back"
                 android:text="@string/save"
+                android:textColor="@color/white"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 

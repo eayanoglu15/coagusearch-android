@@ -47,22 +47,34 @@ class doctorProfile : Fragment() {
         profileFragment_name.text = userResponse!!.name + " " + userResponse!!.surname
         val birthdate = getString(R.string.birthdate)
         if (userResponse!!.birthDay != null && userResponse!!.birthMonth != null && userResponse!!.birthYear != null)
-            profileFragment_Age.text =
+            profileFragment_Age.text = "Birthdate: " +
                 userResponse!!.birthDay.toString() + "/" + userResponse!!.birthMonth.toString() + "/" + userResponse!!.birthYear.toString()
         else
             profileFragment_Age.text = "-/-/-"
         val height = getString(R.string.height)
         val weight = getString(R.string.weight)
         if (userResponse!!.height != null) {
-            profileFragment_height.text = height + ":" + userResponse!!.height.toString()
+            profileFragment_height.text = "Height: " + userResponse!!.height.toString() + " cm"
         } else {
-            profileFragment_height.text = height + ":-"
+            profileFragment_height.text = "Height: -"
         }
         if (userResponse!!.weight != null) {
-            profileFragment_weight.text = weight + ":" + userResponse!!.weight.toString()
+            profileFragment_weight.text = "Weight: " + userResponse!!.weight.toString() + " kg"
         } else {
-            profileFragment_weight.text = weight + ":-"
+            profileFragment_weight.text = "Weight: -"
         }
+
+        var rhStatus = "null"
+
+        if(userResponse!!.bloodType != null && userResponse!!.rhType != null){
+            if(userResponse!!.rhType == "Positive") rhStatus = "+"
+            if(userResponse!!.rhType == "Negative") rhStatus = "-"
+            profileFragment_doc_blood.text = "Blood Type: " + userResponse!!.bloodType + " Rh" + rhStatus
+        } else{
+            profileFragment_doc_blood.text = "Blood Type" + ": -"
+        }
+
+
         switchToPatient.setOnClickListener {
             val intent = Intent(getActivity(), main::class.java)
             startActivity(intent)

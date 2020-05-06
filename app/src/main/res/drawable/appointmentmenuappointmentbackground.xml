@@ -20,7 +20,7 @@
         android:left="@dimen/multicolorCardLeftPadding"
         android:bottom="2dp">
         <shape android:shape="rectangle">
-            <solid android:color="@color/blue" />
+            <solid android:color="@color/colorPrimary" />
             <corners android:radius="@dimen/cornerRad" />
         </shape>
     </item>

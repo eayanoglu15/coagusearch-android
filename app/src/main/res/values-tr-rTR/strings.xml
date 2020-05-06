@@ -85,6 +85,7 @@
     <string name="weightkg">(kg)</string>
 
 
+
     <string name="notificationfromdoctor">Doktordan Yeni Bildirim</string>
     <string name="managePatients">Hastaları Düzenle</string>
     <string name="notifydoctor">Doktora bildir</string>
@@ -121,5 +122,7 @@
     <string name="setready">Hazırla</string>
     <string name="diagnosisname">Teşhis Adı</string>
     <string name="checktreatmentstatus">Tedavi Durumunu Kontrol Et</string>
+    <string name="enterunit">Miktar Giriniz</string>
+    <string name="unitamount">Ünite Miktarı</string>
 
 </resources>

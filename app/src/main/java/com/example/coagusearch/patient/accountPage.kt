@@ -45,8 +45,24 @@ class accountPage : AppCompatActivity(),
         rhType = userResponse!!.rhType
         gender = userResponse!!.gender
         putCurrentValues()
+        getAndSaveValues()
         saveInfoChanges.setOnClickListener {
             getAndSaveValues()
+            val userRepository: UsersRepository = get()
+            userRepository.saveBodyInfo(
+                UserBodyInfoSaveRequest(
+                    name,
+                    surname,
+                    birthDay,
+                    birthMonth,
+                    birthYear,
+                    height,
+                    weight,
+                    bloodType,
+                    rhType,
+                    gender
+                ), this
+            )
         }
         backArrow.setOnClickListener {
             this.onBackPressed()
@@ -77,18 +93,27 @@ class accountPage : AppCompatActivity(),
         if (height != null) accountsurheight.setText(height.toString())
         if (birthDay != null && birthMonth != null && birthYear != null) textView12.setText(birthDay.toString() + "/" + birthMonth.toString() + "/" + birthYear.toString())
         when (bloodType) {
-            "A" -> blood_radiogroup.check(R.id.radioButton)
-            "B" -> blood_radiogroup.check(R.id.radioButton2)
-            "AB" -> blood_radiogroup.check(R.id.radioButton3)
-            "O" -> blood_radiogroup.check(R.id.radioButton4)
+            "A" -> {bloodAButton.setBackgroundResource(R.drawable.selectedbuttonbackground)
+                bloodAButton.setTextColor(resources.getColor(R.color.white))}
+            "B" -> {bloodBButton.setBackgroundResource(R.drawable.selectedbuttonbackground)
+                bloodBButton.setTextColor(resources.getColor(R.color.white))}
+            "AB" -> {bloodABButton.setBackgroundResource(R.drawable.selectedbuttonbackground)
+                bloodABButton.setTextColor(resources.getColor(R.color.white))}
+            "O" -> {blood0Button.setBackgroundResource(R.drawable.selectedbuttonbackground)
+                blood0Button.setTextColor(resources.getColor(R.color.white))}
         }
         when (rhType) {
-            "Positive" -> blood_radiogroup2.check(R.id.radioButton6)
-            "Negative" -> blood_radiogroup2.check(R.id.radioButton5)
+            "Positive" -> {positiveButton.setBackgroundResource(R.drawable.selectedbuttonbackground)
+                positiveButton.setTextColor(resources.getColor(R.color.white))}
+
+            "Negative" -> {negativeButton.setBackgroundResource(R.drawable.selectedbuttonbackground)
+                negativeButton.setTextColor(resources.getColor(R.color.white))}
         }
         when (gender) {
-            "Male" -> blood_radiogroup3.check(R.id.radioButton7)
-            "Female" -> blood_radiogroup3.check(R.id.radioButton8)
+            "Male" -> {maleButton.setBackgroundResource(R.drawable.selectedbuttonbackground)
+                maleButton.setTextColor(resources.getColor(R.color.white))}
+            "Female" -> {femaleButton.setBackgroundResource(R.drawable.selectedbuttonbackground)
+                femaleButton.setTextColor(resources.getColor(R.color.white))}
         }
         textView12.setOnClickListener {
             val bottomSheet =
@@ -106,21 +131,87 @@ class accountPage : AppCompatActivity(),
             if (accountsurweight.text.toString() == "" || accountsurweight.text.toString() == null) null else accountsurweight.text.toString().toDouble()
         height =
             if (accountsurheight.text.toString() == "" || accountsurheight.text.toString() == null) null else accountsurheight.text.toString().toDouble()
-        when (blood_radiogroup.checkedRadioButtonId) {
-            R.id.radioButton -> bloodType = "A"
-            R.id.radioButton2 -> bloodType = "B"
-            R.id.radioButton3 -> bloodType = "AB"
-            R.id.radioButton4 -> bloodType = "O"
+
+        bloodAButton.setOnClickListener(){
+            bloodType = "A"
+            bloodAButton.setBackgroundResource(R.drawable.selectedbuttonbackground)
+            bloodAButton.setTextColor(resources.getColor(R.color.white))
+            bloodBButton.setBackgroundResource(R.drawable.selectbuttonbackground)
+            bloodBButton.setTextColor(resources.getColor(R.color.colorPrimaryDark))
+            bloodABButton.setBackgroundResource(R.drawable.selectbuttonbackground)
+            bloodABButton.setTextColor(resources.getColor(R.color.colorPrimaryDark))
+            blood0Button.setBackgroundResource(R.drawable.selectbuttonbackground)
+            blood0Button.setTextColor(resources.getColor(R.color.colorPrimaryDark))
         }
-        when (blood_radiogroup2.checkedRadioButtonId) {
-            R.id.radioButton6 -> rhType = "Positive"
-            R.id.radioButton5 -> rhType = "Negative"
+
+        bloodBButton.setOnClickListener(){
+            bloodType = "B"
+            bloodBButton.setBackgroundResource(R.drawable.selectedbuttonbackground)
+            bloodBButton.setTextColor(resources.getColor(R.color.white))
+            bloodAButton.setBackgroundResource(R.drawable.selectbuttonbackground)
+            bloodAButton.setTextColor(resources.getColor(R.color.colorPrimaryDark))
+            bloodABButton.setBackgroundResource(R.drawable.selectbuttonbackground)
+            bloodABButton.setTextColor(resources.getColor(R.color.colorPrimaryDark))
+            blood0Button.setBackgroundResource(R.drawable.selectbuttonbackground)
+            blood0Button.setTextColor(resources.getColor(R.color.colorPrimaryDark))
         }
-        when (blood_radiogroup3.checkedRadioButtonId) {
-            R.id.radioButton7 -> gender = "Male"
-            R.id.radioButton8 -> gender = "Female"
+
+        bloodABButton.setOnClickListener(){
+            bloodType = "AB"
+            bloodABButton.setBackgroundResource(R.drawable.selectedbuttonbackground)
+            bloodABButton.setTextColor(resources.getColor(R.color.white))
+            bloodBButton.setBackgroundResource(R.drawable.selectbuttonbackground)
+            bloodBButton.setTextColor(resources.getColor(R.color.colorPrimaryDark))
+            bloodAButton.setBackgroundResource(R.drawable.selectbuttonbackground)
+            bloodAButton.setTextColor(resources.getColor(R.color.colorPrimaryDark))
+            blood0Button.setBackgroundResource(R.drawable.selectbuttonbackground)
+            blood0Button.setTextColor(resources.getColor(R.color.colorPrimaryDark))
         }
-        val userRepository: UsersRepository = get()
+
+        blood0Button.setOnClickListener(){
+            bloodType = "0"
+            blood0Button.setBackgroundResource(R.drawable.selectedbuttonbackground)
+            blood0Button.setTextColor(resources.getColor(R.color.white))
+            bloodBButton.setBackgroundResource(R.drawable.selectbuttonbackground)
+            bloodBButton.setTextColor(resources.getColor(R.color.colorPrimaryDark))
+            bloodABButton.setBackgroundResource(R.drawable.selectbuttonbackground)
+            bloodABButton.setTextColor(resources.getColor(R.color.colorPrimaryDark))
+            bloodAButton.setBackgroundResource(R.drawable.selectbuttonbackground)
+            bloodAButton.setTextColor(resources.getColor(R.color.colorPrimaryDark))
+        }
+
+        positiveButton.setOnClickListener(){
+            rhType = "Positive"
+            positiveButton.setBackgroundResource(R.drawable.selectedbuttonbackground)
+            positiveButton.setTextColor(resources.getColor(R.color.white))
+            negativeButton.setBackgroundResource(R.drawable.selectbuttonbackground)
+            negativeButton.setTextColor(resources.getColor(R.color.colorPrimaryDark))
+        }
+        negativeButton.setOnClickListener(){
+            rhType = "Negative"
+            negativeButton.setBackgroundResource(R.drawable.selectedbuttonbackground)
+            negativeButton.setTextColor(resources.getColor(R.color.white))
+            positiveButton.setBackgroundResource(R.drawable.selectbuttonbackground)
+            positiveButton.setTextColor(resources.getColor(R.color.colorPrimaryDark))
+        }
+
+        maleButton.setOnClickListener(){
+            gender = "Male"
+            maleButton.setBackgroundResource(R.drawable.selectedbuttonbackground)
+            maleButton.setTextColor(resources.getColor(R.color.white))
+            femaleButton.setBackgroundResource(R.drawable.selectbuttonbackground)
+            femaleButton.setTextColor(resources.getColor(R.color.colorPrimaryDark))
+        }
+
+        femaleButton.setOnClickListener(){
+            gender = "Female"
+            femaleButton.setBackgroundResource(R.drawable.selectedbuttonbackground)
+            femaleButton.setTextColor(resources.getColor(R.color.white))
+            maleButton.setBackgroundResource(R.drawable.selectbuttonbackground)
+            maleButton.setTextColor(resources.getColor(R.color.colorPrimaryDark))
+        }
+
+    /*    val userRepository: UsersRepository = get()
         userRepository.saveBodyInfo(
             UserBodyInfoSaveRequest(
                 name,
@@ -134,7 +225,7 @@ class accountPage : AppCompatActivity(),
                 rhType,
                 gender
             ), this
-        )
+        )*/
     }
 
     fun saved() {

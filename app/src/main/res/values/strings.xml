@@ -88,8 +88,8 @@
     <string name="yes">Yes</string>
     <string name="no">No</string>
     <string name="deletesure">Are you sure?</string>
-    <string name="heightvcm">(cm)</string>
-    <string name="weightkg">(kg)</string>
+    <string name="heightvcm"> cm</string>
+    <string name="weightkg"> kg</string>
 
 
 
@@ -121,9 +121,8 @@
     <string name="setready">Set Ready</string>
     <string name="diagnosisname">Diagnosis Name</string>
     <string name="checktreatmentstatus">Check Treatment Status</string>
-
-
-
+    <string name="unitamount">Unit Amount</string>
+    <string name="enterunit">Enter Unit</string>
 
 
 

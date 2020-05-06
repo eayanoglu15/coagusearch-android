@@ -50,7 +50,7 @@
                 android:id="@+id/profileFragment_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="4dp"
+                android:layout_marginLeft="10dp"
                 android:text="Ege Melis Ayanoglu"
                 android:textColor="@color/white"
                 android:textSize="@dimen/largetext" />
@@ -58,25 +58,39 @@
             <TextView
                 android:id="@+id/profileFragment_Age"
                 android:layout_width="match_parent"
+                android:layout_marginTop="2dp"
                 android:layout_height="wrap_content"
-                android:layout_margin="4dp"
+                android:layout_marginLeft="10dp"
                 android:text="Age:22"
                 android:textColor="@color/white" />
 
             <TextView
                 android:id="@+id/profileFragment_height"
+                android:layout_marginTop="6dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="4dp"
+                android:layout_marginLeft="10dp"
                 android:text="Height:165cm"
                 android:textColor="@color/white" />
 
             <TextView
                 android:id="@+id/profileFragment_weight"
                 android:layout_width="wrap_content"
+                android:layout_marginTop="5dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="4dp"
+                android:layout_marginLeft="10dp"
                 android:text="Weight:60kg"
+                android:textColor="@color/white"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/profileFragment_doc_blood"
+                android:layout_marginTop="8dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="Blood:60kg"
                 android:textColor="@color/white"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />

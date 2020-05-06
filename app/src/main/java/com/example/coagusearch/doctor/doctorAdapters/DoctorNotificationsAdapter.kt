@@ -20,10 +20,10 @@ class DoctorNotificationsAdapter(val companies: MutableList<String>) :
                 .inflate(R.layout.emergencyboxcard, parent, false)
         } else if (viewType == 2) {
             v = LayoutInflater.from(parent.context)
-                .inflate(R.layout.notifmedteamcard, parent, false)
+                .inflate(R.layout.analysisnotifcard, parent, false)
         } else {
             v = LayoutInflater.from(parent.context)
-                .inflate(R.layout.analysisnotifcard, parent, false)
+                .inflate(R.layout.notifmedteamcard, parent, false)
         }
 
         return NotificationCardViewHolder(v)
