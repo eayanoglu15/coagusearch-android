@@ -52,7 +52,7 @@ class AppointmentRepository(
                         val builder = AlertDialog.Builder(context, R.style.AlertDialogStyle)
                         builder.setTitle("Hata")
                         builder.setMessage(errorResponse)
-                        builder.setPositiveButton("OK") { dialog, which ->
+                        builder.setPositiveButton("OK") { _,_ ->
                             (context as NewAppointment).onBackPressed()
                         }
                         val dialog: AlertDialog = builder.create()

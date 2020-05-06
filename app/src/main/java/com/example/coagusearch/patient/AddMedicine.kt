@@ -159,13 +159,7 @@ class AddMedicine : AppCompatActivity() {
                 )
             }
         }
-        addMedicinePageGoBack.setOnClickListener {
-            finish()
-            overridePendingTransition(
-                R.anim.slide_in_left,
-                R.anim.slide_out_right
-            )
-        }
+
         val bundle: Bundle? = intent.extras
         var editOrNew = bundle!!.getString("type")
         if (editOrNew.equals("edit")) {

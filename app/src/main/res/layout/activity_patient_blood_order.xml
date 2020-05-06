@@ -7,17 +7,6 @@
     android:background="@drawable/background_login"
     tools:context=".doctor.doctorMyPatient">
 
-    <ImageButton
-        android:id="@+id/backButton"
-        android:layout_width="40dp"
-        android:layout_height="30dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:background="@android:color/transparent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/path" />
-
     <TextView
         android:id="@+id/patientName"
         android:layout_width="wrap_content"
@@ -27,10 +16,9 @@
         android:text="Ugur ULAS"
         android:textColor="@color/white"
         android:textSize="@dimen/largetext"
-        app:layout_constraintBottom_toBottomOf="@+id/backButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/backButton" />
+        tools:layout_editor_absoluteY="16dp" />
 
     <include
         android:id="@+id/bloodOrderCard"
@@ -45,7 +33,7 @@
         app:layout_constraintTop_toBottomOf="@+id/patientName" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/makeorderbutton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -71,7 +59,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button" />
+        app:layout_constraintTop_toBottomOf="@+id/makeorderbutton" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

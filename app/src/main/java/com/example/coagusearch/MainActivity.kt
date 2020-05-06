@@ -38,7 +38,7 @@ class MainActivity : AppCompatActivity() {
             authRepository.signIn(TC!!, passwords!!, this)
         }
         LoginButton.setOnClickListener {
-            authRepository.signIn("14051222123", "123456", this)
+            authRepository.signIn("98776556776", "123456", this)
         }
     }
 
@@ -50,7 +50,7 @@ class MainActivity : AppCompatActivity() {
 
         if (rememberMeSwitch.isChecked) {
             editor!!.putString("ischecked", "true");
-            editor!!.putString("TC", "14051222123");
+            editor!!.putString("TC", "98776556776");
             editor!!.putString("passowrd", "123456");
             editor!!.commit();
         } else {

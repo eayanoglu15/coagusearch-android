@@ -10,8 +10,9 @@ import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.example.coagusearch.R
+import com.example.coagusearch.network.PatientData.response.UserBloodTestDataCategoryResponse
 
-class utemResultAdapter(var companies: MutableList<String>) :
+class utemResultAdapter(var companies: MutableList<UserBloodTestDataCategoryResponse>) :
     RecyclerView.Adapter<utemResultAdapter.ResultCardViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ResultCardViewHolder {
         var v = LayoutInflater.from(parent.context).inflate(R.layout.utem_result_bar, parent, false)
@@ -22,113 +23,47 @@ class utemResultAdapter(var companies: MutableList<String>) :
         return companies.size
     }
 
-    fun add(item: String, position: Int) {
-        companies.add(position, item)
-        notifyItemInserted(position)
-    }
-
-    fun remove(item: String) {
-        val position = companies.indexOf(item)
-        companies.removeAt(position)
-        notifyItemRemoved(position)
-    }
-
     override fun onBindViewHolder(holder: ResultCardViewHolder, position: Int) {
         val company = companies[position]
-        if (company.equals("a")) {
-            holder.valueImage.setImageResource(R.drawable.normalvaluecopy)
-            var param1 = LinearLayout.LayoutParams(
-                0,
-                LinearLayout.LayoutParams.MATCH_PARENT,
-                1f
-            )
-            var param2 = LinearLayout.LayoutParams(
-                0,
-                LinearLayout.LayoutParams.MATCH_PARENT,
-                2f
-            )
-            var param3 = LinearLayout.LayoutParams(
-                0,
-                LinearLayout.LayoutParams.MATCH_PARENT,
-                3F
-            )
-            val lparams =
-                holder.thumpImage.getLayoutParams() as ConstraintLayout.LayoutParams
-
-            lparams.horizontalBias = 0.25f
-            holder.thumpImage.setLayoutParams(lparams)
-            holder.barStart.layoutParams = param1
-            holder.barEnd.layoutParams = param3
-            holder.blueRegion.layoutParams = param2
-            holder.normalRangeStart.layoutParams = param1
-            holder.normalRangeEnd.layoutParams = param3
-            holder.dummy.layoutParams = param2
-        } else if (company.equals("b")) {
+        if (company.ishigh()){
             holder.valueImage.setImageResource(R.drawable.highvaluecopy)
-            var param1 = LinearLayout.LayoutParams(
-                0,
-                LinearLayout.LayoutParams.MATCH_PARENT,
-                1f
-            )
-            var param2 = LinearLayout.LayoutParams(
-                0,
-                LinearLayout.LayoutParams.MATCH_PARENT,
-                2F
-            )
-            var param3 = LinearLayout.LayoutParams(
-                0,
-                LinearLayout.LayoutParams.MATCH_PARENT,
-                4F
-            )
-            val lparams =
-                holder.thumpImage.getLayoutParams() as ConstraintLayout.LayoutParams
-
-            lparams.horizontalBias = 0.75f
-            holder.thumpImage.setLayoutParams(lparams)
             holder.thumpImage.setImageResource(R.drawable.thumpred)
-            holder.barStart.layoutParams = param1
-            holder.barEnd.layoutParams = param3
-            holder.blueRegion.layoutParams = param2
-            holder.normalRangeStart.layoutParams = param1
-            holder.normalRangeEnd.layoutParams = param3
-            holder.dummy.layoutParams = param2
-
-        } else {
-            holder.valueImage.setImageResource(R.drawable.normalvaluecopy)
-            var param1 = LinearLayout.LayoutParams(
-                0,
-                LinearLayout.LayoutParams.MATCH_PARENT,
-                1f
-            )
-            var param2 = LinearLayout.LayoutParams(
-                0,
-                LinearLayout.LayoutParams.MATCH_PARENT,
-                2f
-            )
-            var param3 = LinearLayout.LayoutParams(
-                0,
-                LinearLayout.LayoutParams.MATCH_PARENT,
-                3F
-            )
-            val lparams =
-                holder.thumpImage.getLayoutParams() as ConstraintLayout.LayoutParams
-
-            if (company.equals("a")) {
-                lparams.horizontalBias = 0.25f
-            } else if (company.equals("c")) {
-                lparams.horizontalBias = 0.10f
-            } else {
-                lparams.horizontalBias = 0.05f
-            }
-            holder.thumpImage.setLayoutParams(lparams)
-            holder.barStart.layoutParams = param1
-            holder.barEnd.layoutParams = param3
-            holder.blueRegion.layoutParams = param2
-            holder.normalRangeStart.layoutParams = param1
-            holder.normalRangeEnd.layoutParams = param3
-            holder.dummy.layoutParams = param2
         }
-
+        else if (company.isLow()){
+            holder.valueImage.setImageResource(R.drawable.lowvaluecopy)
+            holder.thumpImage.setImageResource(R.drawable.thumpred)
+        }
+        else holder.valueImage.setImageResource(R.drawable.normalvaluecopy)
+        holder.valueName.text=company.categoryName
+        var param1 = LinearLayout.LayoutParams(
+            LinearLayout.LayoutParams.WRAP_CONTENT,
+            LinearLayout.LayoutParams.MATCH_PARENT,
+            company.startWeight().toFloat()
+        )
+        var param2 = LinearLayout.LayoutParams(
+            LinearLayout.LayoutParams.WRAP_CONTENT,
+            LinearLayout.LayoutParams.MATCH_PARENT,
+            company.midWeight().toFloat()
+        )
+        var param3 = LinearLayout.LayoutParams(
+            LinearLayout.LayoutParams.WRAP_CONTENT,
+            LinearLayout.LayoutParams.MATCH_PARENT,
+            company.endWeight().toFloat()
+        )
+        val lparams = holder.thumpImage.getLayoutParams() as ConstraintLayout.LayoutParams
+        lparams.horizontalBias = company.valueBias().toFloat()
+        holder.thumpImage.setLayoutParams(lparams)
+        holder.barStart.layoutParams = param1
+        holder.barEnd.layoutParams = param3
+        holder.blueRegion.layoutParams = param2
+        holder.normalRangeStart.layoutParams = param1
+        holder.normalRangeEnd.layoutParams = param3
+        holder.dummy.layoutParams = param2
+        holder.resultValue.text=company.value.toString()
+        holder.startValue.text=company.minimumValue.toInt().toString()
+        holder.endValue.text=company.maximumValue.toInt().toString()
+        holder.normalRangeStart.text=company.optimalMinimumValue.toInt().toString()
+        holder.normalRangeEnd.text=company.optimalMaximumValue.toInt().toString()
     }
 
     class ResultCardViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

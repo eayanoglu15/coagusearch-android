@@ -3,64 +3,77 @@ package com.example.coagusearch.doctor.doctorAdapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.coagusearch.R
+import com.example.coagusearch.network.PatientData.response.SuggestionResponse
+import com.example.coagusearch.network.bloodOrderAndRecommendation.response.DoctorBloodOrderResponse
 
-class statusAdapter(val companies: MutableList<String>) :
-    RecyclerView.Adapter<statusAdapter.NotificationCardViewHolder>() {
-    private val TYPE_EMER = 1
-    private val TYPE_MED = 2
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NotificationCardViewHolder {
+
+class statusAdapter(val suggestions: MutableList<DoctorBloodOrderResponse>) :
+    RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+    private val TYPE_MED = 1
+    private val TYPE_BLOOD = 2
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val v: View
         if (viewType == 1) {
-            v = LayoutInflater.from(parent.context).inflate(R.layout.suggestioncard, parent, false)
+            v = LayoutInflater.from(parent.context).inflate(R.layout.suggestionsmall, parent, false)
+            return SuggestionCard2ViewHolder(v)
         } else {
-            v = LayoutInflater.from(parent.context).inflate(R.layout.suggestioncard2, parent, false)
+            v = LayoutInflater.from(parent.context).inflate(R.layout.patientbloodorderconfirmed, parent, false)
+            return PatientBloodOrderViewHolder(v)
         }
-
-        return NotificationCardViewHolder(v)
-
     }
 
     override fun getItemCount(): Int {
-        return companies.size
+        return suggestions.size
     }
 
-    fun add(item: String, position: Int) {
-        companies.add(position, item)
-        notifyItemInserted(position)
-    }
 
-    fun remove(item: String) {
-        val position = companies.indexOf(item)
-        companies.removeAt(position)
-        notifyItemRemoved(position)
-    }
 
-    override fun onBindViewHolder(holder: NotificationCardViewHolder, position: Int) {
-        val company = companies[position]
-        holder.itemView.setOnClickListener {
-            Toast.makeText(
-                holder.itemView.context, "${position} is clicked",
-                Toast.LENGTH_SHORT
-            ).show()
+
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        val suggestion = suggestions[position]
+        if(suggestion.kind.equals("Medicine")){
+            (holder as SuggestionCard2ViewHolder).dosage.text=suggestion.quantity.toString()+" "+suggestion.unit
+            holder.medname.text=suggestion.productType
+
         }
-        holder.itemView.setOnLongClickListener {
-            remove(company)
-            return@setOnLongClickListener true
+        else{
+            (holder as PatientBloodOrderViewHolder).unit.text=suggestion.quantity.toString()+" "+suggestion.unit
+            holder.name.text=suggestion.productType
         }
     }
 
     override fun getItemViewType(position: Int): Int {
-        return if (companies.get(position).equals("a")) {
-            TYPE_EMER
-        } else {
+        return if (suggestions.get(position).kind.equals("Medicine")) {
             TYPE_MED
+        } else {
+            TYPE_BLOOD
         }
 
     }
 
-    class NotificationCardViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
-}
+    class SuggestionCard1ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
+        var name = itemView.findViewById<TextView>(R.id.textView17)
+        var unit = itemView.findViewById<TextView>(R.id.textView29)
+        var medname = itemView.findViewById<TextView>(R.id.textView30)
+        var additionalText = itemView.findViewById<TextView>(R.id.textView31)
+        var suggetionNumber = itemView.findViewById<TextView>(R.id.textView32)
+        var suggetionRation = itemView.findViewById<TextView>(R.id.textView33)
 
+
+    }
+    class SuggestionCard2ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
+
+        var dosage = itemView.findViewById<TextView>(R.id.textView29)
+        var medname = itemView.findViewById<TextView>(R.id.textView30)
+
+
+    }
+    class PatientBloodOrderViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
+        var name = itemView.findViewById<TextView>(R.id.name)
+        var unit = itemView.findViewById<TextView>(R.id.unit)
+    }
+}

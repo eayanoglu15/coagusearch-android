@@ -3,12 +3,14 @@ package com.example.coagusearch.doctor.doctorAdapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.coagusearch.R
+import com.example.coagusearch.network.bloodOrderAndRecommendation.response.DoctorBloodOrderResponse
 
 
-class BloodBankOrderAdapter(val companies: MutableList<String>) :
+class BloodBankOrderAdapter(val companies: MutableList<DoctorBloodOrderResponse>) :
     RecyclerView.Adapter<BloodBankOrderAdapter.BloodBankOrderViewHolder>() {
     private val TYPE_CONFIRMED = 1
     private val TYPE_DENIED = 2
@@ -29,37 +31,19 @@ class BloodBankOrderAdapter(val companies: MutableList<String>) :
         return BloodBankOrderViewHolder(v)
 
     }
-
     override fun getItemCount(): Int {
         return companies.size
     }
 
-    fun add(item: String, position: Int) {
-        companies.add(position, item)
-        notifyItemInserted(position)
-    }
-
-    fun remove(item: String) {
-        val position = companies.indexOf(item)
-        companies.removeAt(position)
-        notifyItemRemoved(position)
-    }
-
     override fun onBindViewHolder(holder: BloodBankOrderViewHolder, position: Int) {
         val company = companies[position]
-        holder.itemView.setOnClickListener {
-            Toast.makeText(
-                holder.itemView.context, "${position} is clicked",
-                Toast.LENGTH_SHORT
-            ).show()
-        }
-        holder.itemView.setOnLongClickListener {
-            remove(company)
-            return@setOnLongClickListener true
-        }
+        holder.unit.text=company.quantity.toString()+" Units"
+        holder.name.text=company.productType
+        holder.type.text=company.getBloodTypeAsString()
     }
 
     override fun getItemViewType(position: Int): Int {
+        /*
         return if (companies.get(position).equals("a")) {
             TYPE_CONFIRMED
         } else if (companies.get(position).equals("b")) {
@@ -67,9 +51,13 @@ class BloodBankOrderAdapter(val companies: MutableList<String>) :
         } else {
             TYPE_PENDING
         }
+         */
+        return TYPE_CONFIRMED
     }
 
     class BloodBankOrderViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-
+        var unit = itemView.findViewById<TextView>(R.id.unit)
+        var name = itemView.findViewById<TextView>(R.id.name)
+        var type = itemView.findViewById<TextView>(R.id.type)
     }
 }

@@ -5,38 +5,38 @@
     android:background="@drawable/whiteback">
 
     <Button
-        android:id="@+id/fibtembutton"
+        android:id="@+id/button1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginVertical="2dp"
         android:layout_marginLeft="2dp"
         android:layout_weight="1"
         android:background="@drawable/segmentedbuttonchecked"
-        android:text="Fibtem"
+        android:text="button1"
         android:textAllCaps="false"
         android:textColor="@color/white" />
 
     <Button
-        android:id="@+id/extembutton"
+        android:id="@+id/button2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginVertical="2dp"
         android:layout_weight="1"
         android:background="@drawable/segmentedbuttonback"
 
-        android:text="Extem"
+        android:text="button2"
         android:textAllCaps="false"
         android:textColor="@color/colorPrimary" />
 
     <Button
-        android:id="@+id/intembutton"
+        android:id="@+id/button3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginVertical="2dp"
         android:layout_marginRight="2dp"
         android:layout_weight="1"
         android:background="@drawable/segmentedbuttonback"
-        android:text="Intem"
+        android:text="button3"
         android:textAllCaps="false"
         android:textColor="@color/colorPrimary" />
 </LinearLayout>

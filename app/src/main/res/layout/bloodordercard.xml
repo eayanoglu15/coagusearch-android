@@ -10,7 +10,7 @@
     android:layout_height="wrap_content">
 
     <RadioGroup
-        android:id="@+id/blood_radiogroup5"
+        android:id="@+id/productRadioGroup"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -32,7 +32,7 @@
             android:textSize="@dimen/smalltext" />
 
         <RadioButton
-            android:id="@+id/radioButton9"
+            android:id="@+id/ffp"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="2"
@@ -42,7 +42,7 @@
             android:textSize="@dimen/xsmalltext" />
 
         <RadioButton
-            android:id="@+id/radioButton8"
+            android:id="@+id/pcc"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="2"
@@ -53,14 +53,14 @@
     </RadioGroup>
 
     <RadioGroup
-        android:id="@+id/blood_radiogroup2"
+        android:id="@+id/rhRadioGroup"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="@+id/blood_radiogroup"
-        app:layout_constraintStart_toStartOf="@+id/blood_radiogroup"
-        app:layout_constraintTop_toBottomOf="@+id/blood_radiogroup">
+        app:layout_constraintEnd_toEndOf="@+id/bloodTypeRadioGroup"
+        app:layout_constraintStart_toStartOf="@+id/bloodTypeRadioGroup"
+        app:layout_constraintTop_toBottomOf="@+id/bloodTypeRadioGroup">
 
         <TextView
             android:id="@+id/textView15"
@@ -74,7 +74,7 @@
             android:textSize="@dimen/smalltext" />
 
         <RadioButton
-            android:id="@+id/radioButton6"
+            android:id="@+id/Positive"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="2"
@@ -83,7 +83,7 @@
             android:textColor="#404d66" />
 
         <RadioButton
-            android:id="@+id/radioButton5"
+            android:id="@+id/Negative"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="2"
@@ -93,16 +93,16 @@
     </RadioGroup>
 
     <RadioGroup
-        android:id="@+id/blood_radiogroup"
+        android:id="@+id/bloodTypeRadioGroup"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
 
         android:layout_marginTop="8dp"
         android:orientation="horizontal"
         android:weightSum="6"
-        app:layout_constraintEnd_toEndOf="@+id/blood_radiogroup5"
-        app:layout_constraintStart_toStartOf="@+id/blood_radiogroup5"
-        app:layout_constraintTop_toBottomOf="@+id/blood_radiogroup5">
+        app:layout_constraintEnd_toEndOf="@+id/productRadioGroup"
+        app:layout_constraintStart_toStartOf="@+id/productRadioGroup"
+        app:layout_constraintTop_toBottomOf="@+id/productRadioGroup">
 
         <TextView
             android:id="@+id/textView14"
@@ -116,7 +116,7 @@
             android:textSize="@dimen/smalltext" />
 
         <RadioButton
-            android:id="@+id/radioButton"
+            android:id="@+id/A"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -127,7 +127,7 @@
             android:textSize="@dimen/smalltext" />
 
         <RadioButton
-            android:id="@+id/radioButton2"
+            android:id="@+id/B"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -136,7 +136,7 @@
             android:textColor="#404d66" />
 
         <RadioButton
-            android:id="@+id/radioButton3"
+            android:id="@+id/AB"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -148,7 +148,7 @@
             android:textSize="@dimen/xsmalltext" />
 
         <RadioButton
-            android:id="@+id/radioButton4"
+            android:id="@+id/O"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -172,7 +172,7 @@
         android:textColor="@color/white"
         android:textSize="@dimen/smalltext"
         app:layout_constraintBottom_toBottomOf="@+id/editText"
-        app:layout_constraintEnd_toEndOf="@+id/blood_radiogroup2"
+        app:layout_constraintEnd_toEndOf="@+id/rhRadioGroup"
         app:layout_constraintTop_toTopOf="@+id/editText" />
 
     <EditText
@@ -188,10 +188,10 @@
         android:ems="10"
         android:gravity="center"
         android:hint="Enter Unit"
-        android:inputType="numberDecimal"
+        android:inputType="number"
         android:textSize="@dimen/smalltext"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/blood_radiogroup2"
-        app:layout_constraintTop_toBottomOf="@+id/blood_radiogroup2" />
+        app:layout_constraintStart_toStartOf="@+id/rhRadioGroup"
+        app:layout_constraintTop_toBottomOf="@+id/rhRadioGroup" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

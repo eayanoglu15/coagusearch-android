@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import com.example.coagusearch.R
 import com.example.coagusearch.network.Users.model.UsersRepository
+import com.example.coagusearch.network.bloodOrderAndRecommendation.model.BloodOrderRepository
 import kotlinx.android.synthetic.main.main.*
 import org.koin.android.ext.android.get
 

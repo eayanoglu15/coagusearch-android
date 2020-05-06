@@ -6,10 +6,12 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.coagusearch.R
+import com.example.coagusearch.network.RegularMedication.request.MedicineInfoType
+import com.example.coagusearch.network.RegularMedication.response.MedicineInfoResponse
 import com.example.coagusearch.network.Users.response.TodayPatientDetail
 
 
-class myPatientMedAdapter(var medicineList: MutableList<String>) :
+class myPatientMedAdapter(var medicineList: MutableList<MedicineInfoResponse>) :
     RecyclerView.Adapter<myPatientMedAdapter.medCardViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): medCardViewHolder {
         var v =
@@ -23,6 +25,14 @@ class myPatientMedAdapter(var medicineList: MutableList<String>) :
 
     override fun onBindViewHolder(holder: medCardViewHolder, position: Int) {
         val med = medicineList[position]
+        if(med.mode==MedicineInfoType.KEY){
+            holder.medName.text=med.key
+        }else{
+            holder.medName.text=med.custom
+        }
+        holder.frequency.text=med.frequency.toString()
+        holder.dosage.text=med.dosage.toString()+" Doz"
+
     }
 
     class medCardViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

@@ -45,6 +45,7 @@ class PatientsFragmentPatientAdapter(
             val intent = Intent(context, doctorMyPatient::class.java)
             intent.putExtra("id", patient.userId)
             context.startActivity(intent)
+
         }
     }
 

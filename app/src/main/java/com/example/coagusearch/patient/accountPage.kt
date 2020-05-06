@@ -48,12 +48,9 @@ class accountPage : AppCompatActivity(),
         saveInfoChanges.setOnClickListener {
             getAndSaveValues()
         }
-        backArrow.setOnClickListener {
-            this.onBackPressed()
-        }
 
 
-        mainview.setOnTouchListener(OnTouchListener { arg0, arg1 ->
+        mainview.setOnTouchListener(OnTouchListener { _, _ ->
             // action to do
             //accountname.isEnabled=false
             //accountsurname.isEnabled=false
@@ -65,8 +62,6 @@ class accountPage : AppCompatActivity(),
             accountsurheight.clearFocus()
             true //always return true to consume event
         })
-
-
     }
 
 

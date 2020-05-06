@@ -133,13 +133,7 @@ class NewAppointment : AppCompatActivity() {
                 ocTimeSlot.setImageResource(R.drawable.uparrow)
             }
         }
-        newAppointmentGoBack.setOnClickListener {
-            finish()
-            overridePendingTransition(
-                R.anim.slide_in_left,
-                R.anim.slide_out_right
-            )
-        }
+
         request_Appointment.setOnClickListener {
             if (dateCardYourDate.text == "") {
                 Toast.makeText(this, "Please select a date", Toast.LENGTH_SHORT).show()

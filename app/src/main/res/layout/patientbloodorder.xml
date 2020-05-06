@@ -10,7 +10,7 @@
     android:layout_height="wrap_content">
 
     <RadioGroup
-        android:id="@+id/blood_radiogroup5"
+        android:id="@+id/productTypeRadioGroup"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -32,23 +32,23 @@
             android:textSize="@dimen/smalltext" />
 
         <RadioButton
-            android:id="@+id/radioButton9"
+            android:id="@+id/FFP"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="2"
-            android:layout_width="0dp"
             android:buttonTint="@color/colorPrimary"
             android:gravity="center"
-            android:text="@string/frozen"
+            android:text="FFP"
             android:textColor="@color/colorPrimary" />
 
         <RadioButton
-            android:id="@+id/radioButton8"
+            android:id="@+id/PCC"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="2"
-            android:layout_width="0dp"
             android:buttonTint="@color/colorPrimary"
             android:gravity="center"
-            android:text="@string/plateret"
+            android:text="PCC"
             android:textColor="@color/colorPrimary" />
     </RadioGroup>
 
@@ -67,8 +67,8 @@
         android:inputType="numberDecimal"
         android:textSize="@dimen/smalltext"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/blood_radiogroup5"
-        app:layout_constraintTop_toBottomOf="@+id/blood_radiogroup5" />
+        app:layout_constraintStart_toStartOf="@+id/productTypeRadioGroup"
+        app:layout_constraintTop_toBottomOf="@+id/productTypeRadioGroup" />
 
     <TextView
         android:id="@+id/addNoteText"
@@ -84,7 +84,7 @@
         android:textColor="@color/white"
         android:textSize="@dimen/xsmalltext"
         app:layout_constraintBottom_toBottomOf="@+id/editText"
-        app:layout_constraintEnd_toEndOf="@+id/blood_radiogroup5"
+        app:layout_constraintEnd_toEndOf="@+id/productTypeRadioGroup"
         app:layout_constraintTop_toTopOf="@+id/editText" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

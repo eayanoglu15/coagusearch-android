@@ -15,6 +15,7 @@ import com.example.coagusearch.network.Users.request.PatientDetailRequest
 import com.example.coagusearch.network.Users.response.PatientDetailResponse
 import kotlinx.android.synthetic.main.activity_doctor_my_patient.*
 import kotlinx.android.synthetic.main.fragment_doctor_home.*
+import kotlinx.android.synthetic.main.mypatienttestresults.view.*
 import kotlinx.android.synthetic.main.patientinfocard.view.*
 import org.koin.android.ext.android.get
 import java.io.Serializable
@@ -22,20 +23,29 @@ import java.io.Serializable
 class doctorMyPatient : AppCompatActivity() {
     var patientInfo: PatientDetailResponse? = null
     var list = mutableListOf("a", "b", "c")
+    var patientid:Long?=null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_doctor_my_patient)
         val bundle: Bundle? = intent.extras
-        var patientid = bundle!!.getLong("id")
-        mypatientmedicinesRecyclerview.layoutManager =
-            LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-        mypatientmedicinesRecyclerview.setHasFixedSize(true)
-        mypatientmedicinesRecyclerview.scrollBarSize = 2
-        mypatientmedicinesRecyclerview.adapter = myPatientMedAdapter(list)
+        patientid = bundle!!.getLong("id")
+
         val snapHelper: SnapHelper = PagerSnapHelper()
         snapHelper.attachToRecyclerView(mypatientmedicinesRecyclerview)
+        getData()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        getData()
+    }
+    override fun onBackPressed() {
+        super.onBackPressed()
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
+    }
+    fun getData(){
         val userRepository: UsersRepository = get()
-        userRepository.getPatientDetail(this, PatientDetailRequest(patientid))?.let { setData(it) }
+        userRepository.getPatientDetail(this, PatientDetailRequest(patientid!!))?.let { setData(it) }
     }
 
     fun setData(patientDetailResponse: PatientDetailResponse) {
@@ -57,6 +67,18 @@ class doctorMyPatient : AppCompatActivity() {
         } else {
             callForAppointmentard.visibility = View.GONE
         }
+        if(patientDetailResponse.lastDataAnalysisTime!=null) {
+            testResultscard.textView24.text = patientDetailResponse.lastDataAnalysisTime.testDate.getAsString()
+        }
+        mypatientmedicinesRecyclerview.layoutManager =
+            LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+        mypatientmedicinesRecyclerview.setHasFixedSize(true)
+        mypatientmedicinesRecyclerview.scrollBarSize = 2
+        mypatientmedicinesRecyclerview.adapter = myPatientMedAdapter(patientDetailResponse.patientDrugs.toMutableList())
+
+
+
+
         SetClickListeners(patientDetailResponse)
     }
 
@@ -65,6 +87,7 @@ class doctorMyPatient : AppCompatActivity() {
         bloodOrderCard.setOnClickListener {
             val intent = Intent(this, PatientBloodOrder::class.java)
             intent.putExtra("PatientDetailResponse", patientDetailResponse)
+            intent.putExtra("id", patientid)
             startActivity(intent)
             overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
         }
@@ -77,6 +100,7 @@ class doctorMyPatient : AppCompatActivity() {
         testResultscard.setOnClickListener {
             val intent = Intent(this, microTemData::class.java)
             intent.putExtra("PatientDetailResponse", patientDetailResponse)
+            intent.putExtra("id", patientid)
             startActivity(intent)
             overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
         }

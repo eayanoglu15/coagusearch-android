@@ -36,6 +36,10 @@ class PatientAppointments : AppCompatActivity() {
             intentFailDialog(this)
         }
     }
+    override fun onBackPressed() {
+        super.onBackPressed()
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
+    }
 
     private fun setData() {
         if (patientInfo != null && patientInfo!!.userAppointmentResponse != null && patientInfo!!.userAppointmentResponse.nextAppointment != null) {

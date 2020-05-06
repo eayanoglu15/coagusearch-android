@@ -48,7 +48,7 @@
             android:layout_marginTop="0dp"
             android:layout_marginBottom="0dp"
             android:layout_weight="1"
-            android:text="Parol"
+            android:text=""
             android:textColor="@color/login_button"
             android:textSize="@dimen/smalltext" />
     </LinearLayout>
@@ -65,15 +65,16 @@
         app:layout_constraintVertical_bias="1.0">
 
         <AutoCompleteTextView
-            android:id="@+id/multiAutoCompleteTextView"
+            android:id="@+id/multiAutoCompleteTextViewDoctor"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:background="@drawable/cardwhite"
-            android:completionThreshold="5"
+            android:completionThreshold="0"
+            android:gravity="center"
             android:hint="@string/searchMedicine"
             android:inputType="text"
-            android:maxLines="3"
+            android:maxLines="1"
             android:padding="8dp"
             android:scrollbarSize="8dp"
             android:textSize="@dimen/smalltext" />

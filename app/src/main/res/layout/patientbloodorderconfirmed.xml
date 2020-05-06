@@ -37,13 +37,13 @@
         app:srcCompat="@drawable/shapehosp" />
 
     <TextView
-        android:id="@+id/dateOfNext"
+        android:id="@+id/unit"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_marginStart="8dp"
         android:gravity="center_vertical"
         android:paddingLeft="5dp"
-        android:text="2 March 2020"
+        android:text="unit"
         android:textColor="@color/login_button"
         android:textSize="@dimen/smalltext"
         android:textStyle="bold"
@@ -52,13 +52,13 @@
         app:layout_constraintTop_toTopOf="@+id/imageView3" />
 
     <TextView
-        android:id="@+id/timeSlotNext"
+        android:id="@+id/name"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_marginStart="8dp"
         android:gravity="center_vertical"
         android:paddingLeft="5dp"
-        android:text="1:30 PM-2:20 PM"
+        android:text="FreshFrozenPlasma"
         android:textSize="@dimen/smalltext"
         app:layout_constraintBottom_toBottomOf="@+id/imageView4"
         app:layout_constraintStart_toEndOf="@+id/imageView4"

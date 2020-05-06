@@ -2,6 +2,7 @@ package com.example.coagusearch.network.Users.model
 
 import android.content.Context
 import com.example.coagusearch.*
+import com.example.coagusearch.doctor.PatientBloodOrder
 import com.example.coagusearch.doctor.doctorHomeFragment
 import com.example.coagusearch.doctor.doctorMyPatient
 import com.example.coagusearch.doctor.doctorPatientsFragment
@@ -245,7 +246,12 @@ class UsersRepository(
                 ) {
                     if (response.isSuccessful && response.body() is PatientDetailResponse) {
                         patientDetailResponse = response.body()
-                        (context as doctorMyPatient).setData(patientDetailResponse!!)
+                        if(context is doctorMyPatient){
+                            (context as doctorMyPatient).setData(patientDetailResponse!!)
+                        }
+                        else if( context is PatientBloodOrder){
+                            (context as PatientBloodOrder).setData(patientDetailResponse!!)
+                        }
                         showProgressLoading(false, context)
 
                     } else {

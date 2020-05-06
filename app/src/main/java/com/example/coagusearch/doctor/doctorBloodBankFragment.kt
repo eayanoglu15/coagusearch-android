@@ -3,8 +3,7 @@ package com.example.coagusearch.doctor
 import android.app.AlertDialog
 import android.content.DialogInterface
 import android.os.Bundle
-import android.text.Editable
-import android.text.InputType
+
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,8 +13,13 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.coagusearch.R
 import com.example.coagusearch.doctor.doctorAdapters.BloodBankOrderAdapter
+import com.example.coagusearch.network.bloodOrderAndRecommendation.model.BloodOrderRepository
+import com.example.coagusearch.network.bloodOrderAndRecommendation.request.BloodOrderRequest
+import com.example.coagusearch.network.bloodOrderAndRecommendation.response.DoctorBloodOrderResponse
+
 import kotlinx.android.synthetic.main.bloodordercard.*
 import kotlinx.android.synthetic.main.fragment_doctor_blood_bank.*
+import org.koin.android.ext.android.get
 
 
 class doctorBloodBankFragment : Fragment() {
@@ -31,25 +35,21 @@ class doctorBloodBankFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        ordersRecyclerView.layoutManager =
-            LinearLayoutManager(this.context!!, LinearLayoutManager.VERTICAL, false)
-        ordersRecyclerView.adapter = BloodBankOrderAdapter(list)
+       getData()
+        setListeners()
+
+
+    }
+
+
+    private fun setListeners(){
         addNoteText.setOnClickListener {
             val builder: AlertDialog.Builder = AlertDialog.Builder(this.context!!)
             builder.setTitle("Title")
-
-            // Set up the input
-            // Set up the input
-
             val input = EditText(this.context!!)
             input.isSingleLine = false
             input.setText(m_Text)
-            // Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
-            // Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
-
             builder.setTitle("Add Your Note")
-            // Set up the buttons
-            // Set up the buttons
             builder.setPositiveButton("OK",
                 DialogInterface.OnClickListener { dialog, which -> m_Text = input.text.toString() })
             builder.setNegativeButton("Cancel",
@@ -58,11 +58,55 @@ class doctorBloodBankFragment : Fragment() {
             builder.show()
         }
         makeorderbutton.setOnClickListener {
-            m_Text = ""
-            editText.text = null
-            editText.clearFocus()
-            Toast.makeText(this.context!!, "Your order sended", Toast.LENGTH_LONG).show()
+            var bloodType: String?=null
+            var rhType: String?=null
+            var productType: String?=null
+            var unit: Int?=null
+            var additionalNote: String?=null
+            when (productRadioGroup.checkedRadioButtonId) {
+                R.id.pcc -> productType = "PCC"
+                R.id.ffp -> productType = "FFP"
+            }
+
+            when (bloodTypeRadioGroup.checkedRadioButtonId) {
+                R.id.A -> bloodType = "A"
+                R.id.B -> bloodType = "B"
+                R.id.O -> bloodType = "O"
+                R.id.AB -> bloodType = "AB"
+            }
+            when (rhRadioGroup.checkedRadioButtonId) {
+                R.id.Positive -> rhType = "Positive"
+                R.id.Negative -> rhType = "Negative"
+            }
+            additionalNote=m_Text
+            if(editText.text.toString().trim().length!=0) {
+                unit = editText.text.toString().toInt()
+            }
+            if(bloodType!=null&&rhType!=null&&productType!=null&&unit!=null){
+                val bloodbank: BloodOrderRepository = get()
+                bloodbank.bloodOrder(BloodOrderRequest(bloodType,rhType,null, productType, unit, additionalNote),this.context!!,this)
+                m_Text = ""
+                editText.text = null
+                editText.clearFocus()
+            }
+            else{
+                Toast.makeText(this.context!!,"Lütfen Tüm Bilgileri DOldurunuz",Toast.LENGTH_LONG).show()
+            }
 
         }
     }
+    fun refresh(){
+        getData()
+    }
+    private fun getData(){
+        val bloodbank: BloodOrderRepository = get()
+        bloodbank.previousOrders(this.context!!,this)
+    }
+    fun setData( orderResult: List<DoctorBloodOrderResponse>){
+        ordersRecyclerView.layoutManager =
+            LinearLayoutManager(this.context!!, LinearLayoutManager.VERTICAL, false)
+        ordersRecyclerView.adapter = BloodBankOrderAdapter(orderResult.toMutableList())
+
+    }
+
 }

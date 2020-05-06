@@ -7,67 +7,107 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.coagusearch.R
 import com.example.coagusearch.doctor.doctorAdapters.PatientBloodOrderAdapter
 import com.example.coagusearch.doctor.doctorAdapters.utemResultAdapter
+import com.example.coagusearch.network.PatientData.model.PatientDataRepository
+import com.example.coagusearch.network.PatientData.request.GetPatientBloodTestDataRequest
+import com.example.coagusearch.network.PatientData.request.GetPatientBloodTestRequest
+import com.example.coagusearch.network.PatientData.response.UserBloodTestDataCategoryResponse
+import com.example.coagusearch.network.PatientData.response.UserBloodTestDataResponse
 import kotlinx.android.synthetic.main.activity_micro_tem_data.*
 import kotlinx.android.synthetic.main.activity_past_micro_tem_data.*
 import kotlinx.android.synthetic.main.pastdatasegmented.*
+import kotlinx.android.synthetic.main.pastdatasegmented.button1
+import kotlinx.android.synthetic.main.pastdatasegmented.button2
+import kotlinx.android.synthetic.main.pastdatasegmented.button3
 import kotlinx.android.synthetic.main.segmentedcontrolbuttons.*
-import kotlinx.android.synthetic.main.segmentedcontrolbuttons.extembutton
-import kotlinx.android.synthetic.main.segmentedcontrolbuttons.fibtembutton
-import kotlinx.android.synthetic.main.segmentedcontrolbuttons.intembutton
+
+import org.koin.android.ext.android.get
+
 
 class PastMicroTemData : AppCompatActivity() {
-    val list = mutableListOf("a", "b", "c")
-    val list1 = mutableListOf("c")
-    val list2 = mutableListOf("b", "a")
+
+
+
+    var categoryList1: MutableList<UserBloodTestDataCategoryResponse>?=null
+    var categoryList2: MutableList<UserBloodTestDataCategoryResponse>?=null
+    var categoryList3: MutableList<UserBloodTestDataCategoryResponse>?=null
+    var bloodTest: UserBloodTestDataResponse? = null
+    var testId:Long?=null
+    var list= mutableListOf("a","b")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_past_micro_tem_data)
-        past_uTemDataRecyclerView.layoutManager =
-            LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-        past_uTemDataRecyclerView.adapter = utemResultAdapter(list)
+        if (intent.hasExtra("testId")) {
+            val bundle: Bundle? = intent.extras
+            testId = bundle!!.getLong("testId")
+            getData()
+        } else {
+            intentFailDialog(this)
+        }
+    }
+    override fun onBackPressed() {
+        super.onBackPressed()
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
+    }
+    private fun getData(){
+        val patientDataRepository: PatientDataRepository = get()
+        patientDataRepository.getPatientBloodDataById(GetPatientBloodTestDataRequest(testId!!),this)
+    }
+
+    fun setData(bloodTest: UserBloodTestDataResponse){
+        this.bloodTest=bloodTest
+        categoryList1=bloodTest.userBloodData.get(0).categoryList.toMutableList()
+        categoryList2=bloodTest.userBloodData.get(1).categoryList.toMutableList()
+        categoryList3=bloodTest.userBloodData.get(2).categoryList.toMutableList()
+        past_uTemDataRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+        past_uTemDataRecyclerView.adapter = utemResultAdapter(categoryList1!!)
         ordersRecyclerView.layoutManager =
             LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-        ordersRecyclerView.adapter = PatientBloodOrderAdapter(list)
+        ordersRecyclerView.adapter = PatientBloodOrderAdapter(bloodTest.ordersOfData.toMutableList())
         ordersRecyclerView.visibility = View.GONE
-        fibtembutton.setOnClickListener {
-            (past_uTemDataRecyclerView.adapter as utemResultAdapter).companies = list
-            (past_uTemDataRecyclerView.adapter as utemResultAdapter).notifyDataSetChanged()
-            ordersRecyclerView.visibility = View.GONE
+        println(bloodTest.ordersOfData.toString())
+
+        button1.text=bloodTest.userBloodData.get(0).testName
+        button2.text=bloodTest.userBloodData.get(1).testName
+        button3.text=bloodTest.userBloodData.get(2).testName
+        button1.setOnClickListener {
             past_uTemDataRecyclerView.visibility = View.VISIBLE
-            fibtembutton.setBackgroundResource(R.drawable.segmentedbuttonchecked)
-            fibtembutton.setTextColor(resources.getColor(R.color.white))
-            extembutton.setBackgroundResource(R.drawable.segmentedbuttonback)
-            extembutton.setTextColor(resources.getColor(R.color.colorPrimary))
-            intembutton.setBackgroundResource(R.drawable.segmentedbuttonback)
-            intembutton.setTextColor(resources.getColor(R.color.colorPrimary))
+            ordersRecyclerView.visibility = View.GONE
+            (past_uTemDataRecyclerView.adapter as utemResultAdapter).companies = categoryList1!!
+            (past_uTemDataRecyclerView.adapter as utemResultAdapter).notifyDataSetChanged()
+            button1.setBackgroundResource(R.drawable.segmentedbuttonchecked)
+            button1.setTextColor(resources.getColor(R.color.white))
+            button2.setBackgroundResource(R.drawable.segmentedbuttonback)
+            button2.setTextColor(resources.getColor(R.color.colorPrimary))
+            button3.setBackgroundResource(R.drawable.segmentedbuttonback)
+            button3.setTextColor(resources.getColor(R.color.colorPrimary))
             ordersbutton.setBackgroundResource(R.drawable.segmentedbuttonback)
             ordersbutton.setTextColor(resources.getColor(R.color.colorPrimary))
         }
-        extembutton.setOnClickListener {
-            (past_uTemDataRecyclerView.adapter as utemResultAdapter).companies = list1
-            (past_uTemDataRecyclerView.adapter as utemResultAdapter).notifyDataSetChanged()
-            ordersRecyclerView.visibility = View.GONE
+        button2.setOnClickListener {
             past_uTemDataRecyclerView.visibility = View.VISIBLE
-            fibtembutton.setBackgroundResource(R.drawable.segmentedbuttonback)
-            fibtembutton.setTextColor(resources.getColor(R.color.colorPrimary))
-            extembutton.setBackgroundResource(R.drawable.segmentedbuttonchecked)
-            extembutton.setTextColor(resources.getColor(R.color.white))
-            intembutton.setBackgroundResource(R.drawable.segmentedbuttonback)
-            intembutton.setTextColor(resources.getColor(R.color.colorPrimary))
+            ordersRecyclerView.visibility = View.GONE
+            (past_uTemDataRecyclerView.adapter as utemResultAdapter).companies = categoryList2!!
+            (past_uTemDataRecyclerView.adapter as utemResultAdapter).notifyDataSetChanged()
+            button1.setBackgroundResource(R.drawable.segmentedbuttonback)
+            button1.setTextColor(resources.getColor(R.color.colorPrimary))
+            button2.setBackgroundResource(R.drawable.segmentedbuttonchecked)
+            button2.setTextColor(resources.getColor(R.color.white))
+            button3.setBackgroundResource(R.drawable.segmentedbuttonback)
+            button3.setTextColor(resources.getColor(R.color.colorPrimary))
             ordersbutton.setBackgroundResource(R.drawable.segmentedbuttonback)
             ordersbutton.setTextColor(resources.getColor(R.color.colorPrimary))
         }
-        intembutton.setOnClickListener {
-            (past_uTemDataRecyclerView.adapter as utemResultAdapter).companies = list2
-            (past_uTemDataRecyclerView.adapter as utemResultAdapter).notifyDataSetChanged()
-            fibtembutton.setBackgroundResource(R.drawable.segmentedbuttonback)
-            fibtembutton.setTextColor(resources.getColor(R.color.colorPrimary))
-            extembutton.setBackgroundResource(R.drawable.segmentedbuttonback)
-            extembutton.setTextColor(resources.getColor(R.color.colorPrimary))
-            intembutton.setBackgroundResource(R.drawable.segmentedbuttonchecked)
-            ordersRecyclerView.visibility = View.GONE
+        button3.setOnClickListener {
             past_uTemDataRecyclerView.visibility = View.VISIBLE
-            intembutton.setTextColor(resources.getColor(R.color.white))
+            ordersRecyclerView.visibility = View.GONE
+            (past_uTemDataRecyclerView.adapter as utemResultAdapter).companies = categoryList3!!
+            (past_uTemDataRecyclerView.adapter as utemResultAdapter).notifyDataSetChanged()
+            button1.setBackgroundResource(R.drawable.segmentedbuttonback)
+            button1.setTextColor(resources.getColor(R.color.colorPrimary))
+            button2.setBackgroundResource(R.drawable.segmentedbuttonback)
+            button2.setTextColor(resources.getColor(R.color.colorPrimary))
+            button3.setBackgroundResource(R.drawable.segmentedbuttonchecked)
+            button3.setTextColor(resources.getColor(R.color.white))
             ordersbutton.setBackgroundResource(R.drawable.segmentedbuttonback)
             ordersbutton.setTextColor(resources.getColor(R.color.colorPrimary))
         }
@@ -75,14 +115,15 @@ class PastMicroTemData : AppCompatActivity() {
         ordersbutton.setOnClickListener {
             past_uTemDataRecyclerView.visibility = View.GONE
             ordersRecyclerView.visibility = View.VISIBLE
-            extembutton.setBackgroundResource(R.drawable.segmentedbuttonback)
-            extembutton.setTextColor(resources.getColor(R.color.colorPrimary))
-            intembutton.setBackgroundResource(R.drawable.segmentedbuttonback)
-            intembutton.setTextColor(resources.getColor(R.color.colorPrimary))
-            fibtembutton.setBackgroundResource(R.drawable.segmentedbuttonback)
-            fibtembutton.setTextColor(resources.getColor(R.color.colorPrimary))
+            button1.setBackgroundResource(R.drawable.segmentedbuttonback)
+            button1.setTextColor(resources.getColor(R.color.colorPrimary))
+            button2.setBackgroundResource(R.drawable.segmentedbuttonback)
+            button2.setTextColor(resources.getColor(R.color.colorPrimary))
+            button3.setBackgroundResource(R.drawable.segmentedbuttonback)
+            button3.setTextColor(resources.getColor(R.color.colorPrimary))
             ordersbutton.setBackgroundResource(R.drawable.segmentedbuttonchecked)
             ordersbutton.setTextColor(resources.getColor(R.color.white))
         }
+
     }
 }
