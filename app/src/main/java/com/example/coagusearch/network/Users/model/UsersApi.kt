@@ -1,5 +1,6 @@
 package com.example.coagusearch.network.Users.model
 
+import com.example.coagusearch.network.Users.request.AmbulancePatientRequest
 import com.example.coagusearch.network.Users.request.PatientDetailRequest
 import com.example.coagusearch.network.Users.request.UserBodyInfoSaveRequest
 import com.example.coagusearch.network.Users.response.*
@@ -36,5 +37,11 @@ interface UsersApi {
     @Headers("RequireAuth:1")
     @POST("/users/getPatientDetail")
     fun getPatientDetail(@Body patientDetailRequest: PatientDetailRequest): Call<PatientDetailResponse>
+
+
+
+    @Headers("RequireAuth:1")
+    @POST("/users/saveAmbulancePatient")
+    fun saveAmbulancePatient(@Body userID: AmbulancePatientRequest): Call<ApiResponse>
 
 }

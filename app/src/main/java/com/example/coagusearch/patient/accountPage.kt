@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.View
 import android.view.View.OnTouchListener
 import android.view.inputmethod.InputMethodManager
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.coagusearch.R
 import com.example.coagusearch.network.Users.model.UsersRepository
@@ -48,14 +49,7 @@ class accountPage : AppCompatActivity(),
         saveInfoChanges.setOnClickListener {
             getAndSaveValues()
         }
-
-
         mainview.setOnTouchListener(OnTouchListener { _, _ ->
-            // action to do
-            //accountname.isEnabled=false
-            //accountsurname.isEnabled=false
-            //accountsurheight.isEnabled=false
-            //accountsurweight.isEnabled=false
             accountname.clearFocus()
             accountsurname.clearFocus()
             accountsurweight.clearFocus()
@@ -96,7 +90,7 @@ class accountPage : AppCompatActivity(),
         name =
             if (accountname.text.toString().equals("") || accountname.text.toString().equals("null")) null else accountname.text.toString()
         surname =
-            if (accountsurname.text.toString() == "" || accountsurname.text.toString() == "null") "" else accountsurname.text.toString()
+            if (accountsurname.text.toString() == "" || accountsurname.text.toString() == "null") null else accountsurname.text.toString()
         weight =
             if (accountsurweight.text.toString() == "" || accountsurweight.text.toString() == null) null else accountsurweight.text.toString().toDouble()
         height =
@@ -115,21 +109,27 @@ class accountPage : AppCompatActivity(),
             R.id.radioButton7 -> gender = "Male"
             R.id.radioButton8 -> gender = "Female"
         }
-        val userRepository: UsersRepository = get()
-        userRepository.saveBodyInfo(
-            UserBodyInfoSaveRequest(
-                name,
-                surname,
-                birthDay,
-                birthMonth,
-                birthYear,
-                height,
-                weight,
-                bloodType,
-                rhType,
-                gender
-            ), this
-        )
+
+        if(name!=null&&surname!=null) {
+            val userRepository: UsersRepository = get()
+            userRepository.saveBodyInfo(
+                UserBodyInfoSaveRequest(
+                    name,
+                    surname,
+                    birthDay,
+                    birthMonth,
+                    birthYear,
+                    height,
+                    weight,
+                    bloodType,
+                    rhType,
+                    gender
+                ), this
+            )
+        }
+        else{
+            Toast.makeText(this,getString(R.string.nameerror),Toast.LENGTH_LONG).show()
+        }
     }
 
     fun saved() {

@@ -81,6 +81,7 @@
         android:layout_height="wrap_content"
         android:text="@string/forgotPassword"
         android:textColor=" #FF7A7A"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@+id/rememberMeSwitch"
         app:layout_constraintEnd_toEndOf="@+id/textInputLayout3"
         app:layout_constraintTop_toTopOf="@+id/rememberMeSwitch" />

@@ -116,7 +116,6 @@
                 android:paddingTop="5pt"
                 android:paddingRight="5pt"
                 android:paddingBottom="5pt">
-
             </ListView>
 
         </LinearLayout>
@@ -138,17 +137,30 @@
                 android:background="@drawable/loginbutton_back"
                 android:padding="5dp"
                 android:text="@string/addNewMedicine"
-                android:textAllCaps="true" />
+                android:textAllCaps="true"
+                android:textColor="@color/white" />
 
             <Button
                 android:id="@+id/button2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
+                android:textColor="@color/white"
                 android:layout_marginEnd="10dp"
                 android:layout_marginBottom="8dp"
                 android:background="@drawable/loginbutton_back"
-                android:text="@string/switchtopatientview" />
+                android:text="@string/switchtodoctorview" />
+
+            <Button
+                android:id="@+id/button5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:textColor="@color/white"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/loginbutton_back"
+                android:text="@string/switchtomedview"/>
         </LinearLayout>
 
     </RelativeLayout>

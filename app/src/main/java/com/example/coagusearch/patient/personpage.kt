@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.coagusearch.MainActivity
 import com.example.coagusearch.R
 import com.example.coagusearch.doctor.doctorMain
+import com.example.coagusearch.medicalTeam.MedicalTeamMain
 import com.example.coagusearch.network.RegularMedication.response.MedicineInfoResponse
 import com.example.coagusearch.network.Users.response.UserResponse
 import com.example.coagusearch.patient.PatientAdapters.MedicineAdapterProfileFragment
@@ -47,10 +48,8 @@ class personpage : Fragment() {
         myticketlist.adapter = adapter
         return view
     }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         editbutton.setOnClickListener {
             val intent = Intent(getActivity(), accountPage::class.java)
             startActivity(intent)
@@ -77,10 +76,6 @@ class personpage : Fragment() {
             editor!!.commit();
             val intent = Intent(activity, MainActivity::class.java)
             startActivity(intent)
-            getActivity()?.overridePendingTransition(
-                R.anim.slide_in_right,
-                R.anim.slide_out_left
-            )
         }
         if (userResponse!!.type.equals("Doctor")) {
             button2.setOnClickListener {
@@ -89,12 +84,20 @@ class personpage : Fragment() {
             }
         } else {
             button2.visibility = View.GONE
-
+        }
+        if(userResponse!!.type.equals("Medical")){
+            button5.setOnClickListener {
+                val intent = Intent(getActivity(), MedicalTeamMain::class.java)
+                startActivity(intent)
+            }
+        }
+        else{
+            button5.visibility=View.GONE
         }
         profileFragment_name.text = userResponse!!.name + " " + userResponse!!.surname
         val birthdate = getString(R.string.birthdate)
         if (userResponse!!.birthDay != null && userResponse!!.birthMonth != null && userResponse!!.birthYear != null)
-            profileFragment_Age.text =
+            profileFragment_Age.text ="Doğum Tarihi:"+
                 userResponse!!.birthDay.toString() + "/" + userResponse!!.birthMonth.toString() + "/" + userResponse!!.birthYear.toString()
         else
             profileFragment_Age.text = "-/-/-"

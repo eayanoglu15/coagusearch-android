@@ -6,12 +6,10 @@
     android:layout_height="match_parent"
     tools:context=".patient.mainmenu"
     android:background="@drawable/background_login">
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -24,17 +22,29 @@
             android:textSize="@dimen/largetext" />
 
         <include
+            android:id="@+id/Infocard"
+            layout="@layout/patientmainscreennotificationcard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginVertical="5dp"
+            android:foreground="?android:attr/selectableItemBackground" />
+
+        <include
             android:id="@+id/missingInfo"
             layout="@layout/menumissinginformation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginVertical="5dp"
             android:foreground="?android:attr/selectableItemBackground" />
-
         <include
             android:id="@+id/nextAppointment"
             android:foreground="?android:attr/selectableItemBackground"
             layout="@layout/nextappointmentnew" />
-
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/patientMainScreenRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
     </LinearLayout>
 </FrameLayout>

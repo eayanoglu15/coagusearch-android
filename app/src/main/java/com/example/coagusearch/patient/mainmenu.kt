@@ -8,20 +8,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ListView
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.coagusearch.R
+import com.example.coagusearch.doctor.doctorAdapters.HomeFragmentAppointmentAdapter
 import com.example.coagusearch.network.Users.model.UsersRepository
 import com.example.coagusearch.network.Users.response.PatientMainScreenResponse
+import com.example.coagusearch.patient.PatientAdapters.PatientMainScreenNotificationsAdapter
+import kotlinx.android.synthetic.main.fragment_doctor_home.*
 import kotlinx.android.synthetic.main.fragment_mainmenu.*
 import kotlinx.android.synthetic.main.nextappointmentnew.view.*
+import kotlinx.android.synthetic.main.patientmainscreennotificationcard.view.*
 import org.koin.android.ext.android.get
-
-
-/**
- * A simple [Fragment] subclass.
- */
+//TODO  add nothing to show card
 class mainmenu : Fragment() {
 
-    var myticketlist: ListView? = null
     var patientMainScreenResponse: PatientMainScreenResponse? = null
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -29,9 +29,16 @@ class mainmenu : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view: View = inflater.inflate(R.layout.fragment_mainmenu, container, false)
+        getData()
+        return view
+    }
+    override fun onResume() {
+        super.onResume()
+        getData()
+    }
+    private fun getData(){
         val userRepository: UsersRepository = get()
         userRepository.getPatientMainScreen(this.context!!, this)
-        return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -42,7 +49,6 @@ class mainmenu : Fragment() {
 
     fun setView(response: PatientMainScreenResponse) {
         patientMainScreenResponse = response
-        println(response.toString())
         if (!patientMainScreenResponse!!.patientMissingInfo) {
             missingInfo.visibility = View.GONE
         } else {
@@ -59,6 +65,18 @@ class mainmenu : Fragment() {
                 );
             }
         }
+        if (!patientMainScreenResponse!!.patientMissingInfo&&patientMainScreenResponse!!.patientNextAppointment==null){
+            Infocard.visibility=View.VISIBLE
+            Infocard.notificationText.text=getString(R.string.PatientHomeInfo)
+        }
+        else{
+            Infocard.visibility=View.GONE
+        }
+        patientMainScreenRecyclerView.layoutManager =
+            LinearLayoutManager(this.context!!, LinearLayoutManager.VERTICAL, true)
+        patientMainScreenRecyclerView.adapter = PatientMainScreenNotificationsAdapter(
+            patientMainScreenResponse!!.patientNotifications.toMutableList())
+
         if (patientMainScreenResponse!!.patientNextAppointment != null) {
             nextAppointment.visibility = View.VISIBLE
             nextAppointment.doctorName.setText(patientMainScreenResponse!!.patientNextAppointment?.DoctorName())
@@ -67,10 +85,5 @@ class mainmenu : Fragment() {
         } else {
             nextAppointment.visibility = View.GONE
         }
-    }
-
-    fun setViewError() {
-        missingInfo.visibility = View.GONE
-        nextAppointment.visibility = View.GONE
     }
 }

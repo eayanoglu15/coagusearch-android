@@ -4,12 +4,15 @@ import android.content.Context
 import com.example.coagusearch.doctor.PatientBloodOrder
 import com.example.coagusearch.doctor.PatientPastDataActivity
 import com.example.coagusearch.doctor.doctorBloodBankFragment
+import com.example.coagusearch.medicalTeam.MedicalPrepareFragment
 import com.example.coagusearch.network.PatientData.request.GetPatientBloodTestRequest
 import com.example.coagusearch.network.PatientData.response.UserBloodTestsResponse
 import com.example.coagusearch.network.Users.response.UserResponse
+import com.example.coagusearch.network.bloodOrderAndRecommendation.request.BloodOrderIDRequest
 import com.example.coagusearch.network.bloodOrderAndRecommendation.request.BloodOrderRequest
 import com.example.coagusearch.network.bloodOrderAndRecommendation.request.OrderForUserDataRequest
 import com.example.coagusearch.network.bloodOrderAndRecommendation.response.DoctorBloodOrderResponse
+import com.example.coagusearch.network.bloodOrderAndRecommendation.response.MedicalBloodOrderResponse
 import com.example.coagusearch.network.bloodOrderAndRecommendation.response.PreviousOrderResponse
 import com.example.coagusearch.network.onFailureDialog
 import com.example.coagusearch.network.shared.RetrofitClient
@@ -123,4 +126,64 @@ class BloodOrderRepository(
             })
         return orderResult
     }
+
+    fun getOrdersForMedical(
+        context: Context,
+        fragment: MedicalPrepareFragment
+    ): MedicalBloodOrderResponse? {
+        var orderResult: MedicalBloodOrderResponse? = null
+        // showProgressLoading(true,context)
+        retrofitClient.bloodOrderApi().getOrdersForMedical()
+            .enqueue(object : Callback<MedicalBloodOrderResponse> {
+                override fun onFailure(call: Call<MedicalBloodOrderResponse>, t: Throwable) {
+                    onFailureDialog(context, "Başarısız oldu "+t.toString())
+                }
+                override fun onResponse(
+                    call: Call<MedicalBloodOrderResponse>,
+                    response: Response<MedicalBloodOrderResponse>
+                ) {
+                    if (response.isSuccessful && response.body() is MedicalBloodOrderResponse) {
+                        orderResult = response.body()
+                        println(orderResult.toString())
+                        println(response.body().toString())
+                        fragment.setData(orderResult!!)
+                    }
+                    else{
+                        println("Başarısız")
+                    }
+                }
+            })
+        return orderResult
+    }
+
+
+    fun setOrderReady(
+        order: BloodOrderIDRequest,
+        context: Context,
+        fragment: MedicalPrepareFragment
+    ): MedicalBloodOrderResponse? {
+        var orderResult: MedicalBloodOrderResponse? = null
+        // showProgressLoading(true,context)
+        retrofitClient.bloodOrderApi().setOrderReady(order)
+            .enqueue(object : Callback<MedicalBloodOrderResponse> {
+                override fun onFailure(call: Call<MedicalBloodOrderResponse>, t: Throwable) {
+                    onFailureDialog(context, t.toString())
+                }
+                override fun onResponse(
+                    call: Call<MedicalBloodOrderResponse>,
+                    response: Response<MedicalBloodOrderResponse>
+                ) {
+                    println("geldi")
+
+                        orderResult = response.body()
+                    println(response.message())
+                    println(response.body())
+                        fragment.getData()
+                }
+            })
+        return orderResult
+    }
+
+
+
 }

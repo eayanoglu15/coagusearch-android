@@ -7,6 +7,7 @@ import android.text.Editable
 import androidx.appcompat.app.AppCompatActivity
 import com.example.coagusearch.doctor.doctorMain
 import com.example.coagusearch.medicalTeam.MedicalTeamMain
+import com.example.coagusearch.medicalTeam.medicalTeamBottomNavigation
 import com.example.coagusearch.network.Auth.model.AuthRepository
 import com.example.coagusearch.network.Interceptors.AuthInterceptor
 import com.example.coagusearch.network.Users.model.UsersRepository
@@ -23,6 +24,8 @@ import org.koin.android.ext.android.startKoin
 class MainActivity : AppCompatActivity() {
     private val authInterceptor: AuthInterceptor by inject()
     private val retrofitClient: RetrofitClient by inject()
+    var TC:String?=null
+    var Pass:String?=null
     var sharedPreferences: SharedPreferences? = null
     var editor: SharedPreferences.Editor? = null
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,7 +41,9 @@ class MainActivity : AppCompatActivity() {
             authRepository.signIn(TC!!, passwords!!, this)
         }
         LoginButton.setOnClickListener {
-            authRepository.signIn("98776556776", "123456", this)
+            TC=TcInput.text.toString()
+            Pass=PasswordInput.text.toString()
+            authRepository.signIn(TC!!, Pass!!, this)
         }
     }
 
@@ -50,8 +55,8 @@ class MainActivity : AppCompatActivity() {
 
         if (rememberMeSwitch.isChecked) {
             editor!!.putString("ischecked", "true");
-            editor!!.putString("TC", "98776556776");
-            editor!!.putString("passowrd", "123456");
+            editor!!.putString("TC", TC);
+            editor!!.putString("passowrd", Pass);
             editor!!.commit();
         } else {
             editor!!.putString("ischecked", "false");
@@ -74,7 +79,7 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
             overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
         } else if (UserInfoSingleton.instance.userInfo!!.type.equals("Medical")) {
-            val intent = Intent(this, MedicalTeamMain::class.java)
+            val intent = Intent(this, medicalTeamBottomNavigation::class.java)
             startActivity(intent)
             overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
         }

@@ -29,53 +29,49 @@
         app:layout_constraintStart_toEndOf="@+id/imageView18"
         app:layout_constraintTop_toTopOf="@+id/imageView18" />
 
-    <LinearLayout
+    <EditText
+        android:id="@+id/editText2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="8dp"
+        android:layout_marginVertical="4dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/cardwhite"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="Enter Patient ID"
+        android:inputType="number"
+        android:padding="4dp"
+        android:textSize="@dimen/smalltext"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView24" />
+
+    <TextView
+        android:id="@+id/notifyDoctorText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
-        android:orientation="horizontal"
+        android:layout_marginBottom="16dp"
+        android:layout_weight="1"
+        android:background="@drawable/shadowedticked"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:gravity="center"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        android:text="@string/notifydoctor"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/textView24"
-        app:layout_constraintTop_toBottomOf="@+id/imageView18">
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/patientName"
-            style="@style/TextInputLayout"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="8dp"
-            android:layout_marginBottom="4dp"
-            android:layout_weight="1"
-            android:hint="@string/enterpatientname"
-            android:paddingBottom="6dp"
-            android:theme="@style/TextInputLayout">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/patientNameText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/xsmalltext"></com.google.android.material.textfield.TextInputEditText>
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <TextView
-            android:id="@+id/notifyDoctorText"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginRight="4dp"
-            android:layout_weight="1"
-            android:background="@drawable/loginbutton_back"
-            android:clickable="true"
-            android:focusable="true"
-            android:foreground="?android:attr/selectableItemBackground"
-            android:gravity="center"
-            android:paddingTop="2dp"
-            android:paddingBottom="2dp"
-            android:text="@string/notifydoctor"
-            android:textColor="@color/white" />
-
-    </LinearLayout>
+        app:layout_constraintEnd_toEndOf="@+id/editText2"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/editText2"
+        app:layout_constraintTop_toBottomOf="@+id/editText2"
+        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

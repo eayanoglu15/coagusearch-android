@@ -51,7 +51,6 @@ class RegularMedicationRepository(
                 ) {
                     userMedicineResponse = response.body()
                     UserInfoSingleton.instance.medInfo = userMedicineResponse
-                    println("burdaaa" + userMedicineResponse!!.allDrugs.frequencies.toString())
                     showProgressLoading(false, context)
                 }
             })

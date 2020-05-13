@@ -35,11 +35,13 @@ class suggestionAdapter(val suggestions: MutableList<SuggestionResponse>) :
                 (holder as SuggestionCard2ViewHolder).name.text=suggestion.diagnosis
                 holder.dosage.text=suggestion.quantity.toString()+" "+suggestion.unit
                 holder.medname.text=suggestion.product
+            holder.additionalText.visibility=View.GONE
             }
             else{
             (holder as SuggestionCard1ViewHolder).name.text=suggestion.diagnosis
             holder.unit.text=suggestion.quantity.toString()+" "+suggestion.unit
             holder.medname.text=suggestion.product
+            holder.additionalText.visibility=View.GONE
 
         }
 

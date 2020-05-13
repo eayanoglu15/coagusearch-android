@@ -92,7 +92,6 @@
     <string name="weightkg">(kg)</string>
 
 
-
     <string name="decidetreatment">Decide Treatment</string>
     <string name="suggestions">Suggestions</string>
     <string name="patientbloodorder">Patient Blood Order</string>
@@ -123,10 +122,6 @@
     <string name="checktreatmentstatus">Check Treatment Status</string>
 
 
-
-
-
-
     <!-- MedTeam-->
     <string name="managePatients">Manage Patients</string>
     <string name="enterpatientname">Enter Patient Name</string>
@@ -139,6 +134,31 @@
     <string name="deletesure">Are you sure?</string>
     <string name="heightvcm">(cm)</string>
     <string name="weightkg">(kg)</string>-->
+    <string name="switchtodoctorview">Switch to doctor view</string>
+    <string name="switchtomedview">Switch to medical team view</string>
+    <!--Information cards-->
+    <!--Patient-->
+    <string name="PatientHomeInfo">There is nothing for today</string>
+    <string name="PatientAppointmentsInfo">You don\'t have any past appointment</string>
+    <!--Doctor-->
+
+    <string name="nameerror">Name and Surname cannot be empty</string>
+    <string name="DoctorHomeInfo" > You have no appointments today  </string>
+    <string name="DoctorNotificationsInfo"  >There isn\'t any notification   </string>
+    <string name="DoctorPatientInfo"  > You have no patients  </string>
+    <string name="DoctorPatientPastAppointmentInfo"> This patient doesn\'t have any past appointment  </string>
+    <string name="DoctorPatientPastAnalysisInfo"> This patient doesn\'t have any past analysis data  </string>
+    <string name="DoctorPatientOrderInfo">No order was made   </string>
+    <string name="DoctorPatientTreatmentStatusInfo">No order has been made yet   </string>
+
+    <!--Medical-->
+    <string name="MedicalTODO" > There is no request  </string>
+    <string name="MedicalPatients"  > You have no patients </string>
+
+
+
+
+
 
 
 </resources>

@@ -47,7 +47,7 @@ class doctorProfile : Fragment() {
         profileFragment_name.text = userResponse!!.name + " " + userResponse!!.surname
         val birthdate = getString(R.string.birthdate)
         if (userResponse!!.birthDay != null && userResponse!!.birthMonth != null && userResponse!!.birthYear != null)
-            profileFragment_Age.text =
+            profileFragment_Age.text ="Doğum Tarihi:"+
                 userResponse!!.birthDay.toString() + "/" + userResponse!!.birthMonth.toString() + "/" + userResponse!!.birthYear.toString()
         else
             profileFragment_Age.text = "-/-/-"
@@ -85,10 +85,7 @@ class doctorProfile : Fragment() {
             editor!!.commit();
             val intent = Intent(activity, MainActivity::class.java)
             startActivity(intent)
-            getActivity()?.overridePendingTransition(
-                R.anim.slide_in_right,
-                R.anim.slide_out_left
-            )
+
         }
     }
 }

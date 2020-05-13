@@ -8,6 +8,7 @@ import android.widget.BaseAdapter
 import com.example.coagusearch.R
 import com.example.coagusearch.network.Users.response.SingleAppointmentResponse
 import kotlinx.android.synthetic.main.oldappointmentcard.view.*
+import kotlinx.android.synthetic.main.patientmainscreennotificationcard.view.*
 
 class OldAppointmentsAdapterAF : BaseAdapter {
     var listOfTicket = ArrayList<SingleAppointmentResponse>()
@@ -19,12 +20,20 @@ class OldAppointmentsAdapterAF : BaseAdapter {
     }
 
     override fun getView(p0: Int, p1: View?, p2: ViewGroup?): View {
-        val ticket = listOfTicket[p0]
-        var inflater = context!!.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-        var myView = inflater.inflate(R.layout.oldappointmentcard, null)
-        myView.appointentdoctor.text = ticket.DoctorName()
-        myView.appointmentdate.text = ticket.appointmentDate()
-        myView.appointmenttime.text = ticket.timeSlot()
+        var inflater =
+            context!!.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+        var myView:View?=null
+        if(listOfTicket.size==0){
+             myView = inflater.inflate(R.layout.patientmainscreennotificationcard, null)
+            myView.notificationText.text=context!!.getString(R.string.PatientAppointmentsInfo)
+        }
+        else {
+            val ticket = listOfTicket[p0]
+            myView = inflater.inflate(R.layout.oldappointmentcard, null)
+            myView.appointentdoctor.text = ticket.DoctorName()
+            myView.appointmentdate.text = ticket.appointmentDate()
+            myView.appointmenttime.text = ticket.timeSlot()
+        }
         return myView
     }
 
@@ -37,6 +46,8 @@ class OldAppointmentsAdapterAF : BaseAdapter {
     }
 
     override fun getCount(): Int {
-        return listOfTicket.size
+        if(listOfTicket.size==0)
+            return 1
+        else return listOfTicket.size
     }
 }

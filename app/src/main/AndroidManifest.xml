@@ -13,7 +13,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".doctor.treatmentStatus"></activity>
+        <activity android:name=".medicalTeam.medicalTeamBottomNavigation"></activity>
+        <activity android:name=".doctor.treatmentStatus" />
         <activity android:name=".doctor.decideTreatment" />
         <activity android:name=".doctor.decisionActivity" />
         <activity android:name=".doctor.patientDecision" />

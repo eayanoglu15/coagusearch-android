@@ -6,6 +6,8 @@ import com.example.coagusearch.doctor.PatientBloodOrder
 import com.example.coagusearch.doctor.doctorHomeFragment
 import com.example.coagusearch.doctor.doctorMyPatient
 import com.example.coagusearch.doctor.doctorPatientsFragment
+import com.example.coagusearch.medicalTeam.medicalHomeFragment
+import com.example.coagusearch.network.Users.request.AmbulancePatientRequest
 import com.example.coagusearch.network.Users.request.PatientDetailRequest
 import com.example.coagusearch.network.Users.request.UserBodyInfoSaveRequest
 import com.example.coagusearch.network.Users.response.DoctorMainScreenResponse
@@ -227,6 +229,45 @@ class UsersRepository(
             })
         return myPatients
     }
+
+
+    fun saveAmbulancePatient(
+        patientID:AmbulancePatientRequest,
+        context: Context,
+        fragment: medicalHomeFragment
+    ): ApiResponse? {
+        var r: ApiResponse? = null
+        showProgressLoading(true, context)
+        retrofitClient.usersApi().saveAmbulancePatient(patientID)
+            .enqueue(object : Callback<ApiResponse> {
+                override fun onFailure(call: Call<ApiResponse>, t: Throwable) {
+                    onFailureDialog(context, t.toString())
+                }
+                override fun onResponse(
+                    call: Call<ApiResponse>,
+                    response: Response<ApiResponse>
+                ) {
+                    if (response.isSuccessful && response.body() is ApiResponse) {
+                        r = response.body()
+                        showProgressLoading(false, context)
+                    } else {
+                        val errorResponse =
+                            Gson().fromJson<ApiResponse>(
+                                response.errorBody()?.string(),
+                                ApiResponse::class.java
+                            )?.message
+                                ?: context.resources.getString(R.string.errorOccurred)
+                        showProgressLoading(false, context)
+                        onFailureDialog(context, errorResponse)
+                    }
+                }
+            })
+        return r
+    }
+
+
+
+
 
     fun getPatientDetail(
         context: Context,

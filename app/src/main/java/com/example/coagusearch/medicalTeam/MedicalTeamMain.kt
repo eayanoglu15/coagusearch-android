@@ -21,11 +21,11 @@ class MedicalTeamMain : AppCompatActivity() {
             startActivity(intent)
             overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
         }
-        notifyDoctorText.setOnClickListener {
-            Toast.makeText(this, "Doktora Bildirildi", Toast.LENGTH_LONG).show()
-            patientNameText.text = null;
-            patientNameText.clearFocus()
-        }
+       // notifyDoctorText.setOnClickListener {
+        //    Toast.makeText(this, "Doktora Bildirildi", Toast.LENGTH_LONG).show()
+         //   patientNameText.text = null;
+          //  patientNameText.clearFocus()
+        //}
         patientmainRecyclerView.layoutManager =
             LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         patientmainRecyclerView.adapter = MedTeamMainPageAdapter(list)

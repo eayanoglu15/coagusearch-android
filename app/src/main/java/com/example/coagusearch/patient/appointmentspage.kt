@@ -71,7 +71,6 @@ class appointmentspage : Fragment() {
                     context!!,
                     R.style.AlertDialogStyle
                 )
-                builder.setTitle(R.string.nextAppointment)
                 builder.setMessage(R.string.deletesure)
                 builder.setPositiveButton(R.string.yes) { dialog, which ->
                     val appointmentRepository: AppointmentRepository = get()

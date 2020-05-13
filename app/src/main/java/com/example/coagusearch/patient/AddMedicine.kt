@@ -16,6 +16,7 @@ import com.example.coagusearch.network.RegularMedication.request.DeleteMedicineI
 import com.example.coagusearch.network.RegularMedication.request.KeyType
 import com.example.coagusearch.network.RegularMedication.request.MedicineInfoType
 import com.example.coagusearch.network.RegularMedication.request.SaveMedicineInfoRequest
+import com.example.coagusearch.network.RegularMedication.response.MedicineInfoResponse
 import kotlinx.android.synthetic.main.activity_add_medicine.*
 import org.koin.android.ext.android.get
 
@@ -35,6 +36,7 @@ class AddMedicine : AppCompatActivity() {
     var frequency: String? = null
     var dosage: Double? = null
     var id: KeyType? = null
+    var medicine:MedicineInfoResponse?=null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_medicine)
@@ -42,12 +44,14 @@ class AddMedicine : AppCompatActivity() {
         freqMap = UserInfoSingleton.instance.getFrequencyHashMap()
         frelist = UserInfoSingleton.instance.getFrequencyNames() as Array<String>
         medList = UserInfoSingleton.instance.getMedicineNames() as Array<String>
+
         dosage = doslist[0].toDouble()
         frequency = freqMap!!.get(frelist[0])
         dosagePicked.text = doslist[0]
         frequencyPicked.text = frelist[0]
         frequencyPicker.visibility = View.GONE
         dosagePicker.visibility = View.GONE
+
         editMedicineName.setOnClickListener {
             name_arrow.visibility = View.GONE
             multiAutoCompleteTextView.visibility = View.VISIBLE
@@ -150,7 +154,6 @@ class AddMedicine : AppCompatActivity() {
             } else if (mode == MedicineInfoType.KEY && (key.equals("") || key == null)) {
                 Toast.makeText(this, "Please select a medicine name", Toast.LENGTH_SHORT).show()
             } else {
-                println("name is " + key + "  " + customText)
                 saveMedicine()
                 finish()
                 overridePendingTransition(
@@ -163,27 +166,40 @@ class AddMedicine : AppCompatActivity() {
         val bundle: Bundle? = intent.extras
         var editOrNew = bundle!!.getString("type")
         if (editOrNew.equals("edit")) {
-            id = bundle.get("id") as KeyType
-            frequencyPicked.text = bundle.getString("freq")
-            dosagePicked.text = bundle.getString("dos")
-            medName.text = bundle.getString("Name")
+            medicine= intent.getSerializableExtra("Medicine") as MedicineInfoResponse?
+
+            println(medicine.toString())
+            id=medicine!!.id
+            key=medicine!!.key
+            mode=medicine!!.mode
+            customText=medicine!!.custom
+            frequency=medicine!!.frequency!!.key
+            dosage=medicine!!.dosage
+
+            frequencyPicked.text = medicine!!.frequency!!.title.capitalize()
+            dosagePicked.text=medicine!!.dosage.toString().capitalize()
+            if(medicine!!.mode==MedicineInfoType.KEY){
+                medName.text =medicine!!.key!!.capitalize()
+            }
+            else{
+                medName.text =medicine!!.custom!!.capitalize()
+            }
             MedicinePageRemoveButton.setOnClickListener {
                 val medRepository: RegularMedicationRepository = get()
                 medRepository.deleteMedicine(DeleteMedicineInfoRequest(id!!), this)
             }
-        } else {
+        }  else {
             MedicinePageRemoveButton.visibility = View.GONE
-        }
+            }
     }
 
-    override fun onBackPressed() {
-        finish()
-        overridePendingTransition(
-            R.anim.slide_in_left,
-            R.anim.slide_out_right
-        )
-    }
 
+
+
+    fun saveMedicine() {
+        val medRepository: RegularMedicationRepository = get()
+        medRepository.saveMedicine(SaveMedicineInfoRequest(id, mode, key, customText, frequency, dosage), this)
+    }
     private fun showSoftKeyboard(view: View) {
         if (view.requestFocus()) {
             val imm =
@@ -191,7 +207,6 @@ class AddMedicine : AppCompatActivity() {
             imm?.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0)
         }
     }
-
     private fun closeSoftKeyboard(view: View) {
         if (view.requestFocus()) {
             val imm =
@@ -199,22 +214,13 @@ class AddMedicine : AppCompatActivity() {
             imm?.hideSoftInputFromWindow(view.getWindowToken(), 0)
         }
     }
-
-    fun saveMedicine() {
-        val medRepository: RegularMedicationRepository = get()
-        medRepository.saveMedicine(
-            SaveMedicineInfoRequest(
-                id,
-                mode,
-                key,
-                customText,
-                frequency,
-                dosage
-            ), this
+    override fun onBackPressed() {
+        finish()
+        overridePendingTransition(
+            R.anim.slide_in_left,
+            R.anim.slide_out_right
         )
-
     }
-
 
 }
 

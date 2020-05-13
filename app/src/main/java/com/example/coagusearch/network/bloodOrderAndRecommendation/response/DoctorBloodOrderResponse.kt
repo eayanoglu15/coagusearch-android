@@ -15,8 +15,13 @@ data class DoctorBloodOrderResponse (
     val productType: String? = null,
     val quantity: Double,
     val additionalNote: String?,
+    val patientName: String? = null,
+    val patientSurname : String? = null,
+    val bloodTestId:Long?,
     val kind: String?,
-    val unit: String?
+    val unit: String?,
+    val isReady : Boolean,
+    val bloodOrderId: Long
 ){
 
     fun getBloodTypeAsString():String{

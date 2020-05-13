@@ -5,8 +5,6 @@ import kotlin.random.Random
 data class DoctorMainScreenResponse(
     val emergencyPatients: List<EmergencyPatientDetail>,
     val todayAppointments: List<TodayPatientDetail>
-
-
 )
 
 data class TodayPatientDetail(
@@ -14,10 +12,7 @@ data class TodayPatientDetail(
     val userName: String,
     val userSurname: String,
     val appointmentHour: PatientAppointmentTimeResponse
-
-
 )
-
 data class PatientAppointmentTimeResponse(
     val hour: Int,
     val minute: Int
@@ -30,7 +25,6 @@ data class PatientAppointmentTimeResponse(
         return s
     }
 }
-
 data class EmergencyPatientDetail(
     val patientId: Long,
     val userName: String,

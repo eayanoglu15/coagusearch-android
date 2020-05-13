@@ -22,16 +22,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/bottom_sheet_account">
-
-                <com.google.android.material.button.MaterialButton
+                <Button
                     android:id="@+id/doneButton"
-                    style="@style/Widget.MaterialComponents.Button.TextButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/done"
                     android:textColor="@color/blue"
-                    android:textSize="@dimen/largetext"
-                    android:textStyle="bold"
+                    android:textSize="@dimen/smalltext"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />

@@ -30,7 +30,7 @@ class myPatientMedAdapter(var medicineList: MutableList<MedicineInfoResponse>) :
         }else{
             holder.medName.text=med.custom
         }
-        holder.frequency.text=med.frequency.toString()
+        holder.frequency.text=med.frequency!!.title
         holder.dosage.text=med.dosage.toString()+" Doz"
 
     }

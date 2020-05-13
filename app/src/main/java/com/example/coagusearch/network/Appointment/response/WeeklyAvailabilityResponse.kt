@@ -25,7 +25,12 @@ data class DailyAvailablityResponse(
         while (iterator.hasNext()) {
             next = iterator.next()
             if (next.available) {
-                listOfTicket.add(next.hour.toString() + ":" + next.minute.toString())
+                if(next.minute==0){
+                    listOfTicket.add(next.hour.toString() + ":" + next.minute.toString()+"0")
+                }
+                else {
+                    listOfTicket.add(next.hour.toString() + ":" + next.minute.toString())
+                }
             }
         }
         val array = arrayOfNulls<String>(listOfTicket.size)

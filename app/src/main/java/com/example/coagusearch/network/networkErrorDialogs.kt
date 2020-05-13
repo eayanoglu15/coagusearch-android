@@ -6,7 +6,6 @@ import com.example.coagusearch.R
 
 fun onFailureDialog(context: Context, error: String) {
     val builder = AlertDialog.Builder(context, R.style.AlertDialogStyle)
-    builder.setTitle("Error")
     builder.setMessage(error)
     builder.setPositiveButton("OK") { dialog, which ->
     }

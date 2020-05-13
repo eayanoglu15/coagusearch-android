@@ -27,7 +27,7 @@ class NewAppointment : AppCompatActivity() {
         setListenersNewAppointment()
         showProgressLoading(true, this)
         val appointmentRepository: AppointmentRepository = get()
-        appointmentResponse = appointmentRepository.availableTimeSlotsForAppointment(this)
+        appointmentRepository.availableTimeSlotsForAppointment(this)
     }
 
     override fun onBackPressed() {
@@ -57,10 +57,12 @@ class NewAppointment : AppCompatActivity() {
         timeSlotHour.descendantFocusability = NumberPicker.FOCUS_BLOCK_DESCENDANTS
         appointmentDatePicker.descendantFocusability = NumberPicker.FOCUS_BLOCK_DESCENDANTS;
         dateCardYourDate.text = array[0]
+
         val firstSlot = appointmentResponse.week[0].getAvailableHours()
         timeSlotHour.maxValue = firstSlot.size - 1
         timeSlotHour.minValue = 0
         timeSlotHour.displayedValues = firstSlot
+        timeSlotCardYourSlot.text=firstSlot[0]
         appointmentDatePicker.setOnValueChangedListener { numberPicker, oldVal, newVal ->
             dateCardYourDate.text = array[newVal]
             val availableSlot = appointmentResponse.week[newVal].getAvailableHours()

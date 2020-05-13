@@ -27,21 +27,18 @@ class MedicineAdapterProfileFragment : BaseAdapter {
         var inflater =
             context!!.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         var myView = inflater.inflate(R.layout.medicinecard, null)
-        val intent = Intent(context, AddMedicine::class.java)
-        intent.putExtra("type", "edit")
-        if (ticket.mode == MedicineInfoType.KEY) {
-            myView.medName.text = ticket.key!!.capitalize()
-            intent.putExtra("Name", ticket.key)
-        } else {
-            myView.medName.text = ticket.custom
-            intent.putExtra("Name", ticket.custom)
+        if(ticket.mode==MedicineInfoType.KEY){
+            myView.medName.text=ticket.key!!.capitalize()
+        }
+        else{
+            myView.medName.text=ticket.custom!!.capitalize()
         }
         myView.medFreq.text = ticket.frequency!!.title.capitalize()
         myView.medDos.text = ticket.dosage.toString().capitalize()
         myView.editButtonMed.setOnClickListener {
-            intent.putExtra("id", ticket.id)
-            intent.putExtra("freq", ticket.frequency.title)
-            intent.putExtra("dos", ticket.dosage.toString())
+            val intent = Intent(context, AddMedicine::class.java)
+            intent.putExtra("type", "edit")
+            intent.putExtra("Medicine",ticket)
             context!!.startActivity(intent)
 
         }
