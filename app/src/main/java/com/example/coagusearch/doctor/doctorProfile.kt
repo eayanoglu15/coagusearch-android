@@ -66,7 +66,7 @@ class doctorProfile : Fragment() {
         switchToPatient.setOnClickListener {
             val intent = Intent(getActivity(), main::class.java)
             startActivity(intent)
-            getActivity()?.overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+           // getActivity()?.overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
         }
         editProfile.setOnClickListener {
             val intent = Intent(getActivity(), accountPage::class.java)

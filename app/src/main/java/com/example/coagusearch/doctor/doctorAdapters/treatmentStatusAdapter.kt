@@ -1,5 +1,6 @@
 package com.example.coagusearch.doctor.doctorAdapters
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,13 +12,19 @@ import com.example.coagusearch.network.PatientData.response.SuggestionResponse
 import com.example.coagusearch.network.bloodOrderAndRecommendation.response.DoctorBloodOrderResponse
 
 
-class statusAdapter(val suggestions: MutableList<DoctorBloodOrderResponse>) :
+class statusAdapter(val suggestions: MutableList<DoctorBloodOrderResponse>,var context: Context) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private val TYPE_MED = 1
     private val TYPE_BLOOD = 2
+    private val TYPE_E=3
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val v: View
-        if (viewType == 1) {
+        if(viewType==3){
+            v= LayoutInflater.from(parent.context)
+                .inflate(R.layout.informationcard, parent, false)
+            return myPatientMedAdapter.ECardViewHolder(v)
+        }
+        else if (viewType == 1) {
             v = LayoutInflater.from(parent.context).inflate(R.layout.suggestionsmall, parent, false)
             return SuggestionCard2ViewHolder(v)
         } else {
@@ -27,30 +34,43 @@ class statusAdapter(val suggestions: MutableList<DoctorBloodOrderResponse>) :
     }
 
     override fun getItemCount(): Int {
-        return suggestions.size
+        if(suggestions.size==0){
+            return 1
+        }
+        else
+            return suggestions.size
     }
 
 
 
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        val suggestion = suggestions[position]
-        if(suggestion.kind.equals("Medicine")){
-            (holder as SuggestionCard2ViewHolder).dosage.text=suggestion.quantity.toString()+" "+suggestion.unit
-            holder.medname.text=suggestion.productType
-
+        if(suggestions.size==0){
+            (holder as ECardViewHolder).notificationText.text=context.getString(R.string.DoctorPatientTreatmentStatusInfo)
         }
-        else{
-            (holder as PatientBloodOrderViewHolder).unit.text=suggestion.quantity.toString()+" "+suggestion.unit
-            holder.name.text=suggestion.productType
+        else {
+            val suggestion = suggestions[position]
+            if (suggestion.kind.equals("Medicine")) {
+                (holder as SuggestionCard2ViewHolder).dosage.text =
+                    suggestion.quantity.toString() + " " + suggestion.unit
+                holder.medname.text = suggestion.productType
+
+            } else {
+                (holder as PatientBloodOrderViewHolder).unit.text =
+                    suggestion.quantity.toString() + " " + suggestion.unit
+                holder.name.text = suggestion.productType
+            }
         }
     }
 
     override fun getItemViewType(position: Int): Int {
-        return if (suggestions.get(position).kind.equals("Medicine")) {
-            TYPE_MED
+        if(suggestions.size==0){
+            return TYPE_E
+        }
+      else if (suggestions.get(position).kind.equals("Medicine")) {
+          return  TYPE_MED
         } else {
-            TYPE_BLOOD
+          return TYPE_BLOOD
         }
 
     }
@@ -76,4 +96,9 @@ class statusAdapter(val suggestions: MutableList<DoctorBloodOrderResponse>) :
         var name = itemView.findViewById<TextView>(R.id.name)
         var unit = itemView.findViewById<TextView>(R.id.unit)
     }
+    class ECardViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        var notificationText = itemView.findViewById<TextView>(R.id.infoText)
+    }
+
+
 }

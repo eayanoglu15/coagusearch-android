@@ -38,7 +38,13 @@ class BloodBankOrderAdapter(val companies: MutableList<DoctorBloodOrderResponse>
     override fun onBindViewHolder(holder: BloodBankOrderViewHolder, position: Int) {
         val company = companies[position]
         holder.unit.text=company.quantity.toString()+" Units"
-        holder.name.text=company.productType
+        if(company.productType.equals("FFP")){
+            holder.name.text="Fresh Frozen Plasma "
+        }
+        else{
+            holder.name.text=company.productType
+        }
+
         holder.type.text=company.getBloodTypeAsString()
     }
 

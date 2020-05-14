@@ -6,8 +6,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.coagusearch.R
-import com.example.coagusearch.network.Users.response.TodayPatientDetail
-import com.example.coagusearch.network.notifications.NotificationResponse
+import com.example.coagusearch.network.notifications.response.NotificationResponse
 
 class PatientMainScreenNotificationsAdapter(var notificatons: MutableList<NotificationResponse>) :
     RecyclerView.Adapter<PatientMainScreenNotificationsAdapter.NotificationCardViewHolder>() {

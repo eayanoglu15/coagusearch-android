@@ -35,10 +35,8 @@ class doctorBloodBankFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-       getData()
+        getData()
         setListeners()
-
-
     }
 
 
@@ -64,7 +62,7 @@ class doctorBloodBankFragment : Fragment() {
             var unit: Int?=null
             var additionalNote: String?=null
             when (productRadioGroup.checkedRadioButtonId) {
-                R.id.pcc -> productType = "PCC"
+                R.id.pcc -> productType = "PlateletConcentrate"
                 R.id.ffp -> productType = "FFP"
             }
 
@@ -105,8 +103,7 @@ class doctorBloodBankFragment : Fragment() {
     fun setData( orderResult: List<DoctorBloodOrderResponse>){
         ordersRecyclerView.layoutManager =
             LinearLayoutManager(this.context!!, LinearLayoutManager.VERTICAL, false)
-        ordersRecyclerView.adapter = BloodBankOrderAdapter(orderResult.toMutableList())
-
+            ordersRecyclerView.adapter = BloodBankOrderAdapter(orderResult.filter { e-> e.kind.equals("Blood")  }.toMutableList())
     }
 
 }

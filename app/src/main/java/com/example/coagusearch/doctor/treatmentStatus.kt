@@ -46,7 +46,7 @@ class treatmentStatus : AppCompatActivity() {
          println("burdayımmmm"+r.ordersOfData.toString())
          treatmentStatusRecyclerView.layoutManager =
              LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-         treatmentStatusRecyclerView.adapter = statusAdapter(r.ordersOfData.toMutableList())
+         treatmentStatusRecyclerView.adapter = statusAdapter(r.ordersOfData.toMutableList(),this)
 
      }
 }

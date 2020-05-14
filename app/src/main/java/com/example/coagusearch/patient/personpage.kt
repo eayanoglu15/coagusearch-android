@@ -70,10 +70,10 @@ class personpage : Fragment() {
             sharedPreferences =
                 activity!!.getSharedPreferences("LoginPrefs", AppCompatActivity.MODE_PRIVATE)
             editor = sharedPreferences!!.edit();
-            editor!!.putString("ischecked", "false");
-            editor!!.putString("TC", "");
-            editor!!.putString("passowrd", "");
-            editor!!.commit();
+            editor.putString("ischecked", "false");
+            editor.putString("TC", "");
+            editor.putString("passowrd", "");
+            editor.commit();
             val intent = Intent(activity, MainActivity::class.java)
             startActivity(intent)
         }

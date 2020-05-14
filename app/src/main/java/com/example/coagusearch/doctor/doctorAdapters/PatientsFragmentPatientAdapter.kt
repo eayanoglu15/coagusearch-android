@@ -35,17 +35,25 @@ class PatientsFragmentPatientAdapter(
     }
 
     override fun getItemCount(): Int {
-        return FilteredList.size
+        if(patientsList.size==0)
+            return 1
+        else
+            return FilteredList.size
     }
 
     override fun onBindViewHolder(holder: PatientViewHolder, position: Int) {
-        val patient = FilteredList[position]
-        holder.itemDetail.text = FilteredList[position].getFullName().capitalize()
-        holder.itemView.setOnClickListener {
-            val intent = Intent(context, doctorMyPatient::class.java)
-            intent.putExtra("id", patient.userId)
-            context.startActivity(intent)
+        if(patientsList.size==0){
+            holder.itemDetail.text=context.getString(R.string.DoctorPatientInfo)
+        }
+        else {
+            val patient = FilteredList[position]
+            holder.itemDetail.text = FilteredList[position].getFullName().capitalize()
+            holder.itemView.setOnClickListener {
+                val intent = Intent(context, doctorMyPatient::class.java)
+                intent.putExtra("id", patient.userId)
+                context.startActivity(intent)
 
+            }
         }
     }
 
@@ -85,9 +93,12 @@ class PatientsFragmentPatientAdapter(
 
     class PatientViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var itemDetail: TextView
-
         init {
             itemDetail = itemView.findViewById(R.id.patientnameMyPatient)
         }
+    }
+
+    class ECardViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        var notificationText = itemView.findViewById<TextView>(R.id.infoText)
     }
 }

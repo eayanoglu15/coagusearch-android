@@ -7,17 +7,18 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ListView
+
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.coagusearch.R
-import com.example.coagusearch.doctor.doctorAdapters.HomeFragmentAppointmentAdapter
+
 import com.example.coagusearch.network.Users.model.UsersRepository
 import com.example.coagusearch.network.Users.response.PatientMainScreenResponse
 import com.example.coagusearch.patient.PatientAdapters.PatientMainScreenNotificationsAdapter
-import kotlinx.android.synthetic.main.fragment_doctor_home.*
+
 import kotlinx.android.synthetic.main.fragment_mainmenu.*
+import kotlinx.android.synthetic.main.informationcard.view.*
 import kotlinx.android.synthetic.main.nextappointmentnew.view.*
-import kotlinx.android.synthetic.main.patientmainscreennotificationcard.view.*
+
 import org.koin.android.ext.android.get
 //TODO  add nothing to show card
 class mainmenu : Fragment() {
@@ -67,7 +68,7 @@ class mainmenu : Fragment() {
         }
         if (!patientMainScreenResponse!!.patientMissingInfo&&patientMainScreenResponse!!.patientNextAppointment==null){
             Infocard.visibility=View.VISIBLE
-            Infocard.notificationText.text=getString(R.string.PatientHomeInfo)
+            Infocard.infoText.text=getString(R.string.PatientHomeInfo)
         }
         else{
             Infocard.visibility=View.GONE

@@ -140,8 +140,8 @@ class UsersRepository(
                 ) {
                     if (response.isSuccessful && response.body() is PatientMainScreenResponse) {
                         patientMainScreenResponse = response.body()
-                        showProgressLoading(false, context)
                         mainmenu.setView(patientMainScreenResponse!!)
+                        showProgressLoading(false, context)
                     } else {
                         val errorResponse =
                             Gson().fromJson<ApiResponse>(

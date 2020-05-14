@@ -49,6 +49,7 @@ class doctorPatientsFragment : Fragment() {
 
     fun setPatientList(patientList: List<UserResponse>) {
         myPatientsList = patientList.toMutableList()
+       // myPatientsList= emptyList<UserResponse>().toMutableList()
         patientRecyclerView.layoutManager =
             LinearLayoutManager(this.context!!, LinearLayoutManager.VERTICAL, false)
         patientRecyclerView.adapter = PatientsFragmentPatientAdapter(myPatientsList, this.context!!)

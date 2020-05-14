@@ -53,7 +53,7 @@ class doctorHomeFragment : Fragment() {
         //emergencyPatientRecyclerView.itemAnimator=animator
         appointmentsRecyclerView.layoutManager =
             LinearLayoutManager(this.context!!, LinearLayoutManager.VERTICAL, false)
-        appointmentsRecyclerView.adapter = HomeFragmentAppointmentAdapter(appointmentList)
+        appointmentsRecyclerView.adapter = HomeFragmentAppointmentAdapter(appointmentList,this.context!!)
         val snapHelper: SnapHelper = PagerSnapHelper()
         snapHelper.attachToRecyclerView(emergencyPatientRecyclerView)
     }
@@ -67,7 +67,7 @@ class doctorHomeFragment : Fragment() {
         (appointmentsRecyclerView.adapter as HomeFragmentAppointmentAdapter).todaysAppointmentsList =
             appointmentList
         (appointmentsRecyclerView.adapter as HomeFragmentAppointmentAdapter).notifyDataSetChanged()
-        emergencyPatientNumber.text = "Total Patients:" + emergencyPatientList.size.toString()
+        emergencyPatientNumber.text = getString(R.string.TotalPatients) + emergencyPatientList.size.toString()
     }
 
 }

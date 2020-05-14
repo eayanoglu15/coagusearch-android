@@ -117,7 +117,7 @@ class BloodOrderRepository(
                         orderResult = response.body()
                         println(orderResult.toString())
                         println(response.body().toString())
-                        fragment.setData(orderResult!!)
+                         fragment.setData(orderResult!!)
                     }
                     else{
                         println("Başarısız")

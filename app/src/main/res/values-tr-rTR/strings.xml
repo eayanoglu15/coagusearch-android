@@ -134,12 +134,16 @@
     <string name="DoctorHomeInfo" > Bugün randevunuz yok </string>
     <string name="DoctorNotificationsInfo"  >Herhangi bir bildirim yok</string>
     <string name="DoctorPatientInfo"  > Hiç hastanız yok</string>
+    <string name="DoctorPatientMedInfo"  >Hastanın sisteme kayıtlı bir ilacı bulunmamakta</string>
     <string name="DoctorPatientPastAppointmentInfo">Bu hastanın geçmiş randevusu bulunmuyor</string>
     <string name="DoctorPatientPastAnalysisInfo"> Bu hastanın geçmiş analiz verisi bulunmuyor</string>
     <string name="DoctorPatientOrderInfo">Sipariş verilmemiş </string>
+    <string name="DoctorPatientSuggestionInfo"> Bu hastanın verisi ile alakası bir öneri bulunmamakta </string>
     <string name="DoctorPatientTreatmentStatusInfo">Henüz sipariş verilmedi </string>
     <!--Medical-->
     <string name="MedicalTODO" >İstek yok </string>
     <string name="MedicalPatients" >Hiç hastanız yok</string>
+    <string name="TotalPatients" >Hasta sayısı:</string>
+
 
 </resources>

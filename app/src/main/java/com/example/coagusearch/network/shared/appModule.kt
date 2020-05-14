@@ -8,6 +8,7 @@ import com.example.coagusearch.network.PatientData.model.PatientDataRepository
 import com.example.coagusearch.network.RegularMedication.model.RegularMedicationRepository
 import com.example.coagusearch.network.Users.model.UsersRepository
 import com.example.coagusearch.network.bloodOrderAndRecommendation.model.BloodOrderRepository
+import com.example.coagusearch.network.notifications.model.NotificationRepository
 import org.koin.android.ext.koin.androidApplication
 import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.ext.koin.viewModel
@@ -29,6 +30,7 @@ val appModule = module {
     factory { get<RetrofitClient>().appointmentApi() }
     factory { get<RetrofitClient>().patientDataApi() }
     factory { get<RetrofitClient>().bloodOrderApi() }
+    factory{get<RetrofitClient>().notificationsApi()}
     single { AuthInterceptor(get()) }
     factory { LocaleInterceptor(get()) }
     //Repository
@@ -38,5 +40,6 @@ val appModule = module {
     factory { AppointmentRepository(androidContext(), get()) }
     factory { PatientDataRepository(androidContext(), get()) }
     factory { BloodOrderRepository(androidContext(), get()) }
+    factory { NotificationRepository(androidContext(),get()) }
 
 }

@@ -75,7 +75,7 @@ class decideTreatment : AppCompatActivity() {
         suggestionsRecyclerView.layoutManager =
             LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         suggestionsRecyclerView.adapter =
-            suggestionAdapter(suggestionList.userSuggestionList.toMutableList())
+            suggestionAdapter(suggestionList.userSuggestionList.toMutableList(),this)
 
     }
     override fun onBackPressed() {

@@ -23,7 +23,7 @@
 
         <include
             android:id="@+id/Infocard"
-            layout="@layout/patientmainscreennotificationcard"
+            layout="@layout/informationcard"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="10dp"

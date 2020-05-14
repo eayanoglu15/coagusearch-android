@@ -1,7 +1,7 @@
 package com.example.coagusearch.network.Users.response
 
 import com.example.coagusearch.network.RegularMedication.request.KeyType
-import com.example.coagusearch.network.notifications.NotificationResponse
+import com.example.coagusearch.network.notifications.response.NotificationResponse
 import java.io.Serializable
 
 

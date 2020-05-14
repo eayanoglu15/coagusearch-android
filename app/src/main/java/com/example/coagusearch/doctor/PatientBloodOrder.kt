@@ -112,6 +112,6 @@ class PatientBloodOrder : AppCompatActivity() {
   fun setData(patientInfo:PatientDetailResponse){
         patientOrderRecyclerView.layoutManager =
             LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-        patientOrderRecyclerView.adapter = PatientBloodOrderAdapter2(patientInfo.previousBloodOrders.toMutableList())
+        patientOrderRecyclerView.adapter = PatientBloodOrderAdapter2(patientInfo.previousBloodOrders.toMutableList(),this)
     }
 }

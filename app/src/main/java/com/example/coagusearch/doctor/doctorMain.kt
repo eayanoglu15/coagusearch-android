@@ -15,6 +15,7 @@ class doctorMain : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_doctor_main)
         loadFragment(doctorHomeFragment(), 0)
+        bottom_navigation.setOnNavigationItemReselectedListener { }
         bottom_navigation.setOnNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.menu -> {

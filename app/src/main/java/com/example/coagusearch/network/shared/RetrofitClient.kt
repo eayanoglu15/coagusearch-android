@@ -11,6 +11,7 @@ import com.example.coagusearch.network.PatientData.model.PatientDataApi
 import com.example.coagusearch.network.RegularMedication.model.RegularMedicationApi
 import com.example.coagusearch.network.Users.model.UsersApi
 import com.example.coagusearch.network.bloodOrderAndRecommendation.model.BloodOrderApi
+import com.example.coagusearch.network.notifications.model.NotificationsApi
 import okhttp3.OkHttpClient
 import okhttp3.Protocol
 import okhttp3.logging.HttpLoggingInterceptor
@@ -30,6 +31,7 @@ class RetrofitClient(
     fun usersApi(): UsersApi = getRetrofit().create(UsersApi::class.java)
     fun patientDataApi():PatientDataApi=getRetrofit().create(PatientDataApi::class.java)
     fun bloodOrderApi():BloodOrderApi=getRetrofit().create(BloodOrderApi::class.java)
+    fun notificationsApi():NotificationsApi=getRetrofit().create(NotificationsApi::class.java)
     private lateinit var pref: SharedPreferences
 
     private fun getRetrofit(): Retrofit {

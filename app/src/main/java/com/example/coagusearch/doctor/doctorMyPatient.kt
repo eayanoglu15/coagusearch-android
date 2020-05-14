@@ -74,11 +74,7 @@ class doctorMyPatient : AppCompatActivity() {
             LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         mypatientmedicinesRecyclerview.setHasFixedSize(true)
         mypatientmedicinesRecyclerview.scrollBarSize = 2
-        mypatientmedicinesRecyclerview.adapter = myPatientMedAdapter(patientDetailResponse.patientDrugs.toMutableList())
-
-
-
-
+        mypatientmedicinesRecyclerview.adapter = myPatientMedAdapter(patientDetailResponse.patientDrugs.toMutableList(),this)
         SetClickListeners(patientDetailResponse)
     }
 

@@ -146,15 +146,16 @@
     <string name="DoctorHomeInfo" > You have no appointments today  </string>
     <string name="DoctorNotificationsInfo"  >There isn\'t any notification   </string>
     <string name="DoctorPatientInfo"  > You have no patients  </string>
+    <string name="DoctorPatientMedInfo"  >This patient doesn\'t  have any recorded medicines</string>
     <string name="DoctorPatientPastAppointmentInfo"> This patient doesn\'t have any past appointment  </string>
     <string name="DoctorPatientPastAnalysisInfo"> This patient doesn\'t have any past analysis data  </string>
     <string name="DoctorPatientOrderInfo">No order was made   </string>
     <string name="DoctorPatientTreatmentStatusInfo">No order has been made yet   </string>
-
+    <string name="DoctorPatientSuggestionInfo">This analysis doesn\'t have any suggesitons </string>
     <!--Medical-->
     <string name="MedicalTODO" > There is no request  </string>
     <string name="MedicalPatients"  > You have no patients </string>
-
+    <string name="TotalPatients" >Total patients:</string>
 
 
 

@@ -8,7 +8,7 @@ import android.widget.BaseAdapter
 import com.example.coagusearch.R
 import com.example.coagusearch.network.Users.response.SingleAppointmentResponse
 import kotlinx.android.synthetic.main.oldappointmentcard.view.*
-import kotlinx.android.synthetic.main.patientmainscreennotificationcard.view.*
+import kotlinx.android.synthetic.main.informationcard.view.*
 
 class OldAppointmentsAdapterAF : BaseAdapter {
     var listOfTicket = ArrayList<SingleAppointmentResponse>()
@@ -24,8 +24,8 @@ class OldAppointmentsAdapterAF : BaseAdapter {
             context!!.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         var myView:View?=null
         if(listOfTicket.size==0){
-             myView = inflater.inflate(R.layout.patientmainscreennotificationcard, null)
-            myView.notificationText.text=context!!.getString(R.string.PatientAppointmentsInfo)
+             myView = inflater.inflate(R.layout.informationcard, null)
+             myView.infoText.text=context!!.getString(R.string.PatientAppointmentsInfo)
         }
         else {
             val ticket = listOfTicket[p0]

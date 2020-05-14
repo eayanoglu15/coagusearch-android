@@ -31,7 +31,6 @@ class PatientAppointments : AppCompatActivity() {
             patientInfo =
                 intent.getSerializableExtra("PatientDetailResponse") as? PatientDetailResponse
             setData()
-            println("sdasdads" + patientInfo.toString())
         } else {
             intentFailDialog(this)
         }
@@ -42,19 +41,21 @@ class PatientAppointments : AppCompatActivity() {
     }
 
     private fun setData() {
+        /*
         if (patientInfo != null && patientInfo!!.userAppointmentResponse != null && patientInfo!!.userAppointmentResponse.nextAppointment != null) {
             nextAppointment.dateOfNext.text =
                 patientInfo!!.userAppointmentResponse.nextAppointment!!.appointmentDate()
             nextAppointment.timeSlotNext.text =
                 patientInfo!!.userAppointmentResponse.nextAppointment!!.timeSlot()
-        } else {
-            nextAppointment.visibility = View.GONE
-        }
+        } else
+         */
+          //  nextAppointment.visibility = View.GONE
+
         if (patientInfo != null && patientInfo!!.userAppointmentResponse.oldAppointment != null)
             oldAppointmentRecyclerView.layoutManager =
                 LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         oldAppointmentRecyclerView.adapter =
-            PatientOldAppointmentAdapter(patientInfo!!.userAppointmentResponse.oldAppointment.toMutableList())
+            PatientOldAppointmentAdapter(patientInfo!!.userAppointmentResponse.oldAppointment.toMutableList(),this)
     }
 }
 
