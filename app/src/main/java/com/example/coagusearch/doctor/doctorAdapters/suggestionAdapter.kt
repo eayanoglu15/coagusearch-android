@@ -27,7 +27,7 @@ class suggestionAdapter(val suggestions: MutableList<SuggestionResponse>,var con
         else{
             v= LayoutInflater.from(parent.context)
                 .inflate(R.layout.informationcard, parent, false)
-            return myPatientMedAdapter.ECardViewHolder(v)
+            return ECardViewHolder(v)
         }
     }
 

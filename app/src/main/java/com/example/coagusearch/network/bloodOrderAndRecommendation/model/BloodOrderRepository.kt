@@ -1,6 +1,7 @@
 package com.example.coagusearch.network.bloodOrderAndRecommendation.model
 
 import android.content.Context
+import com.example.coagusearch.R
 import com.example.coagusearch.doctor.PatientBloodOrder
 import com.example.coagusearch.doctor.PatientPastDataActivity
 import com.example.coagusearch.doctor.doctorBloodBankFragment
@@ -17,6 +18,8 @@ import com.example.coagusearch.network.bloodOrderAndRecommendation.response.Prev
 import com.example.coagusearch.network.onFailureDialog
 import com.example.coagusearch.network.shared.RetrofitClient
 import com.example.coagusearch.network.shared.response.ApiResponse
+import com.example.coagusearch.ui.dialog.showProgressLoading
+import com.google.gson.Gson
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -32,10 +35,11 @@ class BloodOrderRepository(
         fragment:doctorBloodBankFragment
     ): ApiResponse? {
         var orderResult: ApiResponse? = null
-        // showProgressLoading(true,context)
+        showProgressLoading(true,context)
         retrofitClient.bloodOrderApi().bloodOrderRequest(order)
             .enqueue(object : Callback<ApiResponse> {
                 override fun onFailure(call: Call<ApiResponse>, t: Throwable) {
+                    showProgressLoading(false, context)
                     onFailureDialog(context, t.toString())
                 }
 
@@ -43,9 +47,23 @@ class BloodOrderRepository(
                     call: Call<ApiResponse>,
                     response: Response<ApiResponse>
                 ) {
-                    orderResult = response.body()
-                    fragment.refresh()
-
+                    if (response.isSuccessful && response.body() is ApiResponse){
+                        orderResult = response.body()
+                             if (fragment.isAdded) {
+                                 fragment.refresh()
+                            }
+                        showProgressLoading(false, context)
+                    }
+                    else {
+                        val errorResponse =
+                            Gson().fromJson<ApiResponse>(
+                                response.errorBody()?.string(),
+                                ApiResponse::class.java
+                            )?.message
+                                ?: context.resources.getString(R.string.errorOccurred)
+                        showProgressLoading(false, context)
+                        onFailureDialog(context, errorResponse)
+                    }
                 }
             })
         return orderResult
@@ -56,10 +74,11 @@ class BloodOrderRepository(
         context: Context
     ): ApiResponse? {
         var orderResult: ApiResponse? = null
-        // showProgressLoading(true,context)
+        showProgressLoading(true,context)
         retrofitClient.bloodOrderApi().bloodOrderRequest(order)
             .enqueue(object : Callback<ApiResponse> {
                 override fun onFailure(call: Call<ApiResponse>, t: Throwable) {
+                    showProgressLoading(false, context)
                     onFailureDialog(context, t.toString())
                 }
 
@@ -67,9 +86,22 @@ class BloodOrderRepository(
                     call: Call<ApiResponse>,
                     response: Response<ApiResponse>
                 ) {
-                    orderResult = response.body()
-                    if(context is PatientBloodOrder) {
-                        (context as PatientBloodOrder).refresh()
+                    if(response.isSuccessful && response.body() is ApiResponse) {
+                        orderResult = response.body()
+                        if (context is PatientBloodOrder) {
+                            (context as PatientBloodOrder).refresh()
+                        }
+                        showProgressLoading(false, context)
+                    }
+                    else {
+                        val errorResponse =
+                            Gson().fromJson<ApiResponse>(
+                                response.errorBody()?.string(),
+                                ApiResponse::class.java
+                            )?.message
+                                ?: context.resources.getString(R.string.errorOccurred)
+                        showProgressLoading(false, context)
+                        onFailureDialog(context, errorResponse)
                     }
 
                 }
@@ -82,17 +114,30 @@ class BloodOrderRepository(
         context: Context
     ): ApiResponse? {
         var orderResult: ApiResponse? = null
-        // showProgressLoading(true,context)
+        showProgressLoading(true,context)
         retrofitClient.bloodOrderApi().bloodOrderForUserData(order)
             .enqueue(object : Callback<ApiResponse> {
                 override fun onFailure(call: Call<ApiResponse>, t: Throwable) {
                     onFailureDialog(context, t.toString())
+                    showProgressLoading(false, context)
                 }
                 override fun onResponse(
                     call: Call<ApiResponse>,
                     response: Response<ApiResponse>
                 ) {
-                    orderResult = response.body()
+                    if(response.isSuccessful && response.body() is ApiResponse) {
+                        orderResult = response.body()
+                    }
+                    else {
+                        val errorResponse =
+                            Gson().fromJson<ApiResponse>(
+                                response.errorBody()?.string(),
+                                ApiResponse::class.java
+                            )?.message
+                                ?: context.resources.getString(R.string.errorOccurred)
+                        showProgressLoading(false, context)
+                        onFailureDialog(context, errorResponse)
+                    }
                 }
             })
         return orderResult
@@ -103,11 +148,12 @@ class BloodOrderRepository(
         fragment: doctorBloodBankFragment
     ): List<DoctorBloodOrderResponse>? {
         var orderResult: List<DoctorBloodOrderResponse>? = null
-        // showProgressLoading(true,context)
+         showProgressLoading(true,context)
         retrofitClient.bloodOrderApi().previousOrders()
             .enqueue(object : Callback<List<DoctorBloodOrderResponse>> {
                 override fun onFailure(call: Call<List<DoctorBloodOrderResponse>>, t: Throwable) {
-                    onFailureDialog(context, "Başarısız oldu "+t.toString())
+                    onFailureDialog(context, t.toString())
+                    showProgressLoading(false,context)
                 }
                 override fun onResponse(
                     call: Call<List<DoctorBloodOrderResponse>>,
@@ -117,10 +163,20 @@ class BloodOrderRepository(
                         orderResult = response.body()
                         println(orderResult.toString())
                         println(response.body().toString())
-                         fragment.setData(orderResult!!)
+                        if(fragment.isAdded) {
+                            fragment.setData(orderResult!!)
+                        }
+                        showProgressLoading(false,context)
                     }
-                    else{
-                        println("Başarısız")
+                    else {
+                        val errorResponse =
+                            Gson().fromJson<ApiResponse>(
+                                response.errorBody()?.string(),
+                                ApiResponse::class.java
+                            )?.message
+                                ?: context.resources.getString(R.string.errorOccurred)
+                        showProgressLoading(false, context)
+                        onFailureDialog(context, errorResponse)
                     }
                 }
             })
@@ -132,11 +188,12 @@ class BloodOrderRepository(
         fragment: MedicalPrepareFragment
     ): MedicalBloodOrderResponse? {
         var orderResult: MedicalBloodOrderResponse? = null
-        // showProgressLoading(true,context)
+         showProgressLoading(true,context)
         retrofitClient.bloodOrderApi().getOrdersForMedical()
             .enqueue(object : Callback<MedicalBloodOrderResponse> {
                 override fun onFailure(call: Call<MedicalBloodOrderResponse>, t: Throwable) {
-                    onFailureDialog(context, "Başarısız oldu "+t.toString())
+                    onFailureDialog(context, t.toString())
+                    showProgressLoading(false, context)
                 }
                 override fun onResponse(
                     call: Call<MedicalBloodOrderResponse>,
@@ -144,12 +201,18 @@ class BloodOrderRepository(
                 ) {
                     if (response.isSuccessful && response.body() is MedicalBloodOrderResponse) {
                         orderResult = response.body()
-                        println(orderResult.toString())
-                        println(response.body().toString())
                         fragment.setData(orderResult!!)
+                        showProgressLoading(false, context)
                     }
-                    else{
-                        println("Başarısız")
+                    else {
+                        val errorResponse =
+                            Gson().fromJson<ApiResponse>(
+                                response.errorBody()?.string(),
+                                ApiResponse::class.java
+                            )?.message
+                                ?: context.resources.getString(R.string.errorOccurred)
+                        showProgressLoading(false, context)
+                        onFailureDialog(context, errorResponse)
                     }
                 }
             })
@@ -163,22 +226,33 @@ class BloodOrderRepository(
         fragment: MedicalPrepareFragment
     ): MedicalBloodOrderResponse? {
         var orderResult: MedicalBloodOrderResponse? = null
-        // showProgressLoading(true,context)
+        showProgressLoading(true,context)
         retrofitClient.bloodOrderApi().setOrderReady(order)
             .enqueue(object : Callback<MedicalBloodOrderResponse> {
                 override fun onFailure(call: Call<MedicalBloodOrderResponse>, t: Throwable) {
                     onFailureDialog(context, t.toString())
+                    showProgressLoading(false, context)
                 }
                 override fun onResponse(
                     call: Call<MedicalBloodOrderResponse>,
                     response: Response<MedicalBloodOrderResponse>
                 ) {
-                    println("geldi")
-
+                    if(response.isSuccessful && response.body() is MedicalBloodOrderResponse) {
                         orderResult = response.body()
-                    println(response.message())
-                    println(response.body())
                         fragment.getData()
+                        showProgressLoading(false, context)
+                    }
+                    else {
+                        val errorResponse =
+                            Gson().fromJson<ApiResponse>(
+                                response.errorBody()?.string(),
+                                ApiResponse::class.java
+                            )?.message
+                                ?: context.resources.getString(R.string.errorOccurred)
+                        showProgressLoading(false, context)
+                        onFailureDialog(context, errorResponse)
+                    }
+
                 }
             })
         return orderResult

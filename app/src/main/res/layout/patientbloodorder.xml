@@ -75,11 +75,12 @@
         android:background="@drawable/cardwhite"
         android:ems="10"
         android:gravity="center"
-        android:hint="Enter Unit"
+        android:hint="@string/enterunit"
         android:inputType="numberDecimal"
         android:padding="5dp"
         android:textSize="@dimen/smalltext"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/addNoteText"
         app:layout_constraintStart_toStartOf="@+id/productTypeRadioGroup"
         app:layout_constraintTop_toBottomOf="@+id/productTypeRadioGroup" />
 
@@ -96,6 +97,7 @@
         android:text="@string/addnote"
         android:textColor="@color/white"
         android:textSize="@dimen/xsmalltext"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@+id/editText"
         app:layout_constraintEnd_toEndOf="@+id/productTypeRadioGroup"
         app:layout_constraintTop_toTopOf="@+id/editText" />

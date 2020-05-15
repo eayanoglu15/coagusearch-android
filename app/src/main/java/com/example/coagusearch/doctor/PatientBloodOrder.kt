@@ -37,7 +37,10 @@ class PatientBloodOrder : AppCompatActivity() {
             patientInfo =
                 intent.getSerializableExtra("PatientDetailResponse") as? PatientDetailResponse
             println("sdasdads" + patientInfo.toString())
+            patientName.text=patientInfo!!.patientResponse.getFullName().capitalize()
             setData(patientInfo!!)
+
+
             setListeners()
         } else {
             intentFailDialog(this)

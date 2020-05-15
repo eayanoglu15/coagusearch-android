@@ -22,7 +22,7 @@ class statusAdapter(val suggestions: MutableList<DoctorBloodOrderResponse>,var c
         if(viewType==3){
             v= LayoutInflater.from(parent.context)
                 .inflate(R.layout.informationcard, parent, false)
-            return myPatientMedAdapter.ECardViewHolder(v)
+            return ECardViewHolder(v)
         }
         else if (viewType == 1) {
             v = LayoutInflater.from(parent.context).inflate(R.layout.suggestionsmall, parent, false)

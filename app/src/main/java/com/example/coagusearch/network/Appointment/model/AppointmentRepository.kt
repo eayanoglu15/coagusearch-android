@@ -29,6 +29,7 @@ class AppointmentRepository(
                 override fun onFailure(call: Call<WeeklyAvailabilityResponse>, t: Throwable) {
                     // (context as MainActivity).LoginButton.text ="Fail"
                     onFailureDialog(context, t.toString())
+                    showProgressLoading(false, context)
                 }
 
                 override fun onResponse(
@@ -72,7 +73,8 @@ class AppointmentRepository(
         retrofitClient.appointmentApi().getMyAppointments()
             .enqueue(object : Callback<UserAppointmentResponse> {
                 override fun onFailure(call: Call<UserAppointmentResponse>, t: Throwable) {
-                    // (context as MainActivity).LoginButton.text ="Fail"
+                    onFailureDialog(context, t.toString())
+                    showProgressLoading(false, context)
                 }
 
                 override fun onResponse(
@@ -82,6 +84,7 @@ class AppointmentRepository(
                     if (response.isSuccessful && response.body() is UserAppointmentResponse) {
                         println(response.message())
                         appointmentResponse = response.body()
+                        if(appointmentspage.isAdded)
                         appointmentspage.setAdapter(appointmentResponse!!)
                         showProgressLoading(false, context)
                     } else {
@@ -104,16 +107,12 @@ class AppointmentRepository(
         context: Context
     ): ApiResponse? {
         var apiResponse: ApiResponse? = null
+        showProgressLoading(true,context)
         retrofitClient.appointmentApi().saveAppointmentForUser(saveAppointmentRequest)
             .enqueue(object : Callback<ApiResponse> {
                 override fun onFailure(call: Call<ApiResponse>, t: Throwable) {
-                    val builder = AlertDialog.Builder(context, R.style.AlertDialogStyle)
-                    builder.setTitle("Error")
-                    builder.setMessage(t.toString())
-                    builder.setPositiveButton("OK") { dialog, which ->
-                    }
-                    val dialog: AlertDialog = builder.create()
-                    dialog.show()
+                    onFailureDialog(context, t.toString())
+                    showProgressLoading(false, context)
                 }
 
                 override fun onResponse(
@@ -148,13 +147,8 @@ class AppointmentRepository(
         retrofitClient.appointmentApi().deleteAppointmentForUser(deleteAppointmentsForUserRequest)
             .enqueue(object : Callback<ApiResponse> {
                 override fun onFailure(call: Call<ApiResponse>, t: Throwable) {
-                    val builder = AlertDialog.Builder(context, R.style.AlertDialogStyle)
-                    builder.setTitle("Error")
-                    builder.setMessage(t.toString())
-                    builder.setPositiveButton("OK") { dialog, which ->
-                    }
-                    val dialog: AlertDialog = builder.create()
-                    dialog.show()
+                    onFailureDialog(context, t.toString())
+                    showProgressLoading(false, context)
                 }
 
                 override fun onResponse(

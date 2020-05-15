@@ -31,26 +31,30 @@ class doctorNotificationFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
+
+        return inflater.inflate(R.layout.fragment_doctor_notification, container, false)
+    }
+    private fun getData(){
         val notificationRepository: NotificationRepository = get()
         notificationRepository.getPage(this.context!!,this)
-        return inflater.inflate(R.layout.fragment_doctor_notification, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        getData()
         notificationRecyclerView.layoutManager =
             LinearLayoutManager(this.context!!, LinearLayoutManager.VERTICAL, false)
         notificationRecyclerView.adapter = DoctorNotificationsAdapter(list.toMutableList(),this.context!!)
-
-
     }
 
+    override fun onResume() {
+        super.onResume()
+        getData()
+    }
 
     fun setData(response:List<NotificationResponse>){
         (notificationRecyclerView.adapter as DoctorNotificationsAdapter).companies = response.toMutableList()
         (notificationRecyclerView.adapter as DoctorNotificationsAdapter).notifyDataSetChanged()
-
-
     }
 
 

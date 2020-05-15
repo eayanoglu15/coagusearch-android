@@ -39,9 +39,12 @@ class doctorHomeFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_doctor_home, container, false)
+        getData()
+        return view
+    }
+    private fun getData(){
         val userRepository: UsersRepository = get()
         userRepository.getDoctorMainScreen(this.context!!, this)
-        return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -68,6 +71,11 @@ class doctorHomeFragment : Fragment() {
             appointmentList
         (appointmentsRecyclerView.adapter as HomeFragmentAppointmentAdapter).notifyDataSetChanged()
         emergencyPatientNumber.text = getString(R.string.TotalPatients) + emergencyPatientList.size.toString()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        getData()
     }
 
 }

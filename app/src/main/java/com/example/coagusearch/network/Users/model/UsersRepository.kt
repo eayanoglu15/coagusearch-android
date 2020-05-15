@@ -38,8 +38,8 @@ class UsersRepository(
         retrofitClient.usersApi().getUserInfo()
             .enqueue(object : Callback<UserResponse> {
                 override fun onFailure(call: Call<UserResponse>, t: Throwable) {
-                    println("Failure")
-
+                    onFailureDialog(context, t.toString())
+                    showProgressLoading(false, context)
                 }
 
                 override fun onResponse(
@@ -74,6 +74,8 @@ class UsersRepository(
         retrofitClient.usersApi().getMyPatients()
             .enqueue(object : Callback<List<UserResponse>> {
                 override fun onFailure(call: Call<List<UserResponse>>, t: Throwable) {
+                    onFailureDialog(context, t.toString())
+                    showProgressLoading(false, context)
                 }
 
                 override fun onResponse(
@@ -97,6 +99,7 @@ class UsersRepository(
             .enqueue(object : Callback<ApiResponse> {
                 override fun onFailure(call: Call<ApiResponse>, t: Throwable) {
                     onFailureDialog(context, t.toString())
+                    showProgressLoading(false, context)
                 }
 
                 override fun onResponse(
@@ -132,6 +135,7 @@ class UsersRepository(
             .enqueue(object : Callback<PatientMainScreenResponse> {
                 override fun onFailure(call: Call<PatientMainScreenResponse>, t: Throwable) {
                     onFailureDialog(context, t.toString())
+                    showProgressLoading(false, context)
                 }
 
                 override fun onResponse(
@@ -140,6 +144,7 @@ class UsersRepository(
                 ) {
                     if (response.isSuccessful && response.body() is PatientMainScreenResponse) {
                         patientMainScreenResponse = response.body()
+                        if(mainmenu.isAdded)
                         mainmenu.setView(patientMainScreenResponse!!)
                         showProgressLoading(false, context)
                     } else {
@@ -168,6 +173,7 @@ class UsersRepository(
             .enqueue(object : Callback<DoctorMainScreenResponse> {
                 override fun onFailure(call: Call<DoctorMainScreenResponse>, t: Throwable) {
                     onFailureDialog(context, t.toString())
+                    showProgressLoading(false, context)
                 }
 
                 override fun onResponse(
@@ -176,7 +182,9 @@ class UsersRepository(
                 ) {
                     if (response.isSuccessful && response.body() is DoctorMainScreenResponse) {
                         doctorMainScreenResponse = response.body()
-                        fragment.attachToViews(doctorMainScreenResponse!!)
+                        if(fragment.isAdded) {
+                            fragment.attachToViews(doctorMainScreenResponse!!)
+                        }
                         showProgressLoading(false, context)
 
 
@@ -205,6 +213,7 @@ class UsersRepository(
             .enqueue(object : Callback<List<UserResponse>> {
                 override fun onFailure(call: Call<List<UserResponse>>, t: Throwable) {
                     onFailureDialog(context, t.toString())
+                    showProgressLoading(false, context)
                 }
 
                 override fun onResponse(
@@ -213,7 +222,9 @@ class UsersRepository(
                 ) {
                     if (response.isSuccessful && response.body() is List<UserResponse>) {
                         myPatients = response.body()
-                        fragment.setPatientList(myPatients!!)
+                        if(fragment.isAdded) {
+                            fragment.setPatientList(myPatients!!)
+                        }
                         showProgressLoading(false, context)
                     } else {
                         val errorResponse =
@@ -242,6 +253,7 @@ class UsersRepository(
             .enqueue(object : Callback<ApiResponse> {
                 override fun onFailure(call: Call<ApiResponse>, t: Throwable) {
                     onFailureDialog(context, t.toString())
+                    showProgressLoading(false, context)
                 }
                 override fun onResponse(
                     call: Call<ApiResponse>,
@@ -266,9 +278,6 @@ class UsersRepository(
     }
 
 
-
-
-
     fun getPatientDetail(
         context: Context,
         patientDetailRequest: PatientDetailRequest
@@ -279,6 +288,7 @@ class UsersRepository(
             .enqueue(object : Callback<PatientDetailResponse> {
                 override fun onFailure(call: Call<PatientDetailResponse>, t: Throwable) {
                     onFailureDialog(context, t.toString())
+                    showProgressLoading(false, context)
                 }
 
                 override fun onResponse(

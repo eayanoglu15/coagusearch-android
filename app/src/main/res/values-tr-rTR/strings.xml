@@ -142,6 +142,7 @@
     <string name="DoctorPatientTreatmentStatusInfo">Henüz sipariş verilmedi </string>
     <!--Medical-->
     <string name="MedicalTODO" >İstek yok </string>
+    <string name="enterunit" >Miktarı girin </string>
     <string name="MedicalPatients" >Hiç hastanız yok</string>
     <string name="TotalPatients" >Hasta sayısı:</string>
 

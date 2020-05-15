@@ -1,6 +1,7 @@
 package com.example.coagusearch.network.notifications.model
 
 import android.content.Context
+import com.example.coagusearch.R
 import com.example.coagusearch.doctor.doctorNotificationFragment
 import com.example.coagusearch.network.notifications.request.CallPatientRequest
 import com.example.coagusearch.network.notifications.request.NotifyMedicalRequest
@@ -9,6 +10,7 @@ import com.example.coagusearch.network.onFailureDialog
 import com.example.coagusearch.network.shared.RetrofitClient
 import com.example.coagusearch.network.shared.response.ApiResponse
 import com.example.coagusearch.ui.dialog.showProgressLoading
+import com.google.gson.Gson
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -22,10 +24,11 @@ private val retrofitClient: RetrofitClient
         context: Context
     ): ApiResponse? {
         var r:ApiResponse ? = null
-        // showProgressLoading(true,context)
+        showProgressLoading(true,context)
         retrofitClient.notificationsApi().callPatientForAppointment(patientId)
             .enqueue(object : Callback<ApiResponse> {
                 override fun onFailure(call: Call<ApiResponse>, t: Throwable) {
+                    showProgressLoading(false, context)
                     onFailureDialog(context, t.toString())
                 }
 
@@ -33,7 +36,20 @@ private val retrofitClient: RetrofitClient
                     call: Call<ApiResponse>,
                     response: Response<ApiResponse>
                 ) {
-                    r = response.body()
+                    if(response.isSuccessful &&  response.body() is ApiResponse) {
+                        r = response.body()
+                        showProgressLoading(false, context)
+                    }
+                    else {
+                        val errorResponse =
+                            Gson().fromJson<ApiResponse>(
+                                response.errorBody()?.string(),
+                                ApiResponse::class.java
+                            )?.message
+                                ?: context.resources.getString(R.string.errorOccurred)
+                        showProgressLoading(false, context)
+                        onFailureDialog(context, errorResponse)
+                    }
                 }
             })
         return r
@@ -44,10 +60,11 @@ private val retrofitClient: RetrofitClient
         context: Context
     ): ApiResponse? {
         var r:ApiResponse ? = null
-        // showProgressLoading(true,context)
+         showProgressLoading(true,context)
         retrofitClient.notificationsApi().notifyMedicalTeam(patientId)
             .enqueue(object : Callback<ApiResponse> {
                 override fun onFailure(call: Call<ApiResponse>, t: Throwable) {
+                    showProgressLoading(false, context)
                     onFailureDialog(context, t.toString())
                 }
 
@@ -55,7 +72,20 @@ private val retrofitClient: RetrofitClient
                     call: Call<ApiResponse>,
                     response: Response<ApiResponse>
                 ) {
-                    r = response.body()
+                    if(response.isSuccessful && response.body() is ApiResponse) {
+                        r = response.body()
+                        showProgressLoading(false,context)
+                    }
+                    else {
+                        val errorResponse =
+                            Gson().fromJson<ApiResponse>(
+                                response.errorBody()?.string(),
+                                ApiResponse::class.java
+                            )?.message
+                                ?: context.resources.getString(R.string.errorOccurred)
+                        showProgressLoading(false, context)
+                        onFailureDialog(context, errorResponse)
+                    }
                 }
             })
         return r
@@ -73,17 +103,28 @@ private val retrofitClient: RetrofitClient
                 override fun onFailure(call: Call<List<NotificationResponse>>, t: Throwable) {
                     showProgressLoading(false,context)
                     onFailureDialog(context, t.toString())
-
                 }
-
                 override fun onResponse(
                     call: Call<List<NotificationResponse>>,
                     response: Response<List<NotificationResponse>>
                 ) {
-                    r = response.body()
-                    doctorNotificationFragment.setData(r!!)
-                    showProgressLoading(false,context)
-
+                    if(response.isSuccessful&& response.body() is List<NotificationResponse>) {
+                        r = response.body()
+                        if (doctorNotificationFragment.isAdded) {
+                            doctorNotificationFragment.setData(r!!)
+                        }
+                        showProgressLoading(false, context)
+                    }
+                    else {
+                        val errorResponse =
+                            Gson().fromJson<ApiResponse>(
+                                response.errorBody()?.string(),
+                                ApiResponse::class.java
+                            )?.message
+                                ?: context.resources.getString(R.string.errorOccurred)
+                        showProgressLoading(false, context)
+                        onFailureDialog(context, errorResponse)
+                    }
                 }
             })
         return r

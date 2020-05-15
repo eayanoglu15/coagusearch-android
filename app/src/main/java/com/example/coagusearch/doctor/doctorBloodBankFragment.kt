@@ -42,9 +42,11 @@ class doctorBloodBankFragment : Fragment() {
 
     private fun setListeners(){
         addNoteText.setOnClickListener {
-            val builder: AlertDialog.Builder = AlertDialog.Builder(this.context!!)
+            val builder: AlertDialog.Builder = AlertDialog.Builder(this.context!!,R.style.alertDialog)
             builder.setTitle("Title")
             val input = EditText(this.context!!)
+            input.highlightColor=resources.getColor(R.color.white)
+            input.setTextColor(resources.getColor(R.color.white))
             input.isSingleLine = false
             input.setText(m_Text)
             builder.setTitle("Add Your Note")

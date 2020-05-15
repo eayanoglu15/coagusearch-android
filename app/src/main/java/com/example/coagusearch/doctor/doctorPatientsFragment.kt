@@ -28,13 +28,17 @@ class doctorPatientsFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         var view: View = inflater.inflate(R.layout.fragment_doctor_patients, container, false)
+       getData()
+        return view
+    }
+    private fun getData(){
         val userRepository: UsersRepository = get()
         userRepository.getMyPatients(this.context!!, this)
-        return view
     }
 
     override fun onResume() {
         super.onResume()
+        getData()
         getActivity()!!.getWindow()
             .setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
     }
