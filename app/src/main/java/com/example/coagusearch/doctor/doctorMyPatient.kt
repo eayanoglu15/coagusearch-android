@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.SnapHelper
@@ -13,6 +14,8 @@ import com.example.coagusearch.doctor.doctorAdapters.myPatientMedAdapter
 import com.example.coagusearch.network.Users.model.UsersRepository
 import com.example.coagusearch.network.Users.request.PatientDetailRequest
 import com.example.coagusearch.network.Users.response.PatientDetailResponse
+import com.example.coagusearch.network.notifications.model.NotificationRepository
+import com.example.coagusearch.network.notifications.request.CallPatientRequest
 import kotlinx.android.synthetic.main.activity_doctor_my_patient.*
 import kotlinx.android.synthetic.main.fragment_doctor_home.*
 import kotlinx.android.synthetic.main.mypatienttestresults.view.*
@@ -29,7 +32,6 @@ class doctorMyPatient : AppCompatActivity() {
         setContentView(R.layout.activity_doctor_my_patient)
         val bundle: Bundle? = intent.extras
         patientid = bundle!!.getLong("id")
-
         val snapHelper: SnapHelper = PagerSnapHelper()
         snapHelper.attachToRecyclerView(mypatientmedicinesRecyclerview)
         getData()
@@ -61,14 +63,34 @@ class doctorMyPatient : AppCompatActivity() {
         patientinfocard.weighttext.text =
             if (weight.equals("null")) "-" else weight + getString(R.string.weightkg)
 
+
         var nextAppointment = patientDetailResponse.userAppointmentResponse.nextAppointment
         if (nextAppointment == null) {
             nextAppointmentcard.visibility = View.GONE
+            callForAppointmentard.setOnClickListener {
+                val notificationRepository: NotificationRepository = get()
+                notificationRepository.callPatient(CallPatientRequest(patientid!!),this)
+            }
         } else {
             callForAppointmentard.visibility = View.GONE
         }
-        if(patientDetailResponse.lastDataAnalysisTime!=null) {
+
+        if(patientDetailResponse.lastDataAnalysisTime!=null&&patientDetailResponse.lastDataAnalysisTime.testDate!=null) {
+            testResultscard.imageView20.visibility=View.VISIBLE
             testResultscard.textView24.text = patientDetailResponse.lastDataAnalysisTime.testDate.getAsString()
+            testResultscard.setOnClickListener {
+                val intent = Intent(this, microTemData::class.java)
+                intent.putExtra("PatientDetailResponse", patientDetailResponse)
+                intent.putExtra("id", patientid)
+                startActivity(intent)
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+            }
+        }else{
+            testResultscard.textView24.text = getString(R.string.noanalysisdata)
+            testResultscard.imageView20.visibility=View.INVISIBLE
+            testResultscard.setOnClickListener {
+              Toast.makeText(this,getString(R.string.DoctorPatientPastAnalysisInfo),Toast.LENGTH_LONG).show()
+            }
         }
         mypatientmedicinesRecyclerview.layoutManager =
             LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
@@ -77,7 +99,6 @@ class doctorMyPatient : AppCompatActivity() {
         mypatientmedicinesRecyclerview.adapter = myPatientMedAdapter(patientDetailResponse.patientDrugs.toMutableList(),this)
         SetClickListeners(patientDetailResponse)
     }
-
 
     private fun SetClickListeners(patientDetailResponse: PatientDetailResponse) {
         bloodOrderCard.setOnClickListener {
@@ -93,12 +114,6 @@ class doctorMyPatient : AppCompatActivity() {
             startActivity(intent)
             overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
         }
-        testResultscard.setOnClickListener {
-            val intent = Intent(this, microTemData::class.java)
-            intent.putExtra("PatientDetailResponse", patientDetailResponse)
-            intent.putExtra("id", patientid)
-            startActivity(intent)
-            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-        }
+
     }
 }

@@ -38,10 +38,15 @@
             android:layout_marginHorizontal="10dp"
             android:layout_marginVertical="5dp"
             android:foreground="?android:attr/selectableItemBackground" />
+
         <include
             android:id="@+id/nextAppointment"
-            android:foreground="?android:attr/selectableItemBackground"
-            layout="@layout/nextappointmentnew" />
+            layout="@layout/nextappointmentnew"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginVertical="5dp"
+            android:foreground="?android:attr/selectableItemBackground" />
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/patientMainScreenRecyclerView"
             android:layout_width="match_parent"

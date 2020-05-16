@@ -131,12 +131,13 @@
     <string name="PatientHomeInfo">Bugün için bir şey yok</string>
     <string name="PatientAppointmentsInfo">Geçmiş randevunuz yok</string>
     <!--Doctor-->
-    <string name="DoctorHomeInfo" > Bugün randevunuz yok </string>
+    <string name="DoctorHomeInfo" > Bugün için randevu yok </string>
     <string name="DoctorNotificationsInfo"  >Herhangi bir bildirim yok</string>
     <string name="DoctorPatientInfo"  > Hiç hastanız yok</string>
     <string name="DoctorPatientMedInfo"  >Hastanın sisteme kayıtlı bir ilacı bulunmamakta</string>
     <string name="DoctorPatientPastAppointmentInfo">Bu hastanın geçmiş randevusu bulunmuyor</string>
     <string name="DoctorPatientPastAnalysisInfo"> Bu hastanın geçmiş analiz verisi bulunmuyor</string>
+    <string name="noanalysisdata"> Geçmiş analiz verisi yok</string>
     <string name="DoctorPatientOrderInfo">Sipariş verilmemiş </string>
     <string name="DoctorPatientSuggestionInfo"> Bu hastanın verisi ile alakası bir öneri bulunmamakta </string>
     <string name="DoctorPatientTreatmentStatusInfo">Henüz sipariş verilmedi </string>
@@ -145,6 +146,9 @@
     <string name="enterunit" >Miktarı girin </string>
     <string name="MedicalPatients" >Hiç hastanız yok</string>
     <string name="TotalPatients" >Hasta sayısı:</string>
+    <string name="fillallparts" >Lütfen Tüm Bilgileri Doldurunuz</string>
+    <string name="pastutemdataanalysis" >Eski µTem Veri Analizleri</string>
+    <string name="nobloodtype" >Bu hastanın kan grubu bilgisi eksik, kan sipariş etmek için kan bankası sayfasını kullanmalısınız</string>
 
 
 </resources>

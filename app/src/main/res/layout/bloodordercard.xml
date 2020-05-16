@@ -36,7 +36,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="2"
-            android:buttonTint="@color/blue"
+            android:buttonTint="@color/colorPrimaryDark"
             android:text="@string/frozen"
             android:textColor="#404d66"
             android:textSize="@dimen/xsmalltext" />
@@ -46,7 +46,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="2"
-            android:buttonTint="@color/blue"
+            android:buttonTint="@color/colorPrimaryDark"
             android:text="@string/plateret"
             android:textColor="#404d66"
             android:textSize="@dimen/xsmalltext" />
@@ -78,7 +78,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="2"
-            android:buttonTint="@color/blue"
+            android:buttonTint="@color/colorPrimaryDark"
             android:text="@string/positive"
             android:textColor="#404d66" />
 
@@ -87,7 +87,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="2"
-            android:buttonTint="@color/blue"
+            android:buttonTint="@color/colorPrimaryDark"
             android:text="@string/negative"
             android:textColor="#404d66" />
     </RadioGroup>
@@ -121,7 +121,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:autoSizeTextType="none"
-            android:buttonTint="@color/blue"
+            android:buttonTint="@color/colorPrimaryDark"
             android:text="A"
             android:textColor="#404d66"
             android:textSize="@dimen/smalltext" />
@@ -131,7 +131,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:buttonTint="@color/blue"
+            android:buttonTint="@color/colorPrimaryDark"
             android:text="B"
             android:textColor="#404d66" />
 
@@ -142,7 +142,7 @@
             android:layout_weight="1"
             android:autoSizeMinTextSize="10sp"
             android:autoSizeTextType="none"
-            android:buttonTint="@color/blue"
+            android:buttonTint="@color/colorPrimaryDark"
             android:text="AB"
             android:textColor="#404d66"
             android:textSize="@dimen/xsmalltext" />
@@ -152,7 +152,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:buttonTint="@color/blue"
+            android:buttonTint="@color/colorPrimaryDark"
             android:text="0"
             android:textColor="#404d66" />
     </RadioGroup>

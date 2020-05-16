@@ -7,7 +7,7 @@
     android:clickable="true"
     android:focusable="true"
     android:foreground="?android:attr/selectableItemBackground"
-    android:background="@drawable/appointmentmenuappointmentbackground">
+    android:background="@drawable/blueblueback">
 
     <ImageView
         android:id="@+id/imageView14"

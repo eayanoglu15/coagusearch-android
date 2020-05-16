@@ -8,6 +8,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.coagusearch.R
+import com.example.coagusearch.doctor.decideTreatment
 import com.example.coagusearch.network.PatientData.response.SuggestionResponse
 
 class suggestionAdapter(val suggestions: MutableList<SuggestionResponse>,var context: Context) :
@@ -44,6 +45,8 @@ class suggestionAdapter(val suggestions: MutableList<SuggestionResponse>,var con
             (holder as ECardViewHolder).notificationText.text=context.getString(R.string.DoctorPatientSuggestionInfo)
         }
         else{
+
+
         val suggestion = suggestions[position]
         if(suggestion.kind.equals("Medicine")){
                 (holder as SuggestionCard2ViewHolder).name.text=suggestion.diagnosis
@@ -57,6 +60,11 @@ class suggestionAdapter(val suggestions: MutableList<SuggestionResponse>,var con
             holder.medname.text = suggestion.product
             holder.additionalText.visibility = View.GONE
         }
+            if(context is decideTreatment) {
+                holder.itemView.setOnClickListener {
+                    (context as decideTreatment).setSuggestion(suggestion)
+                }
+            }
         }
 
 

@@ -66,7 +66,7 @@ class mainmenu : Fragment() {
                 );
             }
         }
-        if (!patientMainScreenResponse!!.patientMissingInfo&&patientMainScreenResponse!!.patientNextAppointment==null){
+        if (!patientMainScreenResponse!!.patientMissingInfo&&patientMainScreenResponse!!.patientNextAppointment==null&&patientMainScreenResponse!!.patientNotifications.size==0){
             Infocard.visibility=View.VISIBLE
             Infocard.infoText.text=getString(R.string.PatientHomeInfo)
         }
@@ -74,7 +74,7 @@ class mainmenu : Fragment() {
             Infocard.visibility=View.GONE
         }
         patientMainScreenRecyclerView.layoutManager =
-            LinearLayoutManager(this.context!!, LinearLayoutManager.VERTICAL, true)
+            LinearLayoutManager(this.context!!, LinearLayoutManager.VERTICAL, false)
         patientMainScreenRecyclerView.adapter = PatientMainScreenNotificationsAdapter(
             patientMainScreenResponse!!.patientNotifications.toMutableList())
 

@@ -79,7 +79,7 @@ class RegularMedicationRepository(
         context: Context
     ): UserMedicineResponse? {
         var userMedicineResponse: UserMedicineResponse? = null
-         showProgressLoading(true,context)
+        showProgressLoading(true, context)
         retrofitClient.regularMedicationApi().saveMedicine(saveMedicineInfoRequest)
             .enqueue(object : Callback<UserMedicineResponse> {
                 override fun onFailure(call: Call<UserMedicineResponse>, t: Throwable) {
@@ -104,7 +104,6 @@ class RegularMedicationRepository(
                                 ApiResponse::class.java
                             )?.message
                                 ?: context.resources.getString(R.string.errorOccurred)
-                        showProgressLoading(false, context)
                         onFailureDialog(context, errorResponse)
                     }
                 }

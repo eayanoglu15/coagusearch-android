@@ -51,9 +51,8 @@
             android:id="@+id/button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
+            android:layout_marginHorizontal="8dp"
             android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
             android:background="@drawable/loginbutton_back"
             android:clickable="true"
             android:focusable="true"
@@ -61,7 +60,9 @@
             android:text="@string/makeorder"
             android:textAllCaps="false"
             android:textColor="@color/white"
-            android:textSize="@dimen/largetext" />
+            android:textSize="@dimen/largetext"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
         <include
             android:id="@+id/addmedcard"
@@ -79,7 +80,8 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp" />
+            android:layout_marginEnd="8dp"
+            android:clickable="false" />
 
         <Button
             android:id="@+id/button3"

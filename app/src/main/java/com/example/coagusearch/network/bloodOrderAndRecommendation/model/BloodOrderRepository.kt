@@ -127,6 +127,7 @@ class BloodOrderRepository(
                 ) {
                     if(response.isSuccessful && response.body() is ApiResponse) {
                         orderResult = response.body()
+                        showProgressLoading(false, context)
                     }
                     else {
                         val errorResponse =

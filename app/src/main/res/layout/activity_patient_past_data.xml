@@ -11,15 +11,16 @@
         android:id="@+id/patientName"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
+        android:layout_marginTop="8dp"
         android:fontFamily="sans-serif-medium"
         android:gravity="center"
-        android:text="Past µTem Data Analysis"
+        android:text="@string/pastuTemdataanalysis"
         android:textColor="@color/white"
         android:textSize="@dimen/largetext"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.52"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="16dp" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/pastDataAnalysisRecyclerView"

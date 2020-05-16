@@ -91,7 +91,6 @@ class AuthRepository(
                 override fun onFailure(call: Call<SignUpResponse>, t: Throwable) {
                     // (context as MainActivity).LoginButton.text ="Fail"
                 }
-
                 override fun onResponse(
                     call: Call<SignUpResponse>,
                     response: Response<SignUpResponse>
@@ -110,7 +109,6 @@ class AuthRepository(
                 override fun onFailure(call: Call<RefreshResponse>, t: Throwable) {
                     // (context as MainActivity).LoginButton.text ="Fail"
                 }
-
                 override fun onResponse(
                     call: Call<RefreshResponse>,
                     response: Response<RefreshResponse>
@@ -126,7 +124,6 @@ class AuthRepository(
                         context, Constants.SHARED_PREF_TOKEN_TYPE,
                         authRefreshResponse.tokenType
                     )
-
                     refreshResponse = response.code()
                 }
             })

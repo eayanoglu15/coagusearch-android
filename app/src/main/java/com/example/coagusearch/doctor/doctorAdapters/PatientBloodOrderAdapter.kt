@@ -100,7 +100,12 @@ class PatientBloodOrderAdapter2(val companies: MutableList<UserBloodOrderRespons
         }
         else {
             val company = companies[position]
-            ( holder as PatientBloodOrderViewHolder ).name.text = company.productType
+            if(company.productType.equals("FFP")){
+                (holder as PatientBloodOrderViewHolder).name.text = "Fresh Frozen Plasma"
+            }
+            else {
+                (holder as PatientBloodOrderViewHolder).name.text = company.productType
+            }
             holder.unit.text = company.quantity.toString() + " Unit"
         }
     }

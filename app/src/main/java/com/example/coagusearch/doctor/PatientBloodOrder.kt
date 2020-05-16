@@ -23,6 +23,7 @@ import kotlinx.android.synthetic.main.activity_patient_blood_order.*
 import kotlinx.android.synthetic.main.patientbloodorder.*
 import kotlinx.android.synthetic.main.patientbloodorder.addNoteText
 import kotlinx.android.synthetic.main.patientbloodorder.editText
+import kotlinx.android.synthetic.main.patientbloodorder.view.*
 import org.koin.android.ext.android.get
 
 class PatientBloodOrder : AppCompatActivity() {
@@ -47,64 +48,87 @@ class PatientBloodOrder : AppCompatActivity() {
         }
 
     }
+
     override fun onBackPressed() {
         super.onBackPressed()
         overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
     }
 
     private fun setListeners(){
-        addNoteText.setOnClickListener {
-        val builder: AlertDialog.Builder = AlertDialog.Builder(this)
-        builder.setTitle("Title")
-        val input = EditText(this)
-        input.isSingleLine = false
-        input.setText(m_Text)
-        builder.setTitle("Add Your Note")
-        builder.setPositiveButton("OK",
-            DialogInterface.OnClickListener { dialog, which -> m_Text = input.text.toString() })
-        builder.setNegativeButton("Cancel",
-            DialogInterface.OnClickListener { dialog, which -> dialog.cancel() })
-        builder.setView(input)
-        builder.show()
-    }
-
-    makeorderbutton.setOnClickListener {
-        var bloodType: String?=patientInfo!!.patientResponse.bloodType
-        var rhType: String?=patientInfo!!.patientResponse.rhType
-        var productType: String?=null
-        var unit: Int?=null
-        var additionalNote: String?=null
-        when (productTypeRadioGroup.checkedRadioButtonId) {
-            R.id.PCC -> productType = "PCC"
-            R.id.FFP -> productType = "FFP"
+        if(patientInfo!!.patientResponse.isBloodDataMissing()){
+            makeorderbutton.isEnabled=false
+            makeorderbutton.alpha=0.5f
+            bloodOrderCard.isEnabled=false
+            bloodOrderCard.alpha=0.5f
+            bloodOrderCard.FFP.isEnabled=false
+            bloodOrderCard.PCC.isEnabled=false
+            bloodOrderCard.editText.isEnabled=false
+            Toast.makeText(this,getString(R.string.nobloodtype),Toast.LENGTH_LONG).show()
         }
+        else {
+            addNoteText.setOnClickListener {
+                val builder: AlertDialog.Builder = AlertDialog.Builder(this)
+                builder.setTitle("Title")
+                val input = EditText(this)
+                input.isSingleLine = false
+                input.setText(m_Text)
+                builder.setTitle("Add Your Note")
+                builder.setPositiveButton("OK",
+                    DialogInterface.OnClickListener { dialog, which ->
+                        m_Text = input.text.toString()
+                    })
+                builder.setNegativeButton("Cancel",
+                    DialogInterface.OnClickListener { dialog, which -> dialog.cancel() })
+                builder.setView(input)
+                builder.show()
+            }
 
-        additionalNote=m_Text
-        if(editText.text.toString().trim().length!=0) {
-            unit = editText.text.toString().toInt()
-        }
-        if(bloodType!=null&&rhType!=null&&productType!=null&&unit!=null){
-           // val bloodbank: BloodOrderRepository = get()
-           // bloodbank.bloodOrder(BloodOrderRequest(bloodType,rhType, productType, unit, additionalNote),this,)
-            m_Text = ""
-            editText.text = null
-            editText.clearFocus()
-            if (intent.hasExtra("id")) {
-                val bundle: Bundle? = intent.extras
-                patientid = bundle!!.getLong("id")
-                val bloodbank: BloodOrderRepository = get()
-                bloodbank.bloodOrderForPatient(BloodOrderRequest(bloodType,rhType,patientid,productType, unit, additionalNote),this)
+            makeorderbutton.setOnClickListener {
+                var bloodType: String? = patientInfo!!.patientResponse.bloodType
+                var rhType: String? = patientInfo!!.patientResponse.rhType
+                var productType: String? = null
+                var unit: Int? = null
+                var additionalNote: String? = null
+                when (productTypeRadioGroup.checkedRadioButtonId) {
+                    R.id.PCC -> productType = "PlateletConcentrate"
+                    R.id.FFP -> productType = "FFP"
+                }
+
+                additionalNote = m_Text
+                if (editText.text.toString().trim().length != 0) {
+                    unit = editText.text.toString().toInt()
+                }
+                if (bloodType != null && rhType != null && productType != null && unit != null) {
+                    // val bloodbank: BloodOrderRepository = get()
+                    // bloodbank.bloodOrder(BloodOrderRequest(bloodType,rhType, productType, unit, additionalNote),this,)
+                    m_Text = ""
+                    editText.text = null
+                    editText.clearFocus()
+                    if (intent.hasExtra("id")) {
+                        val bundle: Bundle? = intent.extras
+                        patientid = bundle!!.getLong("id")
+                        val bloodbank: BloodOrderRepository = get()
+                        bloodbank.bloodOrderForPatient(
+                            BloodOrderRequest(
+                                bloodType,
+                                rhType,
+                                patientid,
+                                productType,
+                                unit,
+                                additionalNote
+                            ), this
+                        )
+
+                    } else {
+                        intentFailDialog(this)
+                    }
+                } else {
+                    Toast.makeText(this, getString(R.string.fillallparts), Toast.LENGTH_LONG)
+                        .show()
+                }
 
             }
-            else{
-                intentFailDialog(this)
-            }
         }
-        else{
-            Toast.makeText(this,"Lütfen Tüm Bilgileri DOldurunuz",Toast.LENGTH_LONG).show()
-        }
-
-    }
     }
     fun refresh(){
         val userRepository: UsersRepository = get()

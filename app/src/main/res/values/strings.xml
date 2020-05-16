@@ -157,9 +157,10 @@
     <string name="MedicalPatients"  > You have no patients </string>
     <string name="TotalPatients" >Total patients:</string>
     <string name="enterunit" >Enter Unit </string>
-
-
-
+    <string name="noanalysisdata">No past analysis data </string>
+    <string name="nobloodtype" >Blood type or Rh type is unknown, you can use blood bank page  for this patient</string>
+    <string name="fillallparts" >Please fill empty parts</string>
+    <string name="pastutemdataanalysis" > Past µTem Data Analysis</string>
 
 
 

@@ -20,6 +20,7 @@ import com.example.coagusearch.network.shared.response.ApiResponse
 import com.example.coagusearch.patient.UserInfoSingleton
 import com.example.coagusearch.patient.accountPage
 import com.example.coagusearch.patient.mainmenu
+import com.example.coagusearch.typing.Ok
 import com.example.coagusearch.ui.dialog.showProgressLoading
 import com.google.gson.Gson
 import retrofit2.Call

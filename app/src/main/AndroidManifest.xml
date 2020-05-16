@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="LockedOrientationActivity"
     package="com.example.coagusearch">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -13,31 +14,49 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".medicalTeam.medicalTeamBottomNavigation"></activity>
-        <activity android:name=".doctor.treatmentStatus" />
-        <activity android:name=".doctor.decideTreatment" />
-        <activity android:name=".doctor.decisionActivity" />
+        <activity android:name=".medicalTeam.medicalTeamBottomNavigation"
+            android:screenOrientation="sensorPortrait">
+        </activity>
+        <activity android:name=".doctor.treatmentStatus"
+            android:screenOrientation="sensorPortrait"/>
+        <activity android:name=".doctor.decideTreatment"
+            android:screenOrientation="sensorPortrait"/>
+        <activity android:name=".doctor.decisionActivity"
+            android:screenOrientation="sensorPortrait"/>
         <activity android:name=".doctor.patientDecision" />
-        <activity android:name=".MainActivity2">
+        <activity android:name=".MainActivity2"
+            android:screenOrientation="sensorPortrait">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.MAIN"
+                    android:screenOrientation="sensorPortrait"/>
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".medicalTeam.MedTeamEditPatient" />
-        <activity android:name=".medicalTeam.MedTeamAddPatient" />
-        <activity android:name=".medicalTeam.MedTeamAllPatients" />
-        <activity android:name=".medicalTeam.MedicalTeamMain" />
-        <activity android:name=".doctor.PastMicroTemData" />
-        <activity android:name=".doctor.PatientPastDataActivity" />
-        <activity android:name=".doctor.microTemData" />
-        <activity android:name=".doctor.PatientAppointments" />
-        <activity android:name=".doctor.PatientBloodOrder" />
-        <activity android:name=".doctor.doctorMyPatient" />
+        <activity android:name=".medicalTeam.MedTeamEditPatient"
+            android:screenOrientation="sensorPortrait"/>
+        <activity android:name=".medicalTeam.MedTeamAddPatient"
+            android:screenOrientation="sensorPortrait"/>
+        <activity android:name=".medicalTeam.MedTeamAllPatients"
+            android:screenOrientation="sensorPortrait"/>
+        <activity android:name=".medicalTeam.MedicalTeamMain"
+            android:screenOrientation="sensorPortrait"/>
+        <activity android:name=".doctor.PastMicroTemData"
+            android:screenOrientation="sensorPortrait"/>
+        <activity android:name=".doctor.PatientPastDataActivity"
+            android:screenOrientation="sensorPortrait"/>
+        <activity android:name=".doctor.microTemData"
+            android:screenOrientation="sensorPortrait"/>
+        <activity android:name=".doctor.PatientAppointments"
+            android:screenOrientation="sensorPortrait"/>
+        <activity android:name=".doctor.PatientBloodOrder"
+            android:screenOrientation="sensorPortrait"/>
+        <activity android:name=".doctor.doctorMyPatient"
+            android:screenOrientation="sensorPortrait"/>
         <activity
             android:name=".doctor.doctorMain"
-            android:windowSoftInputMode="adjustPan" />
+            android:windowSoftInputMode="adjustPan"
+            android:screenOrientation="sensorPortrait"/>
         <activity
             android:name=".patient.AddMedicine"
             android:screenOrientation="portrait"
@@ -45,7 +64,8 @@
         <activity
             android:name=".patient.NewAppointment"
             android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity" />
+            tools:ignore="LockedOrientationActivity"
+            />
         <activity
             android:name=".patient.accountPage"
             android:screenOrientation="portrait"

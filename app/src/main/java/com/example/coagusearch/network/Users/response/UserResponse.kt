@@ -36,4 +36,25 @@ data class UserResponse(
         }
         return blood
     }
+    fun isBloodDataMissing():Boolean{
+        if(bloodType!=null&&rhType!=null) {
+            if (
+                (bloodType.equals("A") || bloodType.equals("B") || bloodType.equals("AB") || bloodType.equals(
+                    "O"
+                ))
+                && (rhType.equals("Positive",ignoreCase = true) || rhType.equals("Negative",ignoreCase = true))
+            ) {
+                return false
+            }
+            else {
+                return true
+            }
+        }
+        else return true
+
+
+    }
+
+
+
 }
