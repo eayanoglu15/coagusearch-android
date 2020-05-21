@@ -12,7 +12,7 @@
         android:layout_marginLeft="2dp"
         android:layout_weight="1"
         android:background="@drawable/segmentedbuttonchecked"
-        android:text="Waiting"
+        android:text="@string/waiting"
         android:textAllCaps="false"
         android:textColor="@color/white" />
 
@@ -23,7 +23,7 @@
         android:layout_marginVertical="2dp"
         android:layout_weight="1"
         android:background="@drawable/segmentedbuttonback"
-        android:text="Done"
+        android:text="@string/done1"
         android:textAllCaps="false"
         android:textColor="@color/colorPrimary" />
 

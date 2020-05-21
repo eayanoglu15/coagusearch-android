@@ -1,10 +1,8 @@
 package com.example.coagusearch.network.shared
 
-import android.content.Context
 import android.content.SharedPreferences
 import com.example.coagusearch.network.Appointment.model.AppointmentApi
 import com.example.coagusearch.network.Auth.model.AuthApi
-import com.example.coagusearch.network.Auth.model.AuthRepository
 import com.example.coagusearch.network.Interceptors.AuthInterceptor
 import com.example.coagusearch.network.Interceptors.LocaleInterceptor
 import com.example.coagusearch.network.PatientData.model.PatientDataApi
@@ -38,7 +36,9 @@ class RetrofitClient(
         val loggingInterceptor = HttpLoggingInterceptor()
         loggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
         val okHttpClientBuilder = OkHttpClient.Builder()
-        var apiUrl = "http://192.168.2.141:8080"
+        var apiUrl = "http://ec2-52-28-26-31.eu-central-1.compute.amazonaws.com:8080/"
+        //var apiUrl = "http://192.168.2.141:8080/"
+
         val httpClient = okHttpClientBuilder
             .addInterceptor(authInterceptor)
             .addInterceptor(localeInterceptor)

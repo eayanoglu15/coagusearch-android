@@ -3,22 +3,18 @@ package com.example.coagusearch.doctor
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import com.example.coagusearch.MainActivity
-
 import com.example.coagusearch.R
-import com.example.coagusearch.network.Users.model.UsersRepository
 import com.example.coagusearch.network.Users.response.UserResponse
 import com.example.coagusearch.patient.UserInfoSingleton
 import com.example.coagusearch.patient.accountPage
 import com.example.coagusearch.patient.main
 import kotlinx.android.synthetic.main.fragment_doctor_profile.*
-
-import org.koin.android.ext.android.get
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -44,29 +40,11 @@ class doctorProfile : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        profileFragment_name.text = userResponse!!.name + " " + userResponse!!.surname
-        val birthdate = getString(R.string.birthdate)
-        if (userResponse!!.birthDay != null && userResponse!!.birthMonth != null && userResponse!!.birthYear != null)
-            profileFragment_Age.text ="Doğum Tarihi:"+
-                userResponse!!.birthDay.toString() + "/" + userResponse!!.birthMonth.toString() + "/" + userResponse!!.birthYear.toString()
-        else
-            profileFragment_Age.text = "-/-/-"
-        val height = getString(R.string.height)
-        val weight = getString(R.string.weight)
-        if (userResponse!!.height != null) {
-            profileFragment_height.text = height + ":" + userResponse!!.height.toString()
-        } else {
-            profileFragment_height.text = height + ":-"
-        }
-        if (userResponse!!.weight != null) {
-            profileFragment_weight.text = weight + ":" + userResponse!!.weight.toString()
-        } else {
-            profileFragment_weight.text = weight + ":-"
-        }
+        setData()
         switchToPatient.setOnClickListener {
             val intent = Intent(getActivity(), main::class.java)
             startActivity(intent)
-           // getActivity()?.overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+            // getActivity()?.overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
         }
         editProfile.setOnClickListener {
             val intent = Intent(getActivity(), accountPage::class.java)
@@ -87,5 +65,33 @@ class doctorProfile : Fragment() {
             startActivity(intent)
 
         }
+
+    }
+
+    override fun onResume() {
+        super.onResume()
+        setData()
+    }
+    private  fun  setData(){
+        profileFragment_name.text = userResponse!!.name + " " + userResponse!!.surname
+        val birthdate = getString(R.string.birthdate)
+        if (userResponse!!.birthDay != null && userResponse!!.birthMonth != null && userResponse!!.birthYear != null)
+            profileFragment_Age.text ="Doğum Tarihi:"+
+                    userResponse!!.birthDay.toString() + "/" + userResponse!!.birthMonth.toString() + "/" + userResponse!!.birthYear.toString()
+        else
+            profileFragment_Age.text = "-/-/-"
+        val height = getString(R.string.height)
+        val weight = getString(R.string.weight)
+        if (userResponse!!.height != null) {
+            profileFragment_height.text = height + ":" + userResponse!!.height.toString()
+        } else {
+            profileFragment_height.text = height + ":-"
+        }
+        if (userResponse!!.weight != null) {
+            profileFragment_weight.text = weight + ":" + userResponse!!.weight.toString()
+        } else {
+            profileFragment_weight.text = weight + ":-"
+        }
+
     }
 }

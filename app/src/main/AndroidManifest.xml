@@ -15,6 +15,7 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity android:name=".medicalTeam.medicalTeamBottomNavigation"
+            android:windowSoftInputMode="adjustNothing"
             android:screenOrientation="sensorPortrait">
         </activity>
         <activity android:name=".doctor.treatmentStatus"
@@ -23,7 +24,6 @@
             android:screenOrientation="sensorPortrait"/>
         <activity android:name=".doctor.decisionActivity"
             android:screenOrientation="sensorPortrait"/>
-        <activity android:name=".doctor.patientDecision" />
         <activity android:name=".MainActivity2"
             android:screenOrientation="sensorPortrait">
             <intent-filter>

@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.coagusearch.R
 import com.example.coagusearch.network.bloodOrderAndRecommendation.response.DoctorBloodOrderResponse
@@ -106,7 +105,7 @@ class PatientBloodOrderAdapter2(val companies: MutableList<UserBloodOrderRespons
             else {
                 (holder as PatientBloodOrderViewHolder).name.text = company.productType
             }
-            holder.unit.text = company.quantity.toString() + " Unit"
+            holder.unit.text = company.quantity.toString() + " Units"
         }
     }
 

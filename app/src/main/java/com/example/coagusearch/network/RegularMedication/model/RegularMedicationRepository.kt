@@ -2,8 +2,6 @@ package com.example.coagusearch.network.RegularMedication.model
 
 import android.content.Context
 import com.example.coagusearch.R
-import com.example.coagusearch.patient.AddMedicine
-import com.example.coagusearch.patient.UserInfoSingleton
 import com.example.coagusearch.network.RegularMedication.request.DeleteMedicineInfoRequest
 import com.example.coagusearch.network.RegularMedication.request.SaveMedicineInfoRequest
 import com.example.coagusearch.network.RegularMedication.response.AllDrugInfoResponse
@@ -11,6 +9,8 @@ import com.example.coagusearch.network.RegularMedication.response.UserMedicineRe
 import com.example.coagusearch.network.onFailureDialog
 import com.example.coagusearch.network.shared.RetrofitClient
 import com.example.coagusearch.network.shared.response.ApiResponse
+import com.example.coagusearch.patient.AddMedicine
+import com.example.coagusearch.patient.UserInfoSingleton
 import com.example.coagusearch.ui.dialog.showProgressLoading
 import com.google.gson.Gson
 import retrofit2.Call

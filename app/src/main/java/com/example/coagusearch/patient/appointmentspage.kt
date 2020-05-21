@@ -3,18 +3,18 @@ package com.example.coagusearch.patient
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ListView
 import androidx.appcompat.app.AlertDialog
-import com.example.coagusearch.patient.PatientAdapters.OldAppointmentsAdapterAF
+import androidx.fragment.app.Fragment
 import com.example.coagusearch.R
 import com.example.coagusearch.network.Appointment.model.AppointmentRepository
 import com.example.coagusearch.network.Appointment.request.DeleteAppointmentsForUserRequest
 import com.example.coagusearch.network.Appointment.response.UserAppointmentResponse
 import com.example.coagusearch.network.Users.response.SingleAppointmentResponse
+import com.example.coagusearch.patient.PatientAdapters.OldAppointmentsAdapterAF
 import kotlinx.android.synthetic.main.fragment_appointmentspage.*
 import kotlinx.android.synthetic.main.nextappointmentnewcancel.view.*
 import org.koin.android.ext.android.get

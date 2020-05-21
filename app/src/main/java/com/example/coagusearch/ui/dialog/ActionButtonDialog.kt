@@ -2,15 +2,8 @@ package com.example.coagusearch.ui.dialog
 
 
 import android.content.Context
-import android.view.LayoutInflater
 import android.view.View
-import android.widget.LinearLayout
-import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
-import androidx.appcompat.widget.AppCompatButton
-import androidx.core.content.res.ResourcesCompat
-import com.example.coagusearch.R
-import com.example.coagusearch.ui.dialog.BaseDialog
 
 class ActionButtonDialog(
     context: Context, override val dialogView: View,

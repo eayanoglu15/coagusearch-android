@@ -1,16 +1,13 @@
 package com.example.coagusearch.doctor
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.coagusearch.R
-import com.example.coagusearch.doctor.doctorAdapters.PatientPastDataAdapter
 import com.example.coagusearch.doctor.doctorAdapters.statusAdapter
 import com.example.coagusearch.network.PatientData.model.PatientDataRepository
 import com.example.coagusearch.network.PatientData.request.GetPatientBloodTestDataRequest
-import com.example.coagusearch.network.PatientData.request.GetPatientBloodTestRequest
 import com.example.coagusearch.network.PatientData.response.UserBloodTestDataResponse
-import kotlinx.android.synthetic.main.activity_decide_treatment.*
 import kotlinx.android.synthetic.main.activity_treatment_status.*
 import org.koin.android.ext.android.get
 

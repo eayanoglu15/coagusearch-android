@@ -1,8 +1,6 @@
 package com.example.coagusearch.doctor
 
 import android.content.Context
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.KeyEvent
 import android.view.View
@@ -10,35 +8,28 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.coagusearch.R
-import com.example.coagusearch.doctor.doctorAdapters.PatientPastDataAdapter
 import com.example.coagusearch.doctor.doctorAdapters.suggestionAdapter
 import com.example.coagusearch.network.PatientData.model.PatientDataRepository
 import com.example.coagusearch.network.PatientData.request.GetPatientBloodTestDataRequest
-import com.example.coagusearch.network.PatientData.request.GetPatientBloodTestRequest
 import com.example.coagusearch.network.PatientData.response.SuggestionListResponse
 import com.example.coagusearch.network.PatientData.response.SuggestionResponse
 import com.example.coagusearch.network.Users.response.PatientDetailResponse
 import com.example.coagusearch.network.bloodOrderAndRecommendation.model.BloodOrderRepository
-import com.example.coagusearch.network.bloodOrderAndRecommendation.request.BloodOrderRequest
 import com.example.coagusearch.network.bloodOrderAndRecommendation.request.OrderForUserDataRequest
-import kotlinx.android.synthetic.main.activity_add_medicine.*
 import kotlinx.android.synthetic.main.activity_add_medicine.dosagePicked
 import kotlinx.android.synthetic.main.activity_add_medicine.dosagePicker
 import kotlinx.android.synthetic.main.activity_decide_treatment.*
-import kotlinx.android.synthetic.main.activity_decision.*
-
-import kotlinx.android.synthetic.main.activity_patient_past_data.*
 import kotlinx.android.synthetic.main.doctoraddmedcard.*
 import kotlinx.android.synthetic.main.doctoraddmedcard.view.*
 import kotlinx.android.synthetic.main.doctordosagecard.*
 import kotlinx.android.synthetic.main.doctordosagecard.view.*
 import kotlinx.android.synthetic.main.patientbloodorder.*
 import kotlinx.android.synthetic.main.patientbloodorder.view.*
-
 import org.koin.android.ext.android.get
-
+//TODO Clear texts and radio buttons after order
 class decideTreatment : AppCompatActivity() {
     var list = mutableListOf("a", "a", "b", "b")
     var doslist = arrayOf("g", "mg", "Unit","ml/kg", "g/kg","U/kg")
@@ -181,7 +172,7 @@ class decideTreatment : AppCompatActivity() {
                 var unit: Double? = null
                 var additionalNote: String? = null
                 when (productTypeRadioGroup.checkedRadioButtonId) {
-                    R.id.PCC -> productType = "FibrinogenConcentrate"
+                    R.id.PCC -> productType = "PlateletConcentrate"
                     R.id.FFP -> productType = "FFP"
                 }
 
@@ -225,14 +216,13 @@ class decideTreatment : AppCompatActivity() {
             var quantity: Double? = null
             var product: String? = null
             val bloodTestId1 = bloodTestId
-
             product = addmedcard.medName.text.toString()
             if (editText2.text.toString().trim().length != 0) {
                 quantity = editText2.text.toString().toDouble()
             }
             unit =dos
             val bloodbank: BloodOrderRepository = get()
-            if (quantity != null && unit != null) {
+            if (quantity != null && unit != null &&!product.equals("null")&&!product.equals("")) {
                 bloodbank.bloodOrderForUser(
                     OrderForUserDataRequest(
                         unit!!,

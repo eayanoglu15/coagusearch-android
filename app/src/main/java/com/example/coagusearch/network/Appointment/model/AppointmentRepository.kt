@@ -2,9 +2,7 @@ package com.example.coagusearch.network.Appointment.model
 
 import android.content.Context
 import androidx.appcompat.app.AlertDialog
-import com.example.coagusearch.patient.NewAppointment
 import com.example.coagusearch.R
-import com.example.coagusearch.patient.appointmentspage
 import com.example.coagusearch.network.Appointment.request.DeleteAppointmentsForUserRequest
 import com.example.coagusearch.network.Appointment.request.SaveAppointmentRequest
 import com.example.coagusearch.network.Appointment.response.UserAppointmentResponse
@@ -12,6 +10,8 @@ import com.example.coagusearch.network.Appointment.response.WeeklyAvailabilityRe
 import com.example.coagusearch.network.onFailureDialog
 import com.example.coagusearch.network.shared.RetrofitClient
 import com.example.coagusearch.network.shared.response.ApiResponse
+import com.example.coagusearch.patient.NewAppointment
+import com.example.coagusearch.patient.appointmentspage
 import com.example.coagusearch.ui.dialog.showProgressLoading
 import com.google.gson.Gson
 import retrofit2.Call
@@ -84,8 +84,9 @@ class AppointmentRepository(
                     if (response.isSuccessful && response.body() is UserAppointmentResponse) {
                         println(response.message())
                         appointmentResponse = response.body()
-                        if(appointmentspage.isAdded)
-                        appointmentspage.setAdapter(appointmentResponse!!)
+                        if(appointmentspage.isAdded) {
+                            appointmentspage.setAdapter(appointmentResponse!!)
+                        }
                         showProgressLoading(false, context)
                     } else {
                         val errorResponse =

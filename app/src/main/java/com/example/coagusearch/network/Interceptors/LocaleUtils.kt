@@ -4,7 +4,6 @@ import android.content.Context
 import androidx.core.os.ConfigurationCompat
 import java.text.DateFormat
 import java.text.DecimalFormat
-import java.text.DecimalFormatSymbols
 import java.text.SimpleDateFormat
 import java.util.*
 

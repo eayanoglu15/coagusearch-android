@@ -1,6 +1,5 @@
 package com.example.coagusearch.network
 
-import com.example.coagusearch.network.BaseError
 import com.example.coagusearch.typing.Result
 import io.reactivex.Maybe
 import io.reactivex.Single

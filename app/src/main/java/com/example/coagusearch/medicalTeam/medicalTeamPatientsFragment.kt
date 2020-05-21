@@ -2,17 +2,18 @@ package com.example.coagusearch.medicalTeam
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.SearchView
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-
 import com.example.coagusearch.R
 import com.example.coagusearch.medicalTeam.medTeamAdapters.MedTeamPatientsAdapter
+import com.example.coagusearch.network.Users.model.UsersRepository
+import com.example.coagusearch.network.Users.response.UserResponse
 import kotlinx.android.synthetic.main.fragment_medical_team_patients.*
-
+import org.koin.android.ext.android.get
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
@@ -24,18 +25,6 @@ private const val ARG_PARAM2 = "param2"
  * create an instance of this fragment.
  */
 class medicalTeamPatientsFragment : Fragment() {
-    val list = mutableListOf(
-                "Ayşe Kılıç",
-                "Yunus Karahanlı",
-                "Aycan Candan",
-                "Zeynep	Aslan",
-                "Zehra Aktan",
-                "Ali Candan",
-                "Ahmet Canda",
-                "Aysel Aksa",
-                "Melek Sayı"
-    )
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -46,13 +35,26 @@ class medicalTeamPatientsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        patientRecyclerView.layoutManager =
-            LinearLayoutManager(this.context, LinearLayoutManager.VERTICAL, false)
-        patientRecyclerView.adapter = MedTeamPatientsAdapter(list, this.context!!)
+
+        getData()
         addPatientButton.setOnClickListener {
-            val intent = Intent(this.context, MedTeamEditPatient::class.java)
+            val intent = Intent(this.context, MedTeamAddPatient::class.java)
             startActivity(intent)
         }
+
+
+    }
+
+    private fun getData(){
+        val userRepository: UsersRepository = get()
+        userRepository.getMyPatientsMed(this.context!!, this)
+    }
+
+    fun setPatientList(list:List<UserResponse>){
+        patientRecyclerView.layoutManager =
+            LinearLayoutManager(this.context, LinearLayoutManager.VERTICAL, false)
+        patientRecyclerView.adapter = MedTeamPatientsAdapter(list.toMutableList(), this.context!!)
+
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 return false
@@ -62,6 +64,15 @@ class medicalTeamPatientsFragment : Fragment() {
                 return false
             }
         })
+
+        textView27.text=getString(R.string.totalpatients)+" "+list.size.toString()
+
+    }
+
+
+    override fun onResume() {
+        super.onResume()
+        getData()
     }
 
 

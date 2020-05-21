@@ -1,7 +1,5 @@
 package com.example.coagusearch.network.bloodOrderAndRecommendation.response
 
-import com.example.coagusearch.network.PatientData.response.SuggestionResponse
-
 
 data class PreviousOrderResponse(
     val ordersList : List<DoctorBloodOrderResponse>

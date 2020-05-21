@@ -39,20 +39,21 @@ class doctorBloodBankFragment : Fragment() {
         setListeners()
     }
 
-
     private fun setListeners(){
         addNoteText.setOnClickListener {
             val builder: AlertDialog.Builder = AlertDialog.Builder(this.context!!,R.style.alertDialog)
             builder.setTitle("Title")
-            val input = EditText(this.context!!)
-            input.highlightColor=resources.getColor(R.color.white)
-            input.setTextColor(resources.getColor(R.color.white))
+            val input :EditText= layoutInflater.inflate(R.layout.edittext,null) as EditText
+            input.highlightColor=resources.getColor(R.color.colorPrimary)
+            input.setTextColor(resources.getColor(R.color.colorPrimary))
             input.isSingleLine = false
             input.setText(m_Text)
-            builder.setTitle("Add Your Note")
-            builder.setPositiveButton("OK",
-                DialogInterface.OnClickListener { dialog, which -> m_Text = input.text.toString() })
-            builder.setNegativeButton("Cancel",
+            builder.setTitle(getString(R.string.addnote2))
+            builder.setPositiveButton(getString(R.string.ok),
+                DialogInterface.OnClickListener { dialog, which -> m_Text = input.text.toString()
+                    if(m_Text.length>0)
+                Toast.makeText(this.context,getString(R.string.noteadded),Toast.LENGTH_SHORT).show()})
+            builder.setNegativeButton(getString(R.string.cancel),
                 DialogInterface.OnClickListener { dialog, which -> dialog.cancel() })
             builder.setView(input)
             builder.show()
@@ -64,9 +65,9 @@ class doctorBloodBankFragment : Fragment() {
             var unit: Int?=null
             var additionalNote: String?=null
             when (productRadioGroup.checkedRadioButtonId) {
-                R.id.pcc -> productType = "PlateletConcentrate"
-                R.id.ffp -> productType = "FFP"
-            }
+            R.id.pcc -> productType = "PlateletConcentrate"
+            R.id.ffp -> productType = "FFP"
+        }
 
             when (bloodTypeRadioGroup.checkedRadioButtonId) {
                 R.id.A -> bloodType = "A"
@@ -78,6 +79,11 @@ class doctorBloodBankFragment : Fragment() {
                 R.id.Positive -> rhType = "Positive"
                 R.id.Negative -> rhType = "Negative"
             }
+
+            productRadioGroup.clearCheck()
+            bloodTypeRadioGroup.clearCheck()
+            rhRadioGroup.clearCheck()
+
             additionalNote=m_Text
             if(editText.text.toString().trim().length!=0) {
                 unit = editText.text.toString().toInt()
@@ -90,7 +96,7 @@ class doctorBloodBankFragment : Fragment() {
                 editText.clearFocus()
             }
             else{
-                Toast.makeText(this.context!!,"Lütfen Tüm Bilgileri DOldurunuz",Toast.LENGTH_LONG).show()
+                Toast.makeText(this.context!!,getString(R.string.fillallparts),Toast.LENGTH_LONG).show()
             }
 
         }

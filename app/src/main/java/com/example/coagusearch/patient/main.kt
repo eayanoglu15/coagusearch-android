@@ -1,11 +1,10 @@
 package com.example.coagusearch.patient
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.coagusearch.R
 import com.example.coagusearch.network.RegularMedication.model.RegularMedicationRepository
-import com.example.coagusearch.network.Users.model.UsersRepository
 import com.example.coagusearch.ui.dialog.showProgressLoading
 import kotlinx.android.synthetic.main.main.*
 import org.koin.android.ext.android.get

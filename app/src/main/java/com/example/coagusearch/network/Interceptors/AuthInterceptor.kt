@@ -3,13 +3,12 @@ package com.example.coagusearch.network.Interceptors
 
 import android.content.Context
 import android.util.Log
+import com.example.coagusearch.Constants
 import com.example.coagusearch.network.Auth.model.AuthRepository
 import com.example.coagusearch.utils.PreferenceHelper
 import com.example.coagusearch.utils.securelyGetString
 import okhttp3.*
 import java.net.SocketTimeoutException
-import com.example.coagusearch.Constants
-import com.example.coagusearch.typing.expect
 
 //TODO: Force User to Logout
 class AuthInterceptor(
@@ -42,7 +41,7 @@ class AuthInterceptor(
                 }
 
                 val response = authRequest(chain, tokenType, accessToken)
-
+                println("Inside ınterceptor 1"+response.body().toString())
 
                 return if (response.code() == UNAUTHORIZED_CODE) {
                     println("Unauthroized came")
@@ -59,10 +58,12 @@ class AuthInterceptor(
                             Log.d("HospitalOnMobile", "user will be forced to logout")
                             response.close()
                         }
+                        println("Returns the original requests response")
                         // Return the response of the original request
                         response
                     } else {
                         // Get the new tokens
+                        Thread.sleep(2_000)
                         tokenType =
                             sharedPref.securelyGetString(context, Constants.SHARED_PREF_TOKEN_TYPE)
                         accessToken = sharedPref.securelyGetString(
@@ -73,11 +74,16 @@ class AuthInterceptor(
                         if (tokenType.isNullOrBlank() || accessToken.isNullOrBlank()) {
                             return response
                         }
-
+                        println("Now return new request")
                         response.close()
                         // Create a new request and return its response
                         val newResponse = authRequest(chain, tokenType, accessToken)
+                        println("newResponse:$newResponse")
+                        println("newResponse:${newResponse.body()}")
+                        println("newResponse:${newResponse.body().toString()}")
                         newResponse
+
+
                     }
                 } else if (response.code() == UPDATE_REQUIRE_CODE) {
                     Log.d("HospitalOnMobile", "user must update this application")

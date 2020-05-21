@@ -3,23 +3,20 @@ package com.example.coagusearch.patient
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.coagusearch.R
-
 import com.example.coagusearch.network.Users.model.UsersRepository
 import com.example.coagusearch.network.Users.response.PatientMainScreenResponse
 import com.example.coagusearch.patient.PatientAdapters.PatientMainScreenNotificationsAdapter
-
 import kotlinx.android.synthetic.main.fragment_mainmenu.*
 import kotlinx.android.synthetic.main.informationcard.view.*
 import kotlinx.android.synthetic.main.nextappointmentnew.view.*
-
 import org.koin.android.ext.android.get
+
 //TODO  add nothing to show card
 class mainmenu : Fragment() {
 

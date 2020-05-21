@@ -8,12 +8,10 @@ import android.view.ViewGroup
 import android.widget.Filter
 import android.widget.Filterable
 import android.widget.TextView
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.coagusearch.R
 import com.example.coagusearch.doctor.doctorMyPatient
 import com.example.coagusearch.network.Users.response.UserResponse
-import com.example.coagusearch.patient.AddMedicine
 import java.util.*
 
 

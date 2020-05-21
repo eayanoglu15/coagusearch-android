@@ -18,10 +18,19 @@ data class PatientAppointmentTimeResponse(
     val minute: Int
 ) {
     fun getTimeAsString(): String {
-        var s: String = hour.toString() + ":" + minute.toString()
+        var s: String = hour.toString() + ":"
         if (minute == 0) {
+            s=s+ minute.toString()
             s += "0"
         }
+        else if(minute<10){
+            s+="0"
+            s=s+ minute.toString()
+        }
+        else{
+            s=s+ minute.toString()
+        }
+
         return s
     }
 }
@@ -30,7 +39,7 @@ data class EmergencyPatientDetail(
     val userName: String,
     val userSurname: String,
     val arrivalHour: PatientAppointmentTimeResponse,
-    val isUserAtAmbulance: Boolean = Random.nextBoolean(),
-    val isDataReady: Boolean = if (isUserAtAmbulance) Random.nextBoolean() else false
+    val isUserAtAmbulance:Boolean,
+    val isDataReady: Boolean
 
 )

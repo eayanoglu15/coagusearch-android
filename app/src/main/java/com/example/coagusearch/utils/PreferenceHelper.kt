@@ -8,7 +8,6 @@ import com.facebook.android.crypto.keychain.AndroidConceal
 import com.facebook.android.crypto.keychain.SharedPrefsBackedKeyChain
 import com.facebook.crypto.CryptoConfig
 import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
 
 object PreferenceHelper {
     fun defaultPrefs(context: Context): SharedPreferences =

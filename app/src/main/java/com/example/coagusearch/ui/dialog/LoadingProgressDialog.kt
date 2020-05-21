@@ -8,7 +8,6 @@ import android.view.View
 import android.view.Window
 import androidx.appcompat.app.AlertDialog
 import com.example.coagusearch.R
-import com.example.coagusearch.ui.dialog.BaseDialog
 
 
 class LoadingProgressDialog(val context: Context) : BaseDialog() {

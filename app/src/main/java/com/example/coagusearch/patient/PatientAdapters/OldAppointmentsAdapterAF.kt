@@ -7,8 +7,8 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import com.example.coagusearch.R
 import com.example.coagusearch.network.Users.response.SingleAppointmentResponse
-import kotlinx.android.synthetic.main.oldappointmentcard.view.*
 import kotlinx.android.synthetic.main.informationcard.view.*
+import kotlinx.android.synthetic.main.oldappointmentcard.view.*
 
 class OldAppointmentsAdapterAF : BaseAdapter {
     var listOfTicket = ArrayList<SingleAppointmentResponse>()

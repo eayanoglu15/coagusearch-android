@@ -4,7 +4,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.coagusearch.R
 import com.example.coagusearch.network.bloodOrderAndRecommendation.response.DoctorBloodOrderResponse
@@ -44,8 +43,14 @@ class BloodBankOrderAdapter(val companies: MutableList<DoctorBloodOrderResponse>
         else{
             holder.name.text=company.productType
         }
-
         holder.type.text=company.getBloodTypeAsString()
+
+        if(company.additionalNote!=null&&!company.additionalNote!!.toString().equals("")){
+            holder.note.text=company.additionalNote
+        }
+        else{
+            holder.note.visibility=View.GONE
+        }
     }
 
     override fun getItemViewType(position: Int): Int {
@@ -65,5 +70,6 @@ class BloodBankOrderAdapter(val companies: MutableList<DoctorBloodOrderResponse>
         var unit = itemView.findViewById<TextView>(R.id.unit)
         var name = itemView.findViewById<TextView>(R.id.name)
         var type = itemView.findViewById<TextView>(R.id.type)
+        var note= itemView.findViewById<TextView>(R.id.textView28)
     }
 }

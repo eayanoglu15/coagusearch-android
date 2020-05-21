@@ -1,20 +1,14 @@
 package com.example.coagusearch.doctor
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.coagusearch.R
 import com.example.coagusearch.doctor.doctorAdapters.PatientPastDataAdapter
 import com.example.coagusearch.network.PatientData.model.PatientDataRepository
 import com.example.coagusearch.network.PatientData.request.GetPatientBloodTestRequest
 import com.example.coagusearch.network.PatientData.response.UserBloodTestsResponse
 import kotlinx.android.synthetic.main.activity_patient_past_data.*
-import kotlinx.android.synthetic.main.fragment_doctor_blood_bank.*
 import org.koin.android.ext.android.get
 
 class PatientPastDataActivity : AppCompatActivity() {

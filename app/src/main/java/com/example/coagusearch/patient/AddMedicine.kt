@@ -155,11 +155,7 @@ class AddMedicine : AppCompatActivity() {
                 Toast.makeText(this, "Please select a medicine name", Toast.LENGTH_SHORT).show()
             } else {
                 saveMedicine()
-                finish()
-                overridePendingTransition(
-                    R.anim.slide_in_left,
-                    R.anim.slide_out_right
-                )
+
             }
         }
 

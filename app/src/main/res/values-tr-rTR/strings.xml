@@ -7,7 +7,7 @@
     <string name="errorOccurred">Error Occured</string>
     <!--LoginScreen-->
     <string name="rememberMe">Beni Hatırla</string>
-    <string name="hintTc">TC</string>
+    <string name="hintTc">Kimlik Numarası</string>
     <string name="passwordHint">Şifre</string>
     <string name="forgotPassword">Şifrenizi mi unuttunuz?</string>
     <string name="login">Giriş yap</string>
@@ -125,12 +125,16 @@
     <string name="checktreatmentstatus">Tedavi Durumunu Kontrol Et</string>
     <string name="nameerror">İsim ve Soyisim alanları Boş Bırakılamaz</string>
 
-
+    <string name="nameerrorID">Kimlik Numarası,İsim ve Soyisim alanları Boş Bırakılamaz</string>
     <!--Information cards-->
     <!--Patient-->
     <string name="PatientHomeInfo">Bugün için bir şey yok</string>
+    <string name="delete">Sil</string>
     <string name="PatientAppointmentsInfo">Geçmiş randevunuz yok</string>
+    <string name="pleaseaddpatient">Hasta sistemde bulunamadı lütfen önce hastayı kaydedin</string>
+    <string name="nowyoucan">Şimdi hastayı bildirebilirsiiz</string>
     <!--Doctor-->
+    <string name="notifiedsuccess" >Talebiniz başarıyla iletildi</string>
     <string name="DoctorHomeInfo" > Bugün için randevu yok </string>
     <string name="DoctorNotificationsInfo"  >Herhangi bir bildirim yok</string>
     <string name="DoctorPatientInfo"  > Hiç hastanız yok</string>
@@ -142,13 +146,27 @@
     <string name="DoctorPatientSuggestionInfo"> Bu hastanın verisi ile alakası bir öneri bulunmamakta </string>
     <string name="DoctorPatientTreatmentStatusInfo">Henüz sipariş verilmedi </string>
     <!--Medical-->
-    <string name="MedicalTODO" >İstek yok </string>
+    <string name="ok">Tamam</string>
+    <string name="addnote2">Lütfen notunuzu ekleyin</string>
+    <string name="noteadded">Notunuz eklendi</string>
+    <string name="enterUnit">Miktarı Girin</string>
     <string name="enterunit" >Miktarı girin </string>
+    <string name="unit" >Miktar</string>
     <string name="MedicalPatients" >Hiç hastanız yok</string>
     <string name="TotalPatients" >Hasta sayısı:</string>
+    <string name="savedInfoPatient" >Bilgiler Kaydedildi</string>
     <string name="fillallparts" >Lütfen Tüm Bilgileri Doldurunuz</string>
     <string name="pastutemdataanalysis" >Eski µTem Veri Analizleri</string>
     <string name="nobloodtype" >Bu hastanın kan grubu bilgisi eksik, kan sipariş etmek için kan bankası sayfasını kullanmalısınız</string>
+    <string name="enterTCplease" >Lütfen Hasta Kimlik Numarasını Giriniz </string>
 
+    <string name="waiting">Yapılacaklar</string>
+    <string name="done1">Tamamlananlar</string>
+    <string name="orders">Siparişler</string>
+
+    <string name="MedicalTODO" >Hazırlamanız gereken bir istek yok</string>
+    <string name="passMedical" >Kaydedilen hastanın şifresi: </string>
+    <string name="MedicalDONE" >Henüz hazırlamış olduğunuz bir istek yok</string>
+    <string name="enter_patient_id">Hasta kimlik numarasını girin </string>
 
 </resources>

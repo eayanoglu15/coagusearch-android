@@ -1,26 +1,25 @@
 package com.example.coagusearch.network.Auth.model
 
 import android.content.Context
-import android.content.DialogInterface
-import android.graphics.Color
 import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
 import com.example.coagusearch.Constants
 import com.example.coagusearch.MainActivity
 import com.example.coagusearch.R
+import com.example.coagusearch.medicalTeam.MedTeamAddPatient
 import com.example.coagusearch.network.Auth.request.LoginRequest
 import com.example.coagusearch.network.Auth.request.RefreshRequest
 import com.example.coagusearch.network.Auth.request.SignUpRequest
+import com.example.coagusearch.network.Auth.request.UserSaveRequest
 import com.example.coagusearch.network.Auth.response.LoginResponse
 import com.example.coagusearch.network.Auth.response.RefreshResponse
 import com.example.coagusearch.network.Auth.response.SignUpResponse
+import com.example.coagusearch.network.Auth.response.UserSaveResponse
 import com.example.coagusearch.network.Interceptors.AuthInterceptor
 import com.example.coagusearch.network.onFailureDialog
 import com.example.coagusearch.network.shared.RetrofitClient
 import com.example.coagusearch.network.shared.response.ApiResponse
 import com.example.coagusearch.ui.dialog.showProgressLoading
 import com.example.coagusearch.utils.PreferenceHelper
-import com.example.coagusearch.utils.securelyGetString
 import com.example.coagusearch.utils.securelyPutString
 import com.google.gson.Gson
 import retrofit2.Call
@@ -129,4 +128,44 @@ class AuthRepository(
             })
         return refreshResponse
     }
+
+
+    fun saveBodyInfoOfPatient(
+        saveBodyInfoSaveRequest: UserSaveRequest,
+        context: Context
+    ): UserSaveResponse? {
+        var r: UserSaveResponse? = null
+        showProgressLoading(true, context)
+        retrofitClient.authApi().savePatient(saveBodyInfoSaveRequest)
+            .enqueue(object : Callback<UserSaveResponse> {
+                override fun onFailure(call: Call<UserSaveResponse>, t: Throwable) {
+                    onFailureDialog(context, t.toString())
+                    showProgressLoading(false, context)
+                }
+
+                override fun onResponse(
+                    call: Call<UserSaveResponse>,
+                    response: Response<UserSaveResponse>
+                ) {
+                    if (response.isSuccessful && response.body() is UserSaveResponse) {
+                        r = response.body()
+                        showProgressLoading(false, context)
+                        Toast.makeText(context,context.getString(R.string.savedInfoPatient),Toast.LENGTH_LONG)
+                        (context as MedTeamAddPatient).showPass(r!!)
+                    } else {
+                        val errorResponse =
+                            Gson().fromJson<ApiResponse>(
+                                response.errorBody()?.string(),
+                                ApiResponse::class.java
+                            )?.message
+                                ?: context.resources.getString(R.string.errorOccurred)
+                        showProgressLoading(false, context)
+                        onFailureDialog(context, errorResponse)
+                    }
+                }
+            })
+        return r
+    }
+
+
 }

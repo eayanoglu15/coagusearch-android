@@ -134,7 +134,7 @@ class accountPage : AppCompatActivity(),
 
     fun saved() {
         val userRepository: UsersRepository = get()
-        showProgressLoading(true, this)
+       // showProgressLoading(true, this)
         userRepository.getUserInfo(this, 1)
         this.onBackPressed();
     }

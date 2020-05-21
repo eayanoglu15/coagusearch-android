@@ -3,18 +3,13 @@ package com.example.coagusearch.network.bloodOrderAndRecommendation.model
 import android.content.Context
 import com.example.coagusearch.R
 import com.example.coagusearch.doctor.PatientBloodOrder
-import com.example.coagusearch.doctor.PatientPastDataActivity
 import com.example.coagusearch.doctor.doctorBloodBankFragment
 import com.example.coagusearch.medicalTeam.MedicalPrepareFragment
-import com.example.coagusearch.network.PatientData.request.GetPatientBloodTestRequest
-import com.example.coagusearch.network.PatientData.response.UserBloodTestsResponse
-import com.example.coagusearch.network.Users.response.UserResponse
 import com.example.coagusearch.network.bloodOrderAndRecommendation.request.BloodOrderIDRequest
 import com.example.coagusearch.network.bloodOrderAndRecommendation.request.BloodOrderRequest
 import com.example.coagusearch.network.bloodOrderAndRecommendation.request.OrderForUserDataRequest
 import com.example.coagusearch.network.bloodOrderAndRecommendation.response.DoctorBloodOrderResponse
 import com.example.coagusearch.network.bloodOrderAndRecommendation.response.MedicalBloodOrderResponse
-import com.example.coagusearch.network.bloodOrderAndRecommendation.response.PreviousOrderResponse
 import com.example.coagusearch.network.onFailureDialog
 import com.example.coagusearch.network.shared.RetrofitClient
 import com.example.coagusearch.network.shared.response.ApiResponse
@@ -89,6 +84,9 @@ class BloodOrderRepository(
                     if(response.isSuccessful && response.body() is ApiResponse) {
                         orderResult = response.body()
                         if (context is PatientBloodOrder) {
+                            println("Başarılı SiPiariş")
+                            println(orderResult!!.success)
+                            println(orderResult!!.message)
                             (context as PatientBloodOrder).refresh()
                         }
                         showProgressLoading(false, context)
@@ -201,8 +199,10 @@ class BloodOrderRepository(
                     response: Response<MedicalBloodOrderResponse>
                 ) {
                     if (response.isSuccessful && response.body() is MedicalBloodOrderResponse) {
-                        orderResult = response.body()
-                        fragment.setData(orderResult!!)
+                        if(fragment.isAdded) {
+                            orderResult = response.body()
+                            fragment.setData(orderResult!!)
+                        }
                         showProgressLoading(false, context)
                     }
                     else {

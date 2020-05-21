@@ -1,9 +1,9 @@
 package com.example.coagusearch.doctor
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import com.example.coagusearch.R
 import com.example.coagusearch.network.Users.response.PatientDetailResponse
 import com.example.coagusearch.network.notifications.model.NotificationRepository

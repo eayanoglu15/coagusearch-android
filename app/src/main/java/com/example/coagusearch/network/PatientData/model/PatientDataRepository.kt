@@ -7,15 +7,10 @@ import com.example.coagusearch.network.PatientData.request.GetPatientBloodTestDa
 import com.example.coagusearch.network.PatientData.request.GetPatientBloodTestRequest
 import com.example.coagusearch.network.PatientData.response.SuggestionListResponse
 import com.example.coagusearch.network.PatientData.response.UserBloodTestDataResponse
-import com.example.coagusearch.network.PatientData.response.UserBloodTestHistoryResponse
 import com.example.coagusearch.network.PatientData.response.UserBloodTestsResponse
-import com.example.coagusearch.network.RegularMedication.request.SaveMedicineInfoRequest
-import com.example.coagusearch.network.RegularMedication.response.UserMedicineResponse
 import com.example.coagusearch.network.onFailureDialog
 import com.example.coagusearch.network.shared.RetrofitClient
 import com.example.coagusearch.network.shared.response.ApiResponse
-import com.example.coagusearch.patient.AddMedicine
-import com.example.coagusearch.patient.UserInfoSingleton
 import com.example.coagusearch.ui.dialog.showProgressLoading
 import com.google.gson.Gson
 import retrofit2.Call

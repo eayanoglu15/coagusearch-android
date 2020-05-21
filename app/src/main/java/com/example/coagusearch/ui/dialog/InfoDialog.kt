@@ -4,10 +4,7 @@ package com.example.coagusearch.ui.dialog
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
-import android.widget.ImageButton
-import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
-import androidx.appcompat.widget.AppCompatButton
 import com.example.coagusearch.R
 
 class InfoDialog(context: Context) : BaseDialog() {

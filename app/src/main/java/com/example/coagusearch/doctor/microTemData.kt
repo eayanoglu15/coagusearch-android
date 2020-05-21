@@ -2,26 +2,15 @@ package com.example.coagusearch.doctor
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.LinearLayout
-import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.coagusearch.R
 import com.example.coagusearch.doctor.doctorAdapters.utemResultAdapter
 import com.example.coagusearch.network.PatientData.model.PatientDataRepository
 import com.example.coagusearch.network.PatientData.request.GetPatientBloodTestRequest
 import com.example.coagusearch.network.PatientData.response.UserBloodTestDataCategoryResponse
 import com.example.coagusearch.network.PatientData.response.UserBloodTestDataResponse
-import com.example.coagusearch.network.Users.model.UsersRepository
 import com.example.coagusearch.network.Users.response.PatientDetailResponse
-import com.example.coagusearch.network.bloodOrderAndRecommendation.model.BloodOrderRepository
 import kotlinx.android.synthetic.main.activity_micro_tem_data.*
 import kotlinx.android.synthetic.main.segmentedcontrolbuttons.*
 import org.koin.android.ext.android.get
@@ -79,9 +68,9 @@ class microTemData : AppCompatActivity() {
         categoryList3=bloodTestLast.userBloodData.get(2).categoryList.toMutableList()
         dataResultRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         dataResultRecyclerView.adapter = utemResultAdapter(categoryList1!!)
-        button1.text=bloodTestLast.userBloodData.get(0).testName
-        button2.text=bloodTestLast.userBloodData.get(1).testName
-        button3.text=bloodTestLast.userBloodData.get(2).testName
+        button1.text=bloodTestLast.userBloodData.get(0).testName.capitalize()
+        button2.text=bloodTestLast.userBloodData.get(1).testName.capitalize()
+        button3.text=bloodTestLast.userBloodData.get(2).testName.capitalize()
         button1.setOnClickListener {
             (dataResultRecyclerView.adapter as utemResultAdapter).companies = categoryList1!!
             (dataResultRecyclerView.adapter as utemResultAdapter).notifyDataSetChanged()

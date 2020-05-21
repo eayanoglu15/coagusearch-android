@@ -1,25 +1,19 @@
 package com.example.coagusearch.doctor
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.coagusearch.R
 import com.example.coagusearch.doctor.doctorAdapters.PatientBloodOrderAdapter
+import com.example.coagusearch.doctor.doctorAdapters.statusAdapter
 import com.example.coagusearch.doctor.doctorAdapters.utemResultAdapter
 import com.example.coagusearch.network.PatientData.model.PatientDataRepository
 import com.example.coagusearch.network.PatientData.request.GetPatientBloodTestDataRequest
-import com.example.coagusearch.network.PatientData.request.GetPatientBloodTestRequest
 import com.example.coagusearch.network.PatientData.response.UserBloodTestDataCategoryResponse
 import com.example.coagusearch.network.PatientData.response.UserBloodTestDataResponse
-import kotlinx.android.synthetic.main.activity_micro_tem_data.*
 import kotlinx.android.synthetic.main.activity_past_micro_tem_data.*
 import kotlinx.android.synthetic.main.pastdatasegmented.*
-import kotlinx.android.synthetic.main.pastdatasegmented.button1
-import kotlinx.android.synthetic.main.pastdatasegmented.button2
-import kotlinx.android.synthetic.main.pastdatasegmented.button3
-import kotlinx.android.synthetic.main.segmentedcontrolbuttons.*
-
 import org.koin.android.ext.android.get
 
 
@@ -62,13 +56,13 @@ class PastMicroTemData : AppCompatActivity() {
         past_uTemDataRecyclerView.adapter = utemResultAdapter(categoryList1!!)
         ordersRecyclerView.layoutManager =
             LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-        ordersRecyclerView.adapter = PatientBloodOrderAdapter(bloodTest.ordersOfData.toMutableList())
+        ordersRecyclerView.adapter = statusAdapter(bloodTest.ordersOfData.toMutableList(),this)
         ordersRecyclerView.visibility = View.GONE
         println(bloodTest.ordersOfData.toString())
 
-        button1.text=bloodTest.userBloodData.get(0).testName
-        button2.text=bloodTest.userBloodData.get(1).testName
-        button3.text=bloodTest.userBloodData.get(2).testName
+        button1.text=bloodTest.userBloodData.get(0).testName.capitalize()
+        button2.text=bloodTest.userBloodData.get(1).testName.capitalize()
+        button3.text=bloodTest.userBloodData.get(2).testName.capitalize()
         button1.setOnClickListener {
             past_uTemDataRecyclerView.visibility = View.VISIBLE
             ordersRecyclerView.visibility = View.GONE

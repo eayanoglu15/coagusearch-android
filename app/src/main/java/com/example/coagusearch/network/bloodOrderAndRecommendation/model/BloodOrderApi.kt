@@ -1,14 +1,10 @@
 package com.example.coagusearch.network.bloodOrderAndRecommendation.model
 
-import com.example.coagusearch.network.PatientData.request.GetPatientBloodTestDataRequest
-import com.example.coagusearch.network.PatientData.request.GetPatientBloodTestRequest
-import com.example.coagusearch.network.PatientData.response.SuggestionListResponse
-import com.example.coagusearch.network.PatientData.response.UserBloodTestDataResponse
-import com.example.coagusearch.network.PatientData.response.UserBloodTestHistoryResponse
 import com.example.coagusearch.network.bloodOrderAndRecommendation.request.BloodOrderIDRequest
 import com.example.coagusearch.network.bloodOrderAndRecommendation.request.BloodOrderRequest
 import com.example.coagusearch.network.bloodOrderAndRecommendation.request.OrderForUserDataRequest
-import com.example.coagusearch.network.bloodOrderAndRecommendation.response.*
+import com.example.coagusearch.network.bloodOrderAndRecommendation.response.DoctorBloodOrderResponse
+import com.example.coagusearch.network.bloodOrderAndRecommendation.response.MedicalBloodOrderResponse
 import com.example.coagusearch.network.shared.response.ApiResponse
 import retrofit2.Call
 import retrofit2.http.Body

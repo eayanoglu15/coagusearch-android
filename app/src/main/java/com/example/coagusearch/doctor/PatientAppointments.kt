@@ -1,24 +1,15 @@
 package com.example.coagusearch.doctor
 
 import android.app.Activity
-import android.app.Notification
 import android.content.Context
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.coagusearch.R
 import com.example.coagusearch.doctor.doctorAdapters.PatientOldAppointmentAdapter
 import com.example.coagusearch.network.Users.response.PatientDetailResponse
-import com.example.coagusearch.network.Users.response.SingleAppointmentResponse
 import kotlinx.android.synthetic.main.activity_patient_appointments.*
-import kotlinx.android.synthetic.main.fragment_doctor_home.*
-import kotlinx.android.synthetic.main.mypatientnextappointment.view.*
 
 class PatientAppointments : AppCompatActivity() {
     val list = mutableListOf("a", "b", "c")

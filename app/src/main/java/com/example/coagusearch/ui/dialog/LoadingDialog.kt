@@ -1,16 +1,10 @@
 package com.example.coagusearch.ui.dialog
 
 import android.content.Context
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.view.LayoutInflater
 import android.view.View
-import android.view.Window
-import android.view.animation.AnimationUtils
-import android.widget.ImageView
 import androidx.appcompat.app.AlertDialog
 import com.example.coagusearch.R
-import com.example.coagusearch.ui.dialog.BaseDialog
 
 
 class LoadingDialog(val context: Context) : BaseDialog() {

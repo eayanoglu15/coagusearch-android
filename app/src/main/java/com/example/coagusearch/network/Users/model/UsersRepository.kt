@@ -1,13 +1,18 @@
 package com.example.coagusearch.network.Users.model
 
 import android.content.Context
-import com.example.coagusearch.*
+import android.widget.Toast
+import com.example.coagusearch.MainActivity
+import com.example.coagusearch.R
 import com.example.coagusearch.doctor.PatientBloodOrder
 import com.example.coagusearch.doctor.doctorHomeFragment
 import com.example.coagusearch.doctor.doctorMyPatient
 import com.example.coagusearch.doctor.doctorPatientsFragment
+import com.example.coagusearch.medicalTeam.MedTeamEditPatient
 import com.example.coagusearch.medicalTeam.medicalHomeFragment
+import com.example.coagusearch.medicalTeam.medicalTeamPatientsFragment
 import com.example.coagusearch.network.Users.request.AmbulancePatientRequest
+import com.example.coagusearch.network.Users.request.PatientBodyInfoSaveRequest
 import com.example.coagusearch.network.Users.request.PatientDetailRequest
 import com.example.coagusearch.network.Users.request.UserBodyInfoSaveRequest
 import com.example.coagusearch.network.Users.response.DoctorMainScreenResponse
@@ -20,7 +25,6 @@ import com.example.coagusearch.network.shared.response.ApiResponse
 import com.example.coagusearch.patient.UserInfoSingleton
 import com.example.coagusearch.patient.accountPage
 import com.example.coagusearch.patient.mainmenu
-import com.example.coagusearch.typing.Ok
 import com.example.coagusearch.ui.dialog.showProgressLoading
 import com.google.gson.Gson
 import retrofit2.Call
@@ -35,7 +39,7 @@ class UsersRepository(
     //TODO: Handle the Server error part which shows error on the screen
     fun getUserInfo(context: Context, which: Int): UserResponse? {
         var userResponse: UserResponse? = null
-        showProgressLoading(true, context)
+        //showProgressLoading(true, context)
         retrofitClient.usersApi().getUserInfo()
             .enqueue(object : Callback<UserResponse> {
                 override fun onFailure(call: Call<UserResponse>, t: Throwable) {
@@ -53,7 +57,7 @@ class UsersRepository(
                         if (which == 2) {
                             (context as MainActivity).goToActivity()
                         }
-                        showProgressLoading(false, context)
+                       // showProgressLoading(false, context)
                     } else {
                         val errorResponse =
                             Gson().fromJson<ApiResponse>(
@@ -61,7 +65,7 @@ class UsersRepository(
                                 ApiResponse::class.java
                             )?.message
                                 ?: context.resources.getString(R.string.errorOccurred)
-                        showProgressLoading(false, context)
+                       // showProgressLoading(false, context)
                         onFailureDialog(context, errorResponse)
                     }
                 }
@@ -261,8 +265,23 @@ class UsersRepository(
                     response: Response<ApiResponse>
                 ) {
                     if (response.isSuccessful && response.body() is ApiResponse) {
-                        r = response.body()
-                        showProgressLoading(false, context)
+                        if(response.body()!!.success.equals("true")) {
+                            r = response.body()
+                            showProgressLoading(false, context)
+                            //onFailureDialog(context, r!!.message)
+                        }
+                        else{
+                            if(response.body()!!.message.equals("Security problem")) {
+                                println(response.body()!!.message)
+                                showProgressLoading(false, context)
+                                if(fragment.isAdded)
+                                fragment.AddPatient()
+                            }
+                            else{
+                                showProgressLoading(false, context)
+                                onFailureDialog(context, response.body()!!.message)
+                            }
+                        }
                     } else {
                         val errorResponse =
                             Gson().fromJson<ApiResponse>(
@@ -303,6 +322,10 @@ class UsersRepository(
                         }
                         else if( context is PatientBloodOrder){
                             (context as PatientBloodOrder).setData(patientDetailResponse!!)
+                            println(patientDetailResponse!!.previousBloodOrders.toString())
+                        }
+                        else if(context is MedTeamEditPatient){
+                            (context as MedTeamEditPatient).setData(patientDetailResponse!!)
                         }
                         showProgressLoading(false, context)
 
@@ -319,5 +342,81 @@ class UsersRepository(
                 }
             })
         return patientDetailResponse
+    }
+
+
+
+    fun saveBodyInfoOfPatient(
+        saveBodyInfoSaveRequest: PatientBodyInfoSaveRequest,
+        context: Context
+    ): ApiResponse? {
+        var apiResponse: ApiResponse? = null
+        showProgressLoading(true, context)
+        retrofitClient.usersApi().saveBodyInfoOfPatient(saveBodyInfoSaveRequest)
+            .enqueue(object : Callback<ApiResponse> {
+                override fun onFailure(call: Call<ApiResponse>, t: Throwable) {
+                    onFailureDialog(context, t.toString())
+                    showProgressLoading(false, context)
+                }
+
+                override fun onResponse(
+                    call: Call<ApiResponse>,
+                    response: Response<ApiResponse>
+                ) {
+                    if (response.isSuccessful && response.body() is ApiResponse) {
+                        apiResponse = response.body()
+                        showProgressLoading(false, context)
+                       Toast.makeText(context,context.getString(R.string.savedInfoPatient),Toast.LENGTH_LONG)
+                    } else {
+                        val errorResponse =
+                            Gson().fromJson<ApiResponse>(
+                                response.errorBody()?.string(),
+                                ApiResponse::class.java
+                            )?.message
+                                ?: context.resources.getString(R.string.errorOccurred)
+                        showProgressLoading(false, context)
+                        onFailureDialog(context, errorResponse)
+                    }
+                }
+            })
+        return apiResponse
+    }
+
+
+    fun getMyPatientsMed(
+        context: Context,
+        fragment: medicalTeamPatientsFragment
+    ): List<UserResponse>? {
+        var myPatients: List<UserResponse>? = null
+        showProgressLoading(true, context)
+        retrofitClient.usersApi().getMyPatients()
+            .enqueue(object : Callback<List<UserResponse>> {
+                override fun onFailure(call: Call<List<UserResponse>>, t: Throwable) {
+                    onFailureDialog(context, t.toString())
+                    showProgressLoading(false, context)
+                }
+                override fun onResponse(
+                    call: Call<List<UserResponse>>,
+                    response: Response<List<UserResponse>>
+                ) {
+                    if (response.isSuccessful && response.body() is List<UserResponse>) {
+                        myPatients = response.body()
+                        if(fragment.isAdded) {
+                            fragment.setPatientList(myPatients!!)
+                        }
+                        showProgressLoading(false, context)
+                    } else {
+                        val errorResponse =
+                            Gson().fromJson<ApiResponse>(
+                                response.errorBody()?.string(),
+                                ApiResponse::class.java
+                            )?.message
+                                ?: context.resources.getString(R.string.errorOccurred)
+                        showProgressLoading(false, context)
+                        onFailureDialog(context, errorResponse)
+                    }
+                }
+            })
+        return myPatients
     }
 }

@@ -2,17 +2,13 @@ package com.example.coagusearch.doctor
 
 import android.app.AlertDialog
 import android.content.DialogInterface
-import androidx.appcompat.app.AppCompatActivity
+import android.graphics.PorterDuff
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.coagusearch.R
-import com.example.coagusearch.doctor.doctorAdapters.PatientBloodOrderAdapter
 import com.example.coagusearch.doctor.doctorAdapters.PatientBloodOrderAdapter2
 import com.example.coagusearch.network.Users.model.UsersRepository
 import com.example.coagusearch.network.Users.request.PatientDetailRequest
@@ -21,8 +17,6 @@ import com.example.coagusearch.network.bloodOrderAndRecommendation.model.BloodOr
 import com.example.coagusearch.network.bloodOrderAndRecommendation.request.BloodOrderRequest
 import kotlinx.android.synthetic.main.activity_patient_blood_order.*
 import kotlinx.android.synthetic.main.patientbloodorder.*
-import kotlinx.android.synthetic.main.patientbloodorder.addNoteText
-import kotlinx.android.synthetic.main.patientbloodorder.editText
 import kotlinx.android.synthetic.main.patientbloodorder.view.*
 import org.koin.android.ext.android.get
 
@@ -40,8 +34,6 @@ class PatientBloodOrder : AppCompatActivity() {
             println("sdasdads" + patientInfo.toString())
             patientName.text=patientInfo!!.patientResponse.getFullName().capitalize()
             setData(patientInfo!!)
-
-
             setListeners()
         } else {
             intentFailDialog(this)
@@ -72,6 +64,7 @@ class PatientBloodOrder : AppCompatActivity() {
                 val input = EditText(this)
                 input.isSingleLine = false
                 input.setText(m_Text)
+                input.getBackground().mutate().setColorFilter(getResources().getColor(R.color.colorPrimary), PorterDuff.Mode.SRC_ATOP);
                 builder.setTitle("Add Your Note")
                 builder.setPositiveButton("OK",
                     DialogInterface.OnClickListener { dialog, which ->
@@ -93,6 +86,7 @@ class PatientBloodOrder : AppCompatActivity() {
                     R.id.PCC -> productType = "PlateletConcentrate"
                     R.id.FFP -> productType = "FFP"
                 }
+                productTypeRadioGroup.clearCheck()
 
                 additionalNote = m_Text
                 if (editText.text.toString().trim().length != 0) {
@@ -107,6 +101,7 @@ class PatientBloodOrder : AppCompatActivity() {
                     if (intent.hasExtra("id")) {
                         val bundle: Bundle? = intent.extras
                         patientid = bundle!!.getLong("id")
+                        println(patientid.toString()+"ID printed")
                         val bloodbank: BloodOrderRepository = get()
                         bloodbank.bloodOrderForPatient(
                             BloodOrderRequest(
@@ -133,12 +128,12 @@ class PatientBloodOrder : AppCompatActivity() {
     fun refresh(){
         val userRepository: UsersRepository = get()
         userRepository.getPatientDetail(this, PatientDetailRequest(patientid!!))
-
     }
 
   fun setData(patientInfo:PatientDetailResponse){
+      println(patientInfo.toString())
         patientOrderRecyclerView.layoutManager =
             LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-        patientOrderRecyclerView.adapter = PatientBloodOrderAdapter2(patientInfo.previousBloodOrders.toMutableList(),this)
+        patientOrderRecyclerView.adapter = PatientBloodOrderAdapter2(patientInfo.previousBloodOrders.filter {e-> e.kind.equals("Blood") }.toMutableList(),this)
     }
 }

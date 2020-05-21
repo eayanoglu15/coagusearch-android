@@ -1,15 +1,14 @@
 package com.example.coagusearch.doctor
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.SnapHelper
 import com.example.coagusearch.R
-import com.example.coagusearch.doctor.doctorAdapters.HomeFragmentEmergencyPatientAdapter
 import com.example.coagusearch.doctor.doctorAdapters.myPatientMedAdapter
 import com.example.coagusearch.network.Users.model.UsersRepository
 import com.example.coagusearch.network.Users.request.PatientDetailRequest
@@ -17,11 +16,9 @@ import com.example.coagusearch.network.Users.response.PatientDetailResponse
 import com.example.coagusearch.network.notifications.model.NotificationRepository
 import com.example.coagusearch.network.notifications.request.CallPatientRequest
 import kotlinx.android.synthetic.main.activity_doctor_my_patient.*
-import kotlinx.android.synthetic.main.fragment_doctor_home.*
 import kotlinx.android.synthetic.main.mypatienttestresults.view.*
 import kotlinx.android.synthetic.main.patientinfocard.view.*
 import org.koin.android.ext.android.get
-import java.io.Serializable
 
 class doctorMyPatient : AppCompatActivity() {
     var patientInfo: PatientDetailResponse? = null

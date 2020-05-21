@@ -12,3 +12,17 @@ data class UserBodyInfoSaveRequest(
     var rhType: String?,
     var gender: String?
 )
+
+data class PatientBodyInfoSaveRequest(
+    var name: String?,
+    var surname: String?,
+    var birthDay: Int?,
+    var birthMonth: Int?,
+    var birthYear: Int?,
+    var height: Double?,
+    var weight: Double?,
+    var bloodType: String?,
+    var rhType: String?,
+    var gender: String?,
+    var patientId: Long
+)

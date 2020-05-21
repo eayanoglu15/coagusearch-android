@@ -1,17 +1,16 @@
 package com.example.coagusearch.doctor
 
-import android.animation.Animator
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.*
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.PagerSnapHelper
+import androidx.recyclerview.widget.SnapHelper
 import com.example.coagusearch.R
 import com.example.coagusearch.doctor.doctorAdapters.HomeFragmentAppointmentAdapter
 import com.example.coagusearch.doctor.doctorAdapters.HomeFragmentEmergencyPatientAdapter
-import com.example.coagusearch.network.Appointment.model.AppointmentRepository
 import com.example.coagusearch.network.Users.model.UsersRepository
 import com.example.coagusearch.network.Users.response.DoctorMainScreenResponse
 import com.example.coagusearch.network.Users.response.EmergencyPatientDetail

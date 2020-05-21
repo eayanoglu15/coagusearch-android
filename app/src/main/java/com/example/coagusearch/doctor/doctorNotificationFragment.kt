@@ -1,12 +1,11 @@
 package com.example.coagusearch.doctor
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-
 import com.example.coagusearch.R
 import com.example.coagusearch.doctor.doctorAdapters.DoctorNotificationsAdapter
 import com.example.coagusearch.network.notifications.model.NotificationRepository

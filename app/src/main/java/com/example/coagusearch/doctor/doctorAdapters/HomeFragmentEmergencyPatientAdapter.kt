@@ -5,7 +5,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.coagusearch.R
 import com.example.coagusearch.network.Users.response.EmergencyPatientDetail
@@ -38,31 +37,25 @@ class HomeFragmentEmergencyPatientAdapter(var emergencyPatientList: MutableList<
 
     override fun onBindViewHolder(holder: HomePagePatientCardViewHolder, position: Int) {
         val emergencyPatientDetail = emergencyPatientList[position]
-        /*
-        holder.itemView.setOnClickListener { Toast.makeText(holder.itemView.context,"${position} is clicked",
-            Toast.LENGTH_SHORT).show() }
-        holder.itemView.setOnLongClickListener {
-            remove(company)
-            return@setOnLongClickListener true
-        }
-         */
-
         holder.patientName.text =
             emergencyPatientDetail.userName.toString().capitalize() + " " + emergencyPatientDetail.userSurname.toString().capitalize()
         holder.time.text = emergencyPatientDetail.arrivalHour.getTimeAsString()
-        if (!emergencyPatientDetail.isUserAtAmbulance && !emergencyPatientDetail.isDataReady) {
-            holder.check.visibility = View.GONE
-            holder.ambulance.visibility = View.GONE
-        } else if (!emergencyPatientDetail.isUserAtAmbulance && emergencyPatientDetail.isDataReady) {
+        if (!emergencyPatientDetail.isUserAtAmbulance){
             holder.ambulance.visibility = View.INVISIBLE
-        } else if (emergencyPatientDetail.isUserAtAmbulance && !emergencyPatientDetail.isDataReady) {
-            holder.check.setImageResource(R.drawable.ambulancecopy)
-            holder.ambulance.visibility = View.INVISIBLE
-        } else {
-
+            println(emergencyPatientDetail.isUserAtAmbulance.toString()+"Print ambulance")
         }
-
-
+        else{
+            println(emergencyPatientDetail.isUserAtAmbulance.toString()+"Print ambulance")
+            holder.ambulance.visibility = View.VISIBLE
+        }
+        if (!emergencyPatientDetail.isDataReady){
+            println(emergencyPatientDetail.isDataReady.toString()+"Print ambulance")
+            holder.check.visibility = View.INVISIBLE
+        }
+        else{
+            println(emergencyPatientDetail.isDataReady.toString()+"Print ambulance")
+            holder.check.visibility = View.VISIBLE
+        }
     }
 
     class HomePagePatientCardViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

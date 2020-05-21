@@ -1,10 +1,10 @@
 package com.example.coagusearch.patient
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.NumberPicker
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.example.coagusearch.R
 import com.example.coagusearch.network.Appointment.model.AppointmentRepository
 import com.example.coagusearch.network.Appointment.request.SaveAppointmentRequest

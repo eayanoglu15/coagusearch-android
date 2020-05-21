@@ -1,10 +1,9 @@
 package com.example.coagusearch.medicalTeam
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.coagusearch.R
-import com.example.coagusearch.doctor.*
 import com.example.coagusearch.network.Users.model.UsersRepository
 import kotlinx.android.synthetic.main.main.*
 import org.koin.android.ext.android.get

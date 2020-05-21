@@ -157,42 +157,59 @@
             android:textColor="#404d66" />
     </RadioGroup>
 
-    <TextView
-        android:id="@+id/addNoteText"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:background="@drawable/shadowedticked"
-        android:drawableRight="@drawable/ic_event_note_black_24dp"
-        android:drawablePadding="4dp"
-        android:gravity="center"
-        android:paddingLeft="6dp"
-        android:paddingRight="6dp"
-        android:text="@string/addnote"
-        android:textColor="@color/white"
-        android:textSize="@dimen/smalltext"
-        app:layout_constraintBottom_toBottomOf="@+id/editText"
-        app:layout_constraintEnd_toEndOf="@+id/rhRadioGroup"
-        app:layout_constraintTop_toTopOf="@+id/editText" />
-
-    <EditText
-        android:id="@+id/editText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
-        android:autoSizeMaxTextSize="@dimen/smalltext"
-        android:autoSizeMinTextSize="8sp"
-        android:autoSizeTextType="uniform"
-        android:background="@drawable/cardwhite"
-        android:ems="10"
-        android:gravity="center"
-        android:hint="Enter Unit"
-        android:inputType="number"
-        android:padding="5dp"
-        android:textSize="@dimen/smalltext"
+        android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/rhRadioGroup"
         app:layout_constraintStart_toStartOf="@+id/rhRadioGroup"
-        app:layout_constraintTop_toBottomOf="@+id/rhRadioGroup" />
+        app:layout_constraintTop_toBottomOf="@+id/rhRadioGroup">
+
+        <TextView
+            android:id="@+id/textView10"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:text="@string/unit"
+            android:textColor="#404d66"
+            android:textSize="@dimen/smalltext" />
+
+        <EditText
+            android:id="@+id/editText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:layout_weight="1"
+            android:autoSizeMaxTextSize="@dimen/smalltext"
+            android:autoSizeMinTextSize="8sp"
+            android:autoSizeTextType="uniform"
+            android:background="@drawable/cardwhite"
+            android:ems="10"
+            android:gravity="center"
+            android:hint="@string/enterunit"
+            android:inputType="number"
+            android:padding="5dp"
+            android:textSize="@dimen/smalltext" />
+
+        <TextView
+            android:id="@+id/addNoteText"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:layout_margin="4dp"
+            android:layout_weight="1"
+            android:background="@drawable/shadowedticked"
+            android:drawableRight="@drawable/ic_event_note_black_24dp"
+            android:drawablePadding="4dp"
+            android:gravity="center"
+            android:paddingLeft="6dp"
+            android:paddingRight="6dp"
+            android:text="@string/addnote"
+            android:textColor="@color/white"
+            android:textSize="@dimen/smalltext" />
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

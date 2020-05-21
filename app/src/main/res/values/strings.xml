@@ -8,11 +8,12 @@
     <string name="errorOccurred">Error Occured</string>
     <!--LoginScreen-->
     <string name="rememberMe">Remember Me</string>
-    <string name="hintTc">TC</string>
+    <string name="hintTc">Identity Number</string>
     <string name="passwordHint">Password</string>
     <string name="forgotPassword">Forgot password?</string>
     <string name="login">Login</string>
     <!-- Bottom Navigation-->
+    <string name="delete">Delete</string>
     <string name="menu">Menu</string>
     <string name="appointments">Appointments</string>
     <string name="account">Account</string>
@@ -135,6 +136,10 @@
     <string name="heightvcm">(cm)</string>
     <string name="weightkg">(kg)</string>-->
     <string name="switchtodoctorview">Switch to doctor view</string>
+    <string name="ok">Ok</string>
+    <string name="noteadded">Your note is added</string>
+    <string name="addnote2">Please add your note</string>
+    <string name="enterUnit">Enter Unit</string>
     <string name="switchtomedview">Switch to medical team view</string>
     <!--Information cards-->
     <!--Patient-->
@@ -143,6 +148,7 @@
     <!--Doctor-->
 
     <string name="nameerror">Name and Surname cannot be empty</string>
+    <string name="nameerrorID"> Identity number ,Name and Surname cannot be empty</string>
     <string name="DoctorHomeInfo" > You have no appointments today  </string>
     <string name="DoctorNotificationsInfo"  >There isn\'t any notification   </string>
     <string name="DoctorPatientInfo"  > You have no patients  </string>
@@ -153,7 +159,7 @@
     <string name="DoctorPatientTreatmentStatusInfo">No order has been made yet   </string>
     <string name="DoctorPatientSuggestionInfo">This analysis doesn\'t have any suggesitons </string>
     <!--Medical-->
-    <string name="MedicalTODO" > There is no request  </string>
+    <string name="unit" >Unit</string>
     <string name="MedicalPatients"  > You have no patients </string>
     <string name="TotalPatients" >Total patients:</string>
     <string name="enterunit" >Enter Unit </string>
@@ -161,7 +167,18 @@
     <string name="nobloodtype" >Blood type or Rh type is unknown, you can use blood bank page  for this patient</string>
     <string name="fillallparts" >Please fill empty parts</string>
     <string name="pastutemdataanalysis" > Past µTem Data Analysis</string>
-
+    <string name="savedInfoPatient" >Successfully Saved</string>
+    <string name="notifiedsuccess" >Your request has been sent successfully</string>
+    <string name="enterTCplease" >Please enter patient\'s Identity Number </string>
+    <string name="pleaseaddpatient">No patient is found with given ID, please add the patient</string>
+    <string name="nowyoucan">Now you can report the patient</string>
+    <string name="MedicalTODO" >There is no request to prepare</string>
+    <string name="MedicalDONE" >There is no request you have prepared yet</string>
+    <string name="passMedical" >Password of the saved patient: </string>
+    <string name="enter_patient_id">Enter Patient ID</string>
+    <string name="waiting">To Do</string>
+    <string name="done1">Done</string>
+    <string name="orders">Orders</string>
 
 
 </resources>

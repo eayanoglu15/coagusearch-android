@@ -2,17 +2,10 @@ package com.example.coagusearch.ui.dialog
 
 
 import android.content.Context
-import android.text.InputFilter
 import android.view.LayoutInflater
 import android.view.View
-import android.widget.LinearLayout
-import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
-import androidx.appcompat.widget.AppCompatButton
-import androidx.core.content.res.ResourcesCompat
 import com.example.coagusearch.R
-import com.google.android.material.textfield.TextInputEditText
-import com.google.android.material.textfield.TextInputLayout
 
 class TwoActionButtonDialog(context: Context) : BaseDialog() {
 

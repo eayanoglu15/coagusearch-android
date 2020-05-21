@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.coagusearch.R
 import com.example.coagusearch.doctor.doctorAdapters.PatientsFragmentPatientAdapter
 import com.example.coagusearch.network.Users.model.UsersRepository
-import com.example.coagusearch.network.Users.response.TodayPatientDetail
 import com.example.coagusearch.network.Users.response.UserResponse
 import kotlinx.android.synthetic.main.fragment_doctor_patients.*
 import org.koin.android.ext.android.get
